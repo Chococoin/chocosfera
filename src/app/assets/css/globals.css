@@ -1,0 +1,159 @@
+/* Variable definition for colors */
+:root {
+    --color-principal: #fffdf6;
+    --color-secondary: #fffdf6;
+
+    --color-text-navbar: #000000;
+    --color-navigation-bar: #fbf6e2;
+    --color-marquee-background: #273337;
+    --color-marquee-live: #f7051c;
+}
+
+/* General Styles */
+html {
+    font-size: 10px;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-size: 1.6rem;
+}
+
+/* Main Structure */
+.layout {
+    position: relative;
+    min-width: 1290px;
+    width: 100%;
+    min-height: 10vh;
+}
+
+/* Layout Menu */
+.layout__menu {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--color-navigation-bar);
+}
+
+.menu__list {
+    display: flex;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.menu__link--divider {
+    height: 22px;
+    border-left: 1px solid var(--color-text-navbar);
+    border-right: 1px solid var(--color-text-navbar);
+}
+
+.menu__link {
+    margin: 0 50px;
+}
+
+.menu__language {
+    display: flex;
+}
+
+.language_item {
+    padding: 0 15px;
+    margin: 0 1px;
+    text-transform: uppercase;
+    background-color: #ded7b8;
+}
+
+.language__first {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    font-weight: bold;
+}
+
+.language__second {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.menu__wallet {
+    padding: 0 15px;
+    border: 2px solid var(--color-text-navbar);
+    border-radius: 15px;
+}
+
+.wallet__button {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Layout Marquee */
+.layout__marquee {
+    font-size: 1.6rem;
+    width: 100%;
+    height: 4vh;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-marquee-background);
+}
+
+.marquee__container--left {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.marquee__status {
+    display: flex;
+    color: var(--color-marquee-live);
+}
+
+.status__text {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.episode__text {
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.place__text {
+    color: white;
+}
+
+.time__text {
+    color: white;
+}
+
+.marquee__container--right {
+    display: flex;
+    width: 15%;
+    justify-content: space-between;
+}
+
+.users__text {
+    color: white;
+}
+
+.users__text--online {
+    font-weight: bold;
+}
+
+.marque__extra {
+    background-color: var(--color-marquee-live);
+    width: 130px;
+    border-radius: 15px;
+}
+
+.extra__link {
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+}
