@@ -14,7 +14,7 @@ export const Marquee = () => {
                     <p className='place__text'>Ecuador + Italy</p>
                 </div>
                 <div className='marquee__time'>
-                    <p className='time__text'>01d 14h 39m 26x</p>
+                    <p className='time__text'>01d 14h 39m 26s</p>
                 </div>
             </div>
             <div className='marquee__container--right'>

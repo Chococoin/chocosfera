@@ -1,12 +1,15 @@
 /* Variable definition for colors */
 :root {
     --color-principal: #fffdf6;
-    --color-secondary: #fffdf6;
+    --color-secondary: #f9f3d6;
 
     --color-text-navbar: #000000;
     --color-navigation-bar: #fbf6e2;
     --color-marquee-background: #273337;
     --color-marquee-live: #f7051c;
+
+    --color-background-button: #8fcc89;
+    --color-text: #662220;
 }
 
 /* General Styles */
@@ -156,4 +159,104 @@ body {
     text-transform: uppercase;
     text-align: center;
     font-weight: bold;
+}
+
+/* Layout Description*/
+.layout__description {
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-principal);
+}
+
+.description__container {
+    height: 100%;
+    padding: 55px 18% 25px 18%;
+}
+
+.container__information {
+    display: flex;
+    width: 45%;
+}
+
+.information__left {
+    display: flex;
+    flex-direction: column;
+}
+
+.left__title {
+    font-size: 1.8rem;
+    margin: 10px 0;
+}
+
+.left__description {
+    font-size: 1.6rem;
+    font-weight: light;
+    margin: 10px 0;
+}
+
+.left__button {
+    width: 170px;
+    margin: 10px 0;
+    background-color: var(--color-background-button);
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.right__image {
+    width: 100%;
+}
+
+.container__function {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.function__top {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.top__title {
+    margin-bottom: 20px;
+}
+
+.function__bottom {
+    display: flex;
+    justify-content: space-around;
+}
+
+.bottom__article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.bottom__image {
+    width: 100%;
+    height: 100%;
+}
+
+.bottom__image--title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.function__button {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.button__function {
+    width: 250px;
+    background-color: var(--color-background-button);
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 15px;
 }
