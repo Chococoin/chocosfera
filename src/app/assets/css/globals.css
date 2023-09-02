@@ -175,12 +175,13 @@ body {
 
 .container__information {
     display: flex;
-    width: 45%;
 }
 
 .information__left {
     display: flex;
     flex-direction: column;
+    width: 45%;
+    margin: 0 auto;
 }
 
 .left__title {
@@ -204,8 +205,15 @@ body {
     border-radius: 15px;
 }
 
+.information__right {
+    width: 45%;
+    margin: 0 auto;
+}
+
 .right__image {
-    width: 100%;
+    width: 350px;
+    height: 350px;
+    margin: 0 auto;
 }
 
 .container__function {
@@ -239,6 +247,10 @@ body {
 .bottom__image {
     width: 100%;
     height: 100%;
+}
+
+.bottom__image--icon {
+    margin: 0 auto;
 }
 
 .bottom__image--title {
