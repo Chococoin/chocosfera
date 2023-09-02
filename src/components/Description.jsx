@@ -22,7 +22,11 @@ export const Description = () => {
                         </a>
                     </div>
                     <div className='information__right'>
-                        <img className='right__image' src='#' alt=''></img>
+                        <img
+                            className='right__image'
+                            src='https://placehold.co/250'
+                            alt=''
+                        ></img>
                     </div>
                 </div>
 
@@ -45,7 +49,7 @@ export const Description = () => {
                         <div className='bottom__article'>
                             <div className='bottom__image'>
                                 <img
-                                    src='#'
+                                    src='https://placehold.co/150'
                                     alt=''
                                     className='bottom__image--icon'
                                 />
@@ -61,9 +65,17 @@ export const Description = () => {
                         </div>
 
                         <div className='bottom__article'>
+                            <img
+                                src='https://placehold.co/150x20'
+                                alt='arrow'
+                                className='bottom__image--arrow'
+                            />
+                        </div>
+
+                        <div className='bottom__article'>
                             <div className='bottom__image'>
                                 <img
-                                    src='#'
+                                    src='https://placehold.co/150'
                                     alt=''
                                     className='bottom__image--icon'
                                 />
@@ -77,9 +89,17 @@ export const Description = () => {
                         </div>
 
                         <div className='bottom__article'>
+                            <img
+                                src='https://placehold.co/150x20'
+                                alt='arrow'
+                                className='bottom__image--arrow'
+                            />
+                        </div>
+
+                        <div className='bottom__article'>
                             <div className='bottom__image'>
                                 <img
-                                    src='#'
+                                    src='https://placehold.co/150'
                                     alt=''
                                     className='bottom__image--icon'
                                 />

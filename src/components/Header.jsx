@@ -3,7 +3,7 @@ import React from 'react';
 export const Header = () => (
     <nav className='layout__menu'>
         <div className='menu__logo'>
-            <img src='' alt='chocosfera logo' />
+            <img src='https://placehold.co/300x100' alt='chocosfera logo' />
         </div>
         <ul className='menu__list'>
             <li className='menu__option'>
