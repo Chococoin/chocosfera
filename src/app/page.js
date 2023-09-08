@@ -4,6 +4,7 @@ import { Marquee } from '@/components/Marquee';
 import { Description } from '@/components/Description';
 import { Information } from '@/components/Information';
 import { Contact } from '@/components/Contact';
+import { Crypto } from '@/components/Crypto';
 
 export default function Home() {
     return (
@@ -13,6 +14,7 @@ export default function Home() {
             <Description />
             <Information />
             <Contact />
+            <Crypto />
         </div>
     );
 }
