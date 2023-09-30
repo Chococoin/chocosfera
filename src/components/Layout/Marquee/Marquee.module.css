@@ -1,0 +1,68 @@
+/* Layout Marquee */
+.layout__marquee {
+    font-size: 1.6rem;
+    width: 100%;
+    height: 4vh;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-marquee-background);
+}
+
+.marquee__container--left {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.marquee__status {
+    display: flex;
+    color: var(--color-marquee-live);
+}
+
+.status__text {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.episode__text {
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.place__text {
+    color: white;
+}
+
+.time__text {
+    color: white;
+}
+
+.marquee__container--right {
+    display: flex;
+    width: 15%;
+    justify-content: space-between;
+}
+
+.users__text {
+    color: white;
+}
+
+.users__text--online {
+    font-weight: bold;
+}
+
+.marque__extra {
+    background-color: var(--color-marquee-live);
+    width: 130px;
+    border-radius: 15px;
+}
+
+.extra__link {
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+}
