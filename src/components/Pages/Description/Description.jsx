@@ -35,6 +35,7 @@ export const Description = () => {
                             alt='cocoa tree'
                         />
                     </div>
+                    <div className={classes['clearfix']}></div>
                 </div>
 
                 <div className={classes['container__function']}>
