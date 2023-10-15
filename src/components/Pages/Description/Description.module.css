@@ -123,7 +123,7 @@
     overflow: auto;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1100px) {
     .description__container {
         height: 100%;
         padding: 55px 0 25px 0;
@@ -135,16 +135,43 @@
 
     .information__left {
         position: relative;
+        width: 50%;
     }
 
     .left__button {
         position: absolute;
-        top: 600px;
+        top: 850px;
         left: 120px;
+    }
+}
+
+@media (max-width: 850px) {
+    .description__container {
+        height: 100%;
+        padding: 55px 0 25px 0;
+    }
+
+    .container__information {
+        flex-direction: column;
+    }
+
+    .information__left {
+        position: relative;
+        width: 80%;
+    }
+
+    .top__description {
+        width: 100%;
+    }
+
+    .left__button {
+        position: absolute;
+        top: 550px;
+        left: 225px;
     }
 
     .container__function {
-        width: 50%;
+        width: 80%;
         flex-direction: column;
         margin: 0 auto;
     }
@@ -156,7 +183,6 @@
     }
 }
 
-/* Extra small devices (phones, 600px and down) */
 @media (max-width: 600px) {
     .description__container {
         height: 100%;
@@ -169,43 +195,20 @@
 
     .information__left {
         position: relative;
+        width: 80%;
+    }
+
+    .top__description {
+        width: 100%;
     }
 
     .left__button {
         position: absolute;
-        top: 600px;
-        left: 120px;
+        top: 640px;
+        left: 75px;
     }
 
     .container__function {
-        width: 50%;
-        flex-direction: column;
-        margin: 0 auto;
-    }
-
-    .function__bottom {
-        flex-direction: column;
-        justify-content: center;
-        margin: 0 auto;
+        width: 80%;
     }
 }
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (min-width: 768px) {
-    .example {
-        background: blue;
-    }
-} */
-
-/* Large devices (laptops/desktops, 992px and up) */
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-/* @media only screen and (min-width: 1200px) {
-    .example {
-        background: pink;
-    }
-} */

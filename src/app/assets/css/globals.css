@@ -30,38 +30,25 @@ body {
 /* Main Structure */
 .layout {
     position: relative;
-    min-width: 1290px;
+    min-width: 100%;
     width: 100%;
     min-height: 10vh;
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 1100px) {
     .layout {
-        width: 600px;
+        min-width: 50%;
     }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (min-width: 768px) {
-    .example {
-        background: blue;
-    }
-} */
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) {
+@media (max-width: 850px) {
     .layout {
-        width: 992px;
+        min-width: 50%;
     }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-/* @media only screen and (min-width: 1200px) {
-    .example {
-        background: pink;
+@media (max-width: 600px) {
+    .layout {
+        min-width: 50%;
     }
-} */
+}
