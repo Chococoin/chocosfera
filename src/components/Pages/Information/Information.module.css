@@ -1,0 +1,111 @@
+/* Information */
+.layout__information {
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-secondary);
+    padding: 55px 18% 25px 18%;
+}
+
+.information__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container__explanation {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.explanation__title {
+    margin-bottom: 25px;
+}
+
+.container__chocolate {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.chocolate__article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chocolate__image {
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+}
+
+.chocolate__image--display {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.chocolate__title {
+    font-size: 1.8rem;
+    margin-top: 25px;
+    color: var(--color-text);
+    height: 65px;
+}
+
+.chocolate__image--display {
+    width: 100%;
+    height: 100%;
+}
+
+.container__community {
+    margin-top: 55px;
+    margin-bottom: 55px;
+}
+
+.community__button {
+    width: 450px;
+    background-color: var(--color-background-button);
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .information__container {
+        flex-direction: column;
+    }
+
+    .container__explanation {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .container__chocolate {
+        flex-direction: column;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px) {
+    .example {
+        background: orange;
+    }
+} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {
+    .example {
+        background: pink;
+    }
+} */

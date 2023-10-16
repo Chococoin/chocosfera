@@ -1,0 +1,157 @@
+/* Layout contact */
+.layout__contact {
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-principal);
+    padding: 55px 18% 25px 18%;
+}
+
+.contact__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container__more {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.more__title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 35px;
+}
+
+.more__description {
+    font-size: 2rem;
+}
+
+.container__contact {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.contact__telegram {
+    width: 45%;
+    border: 2px solid var(--color-border);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.telegram__image {
+    margin: 25px auto;
+    width: 120px;
+    height: 120px;
+}
+
+.telegram__image--display {
+    width: 120px;
+    height: 120px;
+}
+
+.telegram__button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.button__telegram {
+    width: 350px;
+    background-color: var(--color-background-button);
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 25px;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.telegram__info {
+    width: auto;
+    margin-bottom: 25px;
+}
+
+.contact__email {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.email__container {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+
+    border: 2px solid var(--color-border);
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.email__image {
+    margin-right: 25px;
+    width: 120px;
+    height: 120px;
+}
+
+.email__image--display {
+    width: 120px;
+    height: 120px;
+}
+
+.email__title {
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.email__email {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.newsletter__container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    border: 2px solid var(--color-border);
+    border-radius: 15px;
+}
+
+.newsletter__title {
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.form__form {
+    display: flex;
+}
+
+.form__email {
+    border: none;
+    background: #e0e1db;
+    padding: 10px 10px;
+    width: 85%;
+}
+
+.form__button {
+    border: none;
+    background-color: var(--color-border);
+    padding: 10px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.newsletter__confirm {
+    margin-top: 15px;
+}
+
+.newsletter__confirm--link {
+    text-decoration: underline;
+}
