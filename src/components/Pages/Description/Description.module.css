@@ -96,6 +96,7 @@
     margin: 0 auto;
     width: 25px;
     height: 25px;
+    display: block;
 }
 
 .bottom__image--title {
@@ -142,6 +143,18 @@
         position: absolute;
         top: 850px;
         left: 120px;
+    }
+
+    .bottom__image--arrow {
+        display: none;
+    }
+
+    .bottom__article {
+        margin: 5px 0;
+    }
+
+    .button__function {
+        margin-top: 25px;
     }
 }
 
