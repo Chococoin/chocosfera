@@ -38,7 +38,7 @@ export const Information = () => {
                         <h2 className={classes['chocolate__title']}>
                             Salvaguardia dell'ambiente e del clima
                         </h2>
-                        <p>
+                        <p className={classes['chocolate__description']}>
                             Lorem ipsum dolor sit amet consectetur, adipisicing
                             elit. Eligendi recusandae ipsam assumenda
                             temporibus.
@@ -56,7 +56,7 @@ export const Information = () => {
                         <h2 className={classes['chocolate__title']}>
                             Filiera tracciata e provenienza certificata
                         </h2>
-                        <p>
+                        <p className={classes['chocolate__description']}>
                             Lorem ipsum dolor sit amet consectetur, adipisicing
                             elit. Eligendi recusandae ipsam assumenda
                             temporibus.
@@ -74,7 +74,7 @@ export const Information = () => {
                         <h2 className={classes['chocolate__title']}>
                             Miglioramento condizioni di vita delle popolazioni
                         </h2>
-                        <p>
+                        <p className={classes['chocolate__description']}>
                             Lorem ipsum dolor sit amet consectetur, adipisicing
                             elit. Eligendi recusandae ipsam assumenda
                             temporibus.
@@ -83,7 +83,7 @@ export const Information = () => {
                 </div>
                 <div className={classes['container__community']}>
                     <a href='#' className={classes['community__button']}>
-                        Entra nella nostra community solidale
+                        Entra nella community
                     </a>
                 </div>
             </div>
