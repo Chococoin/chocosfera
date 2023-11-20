@@ -54,3 +54,23 @@
 .information__copyright {
     font-size: 1.8rem;
 }
+
+
+@media (max-width: 1100px) {
+
+}
+
+@media (max-width: 850px) {
+
+}
+
+@media (max-width: 600px) {
+
+}
+
+@media (max-width: 400px) {
+    .information__privacy {
+        display: flex;
+        flex-direction: column;
+    }
+}
