@@ -44,6 +44,11 @@ export default function DashboardPage() {
     { id: 2, action: t('activity.harvestRecorded'), date: '2025-03-10', icon: '📦' },
     { id: 3, action: t('activity.impactUpdated'), date: '2025-03-05', icon: '📊' },
   ];
+  const recentActivityFormatter = new Intl.DateTimeFormat(locale, {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 
   const quickActions = [
     { name: t('actions.adoptTree'), icon: '🌳', href: '/dashboard/trees' },
@@ -124,11 +129,7 @@ export default function DashboardPage() {
                       {activity.action}
                     </p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">
-                      {new Date(activity.date).toLocaleDateString('es-ES', {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric',
-                      })}
+                      {recentActivityFormatter.format(new Date(activity.date))}
                     </p>
                   </div>
                 </div>

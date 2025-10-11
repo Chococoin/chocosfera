@@ -1,13 +1,25 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useEffect, useMemo, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import ThemeToggle from '../../components/ThemeToggle';
 
 export function DashboardHeader() {
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const t = useTranslations('dashboard.header');
+  const locale = useLocale();
+  const dateTimeFormatter = useMemo(
+    () =>
+      new Intl.DateTimeFormat(locale, {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+    [locale],
+  );
 
   useEffect(() => {
     setCurrentTime(new Date());
@@ -48,15 +60,7 @@ export function DashboardHeader() {
         <div className="flex items-center space-x-4">
           {/* Current time */}
           <div className="hidden md:block text-sm text-gray-500 dark:text-gray-400">
-            {currentTime
-              ? currentTime.toLocaleString('es-ES', {
-                  weekday: 'short',
-                  day: 'numeric',
-                  month: 'short',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })
-              : '...'}
+            {currentTime ? dateTimeFormatter.format(currentTime) : '...'}
           </div>
 
           {/* Theme toggle */}

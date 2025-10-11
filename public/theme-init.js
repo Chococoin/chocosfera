@@ -9,7 +9,7 @@
     } else {
       document.documentElement.classList.remove("dark");
     }
-  } catch (_) {
+  } catch {
     // Fallback if localStorage is not available
     console.warn("Unable to access localStorage for theme");
   }

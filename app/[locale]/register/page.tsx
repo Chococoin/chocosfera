@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 interface ValidationErrors {
@@ -14,7 +13,6 @@ interface ValidationErrors {
 export default function RegisterPage() {
   const t = useTranslations('register');
   const locale = useLocale();
-  const router = useRouter();
   const [formData, setFormData] = useState({
     nick: '',
     email: '',

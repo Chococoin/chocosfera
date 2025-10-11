@@ -65,7 +65,7 @@ export function Sidebar() {
 
   return (
     <div
-      className={`bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 ${
+      className={`relative bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 ${
         isCollapsed ? 'w-16' : 'w-64'
       }`}
     >
@@ -118,7 +118,7 @@ export function Sidebar() {
       {!isCollapsed && (
         <div className="absolute bottom-6 left-3 right-3 p-4 bg-gradient-to-br from-primary/10 to-orange-600/10 rounded-lg border border-primary/20">
           <p className="text-xs text-gray-600 dark:text-gray-400 italic">
-            "{t('quote')}"
+            “{t('quote')}”
           </p>
         </div>
       )}

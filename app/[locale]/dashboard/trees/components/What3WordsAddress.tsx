@@ -5,16 +5,12 @@ import { useTranslations } from 'next-intl';
 
 interface What3WordsAddressProps {
   address: string;
-  language: string;
   languageName: string;
-  coordinates: { lat: number; lng: number };
 }
 
 export function What3WordsAddress({
   address,
-  language,
   languageName,
-  coordinates,
 }: What3WordsAddressProps) {
   const t = useTranslations('dashboard.trees.what3words');
   const [copied, setCopied] = useState(false);
@@ -50,7 +46,8 @@ export function What3WordsAddress({
               </span>
             </div>
             <code className="text-sm font-mono font-bold text-red-700 dark:text-red-300">
-              ///{address}
+              {'///'}
+              {address}
             </code>
           </div>
           <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

@@ -2,13 +2,11 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function LoginPage() {
   const t = useTranslations('login');
   const locale = useLocale();
-  const router = useRouter();
   const [formData, setFormData] = useState({
     usernameOrEmail: '',
     password: '',

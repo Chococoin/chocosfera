@@ -49,6 +49,7 @@ export function TelegramWidget({
           widgetElement.setAttribute('data-colorful', '1');
           widgetElement.setAttribute('data-color', 'EC7813'); // Color primary de Chocósfera
           widgetElement.setAttribute('data-dark-color', 'F97316'); // Color naranja oscuro
+          widgetElement.setAttribute('data-color-scheme', colorScheme);
 
           widgetRef.current.appendChild(widgetElement);
         }
@@ -75,8 +76,8 @@ export function TelegramWidget({
 declare global {
   interface Window {
     Telegram?: {
-      DiscussionButton?: any;
-      Login?: any;
+      DiscussionButton?: unknown;
+      Login?: unknown;
     };
   }
 }
