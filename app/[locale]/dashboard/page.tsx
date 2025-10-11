@@ -1,9 +1,12 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 export default function DashboardPage() {
   const t = useTranslations('dashboard.main');
+  const locale = useLocale();
+  const router = useRouter();
 
   const stats = [
     {
@@ -143,22 +146,26 @@ export default function DashboardPage() {
               </h3>
             </div>
             <div className="p-6 space-y-3">
-              {quickActions.map((action) => (
-                <button
-                  key={action.name}
-                  type="button"
-                  onClick={() => (window.location.href = action.href)}
-                  className="w-full flex items-center justify-between p-3 text-left rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gradient-to-r hover:from-primary/10 hover:to-orange-600/10 hover:border-primary/30 transition-all"
-                >
-                  <div className="flex items-center space-x-3">
-                    <span className="text-2xl">{action.icon}</span>
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      {action.name}
-                    </span>
-                  </div>
-                  <span className="text-gray-400">→</span>
-                </button>
-              ))}
+              {quickActions.map((action) => {
+                const localizedHref = `/${locale}${action.href}`;
+
+                return (
+                  <button
+                    key={action.name}
+                    type="button"
+                    onClick={() => router.push(localizedHref)}
+                    className="w-full flex items-center justify-between p-3 text-left rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gradient-to-r hover:from-primary/10 hover:to-orange-600/10 hover:border-primary/30 transition-all"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">{action.icon}</span>
+                      <span className="font-medium text-gray-900 dark:text-white">
+                        {action.name}
+                      </span>
+                    </div>
+                    <span className="text-gray-400">→</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
