@@ -1,0 +1,191 @@
+{
+  "header": {
+    "title": "Chocósfera",
+    "login": "Accedi",
+    "register": "Registrati"
+  },
+  "hero": {
+    "title": "Benvenuto a Chocósfera",
+    "description": "Scopri il mondo dove il cioccolato, la tecnologia blockchain e la giustizia sociale si uniscono per creare un impatto positivo."
+  },
+  "sections": {
+    "cacao": {
+      "title": "Il Cuore del Cacao",
+      "description": "La nostra essenza risiede nel cacao di origine etica, coltivato con rispetto per la terra e le persone. Ogni chicco racconta una storia di tradizione e sapore autentico."
+    },
+    "blockchain": {
+      "title": "Innovazione con Blockchain",
+      "description": "Utilizziamo la tecnologia blockchain per garantire la tracciabilità di ogni prodotto, offrendoti trasparenza e fiducia dalla fattoria a casa tua."
+    },
+    "justice": {
+      "title": "Giustizia per Tutti",
+      "description": "Chocósfera si impegna per il commercio equo e l'empowerment delle comunità produttrici, assicurando che ogni acquisto abbia un impatto sociale positivo."
+    }
+  },
+  "cta": {
+    "start": "Inizia"
+  },
+  "navigation": {
+    "home": "Home",
+    "adopt": "Adotta",
+    "traceability": "Tracciabilità",
+    "impact": "Impatto",
+    "create": "Crea"
+  },
+  "login": {
+    "title": "Accedi",
+    "usernameOrEmail": "Username o Email",
+    "password": "Password",
+    "forgotPassword": "Hai dimenticato la password?",
+    "submit": "Accedi",
+    "noAccount": "Non hai un account?",
+    "registerLink": "Registrati qui"
+  },
+  "register": {
+    "title": "Crea Account",
+    "nick": "Nick (nome utente)",
+    "email": "Email",
+    "password": "Password",
+    "passwordRequirements": "Minimo 15 caratteri, 1 maiuscola, 1 minuscola, 1 numero, 1 carattere speciale",
+    "submit": "Registrati",
+    "hasAccount": "Hai già un account?",
+    "loginLink": "Accedi qui",
+    "errors": {
+      "nickRequired": "Il nick è richiesto",
+      "emailRequired": "L'email è richiesta",
+      "emailInvalid": "Email non valida",
+      "passwordRequired": "La password è richiesta",
+      "passwordTooShort": "La password deve avere almeno 15 caratteri",
+      "passwordNoUppercase": "La password deve contenere almeno una maiuscola",
+      "passwordNoLowercase": "La password deve contenere almeno una minuscola",
+      "passwordNoNumber": "La password deve contenere almeno un numero",
+      "passwordNoSpecial": "La password deve contenere almeno un carattere speciale"
+    }
+  },
+  "forgotPassword": {
+    "title": "Recupera Password",
+    "email": "Email",
+    "submit": "Invia istruzioni",
+    "backToLogin": "Torna al login"
+  },
+  "footer": {
+    "about": "Cioccolato etico con tecnologia blockchain per un mondo più giusto e sostenibile.",
+    "links": "Link",
+    "aboutUs": "Chi Siamo",
+    "howItWorks": "Come Funziona",
+    "faqs": "Domande Frequenti",
+    "contact": "Contatto",
+    "followUs": "Seguici",
+    "rights": "Tutti i diritti riservati.",
+    "madeWith": "Fatto con ❤️ per il 🌍 gli 🌳 e i 👦🏿👧🏿"
+  },
+  "dashboard": {
+    "sidebar": {
+      "dashboard": "Pannello",
+      "myTrees": "I Miei Alberi",
+      "traceability": "Tracciabilità",
+      "impact": "Impatto",
+      "community": "Comunità",
+      "marketplace": "Negozio",
+      "settings": "Impostazioni",
+      "quote": "Il cioccolato è felicità che puoi mangiare"
+    },
+    "header": {
+      "title": "Pannello di Controllo",
+      "profile": "Profilo",
+      "settings": "Impostazioni",
+      "logout": "Disconnetti"
+    },
+    "main": {
+      "welcome": "Bentornato!",
+      "welcomeMessage": "Ecco un riepilogo del tuo impatto con Chocósfera",
+      "stats": {
+        "adoptedTrees": "Alberi Adottati",
+        "cocoaProduced": "Cacao Prodotto",
+        "carbonOffset": "CO₂ Compensato",
+        "communitiesHelped": "Comunità Supportate",
+        "thisMonth": "questo mese"
+      },
+      "recentActivity": "Attività Recente",
+      "quickActions": "Azioni Rapide",
+      "activity": {
+        "treeAdopted": "Nuovo albero adottato",
+        "harvestRecorded": "Raccolto registrato",
+        "impactUpdated": "Impatto aggiornato"
+      },
+      "actions": {
+        "adoptTree": "Adotta un Albero",
+        "viewTraceability": "Visualizza Tracciabilità",
+        "seeImpact": "Vedi il mio Impatto"
+      },
+      "impactSummary": {
+        "title": "Il Tuo Impatto",
+        "treesGrowing": "12 alberi in crescita",
+        "farmersSupported": "Supportando 3 agricoltori",
+        "sustainablePractices": "100% pratiche sostenibili"
+      }
+    },
+    "community": {
+      "title": "Comunità Chocósfera",
+      "description": "Connettiti con altri amanti del cioccolato, coltivatori di cacao e il team di Chocósfera",
+      "features": {
+        "bot": {
+          "title": "Chatta con il Bot",
+          "description": "Chiedi informazioni sulla tracciabilità e sul tuo impatto"
+        },
+        "farmers": {
+          "title": "Coltivatori di Cacao",
+          "description": "Chatta direttamente con i produttori"
+        },
+        "community": {
+          "title": "Comunità Globale",
+          "description": "Unisciti alla conversazione mondiale"
+        }
+      },
+      "chatTitle": "Conversazioni dal Vivo",
+      "chatDescription": "Partecipa alle discussioni nel gruppo Telegram di Chocósfera",
+      "joinButton": "Apri in Telegram",
+      "guidelines": {
+        "title": "Linee Guida della Comunità",
+        "rule1": "Sii rispettoso e gentile con tutti i membri",
+        "rule2": "Condividi conoscenze sul cacao e il cioccolato",
+        "rule3": "Chiedi informazioni sulla tracciabilità e sostenibilità",
+        "rule4": "Niente spam o contenuti non correlati"
+      }
+    },
+    "trees": {
+      "title": "I Miei Alberi",
+      "description": "Gestisci e monitora i tuoi alberi di cacao adottati",
+      "stats": {
+        "totalTrees": "Alberi Totali",
+        "totalProduction": "Produzione Totale",
+        "co2Offset": "CO₂ Compensato",
+        "farmersSupported": "Agricoltori Supportati"
+      },
+      "status": {
+        "healthy": "Sano",
+        "growing": "In Crescita",
+        "young": "Giovane"
+      },
+      "treeCard": {
+        "age": "Età",
+        "production": "Produzione",
+        "farmer": "Agricoltore",
+        "adopted": "Adottato",
+        "viewDetails": "Visualizza Dettagli"
+      },
+      "adoptCta": {
+        "title": "Adotta un Nuovo Albero",
+        "description": "Espandi il tuo impatto adottando più alberi di cacao e supportando più agricoltori",
+        "button": "Adotta Albero"
+      },
+      "what3words": {
+        "title": "Indirizzo what3words",
+        "localLanguage": "Lingua locale",
+        "copyAddress": "Copia indirizzo",
+        "viewOnMap": "Visualizza sulla mappa",
+        "explanation": "Un modo unico per identificare questa posizione esatta con tre semplici parole"
+      }
+    }
+  }
+}

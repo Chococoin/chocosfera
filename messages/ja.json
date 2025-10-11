@@ -1,0 +1,191 @@
+{
+  "header": {
+    "title": "Chocósfera",
+    "login": "ログイン",
+    "register": "登録"
+  },
+  "hero": {
+    "title": "Chocósferaへようこそ",
+    "description": "チョコレート、ブロックチェーン技術、社会正義が一体となってポジティブな影響を生み出す世界を発見してください。"
+  },
+  "sections": {
+    "cacao": {
+      "title": "カカオの心",
+      "description": "私たちの本質は、土地と人々を尊重して栽培された倫理的なカカオにあります。各豆は伝統と本物の風味の物語を語っています。"
+    },
+    "blockchain": {
+      "title": "ブロックチェーンによるイノベーション",
+      "description": "私たちはブロックチェーン技術を使用して各製品のトレーサビリティを保証し、農場からあなたの家まで透明性と信頼を提供します。"
+    },
+    "justice": {
+      "title": "すべての人に正義を",
+      "description": "Chocósferaは公正取引と生産者コミュニティのエンパワーメントに取り組み、すべての購入がポジティブな社会的影響を持つことを保証します。"
+    }
+  },
+  "cta": {
+    "start": "始める"
+  },
+  "navigation": {
+    "home": "ホーム",
+    "adopt": "養子縁組",
+    "traceability": "トレーサビリティ",
+    "impact": "影響",
+    "create": "作成"
+  },
+  "login": {
+    "title": "ログイン",
+    "usernameOrEmail": "ユーザー名またはメール",
+    "password": "パスワード",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "submit": "ログイン",
+    "noAccount": "アカウントをお持ちでないですか？",
+    "registerLink": "こちらで登録"
+  },
+  "register": {
+    "title": "アカウント作成",
+    "nick": "ニックネーム（ユーザー名）",
+    "email": "メール",
+    "password": "パスワード",
+    "passwordRequirements": "最低15文字、大文字1文字、小文字1文字、数字1文字、特殊文字1文字",
+    "submit": "登録",
+    "hasAccount": "すでにアカウントをお持ちですか？",
+    "loginLink": "こちらでログイン",
+    "errors": {
+      "nickRequired": "ニックネームは必須です",
+      "emailRequired": "メールは必須です",
+      "emailInvalid": "無効なメール",
+      "passwordRequired": "パスワードは必須です",
+      "passwordTooShort": "パスワードは最低15文字必要です",
+      "passwordNoUppercase": "パスワードには大文字が最低1文字必要です",
+      "passwordNoLowercase": "パスワードには小文字が最低1文字必要です",
+      "passwordNoNumber": "パスワードには数字が最低1文字必要です",
+      "passwordNoSpecial": "パスワードには特殊文字が最低1文字必要です"
+    }
+  },
+  "forgotPassword": {
+    "title": "パスワード回復",
+    "email": "メール",
+    "submit": "手順を送信",
+    "backToLogin": "ログインに戻る"
+  },
+  "footer": {
+    "about": "より公正で持続可能な世界のための、ブロックチェーン技術を使用した倫理的なチョコレート。",
+    "links": "リンク",
+    "aboutUs": "私たちについて",
+    "howItWorks": "仕組み",
+    "faqs": "よくある質問",
+    "contact": "お問い合わせ",
+    "followUs": "フォローする",
+    "rights": "無断転載を禁じます。",
+    "madeWith": "❤️で作られました 🌍 🌳 👦🏿👧🏿 のために"
+  },
+  "dashboard": {
+    "sidebar": {
+      "dashboard": "ダッシュボード",
+      "myTrees": "マイツリー",
+      "traceability": "トレーサビリティ",
+      "impact": "インパクト",
+      "community": "コミュニティ",
+      "marketplace": "マーケットプレイス",
+      "settings": "設定",
+      "quote": "チョコレートは食べられる幸せです"
+    },
+    "header": {
+      "title": "ダッシュボード",
+      "profile": "プロフィール",
+      "settings": "設定",
+      "logout": "ログアウト"
+    },
+    "main": {
+      "welcome": "おかえりなさい！",
+      "welcomeMessage": "Chocósferaでのあなたの影響の概要です",
+      "stats": {
+        "adoptedTrees": "養子縁組した木",
+        "cocoaProduced": "生産されたカカオ",
+        "carbonOffset": "CO₂相殺",
+        "communitiesHelped": "サポートしたコミュニティ",
+        "thisMonth": "今月"
+      },
+      "recentActivity": "最近のアクティビティ",
+      "quickActions": "クイックアクション",
+      "activity": {
+        "treeAdopted": "新しい木が養子縁組されました",
+        "harvestRecorded": "収穫が記録されました",
+        "impactUpdated": "インパクトが更新されました"
+      },
+      "actions": {
+        "adoptTree": "木を養子縁組",
+        "viewTraceability": "トレーサビリティを見る",
+        "seeImpact": "マイインパクトを見る"
+      },
+      "impactSummary": {
+        "title": "あなたのインパクト",
+        "treesGrowing": "12本の木が成長中",
+        "farmersSupported": "3人の農家をサポート",
+        "sustainablePractices": "100%持続可能な実践"
+      }
+    },
+    "community": {
+      "title": "Chocósferaコミュニティ",
+      "description": "他のチョコレート愛好家、カカオ農家、Chocósferaチームとつながりましょう",
+      "features": {
+        "bot": {
+          "title": "ボットとチャット",
+          "description": "トレーサビリティとインパクトについて質問する"
+        },
+        "farmers": {
+          "title": "カカオ農家",
+          "description": "生産者と直接会話する"
+        },
+        "community": {
+          "title": "グローバルコミュニティ",
+          "description": "世界中の会話に参加する"
+        }
+      },
+      "chatTitle": "ライブ会話",
+      "chatDescription": "ChocósferaTelegramグループのディスカッションに参加する",
+      "joinButton": "Telegramで開く",
+      "guidelines": {
+        "title": "コミュニティガイドライン",
+        "rule1": "すべてのメンバーに敬意を持ち親切にする",
+        "rule2": "カカオとチョコレートに関する知識を共有する",
+        "rule3": "トレーサビリティと持続可能性について質問する",
+        "rule4": "スパムや無関係なコンテンツは禁止"
+      }
+    },
+    "trees": {
+      "title": "マイツリー",
+      "description": "養子縁組したカカオの木を管理・監視する",
+      "stats": {
+        "totalTrees": "木の総数",
+        "totalProduction": "総生産量",
+        "co2Offset": "CO₂相殺",
+        "farmersSupported": "支援した農家"
+      },
+      "status": {
+        "healthy": "健康",
+        "growing": "成長中",
+        "young": "若い"
+      },
+      "treeCard": {
+        "age": "樹齢",
+        "production": "生産量",
+        "farmer": "農家",
+        "adopted": "養子縁組日",
+        "viewDetails": "詳細を見る"
+      },
+      "adoptCta": {
+        "title": "新しい木を養子縁組",
+        "description": "より多くのカカオの木を養子縁組し、より多くの農家を支援してあなたのインパクトを広げましょう",
+        "button": "木を養子縁組"
+      },
+      "what3words": {
+        "title": "what3words住所",
+        "localLanguage": "現地語",
+        "copyAddress": "住所をコピー",
+        "viewOnMap": "地図で見る",
+        "explanation": "3つのシンプルな単語でこの正確な場所を識別する独自の方法"
+      }
+    }
+  }
+}

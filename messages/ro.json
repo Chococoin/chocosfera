@@ -1,0 +1,191 @@
+{
+  "header": {
+    "title": "Chocósfera",
+    "login": "Conectează-te",
+    "register": "Înregistrează-te"
+  },
+  "hero": {
+    "title": "Bun venit la Chocósfera",
+    "description": "Descoperă lumea unde ciocolata, tehnologia blockchain și justiția socială se unesc pentru a crea un impact pozitiv."
+  },
+  "sections": {
+    "cacao": {
+      "title": "Inima Cacaolei",
+      "description": "Esența noastră rezidă în cacaoa de origine etică, cultivată cu respect pentru pământ și oameni. Fiecare boabă spune o poveste de tradiție și gust autentic."
+    },
+    "blockchain": {
+      "title": "Inovație cu Blockchain",
+      "description": "Folosim tehnologia blockchain pentru a garanta trasabilitatea fiecărui produs, oferindu-ți transparență și încredere de la fermă până la casa ta."
+    },
+    "justice": {
+      "title": "Dreptate pentru Toți",
+      "description": "Chocósfera se angajează pentru comerțul echitabil și împuternicirea comunităților producătoare, asigurând că fiecare achiziție are un impact social pozitiv."
+    }
+  },
+  "cta": {
+    "start": "Începe"
+  },
+  "navigation": {
+    "home": "Acasă",
+    "adopt": "Adoptă",
+    "traceability": "Trasabilitate",
+    "impact": "Impact",
+    "create": "Creează"
+  },
+  "login": {
+    "title": "Conectează-te",
+    "usernameOrEmail": "Utilizator sau Email",
+    "password": "Parolă",
+    "forgotPassword": "Ai uitat parola?",
+    "submit": "Conectează-te",
+    "noAccount": "Nu ai un cont?",
+    "registerLink": "Înregistrează-te aici"
+  },
+  "register": {
+    "title": "Creează Cont",
+    "nick": "Nick (nume de utilizator)",
+    "email": "Email",
+    "password": "Parolă",
+    "passwordRequirements": "Minim 15 caractere, 1 majusculă, 1 minusculă, 1 cifră, 1 caracter special",
+    "submit": "Înregistrează-te",
+    "hasAccount": "Ai deja un cont?",
+    "loginLink": "Conectează-te aici",
+    "errors": {
+      "nickRequired": "Nick-ul este obligatoriu",
+      "emailRequired": "Email-ul este obligatoriu",
+      "emailInvalid": "Email invalid",
+      "passwordRequired": "Parola este obligatorie",
+      "passwordTooShort": "Parola trebuie să aibă cel puțin 15 caractere",
+      "passwordNoUppercase": "Parola trebuie să conțină cel puțin o majusculă",
+      "passwordNoLowercase": "Parola trebuie să conțină cel puțin o minusculă",
+      "passwordNoNumber": "Parola trebuie să conțină cel puțin o cifră",
+      "passwordNoSpecial": "Parola trebuie să conțină cel puțin un caracter special"
+    }
+  },
+  "forgotPassword": {
+    "title": "Recuperează Parola",
+    "email": "Email",
+    "submit": "Trimite instrucțiuni",
+    "backToLogin": "Înapoi la login"
+  },
+  "footer": {
+    "about": "Ciocolată etică cu tehnologie blockchain pentru o lume mai dreaptă și durabilă.",
+    "links": "Link-uri",
+    "aboutUs": "Despre Noi",
+    "howItWorks": "Cum Funcționează",
+    "faqs": "Întrebări Frecvente",
+    "contact": "Contact",
+    "followUs": "Urmărește-ne",
+    "rights": "Toate drepturile rezervate.",
+    "madeWith": "Făcut cu ❤️ pentru 🌍 🌳 și 👦🏿👧🏿"
+  },
+  "dashboard": {
+    "sidebar": {
+      "dashboard": "Panou",
+      "myTrees": "Copacii Mei",
+      "traceability": "Trasabilitate",
+      "impact": "Impact",
+      "community": "Comunitate",
+      "marketplace": "Magazin",
+      "settings": "Setări",
+      "quote": "Ciocolata este fericirea pe care o poți mânca"
+    },
+    "header": {
+      "title": "Panou de Control",
+      "profile": "Profil",
+      "settings": "Setări",
+      "logout": "Deconectare"
+    },
+    "main": {
+      "welcome": "Bine ai revenit!",
+      "welcomeMessage": "Iată un rezumat al impactului tău cu Chocósfera",
+      "stats": {
+        "adoptedTrees": "Copaci Adoptați",
+        "cocoaProduced": "Cacao Produsă",
+        "carbonOffset": "CO₂ Compensat",
+        "communitiesHelped": "Comunități Sprijinite",
+        "thisMonth": "în această lună"
+      },
+      "recentActivity": "Activitate Recentă",
+      "quickActions": "Acțiuni Rapide",
+      "activity": {
+        "treeAdopted": "Copac nou adoptat",
+        "harvestRecorded": "Recoltă înregistrată",
+        "impactUpdated": "Impact actualizat"
+      },
+      "actions": {
+        "adoptTree": "Adoptă un Copac",
+        "viewTraceability": "Vezi Trasabilitatea",
+        "seeImpact": "Vezi Impactul Meu"
+      },
+      "impactSummary": {
+        "title": "Impactul Tău",
+        "treesGrowing": "12 copaci în creștere",
+        "farmersSupported": "Sprijinind 3 fermieri",
+        "sustainablePractices": "100% practici durabile"
+      }
+    },
+    "community": {
+      "title": "Comunitatea Chocósfera",
+      "description": "Conectează-te cu alți iubitori de ciocolată, cultivatori de cacao și echipa Chocósfera",
+      "features": {
+        "bot": {
+          "title": "Conversează cu Botul",
+          "description": "Întreabă despre trasabilitate și impactul tău"
+        },
+        "farmers": {
+          "title": "Cultivatori de Cacao",
+          "description": "Conversează direct cu producătorii"
+        },
+        "community": {
+          "title": "Comunitate Globală",
+          "description": "Alătură-te conversației mondiale"
+        }
+      },
+      "chatTitle": "Conversații Live",
+      "chatDescription": "Participă la discuțiile din grupul Telegram Chocósfera",
+      "joinButton": "Deschide în Telegram",
+      "guidelines": {
+        "title": "Ghidul Comunității",
+        "rule1": "Fii respectuos și amabil cu toți membrii",
+        "rule2": "Împărtășește cunoștințe despre cacao și ciocolată",
+        "rule3": "Întreabă despre trasabilitate și sustenabilitate",
+        "rule4": "Fără spam sau conținut neconexe"
+      }
+    },
+    "trees": {
+      "title": "Copacii Mei",
+      "description": "Gestionează și monitorizează copacii tăi de cacao adoptați",
+      "stats": {
+        "totalTrees": "Copaci Totali",
+        "totalProduction": "Producție Totală",
+        "co2Offset": "CO₂ Compensat",
+        "farmersSupported": "Fermieri Sprijiniți"
+      },
+      "status": {
+        "healthy": "Sănătos",
+        "growing": "În Creștere",
+        "young": "Tânăr"
+      },
+      "treeCard": {
+        "age": "Vârstă",
+        "production": "Producție",
+        "farmer": "Fermier",
+        "adopted": "Adoptat",
+        "viewDetails": "Vezi Detalii"
+      },
+      "adoptCta": {
+        "title": "Adoptă un Copac Nou",
+        "description": "Extinde-ți impactul adoptând mai mulți copaci de cacao și sprijinind mai mulți fermieri",
+        "button": "Adoptă Copac"
+      },
+      "what3words": {
+        "title": "Adresa what3words",
+        "localLanguage": "Limba locală",
+        "copyAddress": "Copiază adresa",
+        "viewOnMap": "Vezi pe hartă",
+        "explanation": "O modalitate unică de a identifica această locație exactă cu trei cuvinte simple"
+      }
+    }
+  }
+}

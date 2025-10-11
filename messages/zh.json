@@ -1,0 +1,191 @@
+{
+  "header": {
+    "title": "Chocósfera",
+    "login": "登录",
+    "register": "注册"
+  },
+  "hero": {
+    "title": "欢迎来到Chocósfera",
+    "description": "探索巧克力、区块链技术和社会正义相结合创造积极影响的世界。"
+  },
+  "sections": {
+    "cacao": {
+      "title": "可可之心",
+      "description": "我们的本质在于道德来源的可可，以尊重土地和人民的方式种植。每一颗可可豆都讲述着传统和正宗风味的故事。"
+    },
+    "blockchain": {
+      "title": "区块链创新",
+      "description": "我们使用区块链技术确保每个产品的可追溯性，为您提供从农场到家的透明度和信任。"
+    },
+    "justice": {
+      "title": "人人享有正义",
+      "description": "Chocósfera致力于公平贸易和赋权生产者社区，确保每次购买都能产生积极的社会影响。"
+    }
+  },
+  "cta": {
+    "start": "开始"
+  },
+  "navigation": {
+    "home": "首页",
+    "adopt": "领养",
+    "traceability": "可追溯性",
+    "impact": "影响",
+    "create": "创建"
+  },
+  "login": {
+    "title": "登录",
+    "usernameOrEmail": "用户名或邮箱",
+    "password": "密码",
+    "forgotPassword": "忘记密码？",
+    "submit": "登录",
+    "noAccount": "还没有账户？",
+    "registerLink": "在此注册"
+  },
+  "register": {
+    "title": "创建账户",
+    "nick": "昵称（用户名）",
+    "email": "邮箱",
+    "password": "密码",
+    "passwordRequirements": "至少15个字符，1个大写字母，1个小写字母，1个数字，1个特殊字符",
+    "submit": "注册",
+    "hasAccount": "已有账户？",
+    "loginLink": "在此登录",
+    "errors": {
+      "nickRequired": "昵称是必填项",
+      "emailRequired": "邮箱是必填项",
+      "emailInvalid": "无效的邮箱",
+      "passwordRequired": "密码是必填项",
+      "passwordTooShort": "密码至少需要15个字符",
+      "passwordNoUppercase": "密码必须包含至少一个大写字母",
+      "passwordNoLowercase": "密码必须包含至少一个小写字母",
+      "passwordNoNumber": "密码必须包含至少一个数字",
+      "passwordNoSpecial": "密码必须包含至少一个特殊字符"
+    }
+  },
+  "forgotPassword": {
+    "title": "恢复密码",
+    "email": "邮箱",
+    "submit": "发送说明",
+    "backToLogin": "返回登录"
+  },
+  "footer": {
+    "about": "采用区块链技术的道德巧克力，为更公正和可持续的世界。",
+    "links": "链接",
+    "aboutUs": "关于我们",
+    "howItWorks": "工作原理",
+    "faqs": "常见问题",
+    "contact": "联系方式",
+    "followUs": "关注我们",
+    "rights": "版权所有。",
+    "madeWith": "用❤️制作 为了🌍 🌳 和 👦🏿👧🏿"
+  },
+  "dashboard": {
+    "sidebar": {
+      "dashboard": "仪表板",
+      "myTrees": "我的树木",
+      "traceability": "可追溯性",
+      "impact": "影响",
+      "community": "社区",
+      "marketplace": "市场",
+      "settings": "设置",
+      "quote": "巧克力是可以吃的幸福"
+    },
+    "header": {
+      "title": "控制面板",
+      "profile": "个人资料",
+      "settings": "设置",
+      "logout": "退出登录"
+    },
+    "main": {
+      "welcome": "欢迎回来！",
+      "welcomeMessage": "这是您在Chocósfera的影响摘要",
+      "stats": {
+        "adoptedTrees": "已领养树木",
+        "cocoaProduced": "已生产可可",
+        "carbonOffset": "CO₂抵消",
+        "communitiesHelped": "支持的社区",
+        "thisMonth": "本月"
+      },
+      "recentActivity": "最近活动",
+      "quickActions": "快速操作",
+      "activity": {
+        "treeAdopted": "新领养的树木",
+        "harvestRecorded": "已记录收获",
+        "impactUpdated": "影响已更新"
+      },
+      "actions": {
+        "adoptTree": "领养一棵树",
+        "viewTraceability": "查看可追溯性",
+        "seeImpact": "查看我的影响"
+      },
+      "impactSummary": {
+        "title": "您的影响",
+        "treesGrowing": "12棵树正在生长",
+        "farmersSupported": "支持3位农民",
+        "sustainablePractices": "100%可持续实践"
+      }
+    },
+    "community": {
+      "title": "Chocósfera社区",
+      "description": "与其他巧克力爱好者、可可农民和Chocósfera团队建立联系",
+      "features": {
+        "bot": {
+          "title": "与机器人聊天",
+          "description": "询问可追溯性和您的影响"
+        },
+        "farmers": {
+          "title": "可可农民",
+          "description": "直接与生产者交谈"
+        },
+        "community": {
+          "title": "全球社区",
+          "description": "加入全球对话"
+        }
+      },
+      "chatTitle": "实时对话",
+      "chatDescription": "参与Chocósfera Telegram群组的讨论",
+      "joinButton": "在Telegram中打开",
+      "guidelines": {
+        "title": "社区准则",
+        "rule1": "尊重并善待所有成员",
+        "rule2": "分享关于可可和巧克力的知识",
+        "rule3": "询问可追溯性和可持续性",
+        "rule4": "禁止垃圾邮件或无关内容"
+      }
+    },
+    "trees": {
+      "title": "我的树木",
+      "description": "管理和监控您领养的可可树",
+      "stats": {
+        "totalTrees": "树木总数",
+        "totalProduction": "总产量",
+        "co2Offset": "CO₂抵消",
+        "farmersSupported": "支持的农民"
+      },
+      "status": {
+        "healthy": "健康",
+        "growing": "生长中",
+        "young": "年轻"
+      },
+      "treeCard": {
+        "age": "年龄",
+        "production": "产量",
+        "farmer": "农民",
+        "adopted": "领养日期",
+        "viewDetails": "查看详情"
+      },
+      "adoptCta": {
+        "title": "领养新树",
+        "description": "通过领养更多可可树并支持更多农民来扩大您的影响",
+        "button": "领养树木"
+      },
+      "what3words": {
+        "title": "what3words地址",
+        "localLanguage": "本地语言",
+        "copyAddress": "复制地址",
+        "viewOnMap": "在地图上查看",
+        "explanation": "用三个简单的单词识别这个确切位置的独特方式"
+      }
+    }
+  }
+}

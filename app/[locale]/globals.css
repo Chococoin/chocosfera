@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* Custom dark mode variant using class */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #ec7813;
+  --color-background-light: #f8f7f6;
+  --color-background-dark: #221810;
+  --font-display: Epilogue, system-ui, sans-serif;
+}
+
+/* Keyframes para animación glow */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px #ec7813, 0 0 10px #ec7813;
+  }
+  50% {
+    box-shadow: 0 0 20px #ec7813, 0 0 30px #ec7813;
+  }
+}
+
+.animate-glow {
+  animation: glow 1.5s infinite alternate;
+}
+
+body {
+  min-height: max(884px, 100dvh);
+  font-family: Epilogue, system-ui, sans-serif;
+}
