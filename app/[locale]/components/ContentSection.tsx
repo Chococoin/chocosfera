@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface ContentSectionProps {
   title: string;
   description: string;
@@ -18,11 +20,15 @@ export default function ContentSection({
 
   return (
     <div className={`my-8 flex flex-col items-center gap-4 p-6 ${flexDirection}`}>
-      <img
-        alt={imageAlt}
-        className="h-48 w-full rounded-lg object-cover md:h-64 md:w-1/2"
-        src={imageSrc}
-      />
+      <div className="h-48 w-full overflow-hidden rounded-lg md:h-64 md:w-1/2">
+        <Image
+          alt={imageAlt}
+          className="h-full w-full object-cover"
+          src={imageSrc}
+          width={800}
+          height={600}
+        />
+      </div>
       <div className={`md:w-1/2 ${imagePosition === 'left' ? 'md:pl-6' : 'md:pr-6'}`}>
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
           {title}
