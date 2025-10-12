@@ -260,9 +260,7 @@ export default function TreesPage() {
               <div className="mb-4">
                 <What3WordsAddress
                   address={tree.what3words.address}
-                  language={tree.what3words.language}
                   languageName={tree.what3words.languageName}
-                  coordinates={tree.coordinates}
                 />
               </div>
 
