@@ -55,10 +55,10 @@ export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden">
       <Header />
-      <main className="flex flex-col gap-24 pt-24">
+      <main className="flex flex-col gap-6 pt-20 md:gap-12">
         <Hero />
 
-        <section id="feature" className="iko-section">
+        <section id="feature" className="iko-section feature-section">
           <div className="iko-section__heading">
             <h2 className="text-3xl font-bold text-white md:text-4xl">
               {tHero('title')}
@@ -133,7 +133,7 @@ export default function Home() {
 
         <section
           id="cta"
-          className="iko-section pb-20"
+          className="iko-section pb-12"
         >
           <div className="mx-auto max-w-5xl px-6">
             <div className="relative overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.06)] bg-gradient-to-br from-[rgba(223,134,170,0.25)] via-[rgba(16,18,29,0.8)] to-[rgba(87,41,214,0.25)] p-10 text-center backdrop-blur-xl">

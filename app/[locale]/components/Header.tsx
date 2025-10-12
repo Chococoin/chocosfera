@@ -39,10 +39,10 @@ export default function Header() {
             <LanguageSelector currentLocale={locale} />
             <ThemeToggle />
           </div>
-          <Link href={loginHref} className="iko-button-secondary text-xs">
+          <Link href={loginHref} className="iko-button-secondary text-xs header-auth-btn">
             {tHeader('login')}
           </Link>
-          <Link href={registerHref} className="iko-button-primary text-xs">
+          <Link href={registerHref} className="iko-button-primary text-xs header-auth-btn">
             {tHeader('register')}
           </Link>
         </div>

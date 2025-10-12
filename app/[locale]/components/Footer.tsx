@@ -14,7 +14,7 @@ export default function Footer() {
   const t = useTranslations('footer');
 
   return (
-    <footer className="relative mt-24 border-t border-[rgba(24,26,38,0.08)] bg-[rgba(255,255,255,0.88)] py-16 backdrop-blur-xl dark:border-[rgba(255,255,255,0.06)] dark:bg-[rgba(16,18,29,0.85)]">
+    <footer className="relative mt-10 border-t border-[rgba(24,26,38,0.08)] bg-[rgba(255,255,255,0.88)] pt-6 pb-16 backdrop-blur-xl dark:border-[rgba(255,255,255,0.06)] dark:bg-[rgba(16,18,29,0.85)]">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-24 top-0 h-64 w-64 rounded-full bg-[rgba(223,134,170,0.18)] blur-3xl" />
         <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-[rgba(87,41,214,0.18)] blur-[120px]" />

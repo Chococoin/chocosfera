@@ -160,7 +160,7 @@
 .iko-hero {
   position: relative;
   overflow: hidden;
-  padding: 8rem 0 6rem;
+  padding: 2.5rem 0 3rem;
   background: transparent;
 }
 
@@ -289,7 +289,7 @@
 }
 
 .iko-section {
-  padding: 6.5rem 0;
+  padding: 1rem 0;
   position: relative;
 }
 
@@ -359,8 +359,26 @@
 
 @media (max-width: 1024px) {
   .iko-hero {
-    padding: 6rem 0 4rem;
+    padding: 4rem 0 2.5rem;
   }
+}
+
+@media (max-width: 640px) {
+  section.iko-section.feature-section {
+    padding: 0;
+  }
+
+  .header-auth-btn {
+    display: none;
+  }
+
+  .hero-login-link {
+    display: block;
+  }
+}
+
+.hero-login-link {
+  display: none;
 }
 
 .text-muted {

@@ -10,8 +10,10 @@ export default function Hero() {
   const tImpact = useTranslations('dashboard.main.impactSummary');
   const tCta = useTranslations('cta');
   const tStats = useTranslations('dashboard.main.stats');
+  const tRegister = useTranslations('register');
   const locale = useLocale();
   const registerHref = `/${locale}/register`;
+  const loginHref = `/${locale}/login`;
 
   return (
     <section id="home" className="iko-hero">
@@ -30,13 +32,21 @@ export default function Hero() {
           </span>
           <h1 className="iko-hero__title">{tHero('title')}</h1>
           <p className="iko-hero__description">{tHero('description')}</p>
-          <div className="iko-hero__actions">
-            <Link href={registerHref} className="iko-button-primary text-xs">
-              {tCta('start')}
-            </Link>
-            <a href="#feature" className="iko-button-secondary text-xs">
-              {tSections('blockchain.title')}
-            </a>
+          <div className="flex flex-col items-start gap-3">
+            <div className="iko-hero__actions">
+              <Link href={registerHref} className="iko-button-primary text-xs">
+                {tCta('start')}
+              </Link>
+              <a href="#feature" className="iko-button-secondary text-xs">
+                {tSections('blockchain.title')}
+              </a>
+            </div>
+            <p className="hero-login-link text-sm text-muted">
+              {tRegister('hasAccount')}{' '}
+              <Link href={loginHref} className="font-semibold text-heading hover:text-primary-alt transition-colors">
+                {tRegister('loginLink')}
+              </Link>
+            </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="surface-panel px-5 py-4">
