@@ -1,16 +1,24 @@
 import type { Metadata } from "next";
 import Script from 'next/script';
-import { Epilogue } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { locales, type Locale } from '@/i18n';
+import { isSupportedLocale } from '@/i18n';
 import "./globals.css";
 
-const epilogue = Epilogue({
-  variable: "--font-display",
+const outfit = Outfit({
+  variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-heading",
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -23,11 +31,11 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
-  const { locale } = params;
+  const { locale } = await params;
 
-  if (!locales.includes(locale as Locale)) {
+  if (!isSupportedLocale(locale)) {
     notFound();
   }
 
@@ -35,10 +43,12 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head>
+      <head />
+      <body
+        className={`${outfit.variable} ${plusJakarta.variable} antialiased theme-root`}
+        suppressHydrationWarning
+      >
         <Script src="/theme-init.js" strategy="beforeInteractive" />
-      </head>
-      <body className={`${epilogue.variable} antialiased`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

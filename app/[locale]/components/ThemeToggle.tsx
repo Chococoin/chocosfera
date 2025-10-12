@@ -2,57 +2,64 @@
 
 import { useEffect, useState } from 'react';
 
+const baseClasses =
+  'rounded-full p-2 transition border text-sm leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent';
+const darkClasses =
+  'border-[rgba(255,255,255,0.08)] bg-[rgba(16,18,29,0.55)] text-[rgba(255,255,255,0.6)] hover:border-white/40 hover:text-white ring-white/40';
+const lightClasses =
+  'border-[rgba(24,26,38,0.12)] bg-[rgba(255,255,255,0.92)] text-[rgba(16,18,29,0.65)] hover:border-[rgba(24,26,38,0.22)] hover:text-[rgba(16,18,29,0.85)] ring-[rgba(87,41,214,0.35)]';
+
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    const theme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldUseDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
 
-    const shouldBeDark = theme === 'dark' || (!theme && systemPrefersDark);
-
-    setIsDark(shouldBeDark);
-
-    if (shouldBeDark) {
+    setIsDark(shouldUseDark);
+    if (shouldUseDark) {
       document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
     }
+
+    setMounted(true);
   }, []);
 
   const toggleTheme = () => {
-    const newIsDark = !isDark;
-
-    setIsDark(newIsDark);
-
-    if (newIsDark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
+    setIsDark((prev) => {
+      const next = !prev;
+      if (next) {
+        document.documentElement.classList.add('dark');
+        document.body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.body.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+      return next;
+    });
   };
 
   if (!mounted) {
     return (
       <button
-        className="rounded-full p-2 text-gray-700 transition-colors hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700"
-        aria-label="Toggle theme"
-      >
-        <div className="h-6 w-6" />
-      </button>
+        aria-hidden="true"
+        tabIndex={-1}
+        className="h-9 w-9 rounded-full border border-transparent opacity-0"
+      />
     );
   }
 
+  const buttonClasses = `${baseClasses} ${isDark ? darkClasses : lightClasses}`;
+
   return (
-    <button
-      onClick={toggleTheme}
-      className="rounded-full p-2 text-gray-700 transition-colors hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700"
-      aria-label="Toggle theme"
-    >
+    <button onClick={toggleTheme} className={buttonClasses} aria-label="Toggle theme">
       {isDark ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

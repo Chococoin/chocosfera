@@ -1,53 +1,167 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ContentSection from './components/ContentSection';
 import Footer from './components/Footer';
 
 export default function Home() {
-  const t = useTranslations('sections');
+  const locale = useLocale();
+  const tSections = useTranslations('sections');
+  const tHero = useTranslations('hero');
   const tCta = useTranslations('cta');
+  const tDashboardMain = useTranslations('dashboard.main');
+  const tStats = useTranslations('dashboard.main.stats');
+  const tImpact = useTranslations('dashboard.main.impactSummary');
+  const tFooter = useTranslations('footer');
+  const registerHref = `/${locale}/register`;
+
+  const contentSections = [
+    {
+      key: 'cacao',
+      title: tSections('cacao.title'),
+      description: tSections('cacao.description'),
+      imageSrc:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuAse3NTxISaNf_-4omEv-wXxQU2ka44l9BceQGc80sBhFnTWBUl83yQLyPoqazjB15oLBNYmJ2ieeilc46yiqFkZNqNXif0xTd28xcKVEOibJhw3DC_kHmoX3UfX9HUMp77SDVJTA9vPONXcv8wr2DL7yiEUzgxLJ0FjKkrRJBACPMCNdoWJFEIGT1FpNMvtQgru6ahuykMMs01pXcWmNsq9ellVLqk0GSb3DdIvvbAltnWfv0CP4C4fyQoWDVeIrqp_8KIaunD7OA',
+      imageAlt: 'Cacao beans',
+    },
+    {
+      key: 'blockchain',
+      title: tSections('blockchain.title'),
+      description: tSections('blockchain.description'),
+      imageSrc:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuD17HGTdU5HgkuAZiZk4b8xhYrx0D9oCN6c6CPQS3nwQFX2-OTni8O-E1yeXFiQYLs31-pYVKUdgd8XMMRunyM9xIVo_lu8RwwEMn6ksHDo12s70mxNMjQ1hdaAFPkCiG5XyM1ML4IZxLOou1OXC40hzxSx8nZGqild6Jd4L6XlT0L1_ENq2hPoFriueoPNYZW5Pk6suGxl9TKCD5NZaR7pNe0ooFRF1sGqQiLkAIL_eRynENM_NaG1_yZIRhT4T6o-LL9awRf7c_8',
+      imageAlt: 'Blockchain technology',
+    },
+    {
+      key: 'justice',
+      title: tSections('justice.title'),
+      description: tSections('justice.description'),
+      imageSrc:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuCMhD5BIYR0Kuvk2Tegm1P6G-_p2QhkQ7KeFUx4sM3zhVOALpNTeiB73X-q6WsPCmVjuCky4oFi0uygzU1iQ4RggUCkIYQKq0mZfeeL55JfrL9F8KFjBHPQu0eWFmV6EIKDoKYoHp5ECeuLTQ0F6MEwBlsY9b8pyq1iFjC6IMVuJQXlmm4X8GrhfmFAB7mfWI7IT0vw5U3j7rAlLWDd6du_O5mFDoSpmvcvEU_LVBckzkhXQe_bJoJO8hyoqSg2pR7FAPtCIM1Iu5g',
+      imageAlt: 'Community impact',
+    },
+  ];
+
+  const impactMetrics = [
+    { label: tStats('adoptedTrees'), value: '12', accent: '🌳' },
+    { label: tStats('cocoaProduced'), value: '248 kg', accent: '🍫' },
+    { label: tStats('carbonOffset'), value: '1.2 ton', accent: '♻️' },
+    { label: tStats('communitiesHelped'), value: '5', accent: '🤝' },
+  ];
 
   return (
-    <div className="relative flex h-auto min-h-screen w-full flex-col justify-between overflow-x-hidden bg-background-light text-gray-800 dark:bg-background-dark dark:text-gray-200">
+    <div className="relative min-h-screen overflow-hidden">
       <Header />
-
-      <div className="flex flex-grow flex-col pt-20">
+      <main className="flex flex-col gap-24 pt-24">
         <Hero />
 
-        <ContentSection
-          title={t('cacao.title')}
-          description={t('cacao.description')}
-          imageSrc="https://lh3.googleusercontent.com/aida-public/AB6AXuAse3NTxISaNf_-4omEv-wXxQU2ka44l9BceQGc80sBhFnTWBUl83yQLyPoqazjB15oLBNYmJ2ieeilc46yiqFkZNqNXif0xTd28xcKVEOibJhw3DC_kHmoX3UfX9HUMp77SDVJTA9vPONXcv8wr2DL7yiEUzgxLJ0FjKkrRJBACPMCNdoWJFEIGT1FpNMvtQgru6ahuykMMs01pXcWmNsq9ellVLqk0GSb3DdIvvbAltnWfv0CP4C4fyQoWDVeIrqp_8KIaunD7OA"
-          imageAlt="Cacao beans"
-          imagePosition="left"
-        />
+        <section id="feature" className="iko-section">
+          <div className="iko-section__heading">
+            <h2 className="text-3xl font-bold text-white md:text-4xl">
+              {tHero('title')}
+            </h2>
+            <p>{tHero('description')}</p>
+          </div>
+          <div className="content-grid px-6 sm:px-8 md:px-10 lg:px-0">
+            {contentSections.map((section) => (
+              <ContentSection
+                key={section.key}
+                title={section.title}
+                description={section.description}
+                imageSrc={section.imageSrc}
+                imageAlt={section.imageAlt}
+              />
+            ))}
+          </div>
+        </section>
 
-        <ContentSection
-          title={t('blockchain.title')}
-          description={t('blockchain.description')}
-          imageSrc="https://lh3.googleusercontent.com/aida-public/AB6AXuD17HGTdU5HgkuAZiZk4b8xhYrx0D9oCN6c6CPQS3nwQFX2-OTni8O-E1yeXFiQYLs31-pYVKUdgd8XMMRunyM9xIVo_lu8RwwEMn6ksHDo12s70mxNMjQ1hdaAFPkCiG5XyM1ML4IZxLOou1OXC40hzxSx8nZGqild6Jd4L6XlT0L1_ENq2hPoFriueoPNYZW5Pk6suGxl9TKCD5NZaR7pNe0ooFRF1sGqQiLkAIL_eRynENM_NaG1_yZIRhT4T6o-LL9awRf7c_8"
-          imageAlt="Blockchain technology"
-          imagePosition="right"
-        />
+        <section id="impact" className="iko-section">
+          <div className="iko-section__heading">
+            <h2 className="text-3xl font-bold text-white md:text-4xl">
+              {tImpact('title')}
+            </h2>
+            <p>{tFooter('about')}</p>
+          </div>
+          <div className="mx-auto grid max-w-6xl gap-6 px-6 sm:px-8 lg:grid-cols-2 lg:px-0">
+            <div className="surface-panel p-8">
+              <h3 className="text-xl font-semibold text-white">
+                {tDashboardMain('quickActions')}
+              </h3>
+              <p className="mt-3 text-sm text-[rgba(255,255,255,0.7)]">
+                {tSections('blockchain.description')}
+              </p>
+              <div className="mt-6 grid gap-4">
+                {impactMetrics.map((metric) => (
+                  <div
+                    key={metric.label}
+                    className="flex items-center justify-between rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(16,18,29,0.55)] px-5 py-4"
+                  >
+                    <span className="text-sm text-[rgba(255,255,255,0.7)]">
+                      {metric.accent} {metric.label}
+                    </span>
+                    <span className="text-lg font-semibold text-white">
+                      {metric.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="surface-panel p-8">
+              <h3 className="text-xl font-semibold text-white">
+                {tImpact('title')}
+              </h3>
+              <ul className="mt-4 space-y-3 text-sm text-[rgba(255,255,255,0.75)]">
+                <li>{tImpact('treesGrowing')}</li>
+                <li>{tImpact('farmersSupported')}</li>
+                <li>{tImpact('sustainablePractices')}</li>
+              </ul>
+              <div className="mt-8">
+                <div className="iko-hero__panel-progress">
+                  <span style={{ width: '72%' }} />
+                </div>
+                <div className="mt-3 flex items-center justify-between text-xs uppercase tracking-[0.3em] text-[rgba(255,255,255,0.6)]">
+                  <span>2025 Roadmap</span>
+                  <span>{tStats('thisMonth')}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <ContentSection
-          title={t('justice.title')}
-          description={t('justice.description')}
-          imageSrc="https://lh3.googleusercontent.com/aida-public/AB6AXuCMhD5BIYR0Kuvk2Tegm1P6G-_p2QhkQ7KeFUx4sM3zhVOALpNTeiB73X-q6WsPCmVjuCky4oFi0uygzU1iQ4RggUCkIYQKq0mZfeeL55JfrL9F8KFjBHPQu0eWFmV6EIKDoKYoHp5ECeuLTQ0F6MEwBlsY9b8pyq1iFjC6IMVuJQXlmm4X8GrhfmFAB7mfWI7IT0vw5U3j7rAlLWDd6du_O5mFDoSpmvcvEU_LVBckzkhXQe_bJoJO8hyoqSg2pR7FAPtCIM1Iu5g"
-          imageAlt="Community impact"
-          imagePosition="left"
-        />
-
-        <div className="p-6 text-center">
-          <button className="w-full max-w-xs cursor-pointer rounded-lg bg-primary px-5 py-3 text-base font-bold text-white shadow-lg transition-transform duration-200 hover:scale-105">
-            {tCta('start')}
-          </button>
-        </div>
-      </div>
-
+        <section
+          id="cta"
+          className="iko-section pb-20"
+        >
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="relative overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.06)] bg-gradient-to-br from-[rgba(223,134,170,0.25)] via-[rgba(16,18,29,0.8)] to-[rgba(87,41,214,0.25)] p-10 text-center backdrop-blur-xl">
+              <div className="pointer-events-none absolute -left-24 top-0 h-56 w-56 rounded-full bg-[rgba(223,134,170,0.35)] blur-3xl" />
+              <div className="pointer-events-none absolute -right-16 bottom-0 h-48 w-48 rounded-full bg-[rgba(87,41,214,0.35)] blur-[110px]" />
+              <div className="relative flex flex-col items-center gap-6">
+                <h2 className="text-3xl font-bold text-white md:text-4xl">
+                  {tSections('justice.title')}
+                </h2>
+                <p className="max-w-2xl text-sm leading-relaxed text-[rgba(255,255,255,0.75)]">
+                  {tFooter('about')}
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Link href={registerHref} className="iko-button-primary text-xs">
+                    {tCta('start')}
+                  </Link>
+                  <a
+                    href="#feature"
+                    className="iko-button-secondary text-xs"
+                  >
+                    {tSections('blockchain.title')}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
       <Footer />
     </div>
   );

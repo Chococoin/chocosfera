@@ -5,7 +5,6 @@ interface ContentSectionProps {
   description: string;
   imageSrc: string;
   imageAlt: string;
-  imagePosition?: 'left' | 'right';
 }
 
 export default function ContentSection({
@@ -13,28 +12,24 @@ export default function ContentSection({
   description,
   imageSrc,
   imageAlt,
-  imagePosition = 'left',
 }: ContentSectionProps) {
-  const flexDirection =
-    imagePosition === 'left' ? 'md:flex-row' : 'md:flex-row-reverse';
-
   return (
-    <div className={`my-8 flex flex-col items-center gap-4 p-6 ${flexDirection}`}>
-      <div className="h-48 w-full overflow-hidden rounded-lg md:h-64 md:w-1/2">
+    <article className="content-card">
+      <div className="relative overflow-hidden rounded-2xl">
         <Image
-          alt={imageAlt}
-          className="h-full w-full object-cover"
           src={imageSrc}
-          width={800}
-          height={600}
+          alt={imageAlt}
+          width={640}
+          height={420}
+          className="h-48 w-full object-cover sm:h-56"
         />
       </div>
-      <div className={`md:w-1/2 ${imagePosition === 'left' ? 'md:pl-6' : 'md:pr-6'}`}>
-        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-          {title}
-        </h3>
-        <p className="mt-2 text-base leading-relaxed">{description}</p>
+      <div className="grid gap-3">
+        <h3 className="content-card__title">{title}</h3>
+        <p className="text-sm leading-relaxed text-muted">
+          {description}
+        </p>
       </div>
-    </div>
+    </article>
   );
 }

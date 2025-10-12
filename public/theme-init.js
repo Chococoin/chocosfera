@@ -1,13 +1,17 @@
 (() => {
   try {
     const savedTheme = localStorage.getItem("theme");
-    if (
-      savedTheme === "dark" ||
-      (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const shouldUseDark = savedTheme === "dark" || (!savedTheme && systemPrefersDark);
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (shouldUseDark) {
+      root.classList.add("dark");
+      body?.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      root.classList.remove("dark");
+      body?.classList.remove("dark");
     }
   } catch {
     // Fallback if localStorage is not available

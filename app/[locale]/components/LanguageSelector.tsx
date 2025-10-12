@@ -44,7 +44,7 @@ export default function LanguageSelector({ currentLocale }: { currentLocale: str
     <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700"
+        className="flex items-center gap-2 rounded-full border border-[rgba(255,255,255,0.08)] bg-[rgba(16,18,29,0.55)] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[rgba(255,255,255,0.75)] transition hover:border-white/40 hover:text-white"
         aria-label="Select language"
       >
         <span className="text-xl">{currentLang.flag}</span>
@@ -60,16 +60,16 @@ export default function LanguageSelector({ currentLocale }: { currentLocale: str
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full z-50 mt-2 w-48 rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-800">
-          <div className="max-h-96 overflow-y-auto py-2">
+        <div className="absolute right-0 top-full z-50 mt-2 w-48 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(16,18,29,0.92)] shadow-2xl backdrop-blur-xl">
+          <div className="max-h-80 overflow-y-auto py-2">
             {languages.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => handleLanguageChange(lang.code)}
-                className={`flex w-full items-center gap-3 px-4 py-2 text-left text-sm transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 ${
+                className={`flex w-full items-center gap-3 px-4 py-2 text-left text-xs uppercase tracking-[0.15em] transition hover:bg-[rgba(223,134,170,0.12)] ${
                   lang.code === currentLocale
-                    ? 'bg-primary/10 font-semibold text-primary'
-                    : 'text-gray-700 dark:text-gray-300'
+                    ? 'font-semibold text-white'
+                    : 'text-[rgba(255,255,255,0.7)]'
                 }`}
               >
                 <span className="text-xl">{lang.flag}</span>
