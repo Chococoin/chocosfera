@@ -18,6 +18,25 @@ export default function Home() {
   const tFooter = useTranslations('footer');
   const registerHref = `/${locale}/register`;
 
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const href = e.currentTarget.getAttribute('href');
+    if (!href) return;
+
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      const headerHeight = 104;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const contentSections = [
     {
       key: 'cacao',
@@ -153,6 +172,7 @@ export default function Home() {
                   <a
                     href="#feature"
                     className="iko-button-secondary text-xs"
+                    onClick={handleAnchorClick}
                   >
                     {tSections('blockchain.title')}
                   </a>

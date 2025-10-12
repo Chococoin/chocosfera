@@ -23,6 +23,16 @@
   color-scheme: light;
 }
 
+html {
+  scroll-padding-top: 6.5rem;
+  background: var(--color-background);
+}
+
+body {
+  background: var(--color-background);
+  min-height: 100vh;
+}
+
 .dark {
   color-scheme: dark;
   --color-surface: rgba(16, 18, 29, 0.78);
@@ -84,6 +94,7 @@
   padding: 1rem 1.5rem;
 }
 
+
 .dark .iko-header {
   background: linear-gradient(
     90deg,
@@ -99,6 +110,18 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-heading);
+}
+
+.iko-header__nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .iko-header__nav {
+    display: flex !important;
+    align-items: center;
+    gap: 0.25rem;
+  }
 }
 
 .iko-header__nav a {
@@ -166,13 +189,43 @@
 
 .iko-hero__gradient {
   position: absolute;
-  inset: -60% -20% auto -20%;
-  height: 160%;
-  background: radial-gradient(circle at 30% 20%, rgba(223, 134, 170, 0.65), transparent 55%),
-    radial-gradient(circle at 70% 30%, rgba(87, 41, 214, 0.6), transparent 60%);
-  filter: blur(160px);
-  opacity: 0.9;
+  inset: 0;
   pointer-events: none;
+  z-index: 0;
+}
+
+/* Ocultar solo gradientes en Safari - modo agresivo */
+.is-safari .iko-hero__gradient {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Ripples más intensos y visibles en Safari */
+.is-safari .iko-hero__ripple span {
+  border: 4px solid rgba(223, 134, 170, 0.6);
+  opacity: 0.8;
+}
+
+/* Gradiente completo por defecto (Chrome, Firefox) */
+.iko-hero__gradient--pink {
+  background: radial-gradient(ellipse 1200px 1000px at 30% 30%, rgba(223, 134, 170, 0.5) 0%, transparent 60%);
+}
+
+.iko-hero__gradient--purple {
+  background: radial-gradient(ellipse 1400px 1200px at 70% 40%, rgba(87, 41, 214, 0.45) 0%, transparent 65%);
+}
+
+.iko-hero__ripple {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
 }
 
 .iko-hero__ripple span {
@@ -182,6 +235,7 @@
   animation: ripple-pulse 12s linear infinite;
   opacity: 0.35;
 }
+
 
 .iko-hero__ripple span:nth-child(1) {
   width: 520px;
@@ -207,9 +261,33 @@
   animation-delay: 2.4s;
 }
 
+.iko-hero__ripple span:nth-child(4) {
+  width: 420px;
+  height: 420px;
+  left: 40%;
+  top: 25%;
+  animation-delay: 3.6s;
+}
+
+.iko-hero__ripple span:nth-child(5) {
+  width: 550px;
+  height: 550px;
+  left: 65%;
+  top: 15%;
+  animation-delay: 4.8s;
+}
+
+.iko-hero__ripple span:nth-child(6) {
+  width: 650px;
+  height: 650px;
+  left: 45%;
+  top: 20%;
+  animation-delay: 6s;
+}
+
 .iko-hero__content {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   display: grid;
   gap: 3rem;
 }

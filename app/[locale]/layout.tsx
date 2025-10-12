@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { isSupportedLocale } from '@/i18n';
+import ScrollToTop from './components/ScrollToTop';
 import "./globals.css";
 
 const outfit = Outfit({
@@ -43,12 +44,30 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head />
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined') {
+                history.scrollRestoration = 'manual';
+                window.scrollTo(0, 0);
+
+                // Detectar Safari inmediatamente
+                const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+                if (isSafari) {
+                  document.documentElement.classList.add('is-safari');
+                }
+              }
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${outfit.variable} ${plusJakarta.variable} antialiased theme-root`}
         suppressHydrationWarning
       >
         <Script src="/theme-init.js" strategy="beforeInteractive" />
+        <ScrollToTop />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

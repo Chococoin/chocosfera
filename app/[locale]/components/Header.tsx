@@ -19,6 +19,25 @@ export default function Header() {
   const loginHref = `/${locale}/login`;
   const registerHref = `/${locale}/register`;
 
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const href = e.currentTarget.getAttribute('href');
+    if (!href) return;
+
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      const headerHeight = 104; // Altura aproximada del header en píxeles
+      const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <header className="fixed left-0 right-0 top-0 z-50">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 iko-header">
@@ -26,9 +45,14 @@ export default function Header() {
           <span className="iko-header__brand">{tHeader('title')}</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex iko-header__nav">
+        <nav className="iko-header__nav">
           {NAV_TARGETS.map(({ key, href }) => (
-            <a key={key} href={href} className="text-xs tracking-[0.28em]">
+            <a
+              key={key}
+              href={href}
+              className="text-xs tracking-[0.28em]"
+              onClick={handleAnchorClick}
+            >
               {tNavigation(key)}
             </a>
           ))}

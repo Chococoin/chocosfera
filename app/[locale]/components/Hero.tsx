@@ -15,10 +15,33 @@ export default function Hero() {
   const registerHref = `/${locale}/register`;
   const loginHref = `/${locale}/login`;
 
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const href = e.currentTarget.getAttribute('href');
+    if (!href) return;
+
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      const headerHeight = 104;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <section id="home" className="iko-hero">
-      <div className="iko-hero__gradient" />
+      <div className="iko-hero__gradient iko-hero__gradient--pink" />
+      <div className="iko-hero__gradient iko-hero__gradient--purple" />
       <div className="iko-hero__ripple">
+        <span />
+        <span />
+        <span />
         <span />
         <span />
         <span />
@@ -37,7 +60,7 @@ export default function Hero() {
               <Link href={registerHref} className="iko-button-primary text-xs">
                 {tCta('start')}
               </Link>
-              <a href="#feature" className="iko-button-secondary text-xs">
+              <a href="#feature" className="iko-button-secondary text-xs" onClick={handleAnchorClick}>
                 {tSections('blockchain.title')}
               </a>
             </div>
