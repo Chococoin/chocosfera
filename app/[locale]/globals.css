@@ -363,6 +363,10 @@
   }
 }
 
+.hero-login-link {
+  display: none;
+}
+
 @media (max-width: 640px) {
   section.iko-section.feature-section {
     padding: 0;
@@ -373,12 +377,82 @@
   }
 
   .hero-login-link {
-    display: block;
+    display: block !important;
   }
 }
 
-.hero-login-link {
-  display: none;
+/* Social icons: always colored on mobile */
+@media (max-width: 768px) {
+  /* Center social icons grid in footer on mobile */
+  footer .grid.grid-cols-3 {
+    justify-items: center;
+    margin: 0 auto;
+    max-width: fit-content;
+    padding: 0.5rem;
+  }
+
+  .social-youtube,
+  .social-instagram,
+  .social-tiktok,
+  .social-facebook,
+  .social-twitter,
+  .social-linkedin {
+    padding: 0.5rem !important;
+  }
+
+  .social-youtube {
+    background: #ff0000 !important;
+    box-shadow: 0 4px 14px rgba(255, 0, 0, 0.4) !important;
+  }
+
+  .social-youtube svg {
+    color: white !important;
+  }
+
+  .social-instagram {
+    background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%) !important;
+    box-shadow: 0 4px 14px rgba(253, 29, 114, 0.4) !important;
+  }
+
+  .social-instagram svg {
+    color: white !important;
+  }
+
+  .social-tiktok {
+    background: #000000 !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .social-tiktok svg {
+    color: white !important;
+  }
+
+  .social-facebook {
+    background: #1877f2 !important;
+    box-shadow: 0 4px 14px rgba(24, 119, 242, 0.4) !important;
+  }
+
+  .social-facebook svg {
+    color: white !important;
+  }
+
+  .social-twitter {
+    background: #000000 !important;
+    box-shadow: 0 4px 14px rgba(100, 100, 100, 0.4) !important;
+  }
+
+  .social-twitter svg {
+    color: white !important;
+  }
+
+  .social-linkedin {
+    background: #0a66c2 !important;
+    box-shadow: 0 4px 14px rgba(10, 102, 194, 0.4) !important;
+  }
+
+  .social-linkedin svg {
+    color: white !important;
+  }
 }
 
 .text-muted {
