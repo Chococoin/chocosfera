@@ -209,8 +209,8 @@ body {
 
 /* Ripples más intensos y visibles en Safari */
 .is-safari .iko-hero__ripple span {
-  border: 4px solid rgba(223, 134, 170, 0.6);
-  opacity: 0.8;
+  border: 1px solid rgba(255, 193, 7, 0.95);
+  opacity: 0.95;
 }
 
 /* Gradiente completo por defecto (Chrome, Firefox) */
@@ -225,14 +225,21 @@ body {
 .iko-hero__ripple {
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 8;
+  pointer-events: none;
 }
 
 .iko-hero__ripple span {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 193, 7, 0.95);
   animation: ripple-pulse 12s linear infinite;
+  opacity: 0.95;
+}
+
+/* Ripples más sutiles en modo oscuro */
+.dark .iko-hero__ripple span {
+  border: 1px solid rgba(255, 255, 255, 0.18);
   opacity: 0.35;
 }
 
