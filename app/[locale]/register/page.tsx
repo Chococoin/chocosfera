@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 interface ValidationErrors {
   nick?: string;
@@ -103,7 +105,9 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background-light px-4 py-12 dark:bg-background-dark">
+    <>
+      <Header />
+      <div className="flex min-h-[calc(100vh-200px)] items-center justify-center bg-background-light px-4 pt-28 pb-12 dark:bg-background-dark">
       <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-2xl dark:bg-gray-800">
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-900 dark:text-white">
           {t('title')}
@@ -209,6 +213,8 @@ export default function RegisterPage() {
           </Link>
         </div>
       </div>
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 }

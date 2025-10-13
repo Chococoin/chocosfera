@@ -59,11 +59,14 @@ export default function DashboardPage() {
   return (
     <div className="p-6 space-y-6">
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-primary to-orange-600 rounded-xl text-white p-6 shadow-lg">
-        <div className="flex items-center justify-between">
+      <div className="relative overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] backdrop-blur-[16px] p-8 shadow-lg">
+        <div className="absolute inset-0 bg-gradient-to-br from-[rgba(223,134,170,0.2)] via-transparent to-[rgba(87,41,214,0.2)]" />
+        <div className="relative flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold mb-2">{t('welcome')}</h1>
-            <p className="text-white/90">{t('welcomeMessage')}</p>
+            <h1 className="text-3xl font-bold mb-2 text-heading" style={{ fontFamily: 'var(--font-heading)' }}>
+              {t('welcome')}
+            </h1>
+            <p className="text-muted">{t('welcomeMessage')}</p>
           </div>
           <div className="hidden md:block text-6xl">🍫</div>
         </div>
@@ -74,14 +77,14 @@ export default function DashboardPage() {
         {stats.map((stat) => (
           <div
             key={stat.title}
-            className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm hover:shadow-md transition-shadow"
+            className="surface-panel p-6 hover:shadow-xl transition-all hover:scale-[1.02]"
           >
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
+                <p className="text-sm font-medium text-muted mb-1">
                   {stat.title}
                 </p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                <p className="text-2xl font-bold text-heading" style={{ fontFamily: 'var(--font-heading)' }}>
                   {stat.value}
                 </p>
                 {stat.change && (
@@ -95,7 +98,7 @@ export default function DashboardPage() {
                     >
                       {stat.change.type === 'increase' ? '↑' : '↓'} {stat.change.value}%
                     </span>
-                    <span className="text-gray-500 dark:text-gray-400 ml-1">
+                    <span className="text-muted ml-1">
                       {t('stats.thisMonth')}
                     </span>
                   </div>
@@ -110,9 +113,9 @@ export default function DashboardPage() {
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Recent Activity */}
-        <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-          <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+        <div className="lg:col-span-2 surface-panel">
+          <div className="px-6 py-4 border-b border-[var(--color-border)]">
+            <h3 className="text-lg font-semibold text-heading" style={{ fontFamily: 'var(--font-heading)' }}>
               {t('recentActivity')}
             </h3>
           </div>
@@ -121,14 +124,14 @@ export default function DashboardPage() {
               {recentActivity.map((activity) => (
                 <div
                   key={activity.id}
-                  className="flex items-center space-x-4 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  className="flex items-center space-x-4 p-4 rounded-2xl hover:bg-[rgba(223,134,170,0.08)] transition-all"
                 >
                   <div className="text-3xl">{activity.icon}</div>
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">
+                    <p className="text-sm font-medium text-heading">
                       {activity.action}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-muted">
                       {recentActivityFormatter.format(new Date(activity.date))}
                     </p>
                   </div>
@@ -140,9 +143,9 @@ export default function DashboardPage() {
 
         {/* Quick Actions */}
         <div className="space-y-6">
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <div className="surface-panel">
+            <div className="px-6 py-4 border-b border-[var(--color-border)]">
+              <h3 className="text-lg font-semibold text-heading" style={{ fontFamily: 'var(--font-heading)' }}>
                 {t('quickActions')}
               </h3>
             </div>
@@ -155,15 +158,15 @@ export default function DashboardPage() {
                     key={action.name}
                     type="button"
                     onClick={() => router.push(localizedHref)}
-                    className="w-full flex items-center justify-between p-3 text-left rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gradient-to-r hover:from-primary/10 hover:to-orange-600/10 hover:border-primary/30 transition-all"
+                    className="w-full flex items-center justify-between p-3 text-left rounded-2xl border border-[var(--color-border)] hover:bg-gradient-to-r hover:from-[rgba(223,134,170,0.1)] hover:to-[rgba(87,41,214,0.1)] hover:border-[rgba(223,134,170,0.3)] transition-all"
                   >
                     <div className="flex items-center space-x-3">
                       <span className="text-2xl">{action.icon}</span>
-                      <span className="font-medium text-gray-900 dark:text-white">
+                      <span className="font-medium text-heading">
                         {action.name}
                       </span>
                     </div>
-                    <span className="text-gray-400">→</span>
+                    <span className="text-muted">→</span>
                   </button>
                 );
               })}
@@ -171,14 +174,17 @@ export default function DashboardPage() {
           </div>
 
           {/* Impact Summary */}
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border border-green-200 dark:border-green-800 p-6">
-            <h4 className="text-sm font-semibold text-green-900 dark:text-green-100 mb-3">
-              {t('impactSummary.title')}
-            </h4>
-            <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
-              <p>🌳 {t('impactSummary.treesGrowing')}</p>
-              <p>👨‍🌾 {t('impactSummary.farmersSupported')}</p>
-              <p>♻️ {t('impactSummary.sustainablePractices')}</p>
+          <div className="relative overflow-hidden rounded-3xl border border-green-200 dark:border-green-800 bg-[var(--color-surface)] backdrop-blur-[16px] p-6">
+            <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20" />
+            <div className="relative">
+              <h4 className="text-sm font-semibold text-green-900 dark:text-green-100 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+                {t('impactSummary.title')}
+              </h4>
+              <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+                <p>🌳 {t('impactSummary.treesGrowing')}</p>
+                <p>👨‍🌾 {t('impactSummary.farmersSupported')}</p>
+                <p>♻️ {t('impactSummary.sustainablePractices')}</p>
+              </div>
             </div>
           </div>
         </div>

@@ -16,14 +16,14 @@ export default async function DashboardLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div className="flex h-screen bg-background-light dark:bg-background-dark">
+      <div className="flex h-screen" style={{ background: 'var(--color-background)' }}>
         {/* Sidebar */}
         <Sidebar />
 
         {/* Main content */}
         <div className="flex-1 flex flex-col overflow-hidden">
           <DashboardHeader />
-          <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-800">
+          <main className="flex-1 overflow-x-hidden overflow-y-auto" style={{ background: 'var(--color-background)' }}>
             {children}
           </main>
         </div>

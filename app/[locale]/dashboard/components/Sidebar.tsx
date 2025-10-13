@@ -65,19 +65,20 @@ export function Sidebar() {
 
   return (
     <div
-      className={`relative bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 ${
+      className={`relative bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(16,18,29,0.85)] border-r border-[var(--color-border)] backdrop-blur-xl transition-all duration-300 ${
         isCollapsed ? 'w-16' : 'w-64'
       }`}
     >
       {/* Logo and collapse button */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex items-center justify-between p-4 border-b border-[var(--color-border)]">
         {!isCollapsed && (
           <Link
             href={`/${locale}/dashboard`}
-            className="flex items-center gap-2 text-xl font-bold text-gray-900 dark:text-white"
+            className="flex items-center gap-2 text-xl font-bold text-heading"
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
             <span className="text-3xl">🍫</span>
-            <span className="bg-gradient-to-r from-primary to-orange-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary to-[var(--color-primary-alt)] bg-clip-text text-transparent">
               Chocósfera
             </span>
           </Link>
@@ -85,7 +86,7 @@ export function Sidebar() {
         <button
           type="button"
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors"
+          className="p-2 rounded-full hover:bg-[rgba(223,134,170,0.12)] text-heading transition-colors"
           aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
           <span className="text-xl">{isCollapsed ? '☰' : '✕'}</span>
@@ -94,19 +95,19 @@ export function Sidebar() {
 
       {/* Navigation */}
       <nav className="mt-6 px-3">
-        <ul className="space-y-1">
+        <ul className="space-y-2">
           {filteredNavigation.map((item) => (
             <li key={item.name}>
               <Link
                 href={`/${locale}${item.href}`}
-                className={`flex items-center px-3 py-3 text-sm font-medium rounded-lg transition-all ${
+                className={`flex items-center ${isCollapsed ? 'justify-center' : ''} px-3 py-3 text-sm font-semibold rounded-2xl transition-all ${
                   item.current
-                    ? 'bg-gradient-to-r from-primary/10 to-orange-600/10 text-primary dark:text-primary border-r-2 border-primary shadow-sm'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    ? 'bg-gradient-to-r from-[rgba(223,134,170,0.18)] to-[rgba(87,41,214,0.18)] text-[var(--color-primary-alt)] border border-[rgba(223,134,170,0.35)] shadow-sm'
+                    : 'text-muted hover:bg-[rgba(223,134,170,0.08)] hover:text-heading'
                 }`}
                 title={isCollapsed ? item.name : undefined}
               >
-                <span className="text-2xl mr-3">{item.icon}</span>
+                <span className={`flex items-center justify-center text-2xl leading-none ${isCollapsed ? '' : 'mr-3'}`}>{item.icon}</span>
                 {!isCollapsed && <span>{item.name}</span>}
               </Link>
             </li>
@@ -116,9 +117,9 @@ export function Sidebar() {
 
       {/* Chocolate quote */}
       {!isCollapsed && (
-        <div className="absolute bottom-6 left-3 right-3 p-4 bg-gradient-to-br from-primary/10 to-orange-600/10 rounded-lg border border-primary/20">
-          <p className="text-xs text-gray-600 dark:text-gray-400 italic">
-            “{t('quote')}”
+        <div className="absolute bottom-6 left-3 right-3 p-4 surface-panel">
+          <p className="text-xs text-muted italic">
+            "{t('quote')}"
           </p>
         </div>
       )}
