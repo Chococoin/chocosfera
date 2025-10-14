@@ -207,7 +207,7 @@ export async function GET(req: NextRequest) {
     const skip = parseInt(searchParams.get('skip') || '0');
 
     // Build query
-    const query: any = {
+    const query: Record<string, unknown> = {
       deletedAt: null,
     };
 

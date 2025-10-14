@@ -260,7 +260,7 @@ export async function GET(
     }
 
     // Build query
-    const query: any = {
+    const query: Record<string, unknown> = {
       characterId: new ObjectId(id),
       deletedAt: null,
     };

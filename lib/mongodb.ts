@@ -47,7 +47,7 @@ export async function getDatabase(): Promise<Db> {
 /**
  * Get specific collection with type safety
  */
-export async function getCollection<T = any>(collectionName: string) {
+export async function getCollection<T = Record<string, unknown>>(collectionName: string) {
   const db = await getDatabase();
   return db.collection<T>(collectionName);
 }
