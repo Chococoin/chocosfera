@@ -153,7 +153,7 @@ export function Sidebar() {
       {!isCollapsed && (
         <div className="absolute bottom-6 left-3 right-3 p-4 surface-panel">
           <p className="text-xs text-muted italic">
-            "{t('quote')}"
+            &ldquo;{t('quote')}&rdquo;
           </p>
         </div>
       )}

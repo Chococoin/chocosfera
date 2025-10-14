@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
     const charactersCollection = await getCollection(Collections.CHARACTERS);
 
     // Build query
-    const query: any = {
+    const query: Record<string, unknown> = {
       deletedAt: null,
     };
 

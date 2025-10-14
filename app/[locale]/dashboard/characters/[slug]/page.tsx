@@ -731,7 +731,7 @@ export default function CharacterDetailPage({
                 Lema
               </h2>
               <p className="text-lg text-amber-800 dark:text-amber-200 italic font-semibold">
-                "{character.motto}"
+                &ldquo;{character.motto}&rdquo;
               </p>
             </div>
           )}

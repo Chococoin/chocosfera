@@ -542,9 +542,9 @@ Este repositorio es parte de la Chocósfera. Si quieres colaborar, puedes hacer 
 
     await fs.writeFile(path.join(repoPath, 'README.md'), readme);
     await gitService.git.add('README.md');
-    await gitService.git.commit('chore: initialize repository
+    await gitService.git.commit(`chore: initialize repository
 
-Created initial repository structure for character management.');
+Created initial repository structure for character management.`);
   }
 
   return gitService;

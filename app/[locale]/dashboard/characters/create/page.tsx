@@ -79,7 +79,7 @@ export default function CreateCharacterPage() {
 
   const [currentAbility, setCurrentAbility] = useState('');
 
-  const updateFormData = (field: keyof CharacterFormData, value: any) => {
+  const updateFormData = (field: keyof CharacterFormData, value: CharacterFormData[keyof CharacterFormData]) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setError(null);
   };
@@ -469,8 +469,8 @@ export default function CreateCharacterPage() {
                   Inspiración: El Portal del Chocolate
                 </h3>
                 <p className="text-sm text-amber-800 dark:text-amber-200 italic mb-3">
-                  "Me llevé un trozo de esa sustancia aromática y oscura a la boca y me vi envuelto
-                  en una magia que me trasladó a un mundo tan hermoso y colorido como desconocido..."
+                  &ldquo;Me llevé un trozo de esa sustancia aromática y oscura a la boca y me vi envuelto
+                  en una magia que me trasladó a un mundo tan hermoso y colorido como desconocido...&rdquo;
                 </p>
                 <p className="text-xs text-amber-700 dark:text-amber-300">
                   Esta es la historia de Tony. ¿Cómo llegó tu personaje? ¿Qué descubrió al cruzar
@@ -571,7 +571,7 @@ export default function CreateCharacterPage() {
                     <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                       Lema:
                     </h4>
-                    <p className="text-gray-800 dark:text-gray-200 italic">"{formData.motto}"</p>
+                    <p className="text-gray-800 dark:text-gray-200 italic">&ldquo;{formData.motto}&rdquo;</p>
                   </div>
                 )}
 

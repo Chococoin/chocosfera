@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
     const skip = parseInt(searchParams.get('skip') || '0');
 
     // Build query
-    const where: any = {
+    const where: Record<string, unknown> = {
       userId: user.id,
       OR: [
         { expiresAt: null },
