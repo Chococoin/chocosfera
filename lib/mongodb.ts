@@ -61,6 +61,7 @@ export const Collections = {
   CHARACTER_BADGES: 'character_badges',
   STORY_COMMENTS: 'story_comments',
   STORY_LIKES: 'story_likes',
+  CHARACTER_LIKES: 'character_likes',
   ANALYTICS: 'analytics_events',
 } as const;
 
@@ -104,6 +105,12 @@ export async function initializeMongoIndexes() {
   await db.collection(Collections.STORY_LIKES).createIndexes([
     { key: { storyId: 1 } },
     { key: { userId: 1, storyId: 1 }, unique: true },
+  ]);
+
+  // Character likes indexes
+  await db.collection(Collections.CHARACTER_LIKES).createIndexes([
+    { key: { characterId: 1 } },
+    { key: { userId: 1, characterId: 1 }, unique: true },
   ]);
 
   console.log('MongoDB indexes initialized successfully');

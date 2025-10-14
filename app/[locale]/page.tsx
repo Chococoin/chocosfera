@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ContentSection from './components/ContentSection';
@@ -17,6 +18,17 @@ export default function Home() {
   const tImpact = useTranslations('dashboard.main.impactSummary');
   const tFooter = useTranslations('footer');
   const registerHref = `/${locale}/register`;
+
+  // Skin tone animation for baby emoji
+  const babyEmojis = ['👶', '👶🏻', '👶🏼', '👶🏽', '👶🏾', '👶🏿'];
+  const [currentBabyIndex, setCurrentBabyIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBabyIndex((prev) => (prev + 1) % babyEmojis.length);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -82,7 +94,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-white md:text-4xl">
               {tHero('title')}
             </h2>
-            <p>{tHero('description')}</p>
+            <p className="text-base md:text-lg">{tHero('description')}</p>
           </div>
           <div className="content-grid px-6 sm:px-8 md:px-10 lg:px-0">
             {contentSections.map((section) => (
@@ -102,14 +114,14 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-white md:text-4xl">
               {tImpact('title')}
             </h2>
-            <p>{tFooter('about')}</p>
+            <p className="text-base md:text-lg">{tFooter('about')}</p>
           </div>
           <div className="mx-auto grid max-w-6xl gap-6 px-6 sm:px-8 lg:grid-cols-2 lg:px-0">
             <div className="surface-panel p-8">
-              <h3 className="text-xl font-semibold text-white">
+              <h3 className="text-xl md:text-2xl font-semibold text-white">
                 {tDashboardMain('quickActions')}
               </h3>
-              <p className="mt-3 text-sm text-[rgba(255,255,255,0.7)]">
+              <p className="mt-3 text-base md:text-lg text-[rgba(255,255,255,0.7)]">
                 {tSections('blockchain.description')}
               </p>
               <div className="mt-6 grid gap-4">
@@ -118,10 +130,11 @@ export default function Home() {
                     key={metric.label}
                     className="flex items-center justify-between rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(16,18,29,0.55)] px-5 py-4"
                   >
-                    <span className="text-sm text-[rgba(255,255,255,0.7)]">
-                      {metric.accent} {metric.label}
+                    <span className="text-base md:text-lg text-[rgba(255,255,255,0.7)]">
+                      <span className="text-2xl mr-2">{metric.accent}</span>
+                      {metric.label}
                     </span>
-                    <span className="text-lg font-semibold text-white">
+                    <span className="text-xl md:text-2xl font-semibold text-white">
                       {metric.value}
                     </span>
                   </div>
@@ -129,21 +142,53 @@ export default function Home() {
               </div>
             </div>
             <div className="surface-panel p-8">
-              <h3 className="text-xl font-semibold text-white">
+              <h3 className="text-xl md:text-2xl font-semibold text-white">
                 {tImpact('title')}
               </h3>
-              <ul className="mt-4 space-y-3 text-sm text-[rgba(255,255,255,0.75)]">
-                <li>{tImpact('treesGrowing')}</li>
-                <li>{tImpact('farmersSupported')}</li>
-                <li>{tImpact('sustainablePractices')}</li>
+              <ul className="mt-4 space-y-3 text-base md:text-lg text-[rgba(255,255,255,0.75)]">
+                <li className="flex items-center gap-2">
+                  <span className="text-2xl">🌳</span>
+                  <span>{tImpact('treesGrowing')}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-2xl">👨‍🌾</span>
+                  <span>{tImpact('farmersSupported')}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-2xl">♻️</span>
+                  <span>{tImpact('sustainablePractices')}</span>
+                </li>
               </ul>
               <div className="mt-8">
+                <div className="flex items-center justify-between text-sm md:text-base text-[rgba(255,255,255,0.6)] mb-2">
+                  <span className="uppercase tracking-[0.3em]">2025 Roadmap</span>
+                  <span className="font-semibold text-white">72%</span>
+                </div>
                 <div className="iko-hero__panel-progress">
                   <span style={{ width: '72%' }} />
                 </div>
-                <div className="mt-3 flex items-center justify-between text-xs uppercase tracking-[0.3em] text-[rgba(255,255,255,0.6)]">
-                  <span>2025 Roadmap</span>
-                  <span>{tStats('thisMonth')}</span>
+                <div className="mt-3 grid grid-cols-3 gap-3 text-center">
+                  <div className="rounded-xl bg-[rgba(16,18,29,0.4)] px-3 py-2">
+                    <div className="text-xl md:text-2xl font-bold text-white">18</div>
+                    <div className="text-xs md:text-sm text-[rgba(255,255,255,0.5)] uppercase tracking-wider">Completado</div>
+                  </div>
+                  <div className="rounded-xl bg-[rgba(223,134,170,0.15)] px-3 py-2">
+                    <div className="text-xl md:text-2xl font-bold text-[rgba(223,134,170,1)]">7</div>
+                    <div className="text-xs md:text-sm text-[rgba(255,255,255,0.5)] uppercase tracking-wider">En Progreso</div>
+                  </div>
+                  <div className="rounded-xl bg-[rgba(16,18,29,0.4)] px-3 py-2">
+                    <div className="text-xl md:text-2xl font-bold text-[rgba(255,255,255,0.5)]">25</div>
+                    <div className="text-xs md:text-sm text-[rgba(255,255,255,0.5)] uppercase tracking-wider">Total</div>
+                  </div>
+                </div>
+                <div className="mt-8 flex items-center justify-center gap-4 text-7xl md:text-8xl opacity-90">
+                  <span className="inline-block transition-all duration-300 animate-pulse">
+                    {babyEmojis[currentBabyIndex]}
+                  </span>
+                  <span>❤️</span>
+                  <span>🌍</span>
+                  <span>🎓</span>
+                  <span>🍫</span>
                 </div>
               </div>
             </div>
@@ -162,7 +207,7 @@ export default function Home() {
                 <h2 className="text-3xl font-bold text-white md:text-4xl">
                   {tSections('justice.title')}
                 </h2>
-                <p className="max-w-2xl text-sm leading-relaxed text-[rgba(255,255,255,0.75)]">
+                <p className="max-w-2xl text-base md:text-lg leading-relaxed text-[rgba(255,255,255,0.75)]">
                   {tFooter('about')}
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">

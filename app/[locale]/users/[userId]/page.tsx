@@ -43,6 +43,7 @@ interface Character {
     storiesCount: number;
   };
   createdAt: string;
+  isLiked?: boolean;
 }
 
 export default function PublicUserProfilePage({
@@ -57,6 +58,7 @@ export default function PublicUserProfilePage({
   const [characters, setCharacters] = useState<Character[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [likingCharacterId, setLikingCharacterId] = useState<string | null>(null);
 
   useEffect(() => {
     params.then((resolvedParams) => {
@@ -82,6 +84,37 @@ export default function PublicUserProfilePage({
       setError(err instanceof Error ? err.message : 'Error desconocido');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleToggleLike = async (characterId: string, event: React.MouseEvent) => {
+    event.preventDefault(); // Prevent navigation when clicking like button
+    event.stopPropagation();
+
+    if (likingCharacterId) return;
+
+    try {
+      setLikingCharacterId(characterId);
+      const response = await fetch(`/api/characters/${characterId}/like`, {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al actualizar el like');
+      }
+
+      const data = await response.json();
+
+      // Update character in the list
+      setCharacters(prev => prev.map(char =>
+        char.id === characterId
+          ? { ...char, isLiked: data.isLiked, stats: { ...char.stats, likeCount: data.likeCount } }
+          : char
+      ));
+    } catch (err) {
+      console.error('Error toggling like:', err);
+    } finally {
+      setLikingCharacterId(null);
     }
   };
 
@@ -248,16 +281,36 @@ export default function PublicUserProfilePage({
                     <Link
                       key={character.id}
                       href={`/${locale}/dashboard/characters/${character.slug}`}
-                      className="group bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:shadow-xl hover:border-purple-300 dark:hover:border-purple-700 transition-all"
+                      className="group bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:shadow-xl hover:border-purple-300 dark:hover:border-purple-700 transition-all relative"
                     >
                       {/* Icon */}
                       <div className="flex items-start justify-between mb-4">
                         <div className="text-6xl group-hover:scale-110 transition-transform">
                           {character.assets.icon || getTypeIcon(character.characterType)}
                         </div>
-                        <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200 text-xs font-semibold rounded-full">
-                          {getTypeLabel(character.characterType)}
-                        </span>
+                        <div className="flex flex-col gap-2 items-end">
+                          <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200 text-xs font-semibold rounded-full">
+                            {getTypeLabel(character.characterType)}
+                          </span>
+                          {/* Like Button */}
+                          <button
+                            onClick={(e) => handleToggleLike(character.id, e)}
+                            disabled={likingCharacterId === character.id}
+                            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all flex items-center gap-1 ${
+                              character.isLiked
+                                ? 'bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 hover:bg-pink-200 dark:hover:bg-pink-900/50'
+                                : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                            } disabled:opacity-50 disabled:cursor-not-allowed z-10`}
+                            title={character.isLiked ? 'Quitar like' : 'Dar like'}
+                          >
+                            {likingCharacterId === character.id ? (
+                              <div className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-r-transparent"></div>
+                            ) : (
+                              <span>{character.isLiked ? '❤️' : '🤍'}</span>
+                            )}
+                            <span>{character.stats.likeCount}</span>
+                          </button>
+                        </div>
                       </div>
 
                       {/* Name */}
@@ -275,10 +328,6 @@ export default function PublicUserProfilePage({
                         <div className="flex items-center gap-1">
                           <span>👁️</span>
                           <span>{character.stats.viewCount}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <span>❤️</span>
-                          <span>{character.stats.likeCount}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <span>📚</span>

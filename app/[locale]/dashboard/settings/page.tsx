@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { UserStatus } from '@prisma/client';
+import { RestartOnboardingButton } from '@/components/Onboarding';
 
 export default function SettingsPage() {
   const t = useTranslations('dashboard.settings');
@@ -589,6 +590,17 @@ export default function SettingsPage() {
                   <option value="mm/dd/yyyy">MM/DD/YYYY</option>
                   <option value="yyyy-mm-dd">YYYY-MM-DD</option>
                 </select>
+              </div>
+
+              {/* Onboarding Tutorial */}
+              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  Tutorial de Inicio
+                </label>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  ¿Quieres volver a ver el tutorial de inicio? Puedes revivirlo en cualquier momento.
+                </p>
+                <RestartOnboardingButton />
               </div>
             </div>
           </div>

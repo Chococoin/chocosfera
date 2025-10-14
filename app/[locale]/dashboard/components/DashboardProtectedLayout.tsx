@@ -9,6 +9,7 @@ import { ReactNode } from 'react';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { DashboardHeader } from './DashboardHeader';
 import { Sidebar } from './Sidebar';
+import { Onboarding } from '@/components/Onboarding';
 
 interface DashboardProtectedLayoutProps {
   children: ReactNode;
@@ -28,6 +29,9 @@ export default function DashboardProtectedLayout({ children }: DashboardProtecte
             {children}
           </main>
         </div>
+
+        {/* Onboarding Tutorial */}
+        <Onboarding />
       </div>
     </ProtectedRoute>
   );

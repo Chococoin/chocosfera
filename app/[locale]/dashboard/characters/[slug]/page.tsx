@@ -66,6 +66,12 @@ interface Story {
   createdAt: string;
   updatedAt: string;
   publishedAt?: string;
+  stats?: {
+    viewCount: number;
+    likeCount: number;
+    commentCount: number;
+  };
+  isLiked?: boolean;
 }
 
 interface Permissions {
@@ -102,6 +108,10 @@ export default function CharacterDetailPage({
     isPublic: false,
   });
   const [isForkingCharacter, setIsForkingCharacter] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
+  const [isTogglingLike, setIsTogglingLike] = useState(false);
+  const [likingStoryId, setLikingStoryId] = useState<string | null>(null);
 
   useEffect(() => {
     params.then((resolvedParams) => {
@@ -144,10 +154,52 @@ export default function CharacterDetailPage({
       const data = await response.json();
       setCharacter(data.character);
       setPermissions(data.permissions);
+      setLikeCount(data.character.stats.likeCount);
+
+      // Check if user has liked this character
+      if (user) {
+        fetchLikeStatus(data.character.id);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error desconocido');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const fetchLikeStatus = async (characterId: string) => {
+    try {
+      const response = await fetch(`/api/characters/${characterId}/like`);
+      if (response.ok) {
+        const data = await response.json();
+        setIsLiked(data.isLiked);
+      }
+    } catch (err) {
+      console.error('Error checking like status:', err);
+    }
+  };
+
+  const handleToggleLike = async () => {
+    if (!character || isTogglingLike) return;
+
+    try {
+      setIsTogglingLike(true);
+      const response = await fetch(`/api/characters/${character.id}/like`, {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al actualizar el like');
+      }
+
+      const data = await response.json();
+      setIsLiked(data.isLiked);
+      setLikeCount(data.likeCount);
+    } catch (err) {
+      console.error('Error toggling like:', err);
+      setError(err instanceof Error ? err.message : 'Error al actualizar el like');
+    } finally {
+      setIsTogglingLike(false);
     }
   };
 
@@ -188,12 +240,67 @@ export default function CharacterDetailPage({
       }
 
       const data = await response.json();
-      setStories(data.stories || []);
+      const fetchedStories = data.stories || [];
+
+      // Fetch like status for each story
+      const storiesWithLikes = await Promise.all(
+        fetchedStories.map(async (story: Story) => {
+          try {
+            const likeResponse = await fetch(`/api/stories/${story.id}/like`);
+            if (likeResponse.ok) {
+              const likeData = await likeResponse.json();
+              return { ...story, isLiked: likeData.isLiked };
+            }
+          } catch {
+            // Ignore errors for individual like checks
+          }
+          return { ...story, isLiked: false };
+        })
+      );
+
+      setStories(storiesWithLikes);
     } catch (err) {
       console.error('Error loading stories:', err);
       setStories([]);
     } finally {
       setIsLoadingStories(false);
+    }
+  };
+
+  const handleToggleStoryLike = async (storyId: string) => {
+    if (likingStoryId) return;
+
+    try {
+      setLikingStoryId(storyId);
+      const response = await fetch(`/api/stories/${storyId}/like`, {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al actualizar el like');
+      }
+
+      const data = await response.json();
+
+      // Update story in the list
+      setStories(prev => prev.map(story =>
+        story.id === storyId
+          ? {
+              ...story,
+              isLiked: data.isLiked,
+              stats: {
+                ...story.stats,
+                viewCount: story.stats?.viewCount || 0,
+                commentCount: story.stats?.commentCount || 0,
+                likeCount: data.likeCount,
+              }
+            }
+          : story
+      ));
+    } catch (err) {
+      console.error('Error toggling story like:', err);
+    } finally {
+      setLikingStoryId(null);
     }
   };
 
@@ -413,6 +520,27 @@ export default function CharacterDetailPage({
               </span>
             </div>
             <div className="flex gap-2">
+              {/* Like Button */}
+              {user && (
+                <button
+                  onClick={handleToggleLike}
+                  disabled={isTogglingLike}
+                  className={`px-4 py-2 backdrop-blur-sm rounded-lg font-semibold transition-all flex items-center gap-2 ${
+                    isLiked
+                      ? 'bg-pink-500/80 hover:bg-pink-600 text-white'
+                      : 'bg-white/20 hover:bg-white/30 text-white'
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  title={isLiked ? 'Quitar like' : 'Dar like'}
+                >
+                  {isTogglingLike ? (
+                    <div className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-white border-r-transparent"></div>
+                  ) : (
+                    <span className={isLiked ? 'animate-pulse' : ''}>{isLiked ? '❤️' : '🤍'}</span>
+                  )}
+                  <span>{likeCount}</span>
+                </button>
+              )}
+
               {permissions?.canEdit && (
                 <>
                   <Link
@@ -467,7 +595,7 @@ export default function CharacterDetailPage({
               <p className="text-sm text-white/80">Vistas</p>
             </div>
             <div className="text-center">
-              <p className="text-3xl font-bold">{character.stats.likeCount}</p>
+              <p className="text-3xl font-bold">{likeCount}</p>
               <p className="text-sm text-white/80">Me gusta</p>
             </div>
             <div className="text-center">
@@ -765,6 +893,28 @@ export default function CharacterDetailPage({
                       {story.contentType === 'markdown' && '📝 Markdown'}
                       {story.contentType === 'html' && '🌐 HTML'}
                       {story.contentType === 'plaintext' && '📄 Texto plano'}
+                    </div>
+                    <div className="flex items-center gap-3">
+                      {/* Like Button */}
+                      {user && (
+                        <button
+                          onClick={() => handleToggleStoryLike(story.id)}
+                          disabled={likingStoryId === story.id}
+                          className={`px-3 py-1 rounded-full text-sm font-semibold transition-all flex items-center gap-2 ${
+                            story.isLiked
+                              ? 'bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 hover:bg-pink-200 dark:hover:bg-pink-900/50'
+                              : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                          } disabled:opacity-50 disabled:cursor-not-allowed`}
+                          title={story.isLiked ? 'Quitar like' : 'Dar like'}
+                        >
+                          {likingStoryId === story.id ? (
+                            <div className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-r-transparent"></div>
+                          ) : (
+                            <span>{story.isLiked ? '❤️' : '🤍'}</span>
+                          )}
+                          <span>{story.stats?.likeCount || 0}</span>
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>

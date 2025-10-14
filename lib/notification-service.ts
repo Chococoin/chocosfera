@@ -189,6 +189,42 @@ export async function createStoryLikedNotification(
 }
 
 /**
+ * Create a character liked notification
+ */
+export async function createCharacterLikedNotification(
+  authorUserId: string,
+  likerName: string,
+  characterName: string,
+  characterId: string,
+  locale: string = 'es'
+) {
+  const messages = {
+    es: `A ${likerName} le ha gustado tu personaje "${characterName}"`,
+    en: `${likerName} liked your character "${characterName}"`,
+    it: `A ${likerName} è piaciuto il tuo personaggio "${characterName}"`,
+  };
+
+  const titles = {
+    es: 'Nueva reacción',
+    en: 'New reaction',
+    it: 'Nuova reazione',
+  };
+
+  return createNotification({
+    userId: authorUserId,
+    type: 'CHARACTER_FORKED', // Using CHARACTER_FORKED type as it's already in Prisma schema
+    title: titles[locale as keyof typeof titles] || titles.es,
+    message: messages[locale as keyof typeof messages] || messages.es,
+    icon: '❤️',
+    metadata: {
+      likerName,
+      characterName,
+      characterId,
+    },
+  });
+}
+
+/**
  * Create a system announcement notification
  */
 export async function createSystemAnnouncementNotification(
