@@ -123,6 +123,7 @@ export default function CharacterDetailPage({
     if (slug) {
       fetchCharacter();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
   const fetchCharacter = async () => {
@@ -709,7 +710,7 @@ export default function CharacterDetailPage({
                 Habilidades Especiales
               </h2>
               <ul className="space-y-3">
-                {character.abilities.map((ability, index) => (
+                {character.abilities.map((ability) => (
                   <li
                     key={index}
                     className="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg"
@@ -848,7 +849,7 @@ export default function CharacterDetailPage({
 
           {!isLoadingStories && stories.length > 0 && (
             <div className="grid gap-6">
-              {stories.map((story, index) => (
+              {stories.map((story) => (
                 <div
                   key={story.id}
                   className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg transition-shadow"
@@ -947,7 +948,7 @@ export default function CharacterDetailPage({
                 Historial de Commits ({character.stats.commitsCount} total)
               </h2>
               <div className="space-y-4">
-                {history.map((commit, index) => (
+                {history.map((commit) => (
                   <div
                     key={commit.sha}
                     className="border-l-4 border-purple-500 pl-4 py-2"

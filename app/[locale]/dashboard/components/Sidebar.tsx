@@ -6,9 +6,6 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import UserProfile from './UserProfile';
 
-interface SidebarProps {
-  isCollapsed?: boolean;
-}
 
 export function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);

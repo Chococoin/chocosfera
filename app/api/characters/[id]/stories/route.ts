@@ -165,7 +165,7 @@ ${content}
       deletedAt: null,
     };
 
-    const result = await storiesCollection.insertOne(storyDoc as any);
+    const result = await storiesCollection.insertOne(storyDoc);
 
     // Update character's story count
     await charactersCollection.updateOne(

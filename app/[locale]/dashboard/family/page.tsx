@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import { UserStatus } from '@prisma/client';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
+import Image from 'next/image';
 
 interface Invitation {
   id: string;
@@ -46,7 +47,7 @@ export default function FamilyPage() {
       const response = await fetch('/api/family/invite');
       if (response.ok) {
         const data = await response.json();
-        setInvitations(data.invitations.map((inv: any) => ({
+        setInvitations(data.invitations.map((inv: Invitation) => ({
           ...inv,
           sentAt: new Date(inv.sentAt),
           expiresAt: new Date(inv.expiresAt),
@@ -398,10 +399,13 @@ export default function FamilyPage() {
                     {/* Avatar */}
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
                       {member.avatarUrl ? (
-                        <img
+                        <Image
                           src={member.avatarUrl}
                           alt={member.nick}
+                          width={48}
+                          height={48}
                           className="w-full h-full rounded-full object-cover"
+                          unoptimized
                         />
                       ) : (
                         member.nick.substring(0, 2).toUpperCase()

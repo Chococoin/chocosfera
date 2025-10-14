@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSessionUser } from '@/lib/auth';
 import { getCollection, Collections } from '@/lib/mongodb';
 import { CharacterDocument } from '@/types/mongodb';
-import { GitService, getUserRepoPath } from '@/lib/git-service';
 import { ObjectId } from 'mongodb';
 
 /**

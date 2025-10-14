@@ -3,7 +3,7 @@ import { getSessionUser } from '@/lib/auth';
 import { getCollection, Collections } from '@/lib/mongodb';
 import { CharacterDocument, CharacterType } from '@/types/mongodb';
 import { initializeUserRepo, getUserRepoPath } from '@/lib/git-service';
-import { ObjectId } from 'mongodb';
+
 
 /**
  * POST /api/characters
@@ -159,7 +159,7 @@ export async function POST(req: NextRequest) {
       deletedAt: null,
     };
 
-    const result = await charactersCollection.insertOne(characterDoc as any);
+    const result = await charactersCollection.insertOne(characterDoc);
 
     return NextResponse.json({
       success: true,

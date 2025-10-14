@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function CommunityPage() {
   const t = useTranslations('dashboard.community');
   const locale = useLocale();
-  const { user, isMinor, hasTelegramAccess } = useAuth();
+  const { isMinor, hasTelegramAccess } = useAuth();
 
   // IMPORTANTE: Reemplaza esto con el username real de tu grupo/canal de Telegram
   // Ejemplo: Si tu grupo es https://t.me/chocosfera_community

@@ -77,6 +77,7 @@ export default function EditCharacterPage({
     if (slug) {
       fetchCharacter();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
   const fetchCharacter = async () => {
@@ -133,7 +134,7 @@ export default function EditCharacterPage({
     }
   };
 
-  const updateFormData = (field: string, value: any) => {
+  const updateFormData = (field: string, value: string | string[] | boolean | CharacterType) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setError(null);
   };

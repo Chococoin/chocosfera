@@ -1,18 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { pricingSchemes, type PricingPlan } from '@/lib/pricing-plans';
 import {
   getCurrencyForLocale,
   formatPrice,
   convertPrice,
-  type SupportedCurrency,
 } from '@/lib/currency-config';
 
 export default function PricingPage() {
-  const router = useRouter();
+  
   const locale = useLocale();
   const currency = getCurrencyForLocale(locale);
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);

@@ -28,6 +28,7 @@ export default function Home() {
       setCurrentBabyIndex((prev) => (prev + 1) % babyEmojis.length);
     }, 1500);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {

@@ -89,7 +89,8 @@ export async function GET(req: NextRequest) {
  * PATCH /api/notifications
  * Mark all notifications as read
  */
-export async function PATCH(req: NextRequest) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function PATCH(_req: NextRequest) {
   try {
     const user = await getSessionUser();
     if (!user) {

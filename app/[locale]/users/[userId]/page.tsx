@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
+import Image from 'next/image';
 import { CharacterCardSkeleton } from '@/components/SkeletonLoader';
 import { EmptyState } from '@/components/EmptyState';
 
@@ -54,7 +55,7 @@ export default function PublicUserProfilePage({
   const router = useRouter();
   const locale = useLocale();
   const [userId, setUserId] = useState<string>('');
-  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [userProfile] = useState<UserProfile | null>(null);
   const [characters, setCharacters] = useState<Character[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -206,10 +207,13 @@ export default function PublicUserProfilePage({
                   {/* Avatar */}
                   <div className="flex-shrink-0">
                     {userProfile.avatarUrl ? (
-                      <img
+                      <Image
                         src={userProfile.avatarUrl}
                         alt={userProfile.nick}
+                        width={128}
+                        height={128}
                         className="w-32 h-32 rounded-full border-4 border-white dark:border-gray-800 shadow-lg"
+                        unoptimized
                       />
                     ) : (
                       <div className="w-32 h-32 rounded-full border-4 border-white dark:border-gray-800 shadow-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">

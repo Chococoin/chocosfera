@@ -13,7 +13,7 @@ interface CreateNotificationParams {
   message: string;
   actionUrl?: string;
   icon?: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   expiresAt?: Date;
 }
 
@@ -231,8 +231,7 @@ export async function createSystemAnnouncementNotification(
   userId: string,
   title: string,
   message: string,
-  actionUrl?: string,
-  locale: string = 'es'
+  actionUrl?: string
 ) {
   return createNotification({
     userId,

@@ -23,7 +23,7 @@ export default function ProtectedRoute({
   requireTelegramAccess = false,
   redirectTo,
 }: ProtectedRouteProps) {
-  const { user, isLoading, isAuthenticated, isMinor, hasTelegramAccess } = useAuth();
+  const { isLoading, isAuthenticated, isMinor, hasTelegramAccess } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
 

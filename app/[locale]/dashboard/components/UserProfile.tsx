@@ -9,6 +9,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { UserStatus } from '@prisma/client';
+import Image from 'next/image';
 
 interface UserProfileProps {
   isCollapsed?: boolean;
@@ -69,10 +70,13 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
         {/* Avatar */}
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-sm font-bold text-white">
           {user.avatarUrl ? (
-            <img
+            <Image
               src={user.avatarUrl}
               alt={user.nick}
+              width={40}
+              height={40}
               className="h-full w-full rounded-full object-cover"
+              unoptimized
             />
           ) : (
             getInitials()

@@ -171,7 +171,7 @@ export interface AnalyticsEvent {
   _id?: ObjectId;
   eventType: AnalyticsEventType;
   userId?: string;             // References PostgreSQL User.id
-  metadata: Record<string, any>;
+  metadata: Record<string, unknown>;
   timestamp: Date;
   sessionId?: string;
   userAgent?: string;

@@ -188,7 +188,7 @@ export interface AnalyticsEventDocument {
   resourceType: 'character' | 'story';
   resourceId: ObjectId;
   userId?: string; // Null for anonymous
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   ipAddress?: string;
   userAgent?: string;
   timestamp: Date;

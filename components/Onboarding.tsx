@@ -6,7 +6,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 
 interface OnboardingStep {
@@ -173,7 +173,7 @@ interface OnboardingProps {
 
 export function Onboarding({ onComplete }: OnboardingProps) {
   const router = useRouter();
-  const pathname = usePathname();
+  
   const locale = useLocale() as 'es' | 'en' | 'it';
   const [isOpen, setIsOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -328,11 +328,8 @@ export function Onboarding({ onComplete }: OnboardingProps) {
  * Button to restart onboarding from settings/profile
  */
 export function RestartOnboardingButton() {
-  const [showOnboarding, setShowOnboarding] = useState(false);
-
   const handleRestart = () => {
     localStorage.removeItem('chocosfera-onboarding-completed');
-    setShowOnboarding(true);
     // Reload to trigger onboarding
     window.location.reload();
   };

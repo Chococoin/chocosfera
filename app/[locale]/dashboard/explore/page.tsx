@@ -6,7 +6,6 @@
  */
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { CharacterCardSkeleton } from '@/components/SkeletonLoader';
@@ -55,7 +54,7 @@ interface Story {
 type TabType = 'characters' | 'stories';
 
 export default function ExplorePage() {
-  const router = useRouter();
+  
   const locale = useLocale();
   const [activeTab, setActiveTab] = useState<TabType>('characters');
   const [searchQuery, setSearchQuery] = useState('');
@@ -68,6 +67,7 @@ export default function ExplorePage() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
 
   const fetchData = async () => {

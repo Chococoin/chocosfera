@@ -211,7 +211,7 @@ export default function ImpactPage() {
               📈 Crecimiento de Impacto 2024
             </h3>
             <div className="space-y-4">
-              {impactTimeline.map((month, index) => (
+              {impactTimeline.map((month) => (
                 <div key={month.month} className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
                     <span className="font-semibold text-heading">{month.month}</span>

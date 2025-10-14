@@ -176,7 +176,8 @@ export async function POST(req: NextRequest) {
  * GET /api/family/invite
  * Get user's sent invitations
  */
-export async function GET(req: NextRequest) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function GET(_req: NextRequest) {
   try {
     // Get authenticated user
     const user = await getSessionUser();
