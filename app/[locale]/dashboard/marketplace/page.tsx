@@ -1,12 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useLocale } from 'next-intl';
 
 interface Product {
   id: string;
   name: string;
-  type: 'nft' | 'book' | 'plush' | 'chocolate';
-  price: number;
+  type: 'nft' | 'book' | 'plush' | 'chocolate' | 'trees';
+  priceEUR: number; // Price in EUR (primary - for Stripe)
+  priceCoins: number; // Price in ChocoCoins (secondary - for wallet)
   image: string;
   creator: string;
   rarity: 'common' | 'rare' | 'epic' | 'legendary';
@@ -17,13 +20,61 @@ interface Product {
 }
 
 export default function MarketplacePage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category');
+  const locale = useLocale();
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(categoryParam || 'all');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   const [selectedRarity, setSelectedRarity] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(true);
+  const [paymentMode, setPaymentMode] = useState<'fiat' | 'chococoins'>('fiat'); // Primary: fiat, Secondary: chococoins
 
-  // Usuario coins
-  const userCoins = 850;
+  // Update category when URL param changes
+  useEffect(() => {
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [categoryParam]);
+
+  // Usuario data (mock - in production will come from session/auth)
+  const userCoins = 850; // ChocoCoins balance
+  const userFiatBalance = 45.0; // EUR balance
+  const userEmail = 'maria@example.com'; // Pre-filled in Stripe
+  const userName = 'María García'; // For metadata
+
+  // Function to handle Stripe checkout
+  const handleStripeCheckout = async (product: Product) => {
+    try {
+      const response = await fetch('/api/stripe/create-marketplace-checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productId: product.id,
+          productName: product.name,
+          productType: product.type,
+          priceEUR: product.priceEUR,
+          locale,
+          userEmail, // Pre-fill email in Stripe Checkout
+          userName, // For Stripe metadata
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = data.url;
+      } else {
+        alert('Error al crear la sesión de pago');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error al procesar el pago');
+    }
+  };
 
   const products: Product[] = [
     // NFT Cards
@@ -31,7 +82,8 @@ export default function MarketplacePage() {
       id: 'nft-001',
       name: 'Cacao Warrior',
       type: 'nft',
-      price: 250,
+      priceEUR: 25.0,
+      priceCoins: 250,
       image: '🦸‍♂️',
       creator: '@maria_designs',
       rarity: 'legendary',
@@ -43,7 +95,8 @@ export default function MarketplacePage() {
       id: 'nft-002',
       name: 'Chocolate Fairy',
       type: 'nft',
-      price: 180,
+      priceEUR: 18.0,
+      priceCoins: 180,
       image: '🧚‍♀️',
       creator: '@carlos_art',
       rarity: 'epic',
@@ -55,7 +108,8 @@ export default function MarketplacePage() {
       id: 'nft-003',
       name: 'Cocoa Guardian',
       type: 'nft',
-      price: 120,
+      priceEUR: 12.0,
+      priceCoins: 120,
       image: '🛡️',
       creator: '@ana_creative',
       rarity: 'rare',
@@ -67,7 +121,8 @@ export default function MarketplacePage() {
       id: 'nft-004',
       name: 'Sweet Dragon',
       type: 'nft',
-      price: 300,
+      priceEUR: 30.0,
+      priceCoins: 300,
       image: '🐉',
       creator: '@pedro_nft',
       rarity: 'legendary',
@@ -80,7 +135,8 @@ export default function MarketplacePage() {
       id: 'book-001',
       name: 'Aventuras de Cacaito',
       type: 'book',
-      price: 45,
+      priceEUR: 4.5,
+      priceCoins: 45,
       image: '📚',
       creator: '@laura_illustrator',
       rarity: 'common',
@@ -92,7 +148,8 @@ export default function MarketplacePage() {
       id: 'book-002',
       name: 'El Reino del Cacao',
       type: 'book',
-      price: 55,
+      priceEUR: 5.5,
+      priceCoins: 55,
       image: '📖',
       creator: '@jose_books',
       rarity: 'common',
@@ -104,7 +161,8 @@ export default function MarketplacePage() {
       id: 'book-003',
       name: 'Leyendas Chocolatinas',
       type: 'book',
-      price: 65,
+      priceEUR: 6.5,
+      priceCoins: 65,
       image: '📕',
       creator: '@maria_designs',
       rarity: 'rare',
@@ -117,7 +175,8 @@ export default function MarketplacePage() {
       id: 'plush-001',
       name: 'Peluche Cacaito',
       type: 'plush',
-      price: 150,
+      priceEUR: 15.0,
+      priceCoins: 150,
       image: '🧸',
       creator: '@sofia_crafts',
       rarity: 'rare',
@@ -129,7 +188,8 @@ export default function MarketplacePage() {
       id: 'plush-002',
       name: 'Mini Hada del Chocolate',
       type: 'plush',
-      price: 95,
+      priceEUR: 9.5,
+      priceCoins: 95,
       image: '🧚',
       creator: '@carmen_toys',
       rarity: 'common',
@@ -141,7 +201,8 @@ export default function MarketplacePage() {
       id: 'plush-003',
       name: 'Dragón Dulce Gigante',
       type: 'plush',
-      price: 450,
+      priceEUR: 45.0,
+      priceCoins: 450,
       image: '🐲',
       creator: '@ricardo_plush',
       rarity: 'legendary',
@@ -154,7 +215,8 @@ export default function MarketplacePage() {
       id: 'choco-001',
       name: 'Tableta Guerrero',
       type: 'chocolate',
-      price: 85,
+      priceEUR: 8.5,
+      priceCoins: 85,
       image: '🍫',
       creator: '@chocolateria_premium',
       rarity: 'epic',
@@ -166,7 +228,8 @@ export default function MarketplacePage() {
       id: 'choco-002',
       name: 'Dulce Hada',
       type: 'chocolate',
-      price: 75,
+      priceEUR: 7.5,
+      priceCoins: 75,
       image: '🍬',
       creator: '@chocolateria_premium',
       rarity: 'rare',
@@ -178,7 +241,8 @@ export default function MarketplacePage() {
       id: 'choco-003',
       name: 'Edición Dragón',
       type: 'chocolate',
-      price: 120,
+      priceEUR: 12.0,
+      priceCoins: 120,
       image: '🌟',
       creator: '@chocolateria_premium',
       rarity: 'legendary',
@@ -186,10 +250,90 @@ export default function MarketplacePage() {
       stock: 10,
       description: 'Set premium con 6 tabletas temáticas',
     },
+    // Árboles de cacao para adopción
+    {
+      id: 'tree-001',
+      name: 'Árbol Joven - Colombia',
+      type: 'trees',
+      priceEUR: 2.99,
+      priceCoins: 30,
+      image: '🌱',
+      creator: '@chocosfera_farm',
+      rarity: 'common',
+      character: 'Árbol de Cacao',
+      stock: 15,
+      description: 'Árbol de 1 año en Valle del Cauca, Colombia',
+    },
+    {
+      id: 'tree-002',
+      name: 'Árbol Productor - Perú',
+      type: 'trees',
+      priceEUR: 4.99,
+      priceCoins: 50,
+      image: '🌳',
+      creator: '@chocosfera_farm',
+      rarity: 'rare',
+      character: 'Árbol de Cacao',
+      stock: 8,
+      description: 'Árbol de 3 años en producción en Cusco, Perú',
+    },
+    {
+      id: 'tree-003',
+      name: 'Árbol Premium - Ecuador',
+      type: 'trees',
+      priceEUR: 6.99,
+      priceCoins: 70,
+      image: '🌳',
+      creator: '@chocosfera_farm',
+      rarity: 'epic',
+      character: 'Árbol de Cacao',
+      stock: 5,
+      description: 'Árbol de 5 años, alta producción en Esmeraldas',
+    },
+    {
+      id: 'tree-004',
+      name: 'Árbol Ancestral - Venezuela',
+      type: 'trees',
+      priceEUR: 8.99,
+      priceCoins: 90,
+      image: '🌳',
+      creator: '@chocosfera_farm',
+      rarity: 'legendary',
+      character: 'Árbol de Cacao',
+      stock: 2,
+      description: 'Árbol de 10+ años, variedad ancestral Criollo',
+    },
+    {
+      id: 'tree-005',
+      name: 'Árbol Orgánico - México',
+      type: 'trees',
+      priceEUR: 3.99,
+      priceCoins: 40,
+      image: '🌿',
+      creator: '@chocosfera_farm',
+      rarity: 'common',
+      character: 'Árbol de Cacao',
+      stock: 12,
+      description: 'Árbol de 2 años, certificación orgánica en Tabasco',
+    },
+    {
+      id: 'tree-006',
+      name: 'Árbol Silvestre - Tanzania',
+      type: 'trees',
+      priceEUR: 5.99,
+      priceCoins: 60,
+      image: '🌳',
+      creator: '@chocosfera_farm',
+      rarity: 'rare',
+      character: 'Árbol de Cacao',
+      stock: 6,
+      description: 'Árbol de 4 años en Kilimanjaro, Tanzania',
+    },
   ];
 
   const categories = [
     { id: 'all', name: 'Todos', icon: '🌟', count: products.length },
+    { id: 'trees', name: 'Arboles', icon: '🌳', count: products.filter(p => p.type === 'trees').length },
     { id: 'nft', name: 'Cartas NFT', icon: '🃏', count: products.filter(p => p.type === 'nft').length },
     { id: 'book', name: 'Libros', icon: '📚', count: products.filter(p => p.type === 'book').length },
     { id: 'plush', name: 'Peluches', icon: '🧸', count: products.filter(p => p.type === 'plush').length },
@@ -206,7 +350,11 @@ export default function MarketplacePage() {
 
   const filteredProducts = products.filter(product => {
     const categoryMatch = selectedCategory === 'all' || product.type === selectedCategory;
-    const priceMatch = product.price >= priceRange[0] && product.price <= priceRange[1];
+
+    // Price matching depends on payment mode
+    const productPrice = paymentMode === 'fiat' ? product.priceEUR * 10 : product.priceCoins;
+    const priceMatch = productPrice >= priceRange[0] && productPrice <= priceRange[1];
+
     const rarityMatch = selectedRarity === 'all' || product.rarity === selectedRarity;
     return categoryMatch && priceMatch && rarityMatch;
   });
@@ -244,13 +392,47 @@ export default function MarketplacePage() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <div className="surface-panel px-4 py-2 sm:px-6 sm:py-3 flex-1 sm:flex-initial">
+          {/* Dual Balance Panel with Payment Mode Toggle */}
+          <div className="surface-panel px-4 py-3 sm:px-6 sm:py-4 flex-1 sm:flex-initial">
+            {/* Payment Mode Toggle */}
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <button
+                type="button"
+                onClick={() => setPaymentMode('fiat')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  paymentMode === 'fiat'
+                    ? 'bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-alt)] text-white shadow-sm'
+                    : 'text-muted hover:bg-[rgba(223,134,170,0.08)]'
+                }`}
+              >
+                <span>💳</span>
+                <span>Fiat</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setPaymentMode('chococoins')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  paymentMode === 'chococoins'
+                    ? 'bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-alt)] text-white shadow-sm'
+                    : 'text-muted hover:bg-[rgba(223,134,170,0.08)]'
+                }`}
+              >
+                <span>🪙</span>
+                <span>Coins</span>
+              </button>
+            </div>
+
+            {/* Balance Display */}
             <div className="flex items-center gap-2 sm:gap-3">
-              <span className="text-2xl sm:text-3xl">🪙</span>
+              <span className="text-2xl sm:text-3xl">
+                {paymentMode === 'fiat' ? '💳' : '🪙'}
+              </span>
               <div>
-                <p className="text-[10px] sm:text-xs text-muted">Tus ChocoCoins</p>
+                <p className="text-[10px] sm:text-xs text-muted">
+                  {paymentMode === 'fiat' ? 'Tu Balance (EUR)' : 'Tus ChocoCoins'}
+                </p>
                 <p className="text-xl sm:text-2xl font-bold text-heading" style={{ fontFamily: 'var(--font-heading)' }}>
-                  {userCoins}
+                  {paymentMode === 'fiat' ? `€${userFiatBalance.toFixed(2)}` : userCoins}
                 </p>
               </div>
             </div>
@@ -360,21 +542,31 @@ export default function MarketplacePage() {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between text-sm text-muted">
-                  <span>{priceRange[0]} 🪙</span>
-                  <span>{priceRange[1]} 🪙</span>
+                  <span>
+                    {paymentMode === 'fiat' ? '€0' : '0 🪙'}
+                  </span>
+                  <span>
+                    {paymentMode === 'fiat'
+                      ? `€${priceRange[1] / 10}`
+                      : `${priceRange[1]} 🪙`
+                    }
+                  </span>
                 </div>
                 <input
                   type="range"
                   min="0"
-                  max="1000"
-                  step="50"
+                  max={paymentMode === 'fiat' ? 500 : 1000}
+                  step={paymentMode === 'fiat' ? 10 : 50}
                   value={priceRange[1]}
                   onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
                   className="w-full h-2 rounded-full appearance-none cursor-pointer"
                   style={{
-                    background: `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary-alt) ${(priceRange[1] / 1000) * 100}%, rgba(0,0,0,0.1) ${(priceRange[1] / 1000) * 100}%, rgba(0,0,0,0.1) 100%)`
+                    background: `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary-alt) ${(priceRange[1] / (paymentMode === 'fiat' ? 500 : 1000)) * 100}%, rgba(0,0,0,0.1) ${(priceRange[1] / (paymentMode === 'fiat' ? 500 : 1000)) * 100}%, rgba(0,0,0,0.1) 100%)`
                   }}
                 />
+                <p className="text-[10px] text-muted text-center">
+                  Filtrando por {paymentMode === 'fiat' ? 'EUR' : 'ChocoCoins'}
+                </p>
               </div>
             </div>
 
@@ -457,23 +649,54 @@ export default function MarketplacePage() {
                   )}
 
                   {/* Price and Buy Button */}
-                  <div className="flex items-center justify-between pt-2 sm:pt-3 border-t border-[var(--color-border)]">
-                    <div className="flex items-center gap-1.5 sm:gap-2">
-                      <span className="text-xl sm:text-2xl">🪙</span>
-                      <span className="text-xl sm:text-2xl font-bold text-heading" style={{ fontFamily: 'var(--font-heading)' }}>
-                        {product.price}
+                  <div className="pt-2 sm:pt-3 border-t border-[var(--color-border)] space-y-2">
+                    {/* Primary Price (according to payment mode) */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <span className="text-xl sm:text-2xl">
+                          {paymentMode === 'fiat' ? '💳' : '🪙'}
+                        </span>
+                        <span className="text-xl sm:text-2xl font-bold text-heading" style={{ fontFamily: 'var(--font-heading)' }}>
+                          {paymentMode === 'fiat'
+                            ? `€${product.priceEUR.toFixed(2)}`
+                            : `${product.priceCoins}`
+                          }
+                        </span>
+                      </div>
+                      {/* Secondary Price (alternative) */}
+                      <span className="text-[10px] sm:text-xs text-muted">
+                        o {paymentMode === 'fiat'
+                          ? `${product.priceCoins} 🪙`
+                          : `€${product.priceEUR.toFixed(2)}`
+                        }
                       </span>
                     </div>
+
+                    {/* Buy Button */}
                     <button
                       type="button"
-                      disabled={userCoins < product.price}
-                      className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all ${
-                        userCoins >= product.price
+                      disabled={paymentMode === 'chococoins' && userCoins < product.priceCoins}
+                      onClick={() => {
+                        if (paymentMode === 'fiat') {
+                          handleStripeCheckout(product);
+                        } else {
+                          alert(`Comprando con ${product.priceCoins} ChocoCoins (funcionalidad pendiente)`);
+                          // TODO: Purchase with ChocoCoins from wallet
+                        }
+                      }}
+                      className={`w-full px-3 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all ${
+                        (paymentMode === 'chococoins' && userCoins >= product.priceCoins) ||
+                        paymentMode === 'fiat'
                           ? 'bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-alt)] text-white hover:scale-105 shadow-lg'
                           : 'bg-gray-300 dark:bg-gray-700 text-gray-500 cursor-not-allowed'
                       }`}
                     >
-                      {userCoins >= product.price ? 'Comprar' : 'Sin coins'}
+                      {paymentMode === 'fiat'
+                        ? `Comprar €${product.priceEUR.toFixed(2)}`
+                        : userCoins >= product.priceCoins
+                          ? `Comprar ${product.priceCoins} 🪙`
+                          : 'Sin coins'
+                      }
                     </button>
                   </div>
                 </div>

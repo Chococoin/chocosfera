@@ -30,7 +30,8 @@
     "adopt": "Adotta",
     "traceability": "Tracciabilità",
     "impact": "Impatto",
-    "create": "Crea"
+    "create": "Crea",
+    "pricing": "Prezzi"
   },
   "login": {
     "title": "Accedi",
@@ -87,6 +88,7 @@
       "impact": "Impatto",
       "community": "Comunità",
       "marketplace": "Negozio",
+      "pricing": "Prezzi",
       "settings": "Impostazioni",
       "quote": "Il cioccolato è felicità che puoi mangiare"
     },
@@ -185,6 +187,72 @@
         "copyAddress": "Copia indirizzo",
         "viewOnMap": "Visualizza sulla mappa",
         "explanation": "Un modo unico per identificare questa posizione esatta con tre semplici parole"
+      }
+    },
+    "settings": {
+      "title": "Impostazioni",
+      "subtitle": "Gestisci il tuo account e le preferenze",
+      "profile": {
+        "title": "Profilo",
+        "name": "Nome",
+        "email": "Email",
+        "username": "Nome utente",
+        "editProfile": "Modifica profilo",
+        "changeAvatar": "Cambia foto",
+        "saveChanges": "Salva modifiche"
+      },
+      "subscriptions": {
+        "title": "Le Mie Iscrizioni",
+        "active": "Attiva",
+        "inactive": "Inattiva",
+        "nextPayment": "Prossimo pagamento",
+        "manage": "Gestisci",
+        "cancel": "Annulla",
+        "noSubscriptions": "Non hai iscrizioni attive",
+        "viewPlans": "Visualizza piani disponibili"
+      },
+      "account": {
+        "title": "Account",
+        "changePassword": "Cambia password",
+        "currentPassword": "Password attuale",
+        "newPassword": "Nuova password",
+        "confirmPassword": "Conferma password",
+        "language": "Lingua",
+        "timezone": "Fuso orario",
+        "dateFormat": "Formato data"
+      },
+      "notifications": {
+        "title": "Notifiche",
+        "email": "Notifiche email",
+        "push": "Notifiche push",
+        "newsletter": "Newsletter settimanale",
+        "treeUpdates": "Aggiornamenti alberi",
+        "marketingEmails": "Email di marketing",
+        "productUpdates": "Aggiornamenti prodotto"
+      },
+      "chococoins": {
+        "title": "ChocoCoins",
+        "balance": "Saldo",
+        "history": "Storico",
+        "buyMore": "Compra di più",
+        "transaction": "Transazione",
+        "date": "Data",
+        "amount": "Importo",
+        "noTransactions": "Nessuna transazione"
+      },
+      "privacy": {
+        "title": "Privacy e Sicurezza",
+        "twoFactor": "Autenticazione a due fattori",
+        "twoFactorEnabled": "Attivato",
+        "twoFactorDisabled": "Disattivato",
+        "enable": "Attiva",
+        "disable": "Disattiva",
+        "sessions": "Sessioni attive",
+        "currentSession": "Sessione corrente",
+        "revokeSession": "Disconnetti",
+        "deleteAccount": "Elimina account",
+        "deleteWarning": "Questa azione è permanente e non può essere annullata",
+        "confirmDelete": "Conferma eliminazione"
       }
     }
   }

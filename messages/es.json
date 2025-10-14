@@ -30,7 +30,8 @@
     "adopt": "Adopta",
     "traceability": "Trazabilidad",
     "impact": "Impacto",
-    "create": "Crear"
+    "create": "Crear",
+    "pricing": "Planes"
   },
   "login": {
     "title": "Iniciar Sesión",
@@ -87,6 +88,7 @@
       "impact": "Impacto",
       "community": "Comunidad",
       "marketplace": "Tienda",
+      "pricing": "Planes",
       "settings": "Configuración",
       "quote": "El chocolate es felicidad que puedes comer"
     },
@@ -185,6 +187,72 @@
         "copyAddress": "Copiar dirección",
         "viewOnMap": "Ver en mapa",
         "explanation": "Una forma única de identificar esta ubicación exacta con tres palabras simples"
+      }
+    },
+    "settings": {
+      "title": "Configuración",
+      "subtitle": "Gestiona tu cuenta y preferencias",
+      "profile": {
+        "title": "Perfil",
+        "name": "Nombre",
+        "email": "Email",
+        "username": "Nombre de usuario",
+        "editProfile": "Editar perfil",
+        "changeAvatar": "Cambiar foto",
+        "saveChanges": "Guardar cambios"
+      },
+      "subscriptions": {
+        "title": "Mis Suscripciones",
+        "active": "Activa",
+        "inactive": "Inactiva",
+        "nextPayment": "Próximo pago",
+        "manage": "Gestionar",
+        "cancel": "Cancelar",
+        "noSubscriptions": "No tienes suscripciones activas",
+        "viewPlans": "Ver planes disponibles"
+      },
+      "account": {
+        "title": "Cuenta",
+        "changePassword": "Cambiar contraseña",
+        "currentPassword": "Contraseña actual",
+        "newPassword": "Nueva contraseña",
+        "confirmPassword": "Confirmar contraseña",
+        "language": "Idioma",
+        "timezone": "Zona horaria",
+        "dateFormat": "Formato de fecha"
+      },
+      "notifications": {
+        "title": "Notificaciones",
+        "email": "Notificaciones por email",
+        "push": "Notificaciones push",
+        "newsletter": "Newsletter semanal",
+        "treeUpdates": "Actualizaciones de árboles",
+        "marketingEmails": "Emails de marketing",
+        "productUpdates": "Actualizaciones de producto"
+      },
+      "chococoins": {
+        "title": "ChocoCoins",
+        "balance": "Balance",
+        "history": "Historial",
+        "buyMore": "Comprar más",
+        "transaction": "Transacción",
+        "date": "Fecha",
+        "amount": "Cantidad",
+        "noTransactions": "No hay transacciones"
+      },
+      "privacy": {
+        "title": "Privacidad y Seguridad",
+        "twoFactor": "Autenticación de dos factores",
+        "twoFactorEnabled": "Activado",
+        "twoFactorDisabled": "Desactivado",
+        "enable": "Activar",
+        "disable": "Desactivar",
+        "sessions": "Sesiones activas",
+        "currentSession": "Sesión actual",
+        "revokeSession": "Cerrar sesión",
+        "deleteAccount": "Eliminar cuenta",
+        "deleteWarning": "Esta acción es permanente y no se puede deshacer",
+        "confirmDelete": "Confirmar eliminación"
       }
     }
   }

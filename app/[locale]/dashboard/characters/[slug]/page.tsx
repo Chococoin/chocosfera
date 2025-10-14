@@ -54,6 +54,20 @@ interface Commit {
   diff?: string;
 }
 
+interface Story {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  contentType: 'markdown' | 'html' | 'plaintext';
+  excerpt: string;
+  status: 'draft' | 'published' | 'archived';
+  isPublic: boolean;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt?: string;
+}
+
 interface Permissions {
   canEdit: boolean;
   canDelete: boolean;
@@ -72,11 +86,22 @@ export default function CharacterDetailPage({
   const [character, setCharacter] = useState<Character | null>(null);
   const [permissions, setPermissions] = useState<Permissions | null>(null);
   const [history, setHistory] = useState<Commit[]>([]);
+  const [stories, setStories] = useState<Story[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
+  const [isLoadingStories, setIsLoadingStories] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'overview' | 'history'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'stories' | 'history'>('overview');
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showStoryModal, setShowStoryModal] = useState(false);
+  const [isCreatingStory, setIsCreatingStory] = useState(false);
+  const [storyForm, setStoryForm] = useState({
+    title: '',
+    content: '',
+    status: 'draft' as 'draft' | 'published',
+    isPublic: false,
+  });
+  const [isForkingCharacter, setIsForkingCharacter] = useState(false);
 
   useEffect(() => {
     params.then((resolvedParams) => {
@@ -149,6 +174,69 @@ export default function CharacterDetailPage({
     }
   };
 
+  const fetchStories = async () => {
+    if (!character) return;
+
+    try {
+      setIsLoadingStories(true);
+      const response = await fetch(
+        `/api/characters/${character.id}/stories?limit=50`
+      );
+
+      if (!response.ok) {
+        throw new Error('Error al obtener las historias');
+      }
+
+      const data = await response.json();
+      setStories(data.stories || []);
+    } catch (err) {
+      console.error('Error loading stories:', err);
+      setStories([]);
+    } finally {
+      setIsLoadingStories(false);
+    }
+  };
+
+  const handleCreateStory = async () => {
+    if (!character || !storyForm.title.trim() || !storyForm.content.trim()) {
+      setError('Título y contenido son requeridos');
+      return;
+    }
+
+    try {
+      setIsCreatingStory(true);
+      setError(null);
+
+      const response = await fetch(`/api/characters/${character.id}/stories`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(storyForm),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Error al crear la historia');
+      }
+
+      // Reset form
+      setStoryForm({
+        title: '',
+        content: '',
+        status: 'draft',
+        isPublic: false,
+      });
+      setShowStoryModal(false);
+
+      // Refresh stories and character data
+      await fetchStories();
+      await fetchCharacter();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error desconocido');
+    } finally {
+      setIsCreatingStory(false);
+    }
+  };
+
   const handleDelete = async () => {
     if (!character || !permissions?.canDelete) return;
 
@@ -164,6 +252,33 @@ export default function CharacterDetailPage({
       router.push(`/${locale}/dashboard/characters`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al eliminar');
+    }
+  };
+
+  const handleFork = async () => {
+    if (!character) return;
+
+    try {
+      setIsForkingCharacter(true);
+      setError(null);
+
+      const response = await fetch(`/api/characters/${character.id}/fork`, {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Error al forkear el personaje');
+      }
+
+      const data = await response.json();
+
+      // Redirect to the new forked character
+      router.push(`/${locale}/dashboard/characters/${data.character.slug}`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error al forkear');
+    } finally {
+      setIsForkingCharacter(false);
     }
   };
 
@@ -297,24 +412,44 @@ export default function CharacterDetailPage({
                 {getTypeLabel(character.characterType)}
               </span>
             </div>
-            {permissions?.canEdit && (
-              <div className="flex gap-2">
-                <Link
-                  href={`/${locale}/dashboard/characters/${character.slug}/edit`}
-                  className="px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg font-semibold transition-colors"
-                >
-                  ✏️ Editar
-                </Link>
-                {permissions?.canDelete && (
-                  <button
-                    onClick={() => setShowDeleteConfirm(true)}
-                    className="px-4 py-2 bg-red-500/80 hover:bg-red-600 backdrop-blur-sm rounded-lg font-semibold transition-colors"
+            <div className="flex gap-2">
+              {permissions?.canEdit && (
+                <>
+                  <Link
+                    href={`/${locale}/dashboard/characters/${character.slug}/edit`}
+                    className="px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg font-semibold transition-colors"
                   >
-                    🗑️ Eliminar
-                  </button>
-                )}
-              </div>
-            )}
+                    ✏️ Editar
+                  </Link>
+                  {permissions?.canDelete && (
+                    <button
+                      onClick={() => setShowDeleteConfirm(true)}
+                      className="px-4 py-2 bg-red-500/80 hover:bg-red-600 backdrop-blur-sm rounded-lg font-semibold transition-colors"
+                    >
+                      🗑️ Eliminar
+                    </button>
+                  )}
+                </>
+              )}
+              {permissions?.canFork && !permissions?.canEdit && character.isPublic && (
+                <button
+                  onClick={handleFork}
+                  disabled={isForkingCharacter}
+                  className="px-4 py-2 bg-blue-500/80 hover:bg-blue-600 disabled:bg-gray-500/50 backdrop-blur-sm rounded-lg font-semibold transition-colors disabled:cursor-not-allowed flex items-center gap-2"
+                >
+                  {isForkingCharacter ? (
+                    <>
+                      <div className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-white border-r-transparent"></div>
+                      Forkeando...
+                    </>
+                  ) : (
+                    <>
+                      🔱 Fork
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
           </div>
 
           {/* Stats */}
@@ -384,6 +519,19 @@ export default function CharacterDetailPage({
             }`}
           >
             📋 Información General
+          </button>
+          <button
+            onClick={() => {
+              setActiveTab('stories');
+              if (stories.length === 0) fetchStories();
+            }}
+            className={`px-4 py-3 font-semibold border-b-2 transition-colors ${
+              activeTab === 'stories'
+                ? 'border-purple-600 text-purple-600 dark:text-purple-400'
+                : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+            }`}
+          >
+            📚 Historias ({character.stats.storiesCount})
           </button>
           <button
             onClick={() => {
@@ -536,6 +684,96 @@ export default function CharacterDetailPage({
         </div>
       )}
 
+      {activeTab === 'stories' && (
+        <div className="space-y-6">
+          {/* Create Story Button */}
+          {permissions?.canEdit && (
+            <div className="flex justify-end">
+              <button
+                onClick={() => setShowStoryModal(true)}
+                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold rounded-lg transition-all shadow-md hover:shadow-lg"
+              >
+                ✍️ Nueva Historia
+              </button>
+            </div>
+          )}
+
+          {isLoadingStories && (
+            <div className="text-center py-12">
+              <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent mb-4"></div>
+              <p className="text-sm text-muted">Cargando historias...</p>
+            </div>
+          )}
+
+          {!isLoadingStories && stories.length === 0 && (
+            <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6 text-center">
+              <p className="text-yellow-800 dark:text-yellow-200 mb-4">
+                📚 Aún no hay historias para este personaje
+              </p>
+              {permissions?.canEdit && (
+                <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                  ¡Crea la primera historia para comenzar la aventura!
+                </p>
+              )}
+            </div>
+          )}
+
+          {!isLoadingStories && stories.length > 0 && (
+            <div className="grid gap-6">
+              {stories.map((story, index) => (
+                <div
+                  key={story.id}
+                  className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-3xl font-bold text-purple-600 dark:text-purple-400">
+                        #{index + 1}
+                      </span>
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                          {story.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {formatDate(story.createdAt)}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      {story.status === 'draft' && (
+                        <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200 text-sm font-semibold rounded-full">
+                          📝 Borrador
+                        </span>
+                      )}
+                      {story.status === 'published' && (
+                        <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 text-sm font-semibold rounded-full">
+                          ✅ Publicado
+                        </span>
+                      )}
+                      {story.isPublic && (
+                        <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm font-semibold rounded-full">
+                          🌍 Público
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    {story.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {story.contentType === 'markdown' && '📝 Markdown'}
+                      {story.contentType === 'html' && '🌐 HTML'}
+                      {story.contentType === 'plaintext' && '📄 Texto plano'}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       {activeTab === 'history' && (
         <div className="space-y-6">
           {isLoadingHistory && (
@@ -585,6 +823,157 @@ export default function CharacterDetailPage({
               </div>
             </div>
           )}
+        </div>
+      )}
+
+      {/* Story Creation Modal */}
+      {showStoryModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-3xl w-full my-8">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                ✍️ Nueva Historia
+              </h3>
+              <button
+                onClick={() => {
+                  setShowStoryModal(false);
+                  setStoryForm({
+                    title: '',
+                    content: '',
+                    status: 'draft',
+                    isPublic: false,
+                  });
+                  setError(null);
+                }}
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              >
+                ✕
+              </button>
+            </div>
+
+            {error && (
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
+                <p className="text-red-800 dark:text-red-200">❌ {error}</p>
+              </div>
+            )}
+
+            <div className="space-y-4">
+              {/* Title */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                  Título de la historia
+                </label>
+                <input
+                  type="text"
+                  value={storyForm.title}
+                  onChange={(e) =>
+                    setStoryForm({ ...storyForm, title: e.target.value })
+                  }
+                  placeholder="Ej: La primera aventura"
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+              </div>
+
+              {/* Content */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                  Contenido (Markdown)
+                </label>
+                <textarea
+                  value={storyForm.content}
+                  onChange={(e) =>
+                    setStoryForm({ ...storyForm, content: e.target.value })
+                  }
+                  placeholder="Escribe tu historia aquí... Puedes usar Markdown para formatear el texto."
+                  rows={12}
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent font-mono text-sm"
+                />
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
+                  💡 Tip: Usa Markdown para dar formato. Ejemplo: **negrita**,
+                  *cursiva*, ## Título
+                </p>
+              </div>
+
+              {/* Status */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                  Estado
+                </label>
+                <select
+                  value={storyForm.status}
+                  onChange={(e) =>
+                    setStoryForm({
+                      ...storyForm,
+                      status: e.target.value as 'draft' | 'published',
+                    })
+                  }
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                  <option value="draft">📝 Borrador (no visible)</option>
+                  <option value="published">✅ Publicado (visible)</option>
+                </select>
+              </div>
+
+              {/* Public */}
+              <div className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="isPublic"
+                  checked={storyForm.isPublic}
+                  onChange={(e) =>
+                    setStoryForm({ ...storyForm, isPublic: e.target.checked })
+                  }
+                  className="w-5 h-5 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  htmlFor="isPublic"
+                  className="text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  🌍 Hacer pública esta historia (visible para todos los
+                  usuarios)
+                </label>
+              </div>
+            </div>
+
+            <div className="flex gap-3 justify-end mt-6">
+              <button
+                onClick={() => {
+                  setShowStoryModal(false);
+                  setStoryForm({
+                    title: '',
+                    content: '',
+                    status: 'draft',
+                    isPublic: false,
+                  });
+                  setError(null);
+                }}
+                disabled={isCreatingStory}
+                className="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-semibold rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors disabled:opacity-50"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleCreateStory}
+                disabled={
+                  isCreatingStory ||
+                  !storyForm.title.trim() ||
+                  !storyForm.content.trim()
+                }
+                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-bold rounded-lg transition-all shadow-md hover:shadow-lg disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {isCreatingStory ? (
+                  <>
+                    <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-white border-r-transparent"></div>
+                    Creando...
+                  </>
+                ) : (
+                  <>
+                    💾 Crear Historia
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

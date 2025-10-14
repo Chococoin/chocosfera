@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { isSupportedLocale } from '@/i18n';
+import { AuthProvider } from '@/contexts/AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 import "./globals.css";
 
@@ -69,7 +70,9 @@ export default async function RootLayout({
         <Script src="/theme-init.js" strategy="beforeInteractive" />
         <ScrollToTop />
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </NextIntlClientProvider>
       </body>
     </html>

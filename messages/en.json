@@ -30,7 +30,8 @@
     "adopt": "Adopt",
     "traceability": "Traceability",
     "impact": "Impact",
-    "create": "Create"
+    "create": "Create",
+    "pricing": "Pricing"
   },
   "login": {
     "title": "Login",
@@ -87,6 +88,7 @@
       "impact": "Impact",
       "community": "Community",
       "marketplace": "Marketplace",
+      "pricing": "Pricing",
       "settings": "Settings",
       "quote": "Chocolate is happiness you can eat"
     },
@@ -185,6 +187,72 @@
         "copyAddress": "Copy address",
         "viewOnMap": "View on map",
         "explanation": "A unique way to identify this exact location with three simple words"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Manage your account and preferences",
+      "profile": {
+        "title": "Profile",
+        "name": "Name",
+        "email": "Email",
+        "username": "Username",
+        "editProfile": "Edit profile",
+        "changeAvatar": "Change photo",
+        "saveChanges": "Save changes"
+      },
+      "subscriptions": {
+        "title": "My Subscriptions",
+        "active": "Active",
+        "inactive": "Inactive",
+        "nextPayment": "Next payment",
+        "manage": "Manage",
+        "cancel": "Cancel",
+        "noSubscriptions": "You have no active subscriptions",
+        "viewPlans": "View available plans"
+      },
+      "account": {
+        "title": "Account",
+        "changePassword": "Change password",
+        "currentPassword": "Current password",
+        "newPassword": "New password",
+        "confirmPassword": "Confirm password",
+        "language": "Language",
+        "timezone": "Timezone",
+        "dateFormat": "Date format"
+      },
+      "notifications": {
+        "title": "Notifications",
+        "email": "Email notifications",
+        "push": "Push notifications",
+        "newsletter": "Weekly newsletter",
+        "treeUpdates": "Tree updates",
+        "marketingEmails": "Marketing emails",
+        "productUpdates": "Product updates"
+      },
+      "chococoins": {
+        "title": "ChocoCoins",
+        "balance": "Balance",
+        "history": "History",
+        "buyMore": "Buy more",
+        "transaction": "Transaction",
+        "date": "Date",
+        "amount": "Amount",
+        "noTransactions": "No transactions"
+      },
+      "privacy": {
+        "title": "Privacy and Security",
+        "twoFactor": "Two-factor authentication",
+        "twoFactorEnabled": "Enabled",
+        "twoFactorDisabled": "Disabled",
+        "enable": "Enable",
+        "disable": "Disable",
+        "sessions": "Active sessions",
+        "currentSession": "Current session",
+        "revokeSession": "Sign out",
+        "deleteAccount": "Delete account",
+        "deleteWarning": "This action is permanent and cannot be undone",
+        "confirmDelete": "Confirm deletion"
       }
     }
   }

@@ -1,8 +1,7 @@
 import type React from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { DashboardHeader } from './components/DashboardHeader';
-import { Sidebar } from './components/Sidebar';
+import DashboardProtectedLayout from './components/DashboardProtectedLayout';
 
 export default async function DashboardLayout({
   children,
@@ -16,18 +15,9 @@ export default async function DashboardLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div className="flex h-screen" style={{ background: 'var(--color-background)' }}>
-        {/* Sidebar */}
-        <Sidebar />
-
-        {/* Main content */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <DashboardHeader />
-          <main className="flex-1 overflow-x-hidden overflow-y-auto" style={{ background: 'var(--color-background)' }}>
-            {children}
-          </main>
-        </div>
-      </div>
+      <DashboardProtectedLayout>
+        {children}
+      </DashboardProtectedLayout>
     </NextIntlClientProvider>
   );
 }

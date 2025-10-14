@@ -41,9 +41,15 @@ export function Sidebar() {
       current: false,
     },
     {
+      name: 'Explorar',
+      href: '/dashboard/explore',
+      icon: '🔍',
+      current: false,
+    },
+    {
       name: t('traceability'),
       href: '/dashboard/traceability',
-      icon: '🔍',
+      icon: '🔗',
       current: false,
     },
     {

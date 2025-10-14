@@ -2,22 +2,38 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useAuth } from '@/contexts/AuthContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function LoginPage() {
   const t = useTranslations('login');
   const locale = useLocale();
+  const router = useRouter();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     usernameOrEmail: '',
     password: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implementar lógica de login
-    console.log('Login attempt:', formData);
+    setError(null);
+    setIsSubmitting(true);
+
+    try {
+      await login(formData.usernameOrEmail, formData.password);
+      // Redirect to dashboard after successful login
+      router.push(`/${locale}/dashboard`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +51,12 @@ export default function LoginPage() {
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-900 dark:text-white">
           {t('title')}
         </h1>
+
+        {error && (
+          <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
+            {error}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -84,9 +106,10 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full rounded-full bg-primary px-6 py-3 font-bold text-white shadow-lg transition-transform duration-200 hover:scale-105"
+            disabled={isSubmitting}
+            className="w-full rounded-full bg-primary px-6 py-3 font-bold text-white shadow-lg transition-transform duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
-            {t('submit')}
+            {isSubmitting ? 'Iniciando sesión...' : t('submit')}
           </button>
         </form>
 

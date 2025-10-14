@@ -12,6 +12,10 @@ const NAV_TARGETS = [
   { key: 'create', href: '#cta' },
 ] as const;
 
+const NAV_LINKS = [
+  { key: 'pricing', href: '/pricing' },
+] as const;
+
 export default function Header() {
   const tHeader = useTranslations('header');
   const tNavigation = useTranslations('navigation');
@@ -55,6 +59,15 @@ export default function Header() {
             >
               {tNavigation(key)}
             </a>
+          ))}
+          {NAV_LINKS.map(({ key, href }) => (
+            <Link
+              key={key}
+              href={`/${locale}${href}`}
+              className="text-xs tracking-[0.28em]"
+            >
+              {tNavigation(key)}
+            </Link>
           ))}
         </nav>
 

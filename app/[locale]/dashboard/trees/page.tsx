@@ -1,10 +1,12 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import { What3WordsAddress } from './components/What3WordsAddress';
 
 export default function TreesPage() {
   const t = useTranslations('dashboard.trees');
+  const router = useRouter();
 
   // Datos de ejemplo - en producción vendrían de una API
   const myTrees = [
@@ -295,6 +297,7 @@ export default function TreesPage() {
         </p>
         <button
           type="button"
+          onClick={() => router.push('marketplace?category=trees')}
           className="px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-medium rounded-lg transition-all shadow-sm hover:shadow-md"
         >
           {t('adoptCta.button')}

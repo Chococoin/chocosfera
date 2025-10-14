@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import ThemeToggle from '../../components/ThemeToggle';
+import { NotificationBell } from './NotificationBell';
 
 export function DashboardHeader() {
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
@@ -64,6 +65,9 @@ export function DashboardHeader() {
           <div className="hidden md:block text-sm text-muted">
             {currentTime ? dateTimeFormatter.format(currentTime) : '...'}
           </div>
+
+          {/* Notifications */}
+          <NotificationBell />
 
           {/* Theme toggle */}
           <ThemeToggle />

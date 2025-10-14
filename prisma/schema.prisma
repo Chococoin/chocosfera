@@ -1,0 +1,315 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// HYBRID DATABASE ARCHITECTURE
+// ============================================
+// PostgreSQL: Critical data (users, KYC, families, invitations)
+// MongoDB: Flexible content (characters, stories, badges)
+// See: /docs/DATABASE-ARCHITECTURE.md
+
+// ============================================
+// ENUMS
+// ============================================
+
+enum UserStatus {
+  MINOR          // Default - Restricted access
+  ADULT_PENDING  // KYC submitted, awaiting verification
+  ADULT_VERIFIED // Full access, can create family profiles
+}
+
+enum UserRole {
+  USER
+  FAMILY_ADMIN   // Can manage family profile
+  MODERATOR
+  ADMIN
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  EXPIRED
+}
+
+enum InvitationType {
+  FAMILY_INVITE
+}
+
+enum KYCDocumentType {
+  ID_CARD
+  PASSPORT
+  DRIVERS_LICENSE
+}
+
+enum KYCStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum NotificationType {
+  FAMILY_INVITATION
+  FAMILY_ACCEPTED
+  STORY_PUBLISHED
+  STORY_LIKED
+  STORY_COMMENTED
+  CHARACTER_FORKED
+  SYSTEM_ANNOUNCEMENT
+}
+
+// ============================================
+// MODELS
+// ============================================
+
+model User {
+  id           String   @id @default(cuid())
+  nick         String   @unique
+  email        String   @unique
+  passwordHash String
+
+  // Status & Role
+  status UserStatus @default(MINOR)
+  role   UserRole   @default(USER)
+
+  // Profile
+  firstName   String?
+  lastName    String?
+  dateOfBirth DateTime?
+  avatarUrl   String?
+
+  // Family Linking
+  familyId String?
+  family   FamilyProfile? @relation(fields: [familyId], references: [id])
+
+  // Restrictions
+  telegramAccess Boolean @default(false)
+
+  // Metadata
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  lastLoginAt DateTime?
+  locale      String    @default("es")
+  timezone    String?
+
+  // Relations (PostgreSQL only)
+  kycDocuments        KYCDocument[]
+  sentInvitations     Invitation[]       @relation("InviterRelation")
+  receivedInvitations Invitation[]       @relation("RecipientRelation")
+  adminOfFamilies     FamilyProfile[]    @relation("FamilyAdminRelation")
+  notifications       Notification[]
+
+  // Note: Characters, Stories, Comments, Likes are in MongoDB
+  // Reference via user.id as string in MongoDB documents
+
+  @@index([email])
+  @@index([nick])
+  @@index([familyId])
+  @@index([status])
+}
+
+model KYCDocument {
+  id             String          @id @default(cuid())
+  userId         String
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type           KYCDocumentType
+  documentNumber String
+  documentCountry String
+
+  // Uploaded files
+  frontImageUrl String
+  backImageUrl  String?
+  selfieUrl     String
+
+  // Extracted data
+  firstName   String
+  lastName    String
+  dateOfBirth DateTime
+
+  // Verification
+  status           KYCStatus @default(PENDING)
+  reviewedBy       String?
+  reviewedAt       DateTime?
+  rejectionReason  String?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([status])
+}
+
+model Invitation {
+  id              String           @id @default(cuid())
+  inviterId       String
+  inviter         User             @relation("InviterRelation", fields: [inviterId], references: [id], onDelete: Cascade)
+
+  recipientEmail  String
+  recipientUserId String?
+  recipient       User?            @relation("RecipientRelation", fields: [recipientUserId], references: [id])
+
+  type      InvitationType      @default(FAMILY_INVITE)
+  status    InvitationStatus    @default(PENDING)
+
+  token     String              @unique
+  expiresAt DateTime
+
+  acceptedAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@index([token])
+  @@index([recipientEmail])
+  @@index([status])
+  @@index([inviterId])
+}
+
+model FamilyProfile {
+  id        String   @id @default(cuid())
+  name      String
+
+  // Admin
+  adminUserId String
+  admin       User   @relation("FamilyAdminRelation", fields: [adminUserId], references: [id])
+
+  // Visual
+  coverImageUrl String?
+  familyMotto   String?
+
+  // Aggregated Stats (computed/cached)
+  totalTrees       Int @default(0)
+  totalCO2Offset   Float @default(0)
+  totalChocoCoins  Int @default(0)
+
+  // Settings
+  isPublic Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  members User[]
+
+  // Note: Characters and Stories are in MongoDB
+  // Reference via familyId as string in MongoDB documents
+
+  @@index([adminUserId])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type      NotificationType
+  title     String
+  message   String
+
+  // Optional action link (e.g., "/family/accept/token")
+  actionUrl String?
+
+  // Optional icon/emoji
+  icon      String?
+
+  // Status
+  isRead    Boolean          @default(false)
+  readAt    DateTime?
+
+  // Metadata (JSON for flexibility)
+  metadata  Json?            // Store additional data like inviterId, storyId, etc.
+
+  createdAt DateTime         @default(now())
+  expiresAt DateTime?        // Optional expiry for time-sensitive notifications
+
+  @@index([userId])
+  @@index([userId, isRead])
+  @@index([createdAt])
+}
+
+// ============================================
+// MONGODB COLLECTIONS (Reference Only)
+// ============================================
+// These are NOT in PostgreSQL, but documented here for reference
+// Actual schemas are in MongoDB with flexible structure
+
+// characters collection:
+// {
+//   _id: ObjectId,
+//   userId: String,              // References User.id
+//   familyId: String?,           // References FamilyProfile.id
+//   name: String,
+//   type: String,
+//   appearance: { skinTone, hairStyle, hairColor, eyeColor, outfit, accessories[] },
+//   personality: [String],
+//   skills: [String],
+//   favoriteChocolate: String?,
+//   origin: String?,
+//   backstory: String,
+//   currentMission: String?,
+//   avatarUrl: String?,
+//   fullBodyImageUrl: String?,
+//   model3DUrl: String?,
+//   level: Number,
+//   experience: Number,
+//   isPublic: Boolean,
+//   createdAt: Date,
+//   updatedAt: Date
+// }
+
+// stories collection:
+// {
+//   _id: ObjectId,
+//   authorId: String,            // References User.id
+//   familyId: String?,           // References FamilyProfile.id
+//   title: String,
+//   content: String,
+//   characterIds: [String],      // References characters._id
+//   genre: String,
+//   ageRating: String,
+//   coverImageUrl: String?,
+//   illustrations: [String],
+//   views: Number,
+//   likes: Number,
+//   status: String,
+//   isPublic: Boolean,
+//   publishedAt: Date?,
+//   createdAt: Date,
+//   updatedAt: Date
+// }
+
+// character_badges collection:
+// {
+//   _id: ObjectId,
+//   characterId: String,         // References characters._id
+//   badgeId: String,
+//   name: String,
+//   description: String,
+//   iconUrl: String,
+//   earnedAt: Date
+// }
+
+// story_comments collection:
+// {
+//   _id: ObjectId,
+//   storyId: String,             // References stories._id
+//   userId: String,              // References User.id
+//   userName: String,            // Denormalized for performance
+//   content: String,
+//   createdAt: Date
+// }
+
+// story_likes collection:
+// {
+//   _id: ObjectId,
+//   storyId: String,             // References stories._id
+//   userId: String,              // References User.id
+//   createdAt: Date
+// }
