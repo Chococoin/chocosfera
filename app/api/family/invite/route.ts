@@ -3,6 +3,7 @@ import { getSessionUser } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { InvitationStatus } from '@prisma/client';
 import crypto from 'crypto';
+import { sendFamilyInvitationEmail } from '@/lib/email-service';
 
 /**
  * POST /api/family/invite
@@ -117,9 +118,38 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // TODO: Send email with invitation link
-    // const inviteLink = `${process.env.NEXT_PUBLIC_APP_URL}/${user.locale}/accept-invitation/${token}`;
-    // await sendInvitationEmail(recipientEmail, inviteLink, user);
+    // Send invitation email (async, don't block the response)
+    const inviteLink = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/${user.locale}/family/accept/${token}`;
+    const inviterName = user.firstName && user.lastName
+      ? `${user.firstName} ${user.lastName}`
+      : user.nick;
+
+    // Determine family name
+    let familyName = 'Mi Familia';
+    if (user.familyId) {
+      try {
+        const family = await prisma.family.findUnique({
+          where: { id: user.familyId },
+          select: { name: true },
+        });
+        if (family) {
+          familyName = family.name;
+        }
+      } catch (error) {
+        console.error('Error fetching family name:', error);
+      }
+    }
+
+    sendFamilyInvitationEmail({
+      to: recipientEmail,
+      inviterName,
+      familyName,
+      acceptUrl: inviteLink,
+      locale: user.locale,
+    }).catch((error) => {
+      console.error('Failed to send family invitation email:', error);
+      // Don't fail the API call if email fails
+    });
 
     return NextResponse.json({
       success: true,

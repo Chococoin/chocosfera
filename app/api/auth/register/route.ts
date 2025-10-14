@@ -9,6 +9,7 @@ import {
   validateNick,
 } from '@/lib/auth';
 import { UserStatus, UserRole } from '@prisma/client';
+import { sendWelcomeEmail } from '@/lib/email-service';
 
 /**
  * POST /api/auth/register
@@ -99,6 +100,18 @@ export async function POST(req: NextRequest) {
     await setSessionCookie(token);
 
     console.log(`New user registered: ${user.nick} (${user.email}) - Status: MINOR`);
+
+    // Send welcome email (async, don't wait for it)
+    const dashboardUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/${user.locale}/dashboard`;
+    sendWelcomeEmail({
+      to: user.email,
+      name: user.nick,
+      dashboardUrl,
+      locale: user.locale,
+    }).catch((error) => {
+      console.error('Failed to send welcome email:', error);
+      // Don't fail registration if email fails
+    });
 
     // Return user data (without password hash)
     return NextResponse.json(
