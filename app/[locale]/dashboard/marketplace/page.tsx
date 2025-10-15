@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface Product {
   id: string;
@@ -20,6 +20,7 @@ interface Product {
 }
 
 export default function MarketplacePage() {
+  const t = useTranslations('dashboard.marketplace');
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get('category');
   const locale = useLocale();
@@ -68,11 +69,11 @@ export default function MarketplacePage() {
         // Redirect to Stripe Checkout
         window.location.href = data.url;
       } else {
-        alert('Error al crear la sesión de pago');
+        alert(t('errors.createSession'));
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Error al procesar el pago');
+      alert(t('errors.processPayment'));
     }
   };
 
@@ -80,272 +81,272 @@ export default function MarketplacePage() {
     // NFT Cards
     {
       id: 'nft-001',
-      name: 'Cacao Warrior',
+      name: t('products.nft001.name'),
       type: 'nft',
       priceEUR: 25.0,
       priceCoins: 250,
       image: '🦸‍♂️',
       creator: '@maria_designs',
       rarity: 'legendary',
-      character: 'Guerrero del Cacao',
+      character: t('products.nft001.character'),
       sold: 3,
-      description: 'Carta legendaria de edición limitada',
+      description: t('products.nft001.description'),
     },
     {
       id: 'nft-002',
-      name: 'Chocolate Fairy',
+      name: t('products.nft002.name'),
       type: 'nft',
       priceEUR: 18.0,
       priceCoins: 180,
       image: '🧚‍♀️',
       creator: '@carlos_art',
       rarity: 'epic',
-      character: 'Hada del Chocolate',
+      character: t('products.nft002.character'),
       sold: 12,
-      description: 'Criatura mágica del bosque de cacao',
+      description: t('products.nft002.description'),
     },
     {
       id: 'nft-003',
-      name: 'Cocoa Guardian',
+      name: t('products.nft003.name'),
       type: 'nft',
       priceEUR: 12.0,
       priceCoins: 120,
       image: '🛡️',
       creator: '@ana_creative',
       rarity: 'rare',
-      character: 'Guardián del Cacao',
+      character: t('products.nft003.character'),
       sold: 28,
-      description: 'Protector de los árboles sagrados',
+      description: t('products.nft003.description'),
     },
     {
       id: 'nft-004',
-      name: 'Sweet Dragon',
+      name: t('products.nft004.name'),
       type: 'nft',
       priceEUR: 30.0,
       priceCoins: 300,
       image: '🐉',
       creator: '@pedro_nft',
       rarity: 'legendary',
-      character: 'Dragón Dulce',
+      character: t('products.nft004.character'),
       sold: 2,
-      description: 'El dragón más raro de la colección',
+      description: t('products.nft004.description'),
     },
     // Libros para colorear
     {
       id: 'book-001',
-      name: 'Aventuras de Cacaito',
+      name: t('products.book001.name'),
       type: 'book',
       priceEUR: 4.5,
       priceCoins: 45,
       image: '📚',
       creator: '@laura_illustrator',
       rarity: 'common',
-      character: 'Cacaito',
+      character: t('products.book001.character'),
       stock: 50,
-      description: '32 páginas de aventuras para colorear',
+      description: t('products.book001.description'),
     },
     {
       id: 'book-002',
-      name: 'El Reino del Cacao',
+      name: t('products.book002.name'),
       type: 'book',
       priceEUR: 5.5,
       priceCoins: 55,
       image: '📖',
       creator: '@jose_books',
       rarity: 'common',
-      character: 'Rey Cacao',
+      character: t('products.book002.character'),
       stock: 35,
-      description: 'Explora el mágico reino del chocolate',
+      description: t('products.book002.description'),
     },
     {
       id: 'book-003',
-      name: 'Leyendas Chocolatinas',
+      name: t('products.book003.name'),
       type: 'book',
       priceEUR: 6.5,
       priceCoins: 65,
       image: '📕',
       creator: '@maria_designs',
       rarity: 'rare',
-      character: 'Varios',
+      character: t('products.book003.character'),
       stock: 20,
-      description: 'Edición especial con 48 páginas',
+      description: t('products.book003.description'),
     },
     // Peluches
     {
       id: 'plush-001',
-      name: 'Peluche Cacaito',
+      name: t('products.plush001.name'),
       type: 'plush',
       priceEUR: 15.0,
       priceCoins: 150,
       image: '🧸',
       creator: '@sofia_crafts',
       rarity: 'rare',
-      character: 'Cacaito',
+      character: t('products.plush001.character'),
       stock: 15,
-      description: 'Peluche de 30cm hecho a mano',
+      description: t('products.plush001.description'),
     },
     {
       id: 'plush-002',
-      name: 'Mini Hada del Chocolate',
+      name: t('products.plush002.name'),
       type: 'plush',
       priceEUR: 9.5,
       priceCoins: 95,
       image: '🧚',
       creator: '@carmen_toys',
       rarity: 'common',
-      character: 'Hada del Chocolate',
+      character: t('products.plush002.character'),
       stock: 40,
-      description: 'Adorable peluche de 15cm',
+      description: t('products.plush002.description'),
     },
     {
       id: 'plush-003',
-      name: 'Dragón Dulce Gigante',
+      name: t('products.plush003.name'),
       type: 'plush',
       priceEUR: 45.0,
       priceCoins: 450,
       image: '🐲',
       creator: '@ricardo_plush',
       rarity: 'legendary',
-      character: 'Dragón Dulce',
+      character: t('products.plush003.character'),
       stock: 3,
-      description: 'Peluche premium de 60cm',
+      description: t('products.plush003.description'),
     },
     // Chocolates especiales
     {
       id: 'choco-001',
-      name: 'Tableta Guerrero',
+      name: t('products.choco001.name'),
       type: 'chocolate',
       priceEUR: 8.5,
       priceCoins: 85,
       image: '🍫',
       creator: '@chocolateria_premium',
       rarity: 'epic',
-      character: 'Guerrero del Cacao',
+      character: t('products.choco001.character'),
       stock: 25,
-      description: 'Chocolate 85% cacao, diseño exclusivo',
+      description: t('products.choco001.description'),
     },
     {
       id: 'choco-002',
-      name: 'Dulce Hada',
+      name: t('products.choco002.name'),
       type: 'chocolate',
       priceEUR: 7.5,
       priceCoins: 75,
       image: '🍬',
       creator: '@chocolateria_premium',
       rarity: 'rare',
-      character: 'Hada del Chocolate',
+      character: t('products.choco002.character'),
       stock: 35,
-      description: 'Chocolate con leche y frutos rojos',
+      description: t('products.choco002.description'),
     },
     {
       id: 'choco-003',
-      name: 'Edición Dragón',
+      name: t('products.choco003.name'),
       type: 'chocolate',
       priceEUR: 12.0,
       priceCoins: 120,
       image: '🌟',
       creator: '@chocolateria_premium',
       rarity: 'legendary',
-      character: 'Dragón Dulce',
+      character: t('products.choco003.character'),
       stock: 10,
-      description: 'Set premium con 6 tabletas temáticas',
+      description: t('products.choco003.description'),
     },
     // Árboles de cacao para adopción
     {
       id: 'tree-001',
-      name: 'Árbol Joven - Colombia',
+      name: t('products.tree001.name'),
       type: 'trees',
       priceEUR: 2.99,
       priceCoins: 30,
       image: '🌱',
       creator: '@chocosfera_farm',
       rarity: 'common',
-      character: 'Árbol de Cacao',
+      character: t('products.tree001.character'),
       stock: 15,
-      description: 'Árbol de 1 año en Valle del Cauca, Colombia',
+      description: t('products.tree001.description'),
     },
     {
       id: 'tree-002',
-      name: 'Árbol Productor - Perú',
+      name: t('products.tree002.name'),
       type: 'trees',
       priceEUR: 4.99,
       priceCoins: 50,
       image: '🌳',
       creator: '@chocosfera_farm',
       rarity: 'rare',
-      character: 'Árbol de Cacao',
+      character: t('products.tree002.character'),
       stock: 8,
-      description: 'Árbol de 3 años en producción en Cusco, Perú',
+      description: t('products.tree002.description'),
     },
     {
       id: 'tree-003',
-      name: 'Árbol Premium - Ecuador',
+      name: t('products.tree003.name'),
       type: 'trees',
       priceEUR: 6.99,
       priceCoins: 70,
       image: '🌳',
       creator: '@chocosfera_farm',
       rarity: 'epic',
-      character: 'Árbol de Cacao',
+      character: t('products.tree003.character'),
       stock: 5,
-      description: 'Árbol de 5 años, alta producción en Esmeraldas',
+      description: t('products.tree003.description'),
     },
     {
       id: 'tree-004',
-      name: 'Árbol Ancestral - Venezuela',
+      name: t('products.tree004.name'),
       type: 'trees',
       priceEUR: 8.99,
       priceCoins: 90,
       image: '🌳',
       creator: '@chocosfera_farm',
       rarity: 'legendary',
-      character: 'Árbol de Cacao',
+      character: t('products.tree004.character'),
       stock: 2,
-      description: 'Árbol de 10+ años, variedad ancestral Criollo',
+      description: t('products.tree004.description'),
     },
     {
       id: 'tree-005',
-      name: 'Árbol Orgánico - México',
+      name: t('products.tree005.name'),
       type: 'trees',
       priceEUR: 3.99,
       priceCoins: 40,
       image: '🌿',
       creator: '@chocosfera_farm',
       rarity: 'common',
-      character: 'Árbol de Cacao',
+      character: t('products.tree005.character'),
       stock: 12,
-      description: 'Árbol de 2 años, certificación orgánica en Tabasco',
+      description: t('products.tree005.description'),
     },
     {
       id: 'tree-006',
-      name: 'Árbol Silvestre - Tanzania',
+      name: t('products.tree006.name'),
       type: 'trees',
       priceEUR: 5.99,
       priceCoins: 60,
       image: '🌳',
       creator: '@chocosfera_farm',
       rarity: 'rare',
-      character: 'Árbol de Cacao',
+      character: t('products.tree006.character'),
       stock: 6,
-      description: 'Árbol de 4 años en Kilimanjaro, Tanzania',
+      description: t('products.tree006.description'),
     },
   ];
 
   const categories = [
-    { id: 'all', name: 'Todos', icon: '🌟', count: products.length },
-    { id: 'trees', name: 'Arboles', icon: '🌳', count: products.filter(p => p.type === 'trees').length },
-    { id: 'nft', name: 'Cartas NFT', icon: '🃏', count: products.filter(p => p.type === 'nft').length },
-    { id: 'book', name: 'Libros', icon: '📚', count: products.filter(p => p.type === 'book').length },
-    { id: 'plush', name: 'Peluches', icon: '🧸', count: products.filter(p => p.type === 'plush').length },
-    { id: 'chocolate', name: 'Chocolates', icon: '🍫', count: products.filter(p => p.type === 'chocolate').length },
+    { id: 'all', name: t('categories.all'), icon: '🌟', count: products.length },
+    { id: 'trees', name: t('categories.trees'), icon: '🌳', count: products.filter(p => p.type === 'trees').length },
+    { id: 'nft', name: t('categories.nft'), icon: '🃏', count: products.filter(p => p.type === 'nft').length },
+    { id: 'book', name: t('categories.books'), icon: '📚', count: products.filter(p => p.type === 'book').length },
+    { id: 'plush', name: t('categories.plush'), icon: '🧸', count: products.filter(p => p.type === 'plush').length },
+    { id: 'chocolate', name: t('categories.chocolate'), icon: '🍫', count: products.filter(p => p.type === 'chocolate').length },
   ];
 
   const rarities = [
-    { id: 'all', name: 'Todas', color: 'gray' },
-    { id: 'common', name: 'Común', color: 'gray' },
-    { id: 'rare', name: 'Rara', color: 'blue' },
-    { id: 'epic', name: 'Épica', color: 'purple' },
-    { id: 'legendary', name: 'Legendaria', color: 'yellow' },
+    { id: 'all', name: t('rarities.all'), color: 'gray' },
+    { id: 'common', name: t('rarities.common'), color: 'gray' },
+    { id: 'rare', name: t('rarities.rare'), color: 'blue' },
+    { id: 'epic', name: t('rarities.epic'), color: 'purple' },
+    { id: 'legendary', name: t('rarities.legendary'), color: 'yellow' },
   ];
 
   const filteredProducts = products.filter(product => {
@@ -388,7 +389,7 @@ export default function MarketplacePage() {
             🛒 Marketplace
           </h1>
           <p className="text-sm sm:text-base text-muted">
-            Productos únicos de la comunidad
+            {t('subtitle')}
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -429,7 +430,7 @@ export default function MarketplacePage() {
               </span>
               <div>
                 <p className="text-[10px] sm:text-xs text-muted">
-                  {paymentMode === 'fiat' ? 'Tu Balance (EUR)' : 'Tus ChocoCoins'}
+                  {paymentMode === 'fiat' ? t('balance.fiat') : t('balance.coins')}
                 </p>
                 <p className="text-xl sm:text-2xl font-bold text-heading" style={{ fontFamily: 'var(--font-heading)' }}>
                   {paymentMode === 'fiat' ? `€${userFiatBalance.toFixed(2)}` : userCoins}
@@ -471,7 +472,7 @@ export default function MarketplacePage() {
             {/* Categories */}
             <div className="surface-panel p-4 sm:p-6">
               <h3 className="text-base sm:text-lg font-bold text-heading mb-3 sm:mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-                Categorías
+                {t('filters.categories')}
               </h3>
               <div className="space-y-2">
                 {categories.map(category => (
@@ -501,7 +502,7 @@ export default function MarketplacePage() {
             {/* Rarity Filter */}
             <div className="surface-panel p-4 sm:p-6">
               <h3 className="text-base sm:text-lg font-bold text-heading mb-3 sm:mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-                Rareza
+                {t('filters.rarity')}
               </h3>
               <div className="space-y-2">
                 {rarities.map(rarity => (
@@ -538,7 +539,7 @@ export default function MarketplacePage() {
             {/* Price Range */}
             <div className="surface-panel p-4 sm:p-6">
               <h3 className="text-base sm:text-lg font-bold text-heading mb-3 sm:mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-                Rango de Precio
+                {t('filters.priceRange')}
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between text-sm text-muted">
@@ -565,7 +566,7 @@ export default function MarketplacePage() {
                   }}
                 />
                 <p className="text-[10px] text-muted text-center">
-                  Filtrando por {paymentMode === 'fiat' ? 'EUR' : 'ChocoCoins'}
+                  {t('filters.filteringBy')} {paymentMode === 'fiat' ? 'EUR' : 'ChocoCoins'}
                 </p>
               </div>
             </div>
@@ -576,9 +577,9 @@ export default function MarketplacePage() {
               <div className="relative">
                 <div className="text-center">
                   <div className="text-5xl mb-3">🎨</div>
-                  <p className="text-sm font-semibold text-heading mb-1">Creador Destacado</p>
+                  <p className="text-sm font-semibold text-heading mb-1">{t('featured.creator')}</p>
                   <p className="text-lg font-bold text-heading mb-2">@maria_designs</p>
-                  <p className="text-xs text-muted">24 productos creados</p>
+                  <p className="text-xs text-muted">{t('featured.productsCreated', { count: '24' })}</p>
                 </div>
               </div>
             </div>
@@ -590,13 +591,13 @@ export default function MarketplacePage() {
         <div className="flex-1">
           <div className="mb-3 sm:mb-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:justify-between">
             <p className="text-xs sm:text-sm text-muted">
-              {filteredProducts.length} productos
+              {filteredProducts.length} {t('products')}
             </p>
             <select className="px-3 py-2 sm:px-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] text-heading text-xs sm:text-sm focus:outline-none cursor-pointer">
-              <option>Más recientes</option>
-              <option>Precio: Menor a Mayor</option>
-              <option>Precio: Mayor a Menor</option>
-              <option>Más populares</option>
+              <option>{t('sort.newest')}</option>
+              <option>{t('sort.priceLowHigh')}</option>
+              <option>{t('sort.priceHighLow')}</option>
+              <option>{t('sort.popular')}</option>
             </select>
           </div>
 
@@ -629,7 +630,7 @@ export default function MarketplacePage() {
                     </h3>
                     <p className="text-[11px] sm:text-xs text-muted mb-2 line-clamp-2">{product.description}</p>
                     <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
-                      <span className="text-muted">Por</span>
+                      <span className="text-muted">{t('product.by')}</span>
                       <span className="font-semibold text-heading truncate">{product.creator}</span>
                     </div>
                   </div>
@@ -638,13 +639,13 @@ export default function MarketplacePage() {
                   {product.stock !== undefined && (
                     <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-muted">
                       <span>📦</span>
-                      <span>{product.stock} disponibles</span>
+                      <span>{product.stock} {t('product.available')}</span>
                     </div>
                   )}
                   {product.sold !== undefined && (
                     <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-muted">
                       <span>🔥</span>
-                      <span>{product.sold} vendidos</span>
+                      <span>{product.sold} {t('product.sold')}</span>
                     </div>
                   )}
 
@@ -665,7 +666,7 @@ export default function MarketplacePage() {
                       </div>
                       {/* Secondary Price (alternative) */}
                       <span className="text-[10px] sm:text-xs text-muted">
-                        o {paymentMode === 'fiat'
+                        {t('product.or')} {paymentMode === 'fiat'
                           ? `${product.priceCoins} 🪙`
                           : `€${product.priceEUR.toFixed(2)}`
                         }
@@ -680,7 +681,7 @@ export default function MarketplacePage() {
                         if (paymentMode === 'fiat') {
                           handleStripeCheckout(product);
                         } else {
-                          alert(`Comprando con ${product.priceCoins} ChocoCoins (funcionalidad pendiente)`);
+                          alert(t('product.buyingWithCoins', { coins: product.priceCoins }));
                           // TODO: Purchase with ChocoCoins from wallet
                         }
                       }}
@@ -692,10 +693,10 @@ export default function MarketplacePage() {
                       }`}
                     >
                       {paymentMode === 'fiat'
-                        ? `Comprar €${product.priceEUR.toFixed(2)}`
+                        ? `${t('product.buy')} €${product.priceEUR.toFixed(2)}`
                         : userCoins >= product.priceCoins
-                          ? `Comprar ${product.priceCoins} 🪙`
-                          : 'Sin coins'
+                          ? `${t('product.buy')} ${product.priceCoins} 🪙`
+                          : t('product.noCoins')
                       }
                     </button>
                   </div>
@@ -707,8 +708,8 @@ export default function MarketplacePage() {
           {filteredProducts.length === 0 && (
             <div className="text-center py-12 sm:py-20">
               <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">🔍</div>
-              <p className="text-lg sm:text-xl font-semibold text-heading mb-2">No hay productos</p>
-              <p className="text-sm sm:text-base text-muted">Intenta ajustar los filtros</p>
+              <p className="text-lg sm:text-xl font-semibold text-heading mb-2">{t('empty.title')}</p>
+              <p className="text-sm sm:text-base text-muted">{t('empty.description')}</p>
             </div>
           )}
         </div>

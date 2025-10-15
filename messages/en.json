@@ -84,6 +84,9 @@
     "sidebar": {
       "dashboard": "Dashboard",
       "myTrees": "My Trees",
+      "family": "My Family",
+      "characters": "My Characters",
+      "explore": "Explore",
       "traceability": "Traceability",
       "impact": "Impact",
       "community": "Community",
@@ -153,6 +156,24 @@
         "rule2": "Share knowledge about cacao and chocolate",
         "rule3": "Ask about traceability and sustainability",
         "rule4": "No spam or unrelated content"
+      },
+      "restricted": {
+        "title": "Restricted Access",
+        "description": "As a minor, you don't have access to the community Telegram chat. This is a space for verified adults.",
+        "whyTitle": "Why this restriction?",
+        "reason1": "We protect minors with appropriate conversations",
+        "reason2": "We comply with child protection regulations",
+        "reason3": "You can still enjoy other areas of Chocósfera",
+        "adultQuestion": "Are you an adult?",
+        "verifyButton": "Verify My Age to Get Full Access"
+      },
+      "setup": {
+        "title": "Configuration Required",
+        "description": "To view the Telegram chat here, you need to:",
+        "step1": "Create a public group or channel on Telegram",
+        "step2": "Get the username (e.g.: @chocosfera_community)",
+        "step3": "Update the constant",
+        "step3b": "in"
       }
     },
     "trees": {
@@ -199,7 +220,24 @@
         "username": "Username",
         "editProfile": "Edit profile",
         "changeAvatar": "Change photo",
-        "saveChanges": "Save changes"
+        "saveChanges": "Save changes",
+        "avatarPrompt": "Choose your favorite emoji as avatar",
+        "selectEmoji": "Select {emoji}",
+        "avatarDescription": "Your emoji represents you throughout Chocósfera",
+        "identityProtectionTitle": "Identity Protection",
+        "identityProtectionDescription": "To protect your identity, we only use your nick (username). You don't need to provide your real name.",
+        "nickLabel": "Your Nick (Username)",
+        "nickPlaceholder": "e.g: choco_lover",
+        "nickDescription": "Your nick is how other users will know you in Chocósfera",
+        "emailSecurityNote": "Email cannot be changed for security reasons",
+        "firstNameOptional": "First Name (Optional)",
+        "firstNamePlaceholder": "Your first name",
+        "lastNameOptional": "Last Name (Optional)",
+        "lastNamePlaceholder": "Your last name",
+        "errors": {
+          "avatarUpdateError": "Error updating avatar",
+          "avatarUpdateRetry": "Error updating avatar. Please try again."
+        }
       },
       "subscriptions": {
         "title": "My Subscriptions",
@@ -219,7 +257,11 @@
         "confirmPassword": "Confirm password",
         "language": "Language",
         "timezone": "Timezone",
-        "dateFormat": "Date format"
+        "dateFormat": "Date format",
+        "preferences": "Preferences",
+        "languageUpdateNote": "The language will update immediately throughout the application",
+        "onboardingTutorial": "Onboarding Tutorial",
+        "onboardingDescription": "Want to see the onboarding tutorial again? You can relive it at any time."
       },
       "notifications": {
         "title": "Notifications",
@@ -238,7 +280,32 @@
         "transaction": "Transaction",
         "date": "Date",
         "amount": "Amount",
-        "noTransactions": "No transactions"
+        "noTransactions": "No transactions",
+        "buyCoinsTitle": "Buy ChocoCoins",
+        "buyCoinsSubtitle": "Choose the perfect package for you",
+        "mostPopular": "MOST POPULAR",
+        "processing": "Processing...",
+        "buyNow": "Buy Now",
+        "securePayment": "Secure payment with Stripe",
+        "paymentInfo1": "Payments securely processed by Stripe",
+        "paymentInfo2": "We accept credit and debit cards",
+        "paymentInfo3": "Your ChocoCoins will be credited immediately",
+        "paymentInfo4": "30-day refund policy",
+        "packages": {
+          "starterDescription": "Perfect starter package to begin",
+          "popularDescription": "Most popular - Save €5",
+          "premiumDescription": "Best value - Save €20",
+          "megaDescription": "Mega pack - Save €60"
+        },
+        "transactions": {
+          "earnedSubscription": "Earned - Active Subscription",
+          "redeemedChocolate": "Redeemed - Chocolate Bar",
+          "earnedTree": "Earned - Adopted Tree"
+        },
+        "errors": {
+          "paymentInitError": "Error initiating payment",
+          "paymentProcessError": "Error processing payment. Please try again."
+        }
       },
       "privacy": {
         "title": "Privacy and Security",
@@ -252,7 +319,559 @@
         "revokeSession": "Sign out",
         "deleteAccount": "Delete account",
         "deleteWarning": "This action is permanent and cannot be undone",
-        "confirmDelete": "Confirm deletion"
+        "confirmDelete": "Confirm deletion",
+        "sessionLocation": "Madrid, Spain",
+        "sessionNow": "Now",
+        "sessionHoursAgo": "{hours} hours ago"
+      },
+      "verification": {
+        "tabLabel": "Age Verification",
+        "adultPrompt": "Are you already an adult? You can verify your age at any time using the verification form below to unlock all features.",
+        "formTitle": "Age Verification (18+ Only)",
+        "studentWarning": "If you are a student, DO NOT complete this form. Ask your parent or guardian to verify your age by uploading your identity document.",
+        "formDescription": "To unlock all features, we need to verify that you are of legal age. Upload a photo of your identity document (ID card, passport, or driver's license).",
+        "documentType": "Document Type",
+        "selectDocumentType": "Select document type",
+        "dni": "ID Card / Identity Card",
+        "passport": "Passport",
+        "license": "Driver's License",
+        "uploadFront": "Upload Document (Front)",
+        "uploadBack": "Upload Document (Back) - Optional",
+        "securityTitle": "🔒 Your Data Security",
+        "securityNote1": "We only use them to verify your age",
+        "securityNote2": "Your documents are stored securely and encrypted",
+        "securityNote3": "We never share your information with third parties",
+        "submitButton": "Submit Documents for Verification",
+        "statusLabel": "Verification Status:",
+        "statusStudent": "Student Account",
+        "statusPending": "Verification Pending",
+        "statusVerified": "Verified Adult",
+        "statusStudentDescription": "Your account is registered as a student with restricted features for your protection.",
+        "statusPendingDescription": "We have received your request and are reviewing your documentation.",
+        "statusVerifiedDescription": "Your age has been verified. You have full access to all features.",
+        "restrictedFeaturesTitle": "Restricted Features (For Your Protection)",
+        "restrictedFeature1": "You cannot access the community Telegram chat",
+        "restrictedFeature2": "You cannot create family profiles (only join by parent/guardian invitation)",
+        "restrictedFeature3": "Limited social features for your protection",
+        "reviewTimeTitle": "Estimated Review Time",
+        "reviewTimeDescription": "Our team reviews requests within 24-48 business hours. We will notify you by email when your verification is complete.",
+        "inProgress": "In progress...",
+        "unlockedFeaturesTitle": "Unlocked Features",
+        "unlockedFeature1": "Full access to Telegram chat",
+        "unlockedFeature2": "Create and manage family profiles",
+        "unlockedFeature3": "All social features available",
+        "unlockedFeature4": "Invite family members and create characters",
+        "importantAdultOnly": "⚠️ IMPORTANT: This process is for adults only",
+        "uploadPrompt": "Click to upload or drag the file here",
+        "uploadFileTypes": "PNG, JPG or PDF (max. 10MB)",
+        "whyVerifyTitle": "Why verify my age?",
+        "whyVerifyDescription": "Age verification helps us create a safe and appropriate environment for all users, complying with child protection regulations.",
+        "howLongTitle": "How long does verification take?",
+        "howLongDescription": "We typically process verifications within 24-48 business hours. We will notify you by email when it's ready."
+      }
+    },
+    "userProfile": {
+      "student": "Student",
+      "verificationPending": "Verification Pending",
+      "adultVerified": "Adult Verified",
+      "inFamily": "In Family",
+      "studentRestriction": "As a student, some features are restricted for your protection. Ask your parent or guardian to",
+      "verifyAge": "verify your age",
+      "settings": "Settings",
+      "myFamily": "My Family",
+      "logout": "Log Out"
+    },
+    "family": {
+      "title": "My Family",
+      "headerWithFamily": "Manage your family profile and shared trees",
+      "headerWithoutFamily": "Create your family profile or join an existing one",
+      "loading": "Loading...",
+      "loadingFamily": "Loading family...",
+      "createFamily": {
+        "title": "Create Family Profile",
+        "description": "Start your own family in Chocósfera and manage everyone's trees",
+        "button": "Create My Family",
+        "modalTitle": "Create Family Profile",
+        "nameLabel": "Family Name",
+        "namePlaceholder": "e.g: García Family, The Rodríguez...",
+        "nameDescription": "This name will be visible to all members of your family",
+        "tipLabel": "Tip:",
+        "tipText": "You will be the family administrator and can invite other members.",
+        "cancelButton": "Cancel",
+        "creating": "Creating...",
+        "createButton": "Create Family",
+        "minorWarning": "Only verified adults can create family profiles.",
+        "verifyAgeLink": "Ask your parent/guardian to verify your age",
+        "successMessage": "Family created successfully!",
+        "errorMessage": "Error creating family"
+      },
+      "inviteParent": {
+        "title": "Invite My Parent/Guardian",
+        "description": "Send an email invitation for your parent or guardian to create the family profile",
+        "emailLabel": "Parent/Guardian Email",
+        "emailPlaceholder": "parent@example.com",
+        "sendButton": "Send Invitation",
+        "sending": "Sending...",
+        "tipText": "Your parent/guardian will receive an email with a link to register or join your family profile.",
+        "successMessage": "Invitation sent to {email}!"
+      },
+      "joinFamily": {
+        "title": "Join by Invitation",
+        "description": "If someone invited you to their family, you will receive an email with the link",
+        "checkEmailText": "Check your email to see if you have pending invitations",
+        "viewInvitationsLink": "View my invitations →"
+      },
+      "invitations": {
+        "title": "Pending Invitations",
+        "sent": "Sent:",
+        "expires": "Expires:",
+        "pending": "Pending",
+        "cancelButton": "Cancel",
+        "cancelConfirm": "Are you sure you want to cancel this invitation?",
+        "cancelSuccess": "Invitation cancelled successfully",
+        "cancelError": "Error cancelling invitation",
+        "sendError": "Error sending invitation"
+      },
+      "overview": {
+        "members": "member",
+        "membersPlural": "members",
+        "totalTrees": "Total Trees",
+        "trees": "Trees",
+        "co2": "Tons CO₂",
+        "water": "Liters"
+      },
+      "members": {
+        "title": "Family Members",
+        "inviteButton": "+ Invite Member",
+        "you": "You",
+        "student": "Student",
+        "verificationPending": "Verification Pending",
+        "adult": "Adult",
+        "noMembers": "No family members yet",
+        "editRelationship": "Edit relationship"
+      },
+      "inviteMember": {
+        "modalTitle": "Invite Member",
+        "emailLabel": "Member Email",
+        "emailPlaceholder": "member@example.com",
+        "parentLabel": "Parent/Guardian (optional)",
+        "noParent": "No parent assigned",
+        "parentDescription": "Select who will be this member's parent/guardian in the family tree",
+        "tipText": "The member will receive an email with a link to join your family.",
+        "cancelButton": "Cancel",
+        "sendButton": "Send Invitation",
+        "sending": "Sending...",
+        "successMessage": "Invitation sent to {email}!"
+      },
+      "editMember": {
+        "modalTitle": "Edit Family Relationship",
+        "editing": "Editing:",
+        "parentLabel": "Parent/Guardian",
+        "noParent": "No parent assigned (tree root)",
+        "parentDescription": "Select who will be this member's parent/guardian in the family tree",
+        "tipText": "Changes will be reflected immediately in the family tree.",
+        "cancelButton": "Cancel",
+        "saveButton": "Save Changes",
+        "saving": "Saving...",
+        "successMessage": "Relationship updated successfully!",
+        "errorMessage": "Error updating relationship"
+      },
+      "tree": {
+        "title": "Family Tree",
+        "members": "member",
+        "membersPlural": "members",
+        "relationship": "Parent-child relationship",
+        "noTreeError": "Could not build family tree",
+        "legendTitle": "Family Tree:",
+        "legendDescription": "Members are organized by parent-child relationship. Parents appear above and their children below connected by lines.",
+        "legendAdmin": " Click the edit icon to change family relationships."
+      },
+      "info": {
+        "title": "How do family profiles work?",
+        "point1": "Students can invite their parents by email",
+        "point2": "Only verified adults (18+ years old) can create the family profile",
+        "point3": "All family trees are added to the profile",
+        "point4": "You can create characters and stories together"
+      }
+    },
+    "characters": {
+      "title": "My Characters",
+      "subtitle": "Create unique characters and tell their stories in Chocósfera",
+      "loading": "Loading...",
+      "character": "character",
+      "charactersPlural": "characters",
+      "createButton": "Create Character",
+      "public": "Public",
+      "updated": "Updated",
+      "empty": {
+        "title": "Your Adventure Starts Here!",
+        "description": "You haven't created any characters yet. Create your first character and start your story in Chocósfera.",
+        "createButton": "Create My First Character"
+      },
+      "types": {
+        "cacao": "Cacao",
+        "chocolate": "Chocolate",
+        "farmer": "Farmer",
+        "other": "Other"
+      },
+      "stats": {
+        "stories": "Stories",
+        "commits": "Commits",
+        "views": "Views"
+      },
+      "info": {
+        "title": "What are characters?",
+        "point1": "Create unique characters with their own stories in Chocósfera",
+        "point2": "Each character has its own Git repository with history",
+        "point3": "You can fork Tony, Pipo or Kaoka and create your version",
+        "point4": "Share your characters publicly or keep them private"
+      },
+      "errors": {
+        "fetchError": "Error fetching characters",
+        "unknownError": "Unknown error"
+      }
+    },
+    "explore": {
+      "title": "Explore",
+      "subtitle": "Discover public characters and stories from the community",
+      "searchPlaceholder": "Search characters, stories, users...",
+      "tabs": {
+        "characters": "Characters",
+        "stories": "Stories"
+      },
+      "types": {
+        "cacao": "Cacao",
+        "chocolate": "Chocolate",
+        "farmer": "Farmer",
+        "other": "Other"
+      },
+      "errors": {
+        "fetchCharacters": "Error loading characters",
+        "fetchStories": "Error loading stories",
+        "unknown": "Unknown error",
+        "updateLike": "Error updating like"
+      },
+      "empty": {
+        "noCharactersFound": "No characters found",
+        "noPublicCharacters": "No public characters available",
+        "noStoriesFound": "No stories found",
+        "noPublicStories": "No public stories available",
+        "tryOtherTerms": "Try different search terms",
+        "beFirstCharacter": "Be the first to create a public character!",
+        "beFirstStory": "Be the first to create a public story!",
+        "createCharacter": "Create Character"
+      },
+      "results": {
+        "character": "character",
+        "charactersPlural": "characters",
+        "story": "story",
+        "storiesPlural": "stories",
+        "found": "found",
+        "foundPlural": "found"
+      },
+      "like": {
+        "add": "Like",
+        "remove": "Unlike"
+      }
+    },
+    "traceability": {
+      "title": "Traceability",
+      "subtitle": "Follow the complete journey of your cacao from origin to you",
+      "product": "Product",
+      "timeline": {
+        "title": "Product Journey",
+        "verified": "Verified on blockchain"
+      },
+      "steps": {
+        "planting": {
+          "title": "Planting",
+          "location": "El Cacao Farm, Ecuador",
+          "details": "Tree planted and registered on blockchain"
+        },
+        "growth": {
+          "title": "Growth",
+          "location": "El Cacao Farm, Ecuador",
+          "details": "Tree in growth phase, organic certified"
+        },
+        "harvest": {
+          "title": "Harvest",
+          "location": "El Cacao Farm, Ecuador",
+          "details": "Verified harvest: 12kg of cacao"
+        },
+        "processing": {
+          "title": "Processing",
+          "location": "Processing Center, Quito",
+          "details": "Fermentation and drying in progress"
+        },
+        "distribution": {
+          "title": "Distribution",
+          "date": "Coming Soon",
+          "location": "In Transit",
+          "details": "Awaiting processing"
+        }
+      },
+      "blockchain": {
+        "title": "Blockchain Verification",
+        "transactionHash": "Transaction Hash",
+        "block": "Block",
+        "timestamp": "Date/Time",
+        "network": "Network",
+        "viewExplorer": "View on Block Explorer"
+      },
+      "productInfo": {
+        "title": "Product Information",
+        "treeId": "Tree ID",
+        "variety": "Variety",
+        "varietyValue": "Fine Aroma Cacao",
+        "farmer": "Farmer",
+        "altitude": "Altitude",
+        "masl": "masl"
+      },
+      "certifications": {
+        "title": "Certifications",
+        "fairTrade": "Fair Trade",
+        "organic": "Organic",
+        "carbonNeutral": "Carbon Neutral",
+        "rainforest": "Rainforest Alliance"
+      },
+      "impact": {
+        "title": "Impact Generated",
+        "co2Captured": "CO₂ Captured",
+        "farmerIncome": "Farmer Income",
+        "familiesBenefited": "Families Benefited"
+      }
+    },
+    "impact": {
+      "title": "Your Global Impact",
+      "subtitle": "You're making a difference 🌍✨",
+      "level": "Level",
+      "progressToLevel": "Progress to Level {level}",
+      "environmental": {
+        "title": "Environmental Impact",
+        "co2Captured": "CO₂ Captured",
+        "waterSaved": "Water Saved",
+        "biodiversity": "Biodiversity",
+        "soilRegenerated": "Soil Regenerated",
+        "species": "{count} species",
+        "vsAverage": "{percent} vs average",
+        "protected": "Protected"
+      },
+      "social": {
+        "title": "Social Impact",
+        "familiesSupported": "Families Supported",
+        "incomeGenerated": "Income Generated",
+        "education": "Education",
+        "health": "Health",
+        "students": "{count} students",
+        "checkups": "{count} checkups"
+      },
+      "timeline": {
+        "title": "Impact Growth 2024",
+        "months": {
+          "jan": "Jan",
+          "feb": "Feb",
+          "mar": "Mar",
+          "apr": "Apr",
+          "may": "May",
+          "jun": "Jun"
+        }
+      },
+      "achievements": {
+        "title": "Achievements in Progress",
+        "treesAdopted": "Trees Adopted",
+        "co2Captured": "CO₂ Captured (kg)",
+        "activeDays": "Active Days",
+        "community": "Community"
+      },
+      "badges": {
+        "title": "Badges",
+        "locked": "Locked",
+        "firstTree": {
+          "name": "First Tree",
+          "description": "You adopted your first tree"
+        },
+        "ecoWarrior": {
+          "name": "Eco Warrior",
+          "description": "100kg of CO₂ captured"
+        },
+        "communityHero": {
+          "name": "Community Hero",
+          "description": "You supported 5 families"
+        },
+        "forestGuardian": {
+          "name": "Forest Guardian",
+          "description": "Adopt 10 trees"
+        },
+        "carbonMaster": {
+          "name": "Carbon Master",
+          "description": "Capture 500kg of CO₂"
+        },
+        "legend": {
+          "name": "Legend",
+          "description": "Reach level 10"
+        }
+      },
+      "ranking": {
+        "title": "Your Ranking",
+        "of": "of {total} users",
+        "top": "Top {percent}"
+      },
+      "milestone": {
+        "title": "Next Milestone",
+        "needMore": "You need {count} more trees"
+      }
+    },
+    "marketplace": {
+      "subtitle": "Unique products from the community",
+      "products": "products",
+      "balance": {
+        "fiat": "Your Balance (EUR)",
+        "coins": "Your ChocoCoins"
+      },
+      "categories": {
+        "all": "All",
+        "trees": "Trees",
+        "nft": "NFT Cards",
+        "books": "Books",
+        "plush": "Plush Toys",
+        "chocolate": "Chocolates"
+      },
+      "rarities": {
+        "all": "All",
+        "common": "Common",
+        "rare": "Rare",
+        "epic": "Epic",
+        "legendary": "Legendary"
+      },
+      "filters": {
+        "categories": "Categories",
+        "rarity": "Rarity",
+        "priceRange": "Price Range",
+        "filteringBy": "Filtering by"
+      },
+      "featured": {
+        "creator": "Featured Creator",
+        "productsCreated": "{count} products created"
+      },
+      "sort": {
+        "newest": "Newest",
+        "priceLowHigh": "Price: Low to High",
+        "priceHighLow": "Price: High to Low",
+        "popular": "Most popular"
+      },
+      "product": {
+        "by": "By",
+        "available": "available",
+        "sold": "sold",
+        "or": "or",
+        "buy": "Buy",
+        "noCoins": "No coins",
+        "buyingWithCoins": "Buying with {coins} ChocoCoins (functionality pending)"
+      },
+      "empty": {
+        "title": "No products",
+        "description": "Try adjusting the filters"
+      },
+      "errors": {
+        "createSession": "Error creating payment session",
+        "processPayment": "Error processing payment"
+      },
+      "products": {
+        "nft001": {
+          "name": "Cacao Warrior",
+          "description": "Limited edition legendary card",
+          "character": "Cacao Warrior"
+        },
+        "nft002": {
+          "name": "Chocolate Fairy",
+          "description": "Magical creature from the cacao forest",
+          "character": "Chocolate Fairy"
+        },
+        "nft003": {
+          "name": "Cocoa Guardian",
+          "description": "Protector of the sacred trees",
+          "character": "Cocoa Guardian"
+        },
+        "nft004": {
+          "name": "Sweet Dragon",
+          "description": "The rarest dragon in the collection",
+          "character": "Sweet Dragon"
+        },
+        "book001": {
+          "name": "Adventures of Cacaito",
+          "description": "32 pages of adventures to color",
+          "character": "Cacaito"
+        },
+        "book002": {
+          "name": "The Cacao Kingdom",
+          "description": "Explore the magical chocolate kingdom",
+          "character": "King Cacao"
+        },
+        "book003": {
+          "name": "Chocolate Legends",
+          "description": "Special edition with 48 pages",
+          "character": "Various"
+        },
+        "plush001": {
+          "name": "Cacaito Plush",
+          "description": "30cm handmade plush toy",
+          "character": "Cacaito"
+        },
+        "plush002": {
+          "name": "Mini Chocolate Fairy",
+          "description": "Adorable 15cm plush toy",
+          "character": "Chocolate Fairy"
+        },
+        "plush003": {
+          "name": "Giant Sweet Dragon",
+          "description": "60cm premium plush toy",
+          "character": "Sweet Dragon"
+        },
+        "choco001": {
+          "name": "Warrior Bar",
+          "description": "85% cacao chocolate, exclusive design",
+          "character": "Cacao Warrior"
+        },
+        "choco002": {
+          "name": "Sweet Fairy",
+          "description": "Milk chocolate with red berries",
+          "character": "Chocolate Fairy"
+        },
+        "choco003": {
+          "name": "Dragon Edition",
+          "description": "Premium set with 6 themed bars",
+          "character": "Sweet Dragon"
+        },
+        "tree001": {
+          "name": "Young Tree - Colombia",
+          "description": "1-year-old tree in Valle del Cauca, Colombia",
+          "character": "Cacao Tree"
+        },
+        "tree002": {
+          "name": "Producer Tree - Peru",
+          "description": "3-year-old producing tree in Cusco, Peru",
+          "character": "Cacao Tree"
+        },
+        "tree003": {
+          "name": "Premium Tree - Ecuador",
+          "description": "5-year-old tree, high production in Esmeraldas",
+          "character": "Cacao Tree"
+        },
+        "tree004": {
+          "name": "Ancestral Tree - Venezuela",
+          "description": "10+ year old tree, ancestral Criollo variety",
+          "character": "Cacao Tree"
+        },
+        "tree005": {
+          "name": "Organic Tree - Mexico",
+          "description": "2-year-old tree, organic certified in Tabasco",
+          "character": "Cacao Tree"
+        },
+        "tree006": {
+          "name": "Wild Tree - Tanzania",
+          "description": "4-year-old tree in Kilimanjaro, Tanzania",
+          "character": "Cacao Tree"
+        }
       }
     }
   }

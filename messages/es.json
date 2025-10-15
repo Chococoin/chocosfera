@@ -84,6 +84,9 @@
     "sidebar": {
       "dashboard": "Panel",
       "myTrees": "Mis Árboles",
+      "family": "Mi Familia",
+      "characters": "Mis Personajes",
+      "explore": "Explorar",
       "traceability": "Trazabilidad",
       "impact": "Impacto",
       "community": "Comunidad",
@@ -153,6 +156,24 @@
         "rule2": "Comparte conocimientos sobre cacao y chocolate",
         "rule3": "Pregunta sobre trazabilidad y sostenibilidad",
         "rule4": "No spam ni contenido no relacionado"
+      },
+      "restricted": {
+        "title": "Acceso Restringido",
+        "description": "Como menor de edad, no tienes acceso al chat de Telegram de la comunidad. Este es un espacio para adultos verificados.",
+        "whyTitle": "¿Por qué esta restricción?",
+        "reason1": "Protegemos a los menores de edad con conversaciones apropiadas",
+        "reason2": "Cumplimos con regulaciones de protección infantil",
+        "reason3": "Aún puedes disfrutar de otras áreas de la Chocósfera",
+        "adultQuestion": "¿Eres mayor de edad?",
+        "verifyButton": "Verificar Mi Edad para Obtener Acceso Completo"
+      },
+      "setup": {
+        "title": "Configuración Requerida",
+        "description": "Para ver el chat de Telegram aquí, necesitas:",
+        "step1": "Crear un grupo o canal público en Telegram",
+        "step2": "Obtener el username (ej: @chocosfera_community)",
+        "step3": "Actualizar la constante",
+        "step3b": "en"
       }
     },
     "trees": {
@@ -199,7 +220,24 @@
         "username": "Nombre de usuario",
         "editProfile": "Editar perfil",
         "changeAvatar": "Cambiar foto",
-        "saveChanges": "Guardar cambios"
+        "saveChanges": "Guardar cambios",
+        "avatarPrompt": "Elige tu emoji favorito como avatar",
+        "selectEmoji": "Seleccionar {emoji}",
+        "avatarDescription": "Tu emoji te representa en toda la Chocósfera",
+        "identityProtectionTitle": "Protección de Identidad",
+        "identityProtectionDescription": "Para proteger tu identidad, solo usamos tu nick (apodo). No necesitas proporcionar tu nombre real.",
+        "nickLabel": "Tu Nick (Apodo)",
+        "nickPlaceholder": "ej: choco_lover",
+        "nickDescription": "Tu nick es como te conocerán otros usuarios en la Chocósfera",
+        "emailSecurityNote": "El email no puede cambiarse por seguridad",
+        "firstNameOptional": "Nombre (Opcional)",
+        "firstNamePlaceholder": "Tu nombre",
+        "lastNameOptional": "Apellido (Opcional)",
+        "lastNamePlaceholder": "Tu apellido",
+        "errors": {
+          "avatarUpdateError": "Error al actualizar el avatar",
+          "avatarUpdateRetry": "Error al actualizar el avatar. Por favor, inténtalo de nuevo."
+        }
       },
       "subscriptions": {
         "title": "Mis Suscripciones",
@@ -219,7 +257,11 @@
         "confirmPassword": "Confirmar contraseña",
         "language": "Idioma",
         "timezone": "Zona horaria",
-        "dateFormat": "Formato de fecha"
+        "dateFormat": "Formato de fecha",
+        "preferences": "Preferencias",
+        "languageUpdateNote": "El idioma se actualizará inmediatamente en toda la aplicación",
+        "onboardingTutorial": "Tutorial de Inicio",
+        "onboardingDescription": "¿Quieres volver a ver el tutorial de inicio? Puedes revivirlo en cualquier momento."
       },
       "notifications": {
         "title": "Notificaciones",
@@ -238,7 +280,32 @@
         "transaction": "Transacción",
         "date": "Fecha",
         "amount": "Cantidad",
-        "noTransactions": "No hay transacciones"
+        "noTransactions": "No hay transacciones",
+        "buyCoinsTitle": "Comprar ChocoCoins",
+        "buyCoinsSubtitle": "Elige el paquete perfecto para ti",
+        "mostPopular": "MÁS POPULAR",
+        "processing": "Procesando...",
+        "buyNow": "Comprar Ahora",
+        "securePayment": "Pago seguro con Stripe",
+        "paymentInfo1": "Pagos procesados de forma segura por Stripe",
+        "paymentInfo2": "Aceptamos tarjetas de crédito y débito",
+        "paymentInfo3": "Tus ChocoCoins se acreditarán inmediatamente",
+        "paymentInfo4": "Política de reembolso de 30 días",
+        "packages": {
+          "starterDescription": "Paquete inicial perfecto para empezar",
+          "popularDescription": "El más popular - Ahorra €5",
+          "premiumDescription": "Mejor valor - Ahorra €20",
+          "megaDescription": "Pack mega - Ahorra €60"
+        },
+        "transactions": {
+          "earnedSubscription": "Ganados - Suscripción Activa",
+          "redeemedChocolate": "Canjeados - Tableta de Chocolate",
+          "earnedTree": "Ganados - Árbol Adoptado"
+        },
+        "errors": {
+          "paymentInitError": "Error al iniciar el pago",
+          "paymentProcessError": "Error al procesar el pago. Por favor, inténtalo de nuevo."
+        }
       },
       "privacy": {
         "title": "Privacidad y Seguridad",
@@ -252,7 +319,559 @@
         "revokeSession": "Cerrar sesión",
         "deleteAccount": "Eliminar cuenta",
         "deleteWarning": "Esta acción es permanente y no se puede deshacer",
-        "confirmDelete": "Confirmar eliminación"
+        "confirmDelete": "Confirmar eliminación",
+        "sessionLocation": "Madrid, España",
+        "sessionNow": "Ahora",
+        "sessionHoursAgo": "Hace {hours} horas"
+      },
+      "verification": {
+        "tabLabel": "Verificación de Edad",
+        "adultPrompt": "¿Ya eres mayor de edad? Puedes verificar tu edad en cualquier momento usando el formulario de verificación abajo para desbloquear todas las funciones.",
+        "formTitle": "Verificación de Edad (Solo Mayores de 18 Años)",
+        "studentWarning": "Si eres estudiante, NO completes este formulario. Pide a tu padre o madre que verifique tu edad subiendo tu documento de identidad.",
+        "formDescription": "Para desbloquear todas las funciones, necesitamos verificar que eres mayor de edad. Sube una foto de tu documento de identidad (DNI, pasaporte o licencia de conducir).",
+        "documentType": "Tipo de Documento",
+        "selectDocumentType": "Selecciona el tipo de documento",
+        "dni": "DNI / Cédula de Identidad",
+        "passport": "Pasaporte",
+        "license": "Licencia de Conducir",
+        "uploadFront": "Subir Documento (Frente)",
+        "uploadBack": "Subir Documento (Reverso) - Opcional",
+        "securityTitle": "🔒 Seguridad de tus Datos",
+        "securityNote1": "Solo los usamos para verificar tu edad",
+        "securityNote2": "Tus documentos se almacenan de forma segura y encriptada",
+        "securityNote3": "Nunca compartimos tu información con terceros",
+        "submitButton": "Enviar Documentos para Verificación",
+        "statusLabel": "Estado de Verificación:",
+        "statusStudent": "Cuenta de Estudiante",
+        "statusPending": "Verificación Pendiente",
+        "statusVerified": "Adulto Verificado",
+        "statusStudentDescription": "Tu cuenta está registrada como estudiante con funciones restringidas para tu protección.",
+        "statusPendingDescription": "Hemos recibido tu solicitud y estamos revisando tu documentación.",
+        "statusVerifiedDescription": "Tu edad ha sido verificada. Tienes acceso completo a todas las funciones.",
+        "restrictedFeaturesTitle": "Funciones Restringidas (Para Tu Protección)",
+        "restrictedFeature1": "No puedes acceder al chat de Telegram de la comunidad",
+        "restrictedFeature2": "No puedes crear perfiles familiares (solo unirte por invitación de tu padre/madre)",
+        "restrictedFeature3": "Funciones sociales limitadas para tu protección",
+        "reviewTimeTitle": "Tiempo Estimado de Revisión",
+        "reviewTimeDescription": "Nuestro equipo revisa las solicitudes en un plazo de 24-48 horas hábiles. Te notificaremos por email cuando tu verificación esté completa.",
+        "inProgress": "En progreso...",
+        "unlockedFeaturesTitle": "Funciones Desbloqueadas",
+        "unlockedFeature1": "Acceso completo al chat de Telegram",
+        "unlockedFeature2": "Crear y administrar perfiles familiares",
+        "unlockedFeature3": "Todas las funciones sociales disponibles",
+        "unlockedFeature4": "Invitar a familiares y crear personajes",
+        "importantAdultOnly": "⚠️ IMPORTANTE: Este proceso es solo para mayores de edad",
+        "uploadPrompt": "Haz clic para subir o arrastra el archivo aquí",
+        "uploadFileTypes": "PNG, JPG o PDF (máx. 10MB)",
+        "whyVerifyTitle": "¿Por qué verificar mi edad?",
+        "whyVerifyDescription": "La verificación de edad nos ayuda a crear un entorno seguro y apropiado para todos los usuarios, cumpliendo con regulaciones de protección de menores.",
+        "howLongTitle": "¿Cuánto tarda la verificación?",
+        "howLongDescription": "Normalmente procesamos las verificaciones en 24-48 horas hábiles. Te notificaremos por email cuando esté lista."
+      }
+    },
+    "userProfile": {
+      "student": "Estudiante",
+      "verificationPending": "Verificación Pendiente",
+      "adultVerified": "Adulto Verificado",
+      "inFamily": "En Familia",
+      "studentRestriction": "Como estudiante, algunas funciones están restringidas para tu protección. Pide a tu padre o madre que",
+      "verifyAge": "verifique tu edad",
+      "settings": "Configuración",
+      "myFamily": "Mi Familia",
+      "logout": "Cerrar Sesión"
+    },
+    "family": {
+      "title": "Mi Familia",
+      "headerWithFamily": "Gestiona tu perfil familiar y árboles compartidos",
+      "headerWithoutFamily": "Crea tu perfil familiar o únete a uno existente",
+      "loading": "Cargando...",
+      "loadingFamily": "Cargando familia...",
+      "createFamily": {
+        "title": "Crear Perfil Familiar",
+        "description": "Inicia tu propia familia en la Chocósfera y administra los árboles de todos",
+        "button": "Crear Mi Familia",
+        "modalTitle": "Crear Perfil Familiar",
+        "nameLabel": "Nombre de la Familia",
+        "namePlaceholder": "Ej: Familia García, Los Rodríguez...",
+        "nameDescription": "Este nombre será visible para todos los miembros de tu familia",
+        "tipLabel": "Tip:",
+        "tipText": "Serás el administrador de la familia y podrás invitar a otros miembros.",
+        "cancelButton": "Cancelar",
+        "creating": "Creando...",
+        "createButton": "Crear Familia",
+        "minorWarning": "Solo los adultos verificados pueden crear perfiles familiares.",
+        "verifyAgeLink": "Pide a tu padre/madre que verifique tu edad",
+        "successMessage": "¡Familia creada exitosamente!",
+        "errorMessage": "Error al crear la familia"
+      },
+      "inviteParent": {
+        "title": "Invitar a mi Padre/Madre",
+        "description": "Envía una invitación por email para que tu padre o madre cree el perfil familiar",
+        "emailLabel": "Email de tu Padre/Madre",
+        "emailPlaceholder": "padre@example.com",
+        "sendButton": "Enviar Invitación",
+        "sending": "Enviando...",
+        "tipText": "Tu padre/madre recibirá un email con un enlace para registrarse o unirse a tu perfil familiar.",
+        "successMessage": "¡Invitación enviada a {email}!"
+      },
+      "joinFamily": {
+        "title": "Unirme por Invitación",
+        "description": "Si alguien te invitó a su familia, recibirás un email con el enlace",
+        "checkEmailText": "Revisa tu email para ver si tienes invitaciones pendientes",
+        "viewInvitationsLink": "Ver mis invitaciones →"
+      },
+      "invitations": {
+        "title": "Invitaciones Pendientes",
+        "sent": "Enviada:",
+        "expires": "Expira:",
+        "pending": "Pendiente",
+        "cancelButton": "Cancelar",
+        "cancelConfirm": "¿Estás seguro de que quieres cancelar esta invitación?",
+        "cancelSuccess": "Invitación cancelada correctamente",
+        "cancelError": "Error al cancelar la invitación",
+        "sendError": "Error al enviar la invitación"
+      },
+      "overview": {
+        "members": "miembro",
+        "membersPlural": "miembros",
+        "totalTrees": "Árboles Totales",
+        "trees": "Árboles",
+        "co2": "Tons CO₂",
+        "water": "Litros"
+      },
+      "members": {
+        "title": "Miembros de la Familia",
+        "inviteButton": "+ Invitar Miembro",
+        "you": "Tú",
+        "student": "Estudiante",
+        "verificationPending": "Verificación Pendiente",
+        "adult": "Adulto",
+        "noMembers": "No hay miembros en la familia aún",
+        "editRelationship": "Editar relación"
+      },
+      "inviteMember": {
+        "modalTitle": "Invitar Miembro",
+        "emailLabel": "Email del Miembro",
+        "emailPlaceholder": "miembro@example.com",
+        "parentLabel": "Padre/Madre (opcional)",
+        "noParent": "Sin padre asignado",
+        "parentDescription": "Selecciona quién será el padre/madre de este miembro en el árbol familiar",
+        "tipText": "El miembro recibirá un email con un enlace para unirse a tu familia.",
+        "cancelButton": "Cancelar",
+        "sendButton": "Enviar Invitación",
+        "sending": "Enviando...",
+        "successMessage": "¡Invitación enviada a {email}!"
+      },
+      "editMember": {
+        "modalTitle": "Editar Relación Familiar",
+        "editing": "Editando:",
+        "parentLabel": "Padre/Madre",
+        "noParent": "Sin padre asignado (raíz del árbol)",
+        "parentDescription": "Selecciona quién será el padre/madre de este miembro en el árbol familiar",
+        "tipText": "Los cambios se reflejarán inmediatamente en el árbol familiar.",
+        "cancelButton": "Cancelar",
+        "saveButton": "Guardar Cambios",
+        "saving": "Guardando...",
+        "successMessage": "¡Relación actualizada correctamente!",
+        "errorMessage": "Error al actualizar la relación"
+      },
+      "tree": {
+        "title": "Árbol Familiar",
+        "members": "miembro",
+        "membersPlural": "miembros",
+        "relationship": "Relación padre-hijo",
+        "noTreeError": "No se pudo construir el árbol familiar",
+        "legendTitle": "Árbol Familiar:",
+        "legendDescription": "Los miembros están organizados por relación padre-hijo. Los padres aparecen arriba y sus hijos debajo conectados por líneas.",
+        "legendAdmin": " Click en el ícono de editar para cambiar las relaciones familiares."
+      },
+      "info": {
+        "title": "¿Cómo funcionan los perfiles familiares?",
+        "point1": "Los estudiantes pueden invitar a sus padres por email",
+        "point2": "Solo adultos verificados (mayores de 18 años) pueden crear el perfil familiar",
+        "point3": "Todos los árboles de la familia se suman en el perfil",
+        "point4": "Podéis crear personajes e historias juntos"
+      }
+    },
+    "characters": {
+      "title": "Mis Personajes",
+      "subtitle": "Crea personajes únicos y cuenta sus historias en la Chocósfera",
+      "loading": "Cargando...",
+      "character": "personaje",
+      "charactersPlural": "personajes",
+      "createButton": "Crear Personaje",
+      "public": "Público",
+      "updated": "Actualizado",
+      "empty": {
+        "title": "¡Tu Aventura Comienza Aquí!",
+        "description": "Aún no has creado ningún personaje. Crea tu primer personaje y comienza tu historia en la Chocósfera.",
+        "createButton": "Crear Mi Primer Personaje"
+      },
+      "types": {
+        "cacao": "Cacao",
+        "chocolate": "Chocolate",
+        "farmer": "Agricultor",
+        "other": "Otro"
+      },
+      "stats": {
+        "stories": "Historias",
+        "commits": "Commits",
+        "views": "Vistas"
+      },
+      "info": {
+        "title": "¿Qué son los personajes?",
+        "point1": "Crea personajes únicos con historias propias en la Chocósfera",
+        "point2": "Cada personaje tiene su propio repositorio Git con historial",
+        "point3": "Puedes hacer fork de Tony, Pipo o Kaoka y crear tu versión",
+        "point4": "Comparte tus personajes públicamente o mantenlos privados"
+      },
+      "errors": {
+        "fetchError": "Error al obtener los personajes",
+        "unknownError": "Error desconocido"
+      }
+    },
+    "explore": {
+      "title": "Explorar",
+      "subtitle": "Descubre personajes e historias públicas de la comunidad",
+      "searchPlaceholder": "Buscar personajes, historias, usuarios...",
+      "tabs": {
+        "characters": "Personajes",
+        "stories": "Historias"
+      },
+      "types": {
+        "cacao": "Cacao",
+        "chocolate": "Chocolate",
+        "farmer": "Agricultor",
+        "other": "Otro"
+      },
+      "errors": {
+        "fetchCharacters": "Error al cargar personajes",
+        "fetchStories": "Error al cargar historias",
+        "unknown": "Error desconocido",
+        "updateLike": "Error al actualizar el like"
+      },
+      "empty": {
+        "noCharactersFound": "No se encontraron personajes",
+        "noPublicCharacters": "No hay personajes públicos disponibles",
+        "noStoriesFound": "No se encontraron historias",
+        "noPublicStories": "No hay historias públicas disponibles",
+        "tryOtherTerms": "Intenta con otros términos de búsqueda",
+        "beFirstCharacter": "¡Sé el primero en crear un personaje público!",
+        "beFirstStory": "¡Sé el primero en crear una historia pública!",
+        "createCharacter": "Crear Personaje"
+      },
+      "results": {
+        "character": "personaje",
+        "charactersPlural": "personajes",
+        "story": "historia",
+        "storiesPlural": "historias",
+        "found": "encontrado",
+        "foundPlural": "encontrados"
+      },
+      "like": {
+        "add": "Dar like",
+        "remove": "Quitar like"
+      }
+    },
+    "traceability": {
+      "title": "Trazabilidad",
+      "subtitle": "Sigue el recorrido completo de tu cacao desde el origen hasta ti",
+      "product": "Producto",
+      "timeline": {
+        "title": "Recorrido del Producto",
+        "verified": "Verificado en blockchain"
+      },
+      "steps": {
+        "planting": {
+          "title": "Plantación",
+          "location": "Finca El Cacao, Ecuador",
+          "details": "Árbol plantado y registrado en blockchain"
+        },
+        "growth": {
+          "title": "Crecimiento",
+          "location": "Finca El Cacao, Ecuador",
+          "details": "Árbol en fase de crecimiento, certificado orgánico"
+        },
+        "harvest": {
+          "title": "Cosecha",
+          "location": "Finca El Cacao, Ecuador",
+          "details": "Cosecha verificada: 12kg de cacao"
+        },
+        "processing": {
+          "title": "Procesamiento",
+          "location": "Centro de Procesamiento, Quito",
+          "details": "Fermentación y secado en proceso"
+        },
+        "distribution": {
+          "title": "Distribución",
+          "date": "Próximamente",
+          "location": "En tránsito",
+          "details": "Esperando procesamiento"
+        }
+      },
+      "blockchain": {
+        "title": "Verificación Blockchain",
+        "transactionHash": "Hash de Transacción",
+        "block": "Bloque",
+        "timestamp": "Fecha/Hora",
+        "network": "Red",
+        "viewExplorer": "Ver en Explorador de Bloques"
+      },
+      "productInfo": {
+        "title": "Información del Producto",
+        "treeId": "ID del Árbol",
+        "variety": "Variedad",
+        "varietyValue": "Cacao Fino de Aroma",
+        "farmer": "Agricultor",
+        "altitude": "Altitud",
+        "masl": "msnm"
+      },
+      "certifications": {
+        "title": "Certificaciones",
+        "fairTrade": "Fair Trade",
+        "organic": "Orgánico",
+        "carbonNeutral": "Carbono Neutral",
+        "rainforest": "Rainforest Alliance"
+      },
+      "impact": {
+        "title": "Impacto Generado",
+        "co2Captured": "CO₂ Capturado",
+        "farmerIncome": "Ingreso Agricultor",
+        "familiesBenefited": "Familias Beneficiadas"
+      }
+    },
+    "impact": {
+      "title": "Tu Impacto Global",
+      "subtitle": "Estás haciendo la diferencia 🌍✨",
+      "level": "Nivel",
+      "progressToLevel": "Progreso al Nivel {level}",
+      "environmental": {
+        "title": "Impacto Ambiental",
+        "co2Captured": "CO₂ Capturado",
+        "waterSaved": "Agua Ahorrada",
+        "biodiversity": "Biodiversidad",
+        "soilRegenerated": "Suelo Regenerado",
+        "species": "{count} especies",
+        "vsAverage": "{percent} vs promedio",
+        "protected": "Protegidas"
+      },
+      "social": {
+        "title": "Impacto Social",
+        "familiesSupported": "Familias Apoyadas",
+        "incomeGenerated": "Ingreso Generado",
+        "education": "Educación",
+        "health": "Salud",
+        "students": "{count} estudiantes",
+        "checkups": "{count} chequeos"
+      },
+      "timeline": {
+        "title": "Crecimiento de Impacto 2024",
+        "months": {
+          "jan": "Ene",
+          "feb": "Feb",
+          "mar": "Mar",
+          "apr": "Abr",
+          "may": "May",
+          "jun": "Jun"
+        }
+      },
+      "achievements": {
+        "title": "Logros en Progreso",
+        "treesAdopted": "Árboles Adoptados",
+        "co2Captured": "CO₂ Capturado (kg)",
+        "activeDays": "Días Activo",
+        "community": "Comunidad"
+      },
+      "badges": {
+        "title": "Insignias",
+        "locked": "Bloqueado",
+        "firstTree": {
+          "name": "Primer Árbol",
+          "description": "Adoptaste tu primer árbol"
+        },
+        "ecoWarrior": {
+          "name": "Guerrero Eco",
+          "description": "100kg de CO₂ capturado"
+        },
+        "communityHero": {
+          "name": "Héroe Comunitario",
+          "description": "Apoyaste 5 familias"
+        },
+        "forestGuardian": {
+          "name": "Guardián del Bosque",
+          "description": "Adopta 10 árboles"
+        },
+        "carbonMaster": {
+          "name": "Maestro del Carbono",
+          "description": "Captura 500kg de CO₂"
+        },
+        "legend": {
+          "name": "Leyenda",
+          "description": "Alcanza nivel 10"
+        }
+      },
+      "ranking": {
+        "title": "Tu Ranking",
+        "of": "de {total} usuarios",
+        "top": "Top {percent}"
+      },
+      "milestone": {
+        "title": "Próximo Hito",
+        "needMore": "Necesitas {count} árboles más"
+      }
+    },
+    "marketplace": {
+      "subtitle": "Productos únicos de la comunidad",
+      "products": "productos",
+      "balance": {
+        "fiat": "Tu Balance (EUR)",
+        "coins": "Tus ChocoCoins"
+      },
+      "categories": {
+        "all": "Todos",
+        "trees": "Árboles",
+        "nft": "Cartas NFT",
+        "books": "Libros",
+        "plush": "Peluches",
+        "chocolate": "Chocolates"
+      },
+      "rarities": {
+        "all": "Todas",
+        "common": "Común",
+        "rare": "Rara",
+        "epic": "Épica",
+        "legendary": "Legendaria"
+      },
+      "filters": {
+        "categories": "Categorías",
+        "rarity": "Rareza",
+        "priceRange": "Rango de Precio",
+        "filteringBy": "Filtrando por"
+      },
+      "featured": {
+        "creator": "Creador Destacado",
+        "productsCreated": "{count} productos creados"
+      },
+      "sort": {
+        "newest": "Más recientes",
+        "priceLowHigh": "Precio: Menor a Mayor",
+        "priceHighLow": "Precio: Mayor a Menor",
+        "popular": "Más populares"
+      },
+      "product": {
+        "by": "Por",
+        "available": "disponibles",
+        "sold": "vendidos",
+        "or": "o",
+        "buy": "Comprar",
+        "noCoins": "Sin coins",
+        "buyingWithCoins": "Comprando con {coins} ChocoCoins (funcionalidad pendiente)"
+      },
+      "empty": {
+        "title": "No hay productos",
+        "description": "Intenta ajustar los filtros"
+      },
+      "errors": {
+        "createSession": "Error al crear la sesión de pago",
+        "processPayment": "Error al procesar el pago"
+      },
+      "products": {
+        "nft001": {
+          "name": "Guerrero del Cacao",
+          "description": "Carta legendaria de edición limitada",
+          "character": "Guerrero del Cacao"
+        },
+        "nft002": {
+          "name": "Hada del Chocolate",
+          "description": "Criatura mágica del bosque de cacao",
+          "character": "Hada del Chocolate"
+        },
+        "nft003": {
+          "name": "Guardián del Cacao",
+          "description": "Protector de los árboles sagrados",
+          "character": "Guardián del Cacao"
+        },
+        "nft004": {
+          "name": "Dragón Dulce",
+          "description": "El dragón más raro de la colección",
+          "character": "Dragón Dulce"
+        },
+        "book001": {
+          "name": "Aventuras de Cacaito",
+          "description": "32 páginas de aventuras para colorear",
+          "character": "Cacaito"
+        },
+        "book002": {
+          "name": "El Reino del Cacao",
+          "description": "Explora el mágico reino del chocolate",
+          "character": "Rey Cacao"
+        },
+        "book003": {
+          "name": "Leyendas Chocolatinas",
+          "description": "Edición especial con 48 páginas",
+          "character": "Varios"
+        },
+        "plush001": {
+          "name": "Peluche Cacaito",
+          "description": "Peluche de 30cm hecho a mano",
+          "character": "Cacaito"
+        },
+        "plush002": {
+          "name": "Mini Hada del Chocolate",
+          "description": "Adorable peluche de 15cm",
+          "character": "Hada del Chocolate"
+        },
+        "plush003": {
+          "name": "Dragón Dulce Gigante",
+          "description": "Peluche premium de 60cm",
+          "character": "Dragón Dulce"
+        },
+        "choco001": {
+          "name": "Tableta Guerrero",
+          "description": "Chocolate 85% cacao, diseño exclusivo",
+          "character": "Guerrero del Cacao"
+        },
+        "choco002": {
+          "name": "Dulce Hada",
+          "description": "Chocolate con leche y frutos rojos",
+          "character": "Hada del Chocolate"
+        },
+        "choco003": {
+          "name": "Edición Dragón",
+          "description": "Set premium con 6 tabletas temáticas",
+          "character": "Dragón Dulce"
+        },
+        "tree001": {
+          "name": "Árbol Joven - Colombia",
+          "description": "Árbol de 1 año en Valle del Cauca, Colombia",
+          "character": "Árbol de Cacao"
+        },
+        "tree002": {
+          "name": "Árbol Productor - Perú",
+          "description": "Árbol de 3 años en producción en Cusco, Perú",
+          "character": "Árbol de Cacao"
+        },
+        "tree003": {
+          "name": "Árbol Premium - Ecuador",
+          "description": "Árbol de 5 años, alta producción en Esmeraldas",
+          "character": "Árbol de Cacao"
+        },
+        "tree004": {
+          "name": "Árbol Ancestral - Venezuela",
+          "description": "Árbol de 10+ años, variedad ancestral Criollo",
+          "character": "Árbol de Cacao"
+        },
+        "tree005": {
+          "name": "Árbol Orgánico - México",
+          "description": "Árbol de 2 años, certificación orgánica en Tabasco",
+          "character": "Árbol de Cacao"
+        },
+        "tree006": {
+          "name": "Árbol Silvestre - Tanzania",
+          "description": "Árbol de 4 años en Kilimanjaro, Tanzania",
+          "character": "Árbol de Cacao"
+        }
       }
     }
   }
