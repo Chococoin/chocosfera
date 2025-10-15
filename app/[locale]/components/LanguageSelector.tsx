@@ -61,7 +61,7 @@ export default function LanguageSelector({ currentLocale }: { currentLocale: str
 
       {isOpen && (
         <div className="absolute right-0 top-full z-50 mt-2 w-48 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(16,18,29,0.92)] shadow-2xl backdrop-blur-xl">
-          <div className="max-h-80 overflow-y-auto py-2">
+          <div className="py-2">
             {languages.map((lang) => (
               <button
                 key={lang.code}

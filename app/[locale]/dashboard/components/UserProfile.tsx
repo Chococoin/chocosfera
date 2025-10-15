@@ -6,10 +6,11 @@
  */
 
 import { useAuth } from '@/contexts/AuthContext';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { UserStatus } from '@prisma/client';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface UserProfileProps {
   isCollapsed?: boolean;
@@ -18,13 +19,17 @@ interface UserProfileProps {
 export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
   const { user, logout } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   if (!user) return null;
 
+  // Extract locale from pathname (e.g., /es/dashboard -> es)
+  const locale = pathname.split('/')[1] || 'es';
+
   const handleLogout = async () => {
     await logout();
-    router.push('/');
+    router.push(`/${locale}`);
   };
 
   const getStatusBadge = () => {
@@ -32,7 +37,7 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
       case UserStatus.MINOR:
         return (
           <span className="inline-flex items-center rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
-            👶 Menor
+            🎓 Estudiante
           </span>
         );
       case UserStatus.ADULT_PENDING:
@@ -117,58 +122,77 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <>
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 z-10"
-            onClick={() => setIsOpen(false)}
-          />
-
-          {/* Menu */}
-          <div className="absolute right-0 z-20 mt-2 w-72 rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-800">
-            {/* User Info Header */}
-            <div className="border-b border-gray-200 p-4 dark:border-gray-700">
-              <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                @{user.nick}
-              </p>
-              <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
-                {user.email}
-              </p>
-              <div className="mt-2 flex items-center gap-2">
-                {getStatusBadge()}
-                {user.familyId && (
-                  <span className="inline-flex items-center rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
-                    👨‍👩‍👧‍👦 En Familia
-                  </span>
-                )}
-              </div>
+        <div className="absolute right-0 top-full mt-2 z-50 w-72 rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-800">
+          {/* User Info Header */}
+          <div className="border-b border-gray-200 p-4 dark:border-gray-700">
+            <p className="text-sm font-semibold text-gray-900 dark:text-white">
+              @{user.nick}
+            </p>
+            <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+              {user.email}
+            </p>
+            <div className="mt-2 flex items-center gap-2">
+              {getStatusBadge()}
+              {user.familyId && (
+                <span className="inline-flex items-center rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                  👨‍👩‍👧‍👦 En Familia
+                </span>
+              )}
             </div>
+          </div>
 
-            {/* Status Info */}
-            {user.status === UserStatus.MINOR && (
-              <div className="border-b border-gray-200 bg-yellow-50 p-3 dark:border-gray-700 dark:bg-yellow-900/10">
-                <p className="text-xs text-yellow-800 dark:text-yellow-300">
-                  👶 Como menor, algunas funciones están restringidas.
-                  <button
-                    onClick={() => {
-                      router.push('/dashboard/settings');
-                      setIsOpen(false);
-                    }}
-                    className="ml-1 font-semibold underline"
-                  >
-                    Verificar edad
-                  </button>
-                </p>
-              </div>
-            )}
+          {/* Status Info */}
+          {user.status === UserStatus.MINOR && (
+            <div className="border-b border-gray-200 bg-yellow-50 p-3 dark:border-gray-700 dark:bg-yellow-900/10">
+              <p className="text-xs text-yellow-800 dark:text-yellow-300">
+                🎓 Como estudiante, algunas funciones están restringidas para tu protección.
+                Pide a tu padre o madre que
+                <button
+                  onClick={() => {
+                    router.push(`/${locale}/dashboard/settings`);
+                    setIsOpen(false);
+                  }}
+                  className="ml-1 font-semibold underline"
+                >
+                  verifique tu edad
+                </button>
+              </p>
+            </div>
+          )}
 
-            {/* Menu Items */}
-            <div className="p-2">
-              <button
-                onClick={() => {
-                  router.push('/dashboard/settings');
-                  setIsOpen(false);
-                }}
+          {/* Menu Items */}
+          <div className="p-2">
+            <Link
+              href={`/${locale}/dashboard/settings`}
+              onClick={() => setIsOpen(false)}
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+              Configuración
+            </Link>
+
+            {user.familyId && (
+              <Link
+                href={`/${locale}/dashboard/family`}
+                onClick={() => setIsOpen(false)}
                 className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
               >
                 <svg
@@ -181,68 +205,39 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
-                Configuración
-              </button>
+                Mi Familia
+              </Link>
+            )}
 
-              {user.familyId && (
-                <button
-                  onClick={() => {
-                    router.push('/dashboard/family');
-                    setIsOpen(false);
-                  }}
-                  className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
-                >
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
-                  Mi Familia
-                </button>
-              )}
+            <div className="my-2 border-t border-gray-200 dark:border-gray-700" />
 
-              <div className="my-2 border-t border-gray-200 dark:border-gray-700" />
-
-              <button
-                onClick={handleLogout}
-                className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-red-600 transition-colors hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20"
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-red-600 transition-colors hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                  />
-                </svg>
-                Cerrar Sesión
-              </button>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                />
+              </svg>
+              Cerrar Sesión
+            </button>
           </div>
-        </>
+        </div>
       )}
+
     </div>
   );
 }

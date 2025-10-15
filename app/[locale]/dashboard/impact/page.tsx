@@ -37,7 +37,7 @@ export default function ImpactPage() {
   const socialImpact = [
     { label: 'Familias Apoyadas', value: '8', icon: '👨‍👩‍👧‍👦', color: 'orange' },
     { label: 'Ingreso Generado', value: '$1,440', icon: '💰', color: 'yellow' },
-    { label: 'Educación', value: '3 niños', icon: '📚', color: 'pink' },
+    { label: 'Educación', value: '3 estudiantes', icon: '📚', color: 'pink' },
     { label: 'Salud', value: '5 chequeos', icon: '🏥', color: 'red' },
   ];
 

@@ -125,13 +125,13 @@ export function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="mt-6 px-3">
+      <nav className="mt-6 px-3 pb-6">
         <ul className="space-y-2">
           {filteredNavigation.map((item) => (
             <li key={item.name}>
               <Link
                 href={`/${locale}${item.href}`}
-                className={`flex items-center ${isCollapsed ? 'justify-center' : ''} px-3 py-3 text-sm font-semibold rounded-2xl transition-all ${
+                className={`flex items-center ${isCollapsed ? 'justify-center' : ''} px-3 py-2.5 text-sm font-semibold rounded-2xl transition-all ${
                   item.current
                     ? 'bg-gradient-to-r from-[rgba(223,134,170,0.18)] to-[rgba(87,41,214,0.18)] text-[var(--color-primary-alt)] border border-[rgba(223,134,170,0.35)] shadow-sm'
                     : 'text-muted hover:bg-[rgba(223,134,170,0.08)] hover:text-heading'
@@ -145,15 +145,6 @@ export function Sidebar() {
           ))}
         </ul>
       </nav>
-
-      {/* Chocolate quote */}
-      {!isCollapsed && (
-        <div className="absolute bottom-6 left-3 right-3 p-4 surface-panel">
-          <p className="text-xs text-muted italic">
-            &ldquo;{t('quote')}&rdquo;
-          </p>
-        </div>
-      )}
     </div>
   );
 }
