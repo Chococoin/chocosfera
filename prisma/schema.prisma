@@ -91,6 +91,11 @@ model User {
   familyId String?
   family   FamilyProfile? @relation(fields: [familyId], references: [id])
 
+  // Family Hierarchy - Parent-Child Relationship
+  parentId String?
+  parent   User?   @relation("ParentChild", fields: [parentId], references: [id], onDelete: SetNull)
+  children User[]  @relation("ParentChild")
+
   // Restrictions
   telegramAccess Boolean @default(false)
 
@@ -114,6 +119,7 @@ model User {
   @@index([email])
   @@index([nick])
   @@index([familyId])
+  @@index([parentId])
   @@index([status])
 }
 

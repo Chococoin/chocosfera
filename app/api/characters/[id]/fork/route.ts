@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSessionUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/auth';
 import { getCollection, Collections } from '@/lib/mongodb';
 import { CharacterDocument } from '@/types/mongodb';
 import { initializeUserRepo } from '@/lib/git-service';
@@ -24,7 +24,7 @@ export async function POST(
       );
     }
 
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
         { error: 'No autenticado' },

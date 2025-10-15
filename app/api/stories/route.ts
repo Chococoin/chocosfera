@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSessionUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/auth';
 import { getCollection, Collections } from '@/lib/mongodb';
 
 /**
@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '50');
     const offset = parseInt(searchParams.get('offset') || '0');
 
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     if (!user && !isPublic) {
       return NextResponse.json(
         { error: 'No autenticado' },

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSessionUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { InvitationStatus } from '@prisma/client';
 
@@ -15,7 +15,7 @@ export async function DELETE(
     const { id } = await params;
 
     // Get authenticated user
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
         { error: 'No autenticado' },

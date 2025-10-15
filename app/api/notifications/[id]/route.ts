@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSessionUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/auth';
 import { markNotificationAsRead, deleteNotification } from '@/lib/notification-service';
 
 /**
@@ -12,7 +12,7 @@ export async function PATCH(
 ) {
   try {
     const { id } = await params;
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
 
     if (!user) {
       return NextResponse.json(
@@ -47,7 +47,7 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
 
     if (!user) {
       return NextResponse.json(

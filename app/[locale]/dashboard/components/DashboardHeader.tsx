@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
+import { useRouter, usePathname } from 'next/navigation';
+import { useAuth } from '@/contexts/AuthContext';
 import ThemeToggle from '../../components/ThemeToggle';
 import { NotificationBell } from './NotificationBell';
 
@@ -10,6 +12,9 @@ export function DashboardHeader() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const t = useTranslations('dashboard.header');
   const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const { logout } = useAuth();
   const dateTimeFormatter = useMemo(
     () =>
       new Intl.DateTimeFormat(locale, {
@@ -42,9 +47,13 @@ export function DashboardHeader() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showProfileMenu]);
 
-  const handleLogout = () => {
-    // TODO: Implement logout logic
-    console.log('Logout');
+  const handleLogout = async () => {
+    console.log('=== LOGOUT CLICKED FROM HEADER ===');
+    console.log('Current pathname:', pathname);
+    console.log('Locale:', locale);
+    await logout();
+    console.log('After logout, navigating to:', `/${locale}`);
+    router.push(`/${locale}`);
   };
 
   return (
@@ -102,8 +111,10 @@ export function DashboardHeader() {
                   <button
                     type="button"
                     onClick={() => {
+                      console.log('=== SETTINGS CLICKED FROM HEADER ===');
+                      console.log('Navigating to:', `/${locale}/dashboard/settings`);
                       setShowProfileMenu(false);
-                      // Navigate to settings
+                      router.push(`/${locale}/dashboard/settings`);
                     }}
                     className="w-full px-4 py-2 text-left text-sm text-heading hover:bg-[rgba(223,134,170,0.12)] transition-colors flex items-center gap-2"
                   >

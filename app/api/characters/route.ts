@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSessionUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/auth';
 import { getCollection, Collections } from '@/lib/mongodb';
 import { CharacterDocument, CharacterType } from '@/types/mongodb';
 import { initializeUserRepo, getUserRepoPath } from '@/lib/git-service';
@@ -21,7 +21,7 @@ import { initializeUserRepo, getUserRepoPath } from '@/lib/git-service';
 export async function POST(req: NextRequest) {
   try {
     // Get authenticated user
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
         { error: 'No autenticado' },
@@ -192,7 +192,7 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   try {
     // Get authenticated user
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
         { error: 'No autenticado' },

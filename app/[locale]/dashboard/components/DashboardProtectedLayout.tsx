@@ -10,6 +10,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import { DashboardHeader } from './DashboardHeader';
 import { Sidebar } from './Sidebar';
 import { Onboarding } from '@/components/Onboarding';
+import { FloatingQuote } from './FloatingQuote';
 
 interface DashboardProtectedLayoutProps {
   children: ReactNode;
@@ -29,6 +30,9 @@ export default function DashboardProtectedLayout({ children }: DashboardProtecte
             {children}
           </main>
         </div>
+
+        {/* Floating Quote */}
+        <FloatingQuote />
 
         {/* Onboarding Tutorial */}
         <Onboarding />

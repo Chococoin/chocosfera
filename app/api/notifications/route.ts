@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSessionUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { markAllNotificationsAsRead } from '@/lib/notification-service';
 
@@ -14,7 +14,7 @@ import { markAllNotificationsAsRead } from '@/lib/notification-service';
  */
 export async function GET(req: NextRequest) {
   try {
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
         { error: 'No autenticado' },
@@ -92,7 +92,7 @@ export async function GET(req: NextRequest) {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function PATCH(_req: NextRequest) {
   try {
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
         { error: 'No autenticado' },

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSessionUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { InvitationStatus } from '@prisma/client';
 import crypto from 'crypto';
@@ -19,7 +19,7 @@ import { sendFamilyInvitationEmail } from '@/lib/email-service';
 export async function POST(req: NextRequest) {
   try {
     // Get authenticated user
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
         { error: 'No autenticado' },
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { recipientEmail } = await req.json();
+    const { recipientEmail, parentId } = await req.json();
 
     // Validate email
     if (!recipientEmail || typeof recipientEmail !== 'string') {
@@ -35,6 +35,30 @@ export async function POST(req: NextRequest) {
         { error: 'Email del destinatario es requerido' },
         { status: 400 }
       );
+    }
+
+    // Validate parentId if provided
+    if (parentId) {
+      // Check if parent exists and belongs to the same family
+      const parentUser = await prisma.user.findUnique({
+        where: { id: parentId },
+        select: { id: true, familyId: true },
+      });
+
+      if (!parentUser) {
+        return NextResponse.json(
+          { error: 'El padre seleccionado no existe' },
+          { status: 400 }
+        );
+      }
+
+      // For family invitations, parent must be in the inviter's family
+      if (user.familyId && parentUser.familyId !== user.familyId) {
+        return NextResponse.json(
+          { error: 'El padre seleccionado no pertenece a tu familia' },
+          { status: 400 }
+        );
+      }
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -97,6 +121,9 @@ export async function POST(req: NextRequest) {
     const expiresAt = new Date();
     expiresAt.setDate(expiresAt.getDate() + 7);
 
+    // Store parentId in metadata for later use when invitation is accepted
+    const metadata = parentId ? { parentId } : null;
+
     const invitation = await prisma.invitation.create({
       data: {
         inviterId: user.id,
@@ -104,6 +131,7 @@ export async function POST(req: NextRequest) {
         token,
         expiresAt,
         status: InvitationStatus.PENDING,
+        metadata,
       },
       include: {
         inviter: {
@@ -128,7 +156,7 @@ export async function POST(req: NextRequest) {
     let familyName = 'Mi Familia';
     if (user.familyId) {
       try {
-        const family = await prisma.family.findUnique({
+        const family = await prisma.familyProfile.findUnique({
           where: { id: user.familyId },
           select: { name: true },
         });
@@ -180,7 +208,7 @@ export async function POST(req: NextRequest) {
 export async function GET(_req: NextRequest) {
   try {
     // Get authenticated user
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
         { error: 'No autenticado' },
@@ -203,7 +231,6 @@ export async function GET(_req: NextRequest) {
         createdAt: true,
         expiresAt: true,
         acceptedAt: true,
-        declinedAt: true,
       },
     });
 
@@ -216,7 +243,6 @@ export async function GET(_req: NextRequest) {
         sentAt: inv.createdAt,
         expiresAt: inv.expiresAt,
         acceptedAt: inv.acceptedAt,
-        declinedAt: inv.declinedAt,
       })),
     });
 

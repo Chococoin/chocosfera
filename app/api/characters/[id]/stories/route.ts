@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSessionUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/auth';
 import { getCollection, Collections } from '@/lib/mongodb';
 import { CharacterDocument, StoryDocument } from '@/types/mongodb';
 import { GitService, getUserRepoPath } from '@/lib/git-service';
@@ -31,7 +31,7 @@ export async function POST(
       );
     }
 
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
         { error: 'No autenticado' },
@@ -224,7 +224,7 @@ export async function GET(
       );
     }
 
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     const { searchParams } = new URL(req.url);
     const status = searchParams.get('status');
     const limit = parseInt(searchParams.get('limit') || '50');

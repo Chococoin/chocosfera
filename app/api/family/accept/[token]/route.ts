@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSessionUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { InvitationStatus } from '@prisma/client';
 import { createFamilyAcceptedNotification } from '@/lib/notification-service';
@@ -118,7 +118,7 @@ export async function POST(
     }
 
     // Get authenticated user (must be logged in to accept/decline)
-    const user = await getSessionUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
         { error: 'Debes iniciar sesión para responder a esta invitación' },
@@ -206,10 +206,10 @@ export async function POST(
 
     if (!familyId) {
       // Create new family
-      const family = await prisma.family.create({
+      const family = await prisma.familyProfile.create({
         data: {
           name: `Familia de ${invitation.inviter.nick}`,
-          createdBy: invitation.inviter.id,
+          adminUserId: invitation.inviter.id,
         },
       });
 
@@ -222,10 +222,17 @@ export async function POST(
       });
     }
 
-    // Update user with familyId
+    // Extract parentId from invitation metadata if present
+    const metadata = invitation.metadata as { parentId?: string } | null;
+    const parentId = metadata?.parentId || null;
+
+    // Update user with familyId and parentId
     await prisma.user.update({
       where: { id: user.id },
-      data: { familyId },
+      data: {
+        familyId,
+        parentId,
+      },
     });
 
     // Mark invitation as accepted
