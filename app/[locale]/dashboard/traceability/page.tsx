@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface TraceabilityStep {
   id: number;
@@ -13,53 +14,54 @@ interface TraceabilityStep {
 }
 
 export default function TraceabilityPage() {
+  const t = useTranslations('dashboard.traceability');
   const [selectedProduct, setSelectedProduct] = useState('product-001');
 
   const traceabilitySteps: TraceabilityStep[] = [
     {
       id: 1,
-      title: 'Plantación',
+      title: t('steps.planting.title'),
       date: '15 Ene 2024',
-      location: 'Finca El Cacao, Ecuador',
+      location: t('steps.planting.location'),
       icon: '🌱',
       status: 'completed',
-      details: 'Árbol plantado y registrado en blockchain',
+      details: t('steps.planting.details'),
     },
     {
       id: 2,
-      title: 'Crecimiento',
+      title: t('steps.growth.title'),
       date: '20 Mar 2024',
-      location: 'Finca El Cacao, Ecuador',
+      location: t('steps.growth.location'),
       icon: '🌳',
       status: 'completed',
-      details: 'Árbol en fase de crecimiento, certificado orgánico',
+      details: t('steps.growth.details'),
     },
     {
       id: 3,
-      title: 'Cosecha',
+      title: t('steps.harvest.title'),
       date: '10 Oct 2024',
-      location: 'Finca El Cacao, Ecuador',
+      location: t('steps.harvest.location'),
       icon: '🍫',
       status: 'completed',
-      details: 'Cosecha verificada: 12kg de cacao',
+      details: t('steps.harvest.details'),
     },
     {
       id: 4,
-      title: 'Procesamiento',
+      title: t('steps.processing.title'),
       date: '15 Oct 2024',
-      location: 'Centro de Procesamiento, Quito',
+      location: t('steps.processing.location'),
       icon: '⚙️',
       status: 'in-progress',
-      details: 'Fermentación y secado en proceso',
+      details: t('steps.processing.details'),
     },
     {
       id: 5,
-      title: 'Distribución',
-      date: 'Próximamente',
-      location: 'En tránsito',
+      title: t('steps.distribution.title'),
+      date: t('steps.distribution.date'),
+      location: t('steps.distribution.location'),
       icon: '🚚',
       status: 'pending',
-      details: 'Esperando procesamiento',
+      details: t('steps.distribution.details'),
     },
   ];
 
@@ -71,10 +73,10 @@ export default function TraceabilityPage() {
   };
 
   const certifications = [
-    { name: 'Fair Trade', icon: '✅', color: 'green' },
-    { name: 'Orgánico', icon: '🌿', color: 'emerald' },
-    { name: 'Carbono Neutral', icon: '🌍', color: 'blue' },
-    { name: 'Rainforest Alliance', icon: '🐸', color: 'teal' },
+    { name: t('certifications.fairTrade'), icon: '✅', color: 'green' },
+    { name: t('certifications.organic'), icon: '🌿', color: 'emerald' },
+    { name: t('certifications.carbonNeutral'), icon: '🌍', color: 'blue' },
+    { name: t('certifications.rainforest'), icon: '🐸', color: 'teal' },
   ];
 
   return (
@@ -83,10 +85,10 @@ export default function TraceabilityPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-heading mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-            Trazabilidad
+            {t('title')}
           </h1>
           <p className="text-muted">
-            Sigue el recorrido completo de tu cacao desde el origen hasta ti
+            {t('subtitle')}
           </p>
         </div>
         <div className="surface-panel px-4 py-2">
@@ -95,9 +97,9 @@ export default function TraceabilityPage() {
             onChange={(e) => setSelectedProduct(e.target.value)}
             className="bg-transparent text-heading font-medium focus:outline-none cursor-pointer"
           >
-            <option value="product-001">Producto #001</option>
-            <option value="product-002">Producto #002</option>
-            <option value="product-003">Producto #003</option>
+            <option value="product-001">{t('product')} #001</option>
+            <option value="product-002">{t('product')} #002</option>
+            <option value="product-003">{t('product')} #003</option>
           </select>
         </div>
       </div>
@@ -108,7 +110,7 @@ export default function TraceabilityPage() {
         <div className="lg:col-span-2 space-y-6">
           <div className="surface-panel p-6">
             <h2 className="text-xl font-bold text-heading mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
-              Recorrido del Producto
+              {t('timeline.title')}
             </h2>
             <div className="space-y-6">
               {traceabilitySteps.map((step, index) => (
@@ -148,7 +150,7 @@ export default function TraceabilityPage() {
                       {step.status === 'completed' && (
                         <div className="mt-2 inline-flex items-center gap-1 text-xs text-green-600 dark:text-green-400">
                           <span>✓</span>
-                          <span>Verificado en blockchain</span>
+                          <span>{t('timeline.verified')}</span>
                         </div>
                       )}
                     </div>
@@ -161,25 +163,25 @@ export default function TraceabilityPage() {
           {/* Blockchain Info */}
           <div className="surface-panel p-6">
             <h2 className="text-xl font-bold text-heading mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-              Verificación Blockchain
+              {t('blockchain.title')}
             </h2>
             <div className="space-y-3">
               <div className="flex items-center justify-between py-2 border-b border-[var(--color-border)]">
-                <span className="text-sm text-muted">Hash de Transacción</span>
+                <span className="text-sm text-muted">{t('blockchain.transactionHash')}</span>
                 <span className="text-sm text-heading font-mono">
                   {blockchainInfo.transactionHash.slice(0, 20)}...
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-[var(--color-border)]">
-                <span className="text-sm text-muted">Bloque</span>
+                <span className="text-sm text-muted">{t('blockchain.block')}</span>
                 <span className="text-sm text-heading font-mono">{blockchainInfo.blockNumber}</span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-[var(--color-border)]">
-                <span className="text-sm text-muted">Fecha/Hora</span>
+                <span className="text-sm text-muted">{t('blockchain.timestamp')}</span>
                 <span className="text-sm text-heading">{blockchainInfo.timestamp}</span>
               </div>
               <div className="flex items-center justify-between py-2">
-                <span className="text-sm text-muted">Red</span>
+                <span className="text-sm text-muted">{t('blockchain.network')}</span>
                 <span className="text-sm text-heading">{blockchainInfo.network}</span>
               </div>
             </div>
@@ -187,7 +189,7 @@ export default function TraceabilityPage() {
               type="button"
               className="mt-4 w-full px-4 py-2 rounded-2xl border border-[var(--color-border)] text-sm font-medium text-heading hover:bg-[rgba(223,134,170,0.08)] transition-all"
             >
-              Ver en Explorador de Bloques →
+              {t('blockchain.viewExplorer')} →
             </button>
           </div>
         </div>
@@ -197,24 +199,24 @@ export default function TraceabilityPage() {
           {/* Product Info */}
           <div className="surface-panel p-6">
             <h3 className="text-lg font-bold text-heading mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-              Información del Producto
+              {t('productInfo.title')}
             </h3>
             <div className="space-y-3 text-sm">
               <div>
-                <span className="text-muted">ID del Árbol</span>
+                <span className="text-muted">{t('productInfo.treeId')}</span>
                 <p className="text-heading font-semibold">#TREE-2024-001</p>
               </div>
               <div>
-                <span className="text-muted">Variedad</span>
-                <p className="text-heading font-semibold">Cacao Fino de Aroma</p>
+                <span className="text-muted">{t('productInfo.variety')}</span>
+                <p className="text-heading font-semibold">{t('productInfo.varietyValue')}</p>
               </div>
               <div>
-                <span className="text-muted">Agricultor</span>
+                <span className="text-muted">{t('productInfo.farmer')}</span>
                 <p className="text-heading font-semibold">Carlos Mendoza</p>
               </div>
               <div>
-                <span className="text-muted">Altitud</span>
-                <p className="text-heading font-semibold">800 msnm</p>
+                <span className="text-muted">{t('productInfo.altitude')}</span>
+                <p className="text-heading font-semibold">800 {t('productInfo.masl')}</p>
               </div>
             </div>
           </div>
@@ -222,7 +224,7 @@ export default function TraceabilityPage() {
           {/* Certifications */}
           <div className="surface-panel p-6">
             <h3 className="text-lg font-bold text-heading mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-              Certificaciones
+              {t('certifications.title')}
             </h3>
             <div className="grid grid-cols-2 gap-3">
               {certifications.map((cert) => (
@@ -244,19 +246,19 @@ export default function TraceabilityPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-[rgba(223,134,170,0.15)] via-transparent to-[rgba(87,41,214,0.15)]" />
             <div className="relative">
               <h3 className="text-lg font-bold text-heading mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-                Impacto Generado
+                {t('impact.title')}
               </h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-muted">CO₂ Capturado</span>
+                  <span className="text-muted">{t('impact.co2Captured')}</span>
                   <span className="text-heading font-bold">24 kg</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-muted">Ingreso Agricultor</span>
+                  <span className="text-muted">{t('impact.farmerIncome')}</span>
                   <span className="text-heading font-bold">$180</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-muted">Familias Beneficiadas</span>
+                  <span className="text-muted">{t('impact.familiesBenefited')}</span>
                   <span className="text-heading font-bold">3</span>
                 </div>
               </div>

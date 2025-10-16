@@ -6,6 +6,7 @@
  */
 
 import { UserStatus } from '@prisma/client';
+import { useTranslations } from 'next-intl';
 
 export interface FamilyMember {
   id: string;
@@ -84,6 +85,7 @@ function TreeNodeComponent({
   onEditMember?: (memberId: string, memberName: string, currentParentId: string | null) => void;
   isAdmin?: boolean;
 }) {
+  const t = useTranslations('dashboard.family.members');
   const member = node.member;
   const hasChildren = node.children.length > 0;
   const isCurrentUser = currentUserId === member.id;
@@ -141,7 +143,7 @@ function TreeNodeComponent({
               )}
               {isCurrentUser && (
                 <span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 text-xs font-medium rounded-full">
-                  Tú
+                  {t('you')}
                 </span>
               )}
             </div>
@@ -150,9 +152,9 @@ function TreeNodeComponent({
             </p>
             <div className="flex items-center gap-2 mt-1">
               <span className="text-xs">
-                {member.status === UserStatus.MINOR && '🎓 Estudiante'}
-                {member.status === UserStatus.ADULT_PENDING && '⏳ Verificación Pendiente'}
-                {member.status === UserStatus.ADULT_VERIFIED && '✅ Adulto'}
+                {member.status === UserStatus.MINOR && `🎓 ${t('student')}`}
+                {member.status === UserStatus.ADULT_PENDING && `⏳ ${t('verificationPending')}`}
+                {member.status === UserStatus.ADULT_VERIFIED && `✅ ${t('adult')}`}
               </span>
               {typeof member.treesCount === 'number' && (
                 <>
@@ -171,7 +173,7 @@ function TreeNodeComponent({
               type="button"
               onClick={() => onEditMember(member.id, member.firstName || member.nick, member.parentId || null)}
               className="flex-shrink-0 p-2 text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-all"
-              title="Editar relación"
+              title={t('editRelationship')}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -210,11 +212,15 @@ function TreeNodeComponent({
  * Main FamilyTree component
  */
 export default function FamilyTree({ members, currentUserId, onEditMember, isAdmin = false }: FamilyTreeProps) {
+  const t = useTranslations('dashboard.family');
+  const tMembers = useTranslations('dashboard.family.members');
+  const tTree = useTranslations('dashboard.family.tree');
+
   if (members.length === 0) {
     return (
       <div className="text-center py-12 text-gray-500 dark:text-gray-400">
         <span className="text-4xl block mb-2">🌳</span>
-        <p className="text-sm">No hay miembros en la familia aún</p>
+        <p className="text-sm">{tMembers('noMembers')}</p>
       </div>
     );
   }
@@ -227,16 +233,16 @@ export default function FamilyTree({ members, currentUserId, onEditMember, isAdm
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Árbol Familiar
+            {tTree('title')}
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            {members.length} miembro{members.length !== 1 ? 's' : ''}
+            {members.length} {members.length !== 1 ? tTree('membersPlural') : tTree('members')}
           </p>
         </div>
         <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-2">
           <div className="flex items-center gap-1">
             <div className="w-3 h-0.5 bg-purple-300 dark:bg-purple-700"></div>
-            <span>Relación padre-hijo</span>
+            <span>{tTree('relationship')}</span>
           </div>
         </div>
       </div>
@@ -245,7 +251,7 @@ export default function FamilyTree({ members, currentUserId, onEditMember, isAdm
       <div className="bg-gradient-to-br from-purple-50/50 to-pink-50/50 dark:from-purple-900/10 dark:to-pink-900/10 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
         {tree.length === 0 ? (
           <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-            <p className="text-sm">No se pudo construir el árbol familiar</p>
+            <p className="text-sm">{tTree('noTreeError')}</p>
           </div>
         ) : (
           <div className="space-y-6">
@@ -266,9 +272,8 @@ export default function FamilyTree({ members, currentUserId, onEditMember, isAdm
       {/* Legend */}
       <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
         <p className="text-xs text-blue-800 dark:text-blue-200">
-          💡 <strong>Árbol Familiar:</strong> Los miembros están organizados por relación padre-hijo.
-          Los padres aparecen arriba y sus hijos debajo conectados por líneas.
-          {isAdmin && ' Click en el ícono de editar para cambiar las relaciones familiares.'}
+          💡 <strong>{tTree('legendTitle')}</strong> {tTree('legendDescription')}
+          {isAdmin && tTree('legendAdmin')}
         </p>
       </div>
     </div>

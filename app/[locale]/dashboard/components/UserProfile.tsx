@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { UserStatus } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 interface UserProfileProps {
   isCollapsed?: boolean;
@@ -21,6 +22,7 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations('dashboard.userProfile');
 
   if (!user) return null;
 
@@ -29,6 +31,7 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
 
   const handleLogout = async () => {
     await logout();
+    sessionStorage.setItem('showQuoteOnLoad', 'true');
     router.push(`/${locale}`);
   };
 
@@ -37,19 +40,19 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
       case UserStatus.MINOR:
         return (
           <span className="inline-flex items-center rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
-            🎓 Estudiante
+            🎓 {t('student')}
           </span>
         );
       case UserStatus.ADULT_PENDING:
         return (
           <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
-            ⏳ Verificación Pendiente
+            ⏳ {t('verificationPending')}
           </span>
         );
       case UserStatus.ADULT_VERIFIED:
         return (
           <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900/30 dark:text-green-300">
-            ✅ Adulto Verificado
+            ✅ {t('adultVerified')}
           </span>
         );
       default:
@@ -135,7 +138,7 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
               {getStatusBadge()}
               {user.familyId && (
                 <span className="inline-flex items-center rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
-                  👨‍👩‍👧‍👦 En Familia
+                  👨‍👩‍👧‍👦 {t('inFamily')}
                 </span>
               )}
             </div>
@@ -145,8 +148,7 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
           {user.status === UserStatus.MINOR && (
             <div className="border-b border-gray-200 bg-yellow-50 p-3 dark:border-gray-700 dark:bg-yellow-900/10">
               <p className="text-xs text-yellow-800 dark:text-yellow-300">
-                🎓 Como estudiante, algunas funciones están restringidas para tu protección.
-                Pide a tu padre o madre que
+                🎓 {t('studentRestriction')}
                 <button
                   onClick={() => {
                     router.push(`/${locale}/dashboard/settings`);
@@ -154,7 +156,7 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
                   }}
                   className="ml-1 font-semibold underline"
                 >
-                  verifique tu edad
+                  {t('verifyAge')}
                 </button>
               </p>
             </div>
@@ -186,7 +188,7 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
                   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
-              Configuración
+              {t('settings')}
             </Link>
 
             {user.familyId && (
@@ -208,7 +210,7 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
-                Mi Familia
+                {t('myFamily')}
               </Link>
             )}
 
@@ -232,7 +234,7 @@ export default function UserProfile({ isCollapsed = false }: UserProfileProps) {
                   d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                 />
               </svg>
-              Cerrar Sesión
+              {t('logout')}
             </button>
           </div>
         </div>

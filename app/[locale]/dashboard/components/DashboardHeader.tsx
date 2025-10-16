@@ -52,6 +52,7 @@ export function DashboardHeader() {
     console.log('Current pathname:', pathname);
     console.log('Locale:', locale);
     await logout();
+    sessionStorage.setItem('showQuoteOnLoad', 'true');
     console.log('After logout, navigating to:', `/${locale}`);
     router.push(`/${locale}`);
   };
@@ -98,7 +99,10 @@ export function DashboardHeader() {
             </button>
 
             {showProfileMenu && (
-              <div className="absolute right-0 mt-2 w-56 surface-panel shadow-xl z-[100]">
+              <div className="fixed mt-2 w-56 surface-panel shadow-xl z-[100]" style={{
+                right: '1rem',
+                top: '4rem'
+              }}>
                 <div className="px-4 py-3 border-b border-[var(--color-border)]">
                   <p className="text-sm font-semibold text-heading">
                     Usuario Demo

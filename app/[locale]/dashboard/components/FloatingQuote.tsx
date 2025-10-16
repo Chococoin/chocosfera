@@ -1,34 +1,59 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+
+const chocolateQuotes = [
+  'Chocolate is happiness you can eat',
+  'Life is like a box of chocolates, full of sweet surprises',
+  'All you need is love... and chocolate',
+  'Chocolate doesn\'t ask silly questions, chocolate understands',
+  'There is nothing better than a friend, unless it is a friend with chocolate',
+  'Chocolate is nature\'s way of making up for Mondays',
+  'Forget love, I\'d rather fall in chocolate',
+  'Chocolate is the answer, who cares what the question is',
+  'Save the Earth, it\'s the only planet with chocolate',
+  'Chocolate: because adulting is hard',
+  'Life happens, chocolate helps',
+  'Money can\'t buy happiness, but it can buy chocolate',
+  'Stressed spelled backwards is desserts... coincidence?',
+  'Keep calm and eat chocolate',
+  'A balanced diet is chocolate in both hands',
+];
 
 export function FloatingQuote() {
   const [isVisible, setIsVisible] = useState(false);
-  const t = useTranslations('dashboard.sidebar');
+  const [currentQuote, setCurrentQuote] = useState('');
+
+  // Get random quote
+  const getRandomQuote = () => {
+    const randomIndex = Math.floor(Math.random() * chocolateQuotes.length);
+    return chocolateQuotes[randomIndex];
+  };
 
   useEffect(() => {
-    // Show the quote after 3 seconds
-    const showTimer = setTimeout(() => {
-      setIsVisible(true);
-    }, 3000);
+    // Set initial quote
+    setCurrentQuote(getRandomQuote());
 
-    // Hide the quote after 8 seconds (visible for 5 seconds)
-    const hideTimer = setTimeout(() => {
-      setIsVisible(false);
-    }, 8000);
-
-    // Repeat the cycle every 20 seconds
-    const interval = setInterval(() => {
+    // Check if we should show quote immediately (after logout)
+    const shouldShowImmediately = sessionStorage.getItem('showQuoteOnLoad');
+    if (shouldShowImmediately) {
+      sessionStorage.removeItem('showQuoteOnLoad');
       setIsVisible(true);
       setTimeout(() => {
         setIsVisible(false);
       }, 5000);
-    }, 20000);
+    }
+
+    // Show quote every hour (3600000 milliseconds)
+    const interval = setInterval(() => {
+      setCurrentQuote(getRandomQuote());
+      setIsVisible(true);
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 5000); // Visible for 5 seconds
+    }, 3600000); // Every hour
 
     return () => {
-      clearTimeout(showTimer);
-      clearTimeout(hideTimer);
       clearInterval(interval);
     };
   }, []);
@@ -42,7 +67,7 @@ export function FloatingQuote() {
       <div className="surface-panel px-6 py-3 shadow-lg backdrop-blur-lg border border-[var(--color-border)]">
         <p className="text-sm text-muted italic flex items-center gap-2">
           <span className="text-xl">🍫</span>
-          &ldquo;{t('quote')}&rdquo;
+          &ldquo;{currentQuote}&rdquo;
         </p>
       </div>
     </div>
