@@ -30,7 +30,8 @@
     "adopt": "领养",
     "traceability": "可追溯性",
     "impact": "影响",
-    "create": "创建"
+    "create": "创建",
+    "pricing": "定价"
   },
   "login": {
     "title": "登录",
@@ -91,7 +92,8 @@
       "community": "社区",
       "marketplace": "市场",
       "settings": "设置",
-      "quote": "巧克力是可以吃的幸福"
+      "quote": "巧克力是可以吃的幸福",
+      "pricing": "定价"
     },
     "header": {
       "title": "控制面板",
@@ -154,6 +156,24 @@
         "rule2": "分享关于可可和巧克力的知识",
         "rule3": "询问可追溯性和可持续性",
         "rule4": "禁止垃圾邮件或无关内容"
+      },
+      "restricted": {
+        "title": "限制访问",
+        "description": "作为未成年人，您无权访问社区 Telegram 聊天。这是经过验证的成年人的空间。",
+        "whyTitle": "为什么有这样的限制？",
+        "reason1": "我们通过适当的对话来保护未成年人",
+        "reason2": "我们遵守儿童保护法规",
+        "reason3": "您仍然可以享受 Chocósfera 的其他地区",
+        "adultQuestion": "你是成年人了吗？",
+        "verifyButton": "验证我的年龄以获得完全访问权限"
+      },
+      "setup": {
+        "title": "需要配置",
+        "description": "要在此处查看 Telegram 聊天，您需要：",
+        "step1": "在 Telegram 上创建公共群组或频道",
+        "step2": "获取用户名（例如：@chocosfera_community）",
+        "step3": "更新常数",
+        "step3b": "在"
       }
     },
     "trees": {
@@ -348,6 +368,35 @@
         "whyVerifyDescription": "年龄验证帮助我们为所有用户创建安全和适当的环境，符合未成年人保护法规。",
         "howLongTitle": "验证需要多长时间？",
         "howLongDescription": "我们通常在24-48个工作小时内处理验证。准备好后我们会通过电子邮件通知您。"
+      },
+      "telegram": {
+        "title": "电报集成",
+        "linked": "电报账户已关联",
+        "notLinked": "Telegram 帐户未关联",
+        "link": "关联账户",
+        "unlink": "取消账户关联",
+        "howToLink": "如何关联您的 Telegram 帐户",
+        "step1": "打开 Telegram 并搜索@ChocosfereBot",
+        "step2": "向机器人发送命令 /start",
+        "step3": "机器人将向您发送一个唯一的链接代码",
+        "step4": "单击“链接帐户”按钮并输入您的代码",
+        "features": {
+          "notifications": "即时通知",
+          "notificationsDesc": "接收有关您的树木、收成和社区的实时更新",
+          "commands": "机器人命令",
+          "commandsDesc": "使用 /trees、/impact、/help 等命令快速获取信息",
+          "treeUpdates": "树更新",
+          "treeUpdatesDesc": "直接在 Telegram 上获取有关您收养的树木的照片和更新",
+          "community": "社区访问",
+          "communityDesc": "独家访问 Chocósfera Telegram 社区群组"
+        },
+        "preferences": {
+          "title": "Telegram 通知首选项",
+          "treeUpdates": "树更新和照片",
+          "communityMessages": "社区留言",
+          "marketplaceAlerts": "市场提醒",
+          "subscriptionReminders": "订阅提醒"
+        }
       }
     },
     "userProfile": {
@@ -360,6 +409,647 @@
       "settings": "设置",
       "myFamily": "我的家庭",
       "logout": "退出登录"
+    },
+    "family": {
+      "title": "我的家人",
+      "headerWithFamily": "管理您的家庭档案和共享树",
+      "headerWithoutFamily": "创建您的家庭档案或加入现有家庭档案",
+      "loading": "加载中...",
+      "loadingFamily": "正在加载家庭...",
+      "createFamily": {
+        "title": "创建家庭档案",
+        "description": "在 Chocósfera 组建自己的家庭并管理每个人的树木",
+        "button": "创建我的家庭",
+        "modalTitle": "创建家庭档案",
+        "nameLabel": "姓",
+        "namePlaceholder": "例如：加西亚家族、罗德里格斯家族……",
+        "nameDescription": "您的所有家庭成员都可以看到此名称",
+        "tipLabel": "提示：",
+        "tipText": "您将成为家庭管理员并可以邀请其他成员。",
+        "cancelButton": "取消",
+        "creating": "创造...",
+        "createButton": "创建家庭",
+        "minorWarning": "只有经过验证的成年人才能创建家庭档案。",
+        "verifyAgeLink": "请您的父母/监护人核实您的年龄",
+        "successMessage": "家族创建成功！",
+        "errorMessage": "创建家庭时出错"
+      },
+      "inviteParent": {
+        "title": "邀请我的家长/监护人",
+        "description": "向您的父母或监护人发送电子邮件邀请以创建家庭档案",
+        "emailLabel": "家长/监护人电子邮件",
+        "emailPlaceholder": "家长@example.com",
+        "sendButton": "发送邀请",
+        "sending": "正在发送...",
+        "tipText": "您的父母/监护人将收到一封电子邮件，其中包含用于注册或加入您的家庭资料的链接。",
+        "successMessage": "邀请已发送至{email}！"
+      },
+      "joinFamily": {
+        "title": "通过邀请加入",
+        "description": "如果有人邀请您加入他们的家庭，您将收到一封包含链接的电子邮件",
+        "checkEmailText": "检查您的电子邮件以查看是否有待处理的邀请",
+        "viewInvitationsLink": "查看我的邀请 →"
+      },
+      "invitations": {
+        "title": "待处理的邀请",
+        "sent": "发送：",
+        "expires": "到期时间：",
+        "pending": "待办的",
+        "cancelButton": "取消",
+        "cancelConfirm": "您确定要取消此邀请吗？",
+        "cancelSuccess": "邀请已成功取消",
+        "cancelError": "取消邀请时出错",
+        "sendError": "发送邀请时出错"
+      },
+      "overview": {
+        "members": "成员",
+        "membersPlural": "会员",
+        "totalTrees": "树木总数",
+        "trees": "树木",
+        "co2": "吨二氧化碳",
+        "water": "升"
+      },
+      "members": {
+        "title": "家庭成员",
+        "inviteButton": "+ 邀请会员",
+        "you": "你",
+        "student": "学生",
+        "verificationPending": "待验证",
+        "adult": "成人",
+        "noMembers": "还没有家庭成员",
+        "editRelationship": "编辑关系"
+      },
+      "inviteMember": {
+        "modalTitle": "邀请会员",
+        "emailLabel": "会员邮箱",
+        "emailPlaceholder": "会员@example.com",
+        "parentLabel": "家长/监护人（可选）",
+        "noParent": "没有分配家长",
+        "parentDescription": "在家谱中选​​择谁将成为该成员的父母/监护人",
+        "tipText": "该成员将收到一封电子邮件，其中包含加入您家庭的链接。",
+        "cancelButton": "取消",
+        "sendButton": "发送邀请",
+        "sending": "正在发送...",
+        "successMessage": "邀请已发送至{email}！"
+      },
+      "editMember": {
+        "modalTitle": "编辑家庭关系",
+        "editing": "编辑：",
+        "parentLabel": "家长/监护人",
+        "noParent": "没有分配父级（树根）",
+        "parentDescription": "在家谱中选​​择谁将成为该成员的父母/监护人",
+        "tipText": "变化将立即反映在家谱中。",
+        "cancelButton": "取消",
+        "saveButton": "保存更改",
+        "saving": "保存...",
+        "successMessage": "关系更新成功！",
+        "errorMessage": "更新关系时出错"
+      },
+      "tree": {
+        "title": "家谱",
+        "members": "成员",
+        "membersPlural": "会员",
+        "relationship": "亲子关系",
+        "noTreeError": "无法建立家谱",
+        "legendTitle": "家谱：",
+        "legendDescription": "成员按亲子关系组织。父母出现在上面，他们的孩子出现在下面，通过线连接起来。",
+        "legendAdmin": "单击编辑图标可更改家庭关系。"
+      },
+      "info": {
+        "title": "家庭档案如何运作？",
+        "point1": "学生可以通过电子邮件邀请家长",
+        "point2": "只有经过验证的成年人（18 岁以上）才能创建家庭档案",
+        "point3": "所有家谱都添加到个人资料中",
+        "point4": "您可以一起创造角色和故事"
+      }
+    },
+    "characters": {
+      "title": "我的角色",
+      "subtitle": "在 Chocósfera 中创造独特的角色并讲述他们的故事",
+      "loading": "加载中...",
+      "character": "特点",
+      "charactersPlural": "人物",
+      "createButton": "创建角色",
+      "public": "民众",
+      "updated": "已更新",
+      "empty": {
+        "title": "你的冒险从这里开始！",
+        "description": "您还没有创建任何角色。创建您的第一个角色并在 Chocósfera 中开始您的故事。",
+        "createButton": "创建我的第一个角色"
+      },
+      "types": {
+        "cacao": "可可",
+        "chocolate": "巧克力",
+        "farmer": "农民",
+        "other": "其他"
+      },
+      "stats": {
+        "stories": "故事",
+        "commits": "提交",
+        "views": "意见"
+      },
+      "info": {
+        "title": "什么是人物？",
+        "point1": "在 Chocósfera 中创造具有自己故事的独特角色",
+        "point2": "每个角色都有自己的具有历史记录的 Git 存储库",
+        "point3": "您可以分叉 Tony、Pipo 或 Kaoka 并创建您的版本",
+        "point4": "公开分享您的角色或将其保密"
+      },
+      "errors": {
+        "fetchError": "获取字符时出错",
+        "unknownError": "未知错误"
+      }
+    },
+    "explore": {
+      "title": "探索",
+      "subtitle": "发现社区中的公共人物和故事",
+      "searchPlaceholder": "搜索人物、故事、用户...",
+      "canonCharacters": {
+        "title": "Chocósfera 的官方正典角色",
+        "subtitle": "让巧克力世界栩栩如生的官方角色",
+        "forkThis": "分叉这个角色",
+        "pipo": {
+          "name": "皮波",
+          "description": "好奇的小可可芽"
+        },
+        "tony": {
+          "name": "托尼",
+          "description": "有着金子般的心的巧克力大师"
+        },
+        "kaoka": {
+          "name": "高冈",
+          "description": "聪明的农民可可的守护者"
+        }
+      },
+      "tabs": {
+        "characters": "人物",
+        "stories": "故事"
+      },
+      "types": {
+        "cacao": "可可",
+        "chocolate": "巧克力",
+        "farmer": "农民",
+        "other": "其他"
+      },
+      "errors": {
+        "fetchCharacters": "加载字符时出错",
+        "fetchStories": "加载故事时出错",
+        "unknown": "未知错误",
+        "updateLike": "更新时出错，例如"
+      },
+      "empty": {
+        "noCharactersFound": "没有找到字符",
+        "noPublicCharacters": "没有可用的公共角色",
+        "noStoriesFound": "没有找到故事",
+        "noPublicStories": "没有可用的公开故事",
+        "tryOtherTerms": "尝试不同的搜索词",
+        "beFirstCharacter": "成为第一个创造公众人物的人！",
+        "beFirstStory": "成为第一个创建公共故事的人！",
+        "createCharacter": "创建角色"
+      },
+      "results": {
+        "character": "特点",
+        "charactersPlural": "人物",
+        "story": "故事",
+        "storiesPlural": "故事",
+        "found": "成立",
+        "foundPlural": "成立"
+      },
+      "like": {
+        "add": "喜欢",
+        "remove": "不像"
+      }
+    },
+    "traceability": {
+      "title": "可追溯性",
+      "subtitle": "追踪可可从原产地到您手中的完整旅程",
+      "product": "产品",
+      "timeline": {
+        "title": "产品之旅",
+        "verified": "在区块链上验证"
+      },
+      "steps": {
+        "planting": {
+          "title": "种植",
+          "location": "厄瓜多尔埃尔可可农场",
+          "details": "种植的树并在区块链上注册"
+        },
+        "growth": {
+          "title": "生长",
+          "location": "厄瓜多尔埃尔可可农场",
+          "details": "处于生长期的树木，经过有机认证"
+        },
+        "harvest": {
+          "title": "收成",
+          "location": "厄瓜多尔埃尔可可农场",
+          "details": "已验证收成：12公斤可可"
+        },
+        "processing": {
+          "title": "加工",
+          "location": "加工中心, 基多",
+          "details": "发酵和干燥正在进行中"
+        },
+        "distribution": {
+          "title": "分配",
+          "date": "即将推出",
+          "location": "在途中",
+          "details": "等待处理"
+        }
+      },
+      "blockchain": {
+        "title": "区块链验证",
+        "transactionHash": "交易哈希",
+        "block": "堵塞",
+        "timestamp": "日期/时间",
+        "network": "网络",
+        "viewExplorer": "在区块浏览器上查看"
+      },
+      "productInfo": {
+        "title": "产品信息",
+        "treeId": "树ID",
+        "variety": "种类",
+        "varietyValue": "香气浓郁的可可",
+        "farmer": "农民",
+        "altitude": "高度",
+        "masl": "马斯尔"
+      },
+      "certifications": {
+        "title": "认证证书",
+        "fairTrade": "公平贸易",
+        "organic": "有机的",
+        "carbonNeutral": "碳中和",
+        "rainforest": "雨林联盟"
+      },
+      "impact": {
+        "title": "产生的影响",
+        "co2Captured": "捕获的二氧化碳",
+        "farmerIncome": "农民收入",
+        "familiesBenefited": "家庭受益"
+      }
+    },
+    "impact": {
+      "title": "您的全球影响力",
+      "subtitle": "你正在做出改变🌍✨",
+      "level": "等级",
+      "progressToLevel": "进展到级别 {level}",
+      "environmental": {
+        "title": "环境影响",
+        "co2Captured": "捕获的二氧化碳",
+        "waterSaved": "节约用水",
+        "biodiversity": "生物多样性",
+        "soilRegenerated": "土壤再生",
+        "species": "{count} 个物种",
+        "vsAverage": "{percent} 与平均值",
+        "protected": "受保护"
+      },
+      "social": {
+        "title": "社会影响",
+        "familiesSupported": "家庭支持",
+        "incomeGenerated": "产生的收入",
+        "education": "教育",
+        "health": "健康",
+        "students": "{count} 名学生",
+        "checkups": "{count} 次检查"
+      },
+      "timeline": {
+        "title": "2024 年影响力增长",
+        "months": {
+          "jan": "扬",
+          "feb": "二月",
+          "mar": "三月",
+          "apr": "四月",
+          "may": "可能",
+          "jun": "君"
+        }
+      },
+      "achievements": {
+        "title": "进展中的成就",
+        "treesAdopted": "收养的树木",
+        "co2Captured": "捕获的二氧化碳（千克）",
+        "activeDays": "活跃天数",
+        "community": "社区"
+      },
+      "badges": {
+        "title": "徽章",
+        "locked": "锁定",
+        "firstTree": {
+          "name": "第一棵树",
+          "description": "你收养了你的第一棵树"
+        },
+        "ecoWarrior": {
+          "name": "生态战士",
+          "description": "捕获 100 公斤二氧化碳"
+        },
+        "communityHero": {
+          "name": "社区英雄",
+          "description": "您支持了 5 个家庭"
+        },
+        "forestGuardian": {
+          "name": "森林守护者",
+          "description": "领养10棵树"
+        },
+        "carbonMaster": {
+          "name": "碳大师",
+          "description": "捕获 500 公斤二氧化碳"
+        },
+        "legend": {
+          "name": "传奇",
+          "description": "达到10级"
+        }
+      },
+      "ranking": {
+        "title": "您的排名",
+        "of": "占 {total} 个用户",
+        "top": "最高{percent}"
+      },
+      "milestone": {
+        "title": "下一个里程碑",
+        "needMore": "您还需要 {count} 棵树"
+      }
+    },
+    "marketplace": {
+      "subtitle": "来自社区的独特产品",
+      "productsCount": "产品",
+      "balance": {
+        "fiat": "您的余额（欧元）",
+        "coins": "你的巧克力币"
+      },
+      "categories": {
+        "all": "全部",
+        "trees": "树木",
+        "nft": "NFT 卡",
+        "books": "图书",
+        "plush": "毛绒玩具",
+        "chocolate": "巧克力"
+      },
+      "rarities": {
+        "all": "全部",
+        "common": "常见的",
+        "rare": "稀有的",
+        "epic": "史诗",
+        "legendary": "传奇"
+      },
+      "filters": {
+        "categories": "类别",
+        "rarity": "稀有度",
+        "priceRange": "价格范围",
+        "filteringBy": "过滤依据"
+      },
+      "featured": {
+        "creator": "特色创作者",
+        "productsCreated": "已创建 {count} 个产品"
+      },
+      "sort": {
+        "newest": "最新",
+        "priceLowHigh": "价格：从低到高",
+        "priceHighLow": "价格：从高到低",
+        "popular": "最受欢迎"
+      },
+      "product": {
+        "by": "经过",
+        "available": "可用的",
+        "sold": "卖",
+        "or": "或者",
+        "buy": "买",
+        "noCoins": "没有硬币",
+        "buyingWithCoins": "使用 {coins} ChocoCoins 购买（功能待定）"
+      },
+      "empty": {
+        "title": "没有产品",
+        "description": "尝试调整过滤器"
+      },
+      "errors": {
+        "createSession": "创建付款会话时出错",
+        "processPayment": "处理付款时出错"
+      },
+      "items": {
+        "nft001": {
+          "name": "可可战士",
+          "description": "限量版传奇卡",
+          "character": "可可战士"
+        },
+        "nft002": {
+          "name": "巧克力仙子",
+          "description": "来自可可森林的神奇生物",
+          "character": "巧克力仙子"
+        },
+        "nft003": {
+          "name": "可可卫士",
+          "description": "圣树的保护者",
+          "character": "可可卫士"
+        },
+        "nft004": {
+          "name": "甜龙",
+          "description": "收藏中最稀有的龙",
+          "character": "甜龙"
+        },
+        "book001": {
+          "name": "卡卡伊托历险记",
+          "description": "32页的冒险故事需要着色",
+          "character": "卡卡伊托"
+        },
+        "book002": {
+          "name": "可可王国",
+          "description": "探索神奇的巧克力王国",
+          "character": "可可王"
+        },
+        "book003": {
+          "name": "巧克力传奇",
+          "description": "特别版48页",
+          "character": "各种各样的"
+        },
+        "plush001": {
+          "name": "卡卡伊托毛绒玩具",
+          "description": "30厘米手工毛绒玩具",
+          "character": "卡卡伊托"
+        },
+        "plush002": {
+          "name": "迷你巧克力仙子",
+          "description": "可爱的15厘米毛绒玩具",
+          "character": "巧克力仙子"
+        },
+        "plush003": {
+          "name": "巨型甜龙",
+          "description": "60厘米优质毛绒玩具",
+          "character": "甜龙"
+        },
+        "choco001": {
+          "name": "战士酒吧",
+          "description": "85%可可巧克力，独特设计",
+          "character": "可可战士"
+        },
+        "choco002": {
+          "name": "甜蜜仙子",
+          "description": "牛奶巧克力配红色浆果",
+          "character": "巧克力仙子"
+        },
+        "choco003": {
+          "name": "龙版",
+          "description": "包含 6 个主题酒吧的高级套餐",
+          "character": "甜龙"
+        },
+        "tree001": {
+          "name": "年轻的树 - 哥伦比亚",
+          "description": "哥伦比亚考卡山谷的一岁树",
+          "character": "可可树"
+        },
+        "tree002": {
+          "name": "生产者树 - 秘鲁",
+          "description": "秘鲁库斯科的 3 年生生产树",
+          "character": "可可树"
+        },
+        "tree003": {
+          "name": "优质树 - 厄瓜多尔",
+          "description": "5年树龄，埃斯梅拉达斯产量高",
+          "character": "可可树"
+        },
+        "tree004": {
+          "name": "祖先树 - 委内瑞拉",
+          "description": "10 年以上树龄，Criollo 祖先品种",
+          "character": "可可树"
+        },
+        "tree005": {
+          "name": "有机树 - 墨西哥",
+          "description": "2 年生树，塔巴斯科州有机认证",
+          "character": "可可树"
+        },
+        "tree006": {
+          "name": "野生树 - 坦桑尼亚",
+          "description": "坦桑尼亚乞力马扎罗山的 4 年树龄树",
+          "character": "可可树"
+        }
+      }
+    },
+    "pricing": {
+      "badge": "计划和定价",
+      "title": "选择你的路径",
+      "titleHighlight": "可持续性",
+      "subtitle": "针对不同需求而设计的两种互补方案。您可以同时订阅这两个计划并享受所有好处。",
+      "perMonth": "月",
+      "perYear": "年",
+      "popular": "受欢迎的",
+      "subscribeNow": "立即订阅",
+      "processing": "加工...",
+      "comparePlan": "比较计划",
+      "metrics": {
+        "trees": "树木",
+        "chococoins": "Choco币/月",
+        "discount": "折扣"
+      },
+      "multiPlan": {
+        "selected": "已选择计划",
+        "selectedPlural": "已选择计划",
+        "total": "全部的",
+        "subscribeAll": "订阅全部",
+        "clearSelection": "清除选择"
+      },
+      "faq": {
+        "title": "常见问题解答",
+        "q1": {
+          "question": "我可以同时拥有两个计划的计划吗？",
+          "answer": "绝对地！种子和水果计划是互补的。您可以成为种子的早期采用者，同时也可以通过果实收养树木。"
+        },
+        "q2": {
+          "question": "什么是巧克力币？",
+          "answer": "ChocoCoins 是我们的虚拟货币，您可以用它来获得市场上实体产品（如巧克力、奶油和商品）的折扣。"
+        },
+        "q3": {
+          "question": "我可以随时取消订阅吗？",
+          "answer": "是的，您可以随时从仪表板取消订阅。没有长期合同或取消罚款。"
+        }
+      },
+      "errors": {
+        "paymentError": "处理付款时出错。请再试一次。"
+      },
+      "schemes": {
+        "seed": {
+          "name": "种子",
+          "description": "对于想要支持该项目并了解其发展最新动态的早期采用者",
+          "tagline": "播下变革的种子",
+          "plans": {
+            "sprout": {
+              "name": "发芽",
+              "features": [
+                "独家每月通讯",
+                "抢先体验新功能",
+                "早期采用者徽章",
+                "VIP 电报群",
+                "50 个欢迎巧克力币"
+              ]
+            },
+            "seedling": {
+              "name": "幼苗",
+              "features": [
+                "一切尽在萌芽",
+                "内测功能的访问权限",
+                "每月与团队通话",
+                "对产品决策进行投票",
+                "100 个欢迎巧克力币",
+                "10% 市场折扣"
+              ]
+            },
+            "sapling": {
+              "name": "树苗",
+              "features": [
+                "一切尽在苗中",
+                "每季度与创始人进行一对一会议",
+                "赞助商页面上的认可",
+                "优先支持",
+                "200 欢迎 ChocoCoins",
+                "20% 市场折扣",
+                "独家活动邀请"
+              ]
+            }
+          }
+        },
+        "fruit": {
+          "name": "水果",
+          "description": "领养可可树，赚取 ChocoCoins，并享受独家产品",
+          "tagline": "收获投资成果",
+          "plans": {
+            "cacao": {
+              "name": "可可豆荚",
+              "features": [
+                "1 棵收养的可可树",
+                "数字参与证书",
+                "每月 50 个 ChocoCoins",
+                "实体产品10%永久折扣",
+                "您的树的完整可追溯性",
+                "每月照片更新",
+                "测量和认证的环境影响"
+              ]
+            },
+            "grove": {
+              "name": "可可林",
+              "features": [
+                "收养了 3 棵可可树",
+                "NFT数字证书",
+                "每月 150 个 ChocoCoins",
+                "实体产品 20% 永久折扣",
+                "每年 1 个免费个性化酒吧",
+                "独家角色设计",
+                "来自您的可可树的产品",
+                "每季度虚拟种植园参观"
+              ]
+            },
+            "forest": {
+              "name": "可可森林",
+              "features": [
+                "10棵可可树被领养",
+                "优质 NFT 数字证书",
+                "每月 500 个 ChocoCoins",
+                "实体产品30%永久折扣",
+                "每年 3 个免费个性化酒吧",
+                "符合您个人品牌的产品线",
+                "优质产品每月发货",
+                "每年实地参观您的种植园",
+                "参与收获利润",
+                "可持续发展咨询"
+              ]
+            }
+          }
+        }
+      }
     }
   }
 }

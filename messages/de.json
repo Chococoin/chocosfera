@@ -368,6 +368,35 @@
         "whyVerifyDescription": "Die Altersüberprüfung hilft uns, eine sichere und angemessene Umgebung für alle Benutzer zu schaffen und die Jugendschutzvorschriften einzuhalten.",
         "howLongTitle": "Wie lange dauert die Überprüfung?",
         "howLongDescription": "Wir bearbeiten Überprüfungen normalerweise innerhalb von 24-48 Werktagen. Wir benachrichtigen Sie per E-Mail, wenn sie fertig ist."
+      },
+      "telegram": {
+        "title": "Telegram-Integration",
+        "linked": "Telegram-Konto verknüpft",
+        "notLinked": "Telegram-Konto nicht verknüpft",
+        "link": "Konto verknüpfen",
+        "unlink": "Verknüpfung des Kontos aufheben",
+        "howToLink": "So verknüpfen Sie Ihr Telegram-Konto",
+        "step1": "Öffnen Sie Telegram und suchen Sie nach @ChocosfereBot",
+        "step2": "Senden Sie den Befehl /start an den Bot",
+        "step3": "Der Bot sendet Ihnen einen eindeutigen Verknüpfungscode",
+        "step4": "Klicken Sie auf die Schaltfläche „Konto verknüpfen“ und geben Sie Ihren Code ein",
+        "features": {
+          "notifications": "Sofortige Benachrichtigungen",
+          "notificationsDesc": "Erhalten Sie Echtzeit-Updates über Ihre Bäume, Ernten und Ihre Community",
+          "commands": "Bot-Befehle",
+          "commandsDesc": "Verwenden Sie Befehle wie /trees, /impact, /help, um schnelle Informationen zu erhalten",
+          "treeUpdates": "Baumaktualisierungen",
+          "treeUpdatesDesc": "Erhalten Sie Fotos und Updates zu Ihren adoptierten Bäumen direkt auf Telegram",
+          "community": "Community-Zugang",
+          "communityDesc": "Exklusiver Zugang zur Chocósfera Telegram-Community-Gruppe"
+        },
+        "preferences": {
+          "title": "Einstellungen für Telegrammbenachrichtigungen",
+          "treeUpdates": "Baumaktualisierungen und Fotos",
+          "communityMessages": "Community-Nachrichten",
+          "marketplaceAlerts": "Marktplatz-Benachrichtigungen",
+          "subscriptionReminders": "Abonnement-Erinnerungen"
+        }
       }
     },
     "userProfile": {
@@ -670,7 +699,7 @@
         "biodiversity": "Biodiversität",
         "soilRegenerated": "Regenerierter Boden",
         "species": "{count} Arten",
-        "vsAverage": "{Prozent} im Vergleich zum Durchschnitt",
+        "vsAverage": "{percent} im Vergleich zum Durchschnitt",
         "protected": "Geschützt"
       },
       "social": {
@@ -731,7 +760,7 @@
       "ranking": {
         "title": "Ihr Ranking",
         "of": "von {total} Nutzern",
-        "top": "Oben {Prozent}"
+        "top": "Oben {percent}"
       },
       "milestone": {
         "title": "Nächster Meilenstein",

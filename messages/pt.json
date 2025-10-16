@@ -368,6 +368,35 @@
         "whyVerifyDescription": "A verificação de idade ajuda-nos a criar um ambiente seguro e apropriado para todos os utilizadores, cumprindo com regulamentos de protecção de menores.",
         "howLongTitle": "Quanto tempo demora a verificação?",
         "howLongDescription": "Normalmente processamos as verificações em 24-48 horas úteis. Notificá-lo-emos por email quando estiver pronta."
+      },
+      "telegram": {
+        "title": "Integração com o Telegram",
+        "linked": "Conta do Telegram vinculada",
+        "notLinked": "Conta do Telegram não vinculada",
+        "link": "Vincular conta",
+        "unlink": "Desvincular conta",
+        "howToLink": "Como vincular sua conta do Telegram",
+        "step1": "Abra o Telegram e pesquise @ChocosfereBot",
+        "step2": "Envie o comando /start para o bot",
+        "step3": "O bot enviará um código exclusivo de vinculação",
+        "step4": "Clique no botão \"Vincular conta\" e insira o código",
+        "features": {
+          "notifications": "Notificações instantâneas",
+          "notificationsDesc": "Receba atualizações em tempo real sobre suas árvores, colheitas e comunidade",
+          "commands": "Comandos do bot",
+          "commandsDesc": "Use comandos como /trees, /impact ou /help para obter informações rápidas",
+          "treeUpdates": "Atualizações das árvores",
+          "treeUpdatesDesc": "Receba fotos e atualizações das suas árvores adotadas diretamente no Telegram",
+          "community": "Acesso à comunidade",
+          "communityDesc": "Acesso exclusivo ao grupo comunitário Chocósfera Telegram"
+        },
+        "preferences": {
+          "title": "Preferências de notificações do Telegram",
+          "treeUpdates": "Atualizações e fotos das árvores",
+          "communityMessages": "Mensagens da comunidade",
+          "marketplaceAlerts": "Alertas do marketplace",
+          "subscriptionReminders": "Lembretes de assinatura"
+        }
       }
     },
     "userProfile": {
@@ -669,8 +698,8 @@
         "waterSaved": "Água Economizada",
         "biodiversity": "Biodiversidade",
         "soilRegenerated": "Solo regenerado",
-        "species": "{contar} espécies",
-        "vsAverage": "{porcentagem} versus média",
+        "species": "{count} espécies",
+        "vsAverage": "{percent} versus média",
         "protected": "Protegido"
       },
       "social": {
@@ -679,8 +708,8 @@
         "incomeGenerated": "Renda gerada",
         "education": "Educação",
         "health": "Saúde",
-        "students": "{contar} alunos",
-        "checkups": "{contar} cheques"
+        "students": "{count} alunos",
+        "checkups": "{count} cheques"
       },
       "timeline": {
         "title": "Impacto no Crescimento 2024",
@@ -731,7 +760,7 @@
       "ranking": {
         "title": "Sua classificação",
         "of": "de {total} usuários",
-        "top": "Principais {porcentagem}"
+        "top": "Principais {percent}"
       },
       "milestone": {
         "title": "Próximo marco",

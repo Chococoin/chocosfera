@@ -368,6 +368,35 @@
         "whyVerifyDescription": "La vérification de l'âge nous aide à créer un environnement sûr et approprié pour tous les utilisateurs, en conformité avec les réglementations de protection des mineurs.",
         "howLongTitle": "Combien de temps prend la vérification?",
         "howLongDescription": "Nous traitons généralement les vérifications en 24 à 48 heures ouvrables. Nous vous informerons par email lorsqu'elle sera prête."
+      },
+      "telegram": {
+        "title": "Intégration Telegram",
+        "linked": "Compte Telegram lié",
+        "notLinked": "Compte Telegram non lié",
+        "link": "Lier le compte",
+        "unlink": "Dissocier le compte",
+        "howToLink": "Comment lier votre compte Telegram",
+        "step1": "Ouvrez Telegram et recherchez @ChocosfereBot",
+        "step2": "Envoyez la commande /start au bot",
+        "step3": "Le bot vous enverra un code de liaison unique",
+        "step4": "Cliquez sur le bouton « Lier le compte » et entrez votre code",
+        "features": {
+          "notifications": "Notifications instantanées",
+          "notificationsDesc": "Recevez des mises à jour en temps réel sur vos arbres, vos récoltes et votre communauté",
+          "commands": "Commandes du bot",
+          "commandsDesc": "Utilisez des commandes comme /trees, /impact ou /help pour obtenir rapidement des informations",
+          "treeUpdates": "Mises à jour des arbres",
+          "treeUpdatesDesc": "Recevez des photos et des mises à jour de vos arbres adoptés directement sur Telegram",
+          "community": "Accès à la communauté",
+          "communityDesc": "Accès exclusif au groupe communautaire Chocósfera Telegram"
+        },
+        "preferences": {
+          "title": "Préférences de notifications Telegram",
+          "treeUpdates": "Mises à jour et photos des arbres",
+          "communityMessages": "Messages de la communauté",
+          "marketplaceAlerts": "Alertes du marché",
+          "subscriptionReminders": "Rappels d'abonnement"
+        }
       }
     },
     "userProfile": {
@@ -662,7 +691,7 @@
       "title": "Votre impact mondial",
       "subtitle": "Vous faites une différence 🌍✨",
       "level": "Niveau",
-      "progressToLevel": "Progression vers le niveau {niveau}",
+      "progressToLevel": "Progression vers le niveau {level}",
       "environmental": {
         "title": "Impact environnemental",
         "co2Captured": "CO₂ capté",
@@ -731,7 +760,7 @@
       "ranking": {
         "title": "Votre classement",
         "of": "de {total} utilisateurs",
-        "top": "Top {pourcentage}"
+        "top": "Top {percent}"
       },
       "milestone": {
         "title": "Étape suivante",
