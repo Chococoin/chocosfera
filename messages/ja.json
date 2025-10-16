@@ -30,7 +30,8 @@
     "adopt": "養子縁組",
     "traceability": "トレーサビリティ",
     "impact": "影響",
-    "create": "作成"
+    "create": "作成",
+    "pricing": "予定"
   },
   "login": {
     "title": "ログイン",
@@ -83,12 +84,16 @@
     "sidebar": {
       "dashboard": "ダッシュボード",
       "myTrees": "マイツリー",
+      "family": "私の家族",
+      "characters": "私のキャラクター",
+      "explore": "探索",
       "traceability": "トレーサビリティ",
       "impact": "インパクト",
       "community": "コミュニティ",
       "marketplace": "マーケットプレイス",
       "settings": "設定",
-      "quote": "チョコレートは食べられる幸せです"
+      "quote": "チョコレートは食べられる幸せです",
+      "pricing": "予定"
     },
     "header": {
       "title": "ダッシュボード",
@@ -151,6 +156,24 @@
         "rule2": "カカオとチョコレートに関する知識を共有する",
         "rule3": "トレーサビリティと持続可能性について質問する",
         "rule4": "スパムや無関係なコンテンツは禁止"
+      },
+      "restricted": {
+        "title": "アクセス制限",
+        "description": "未成年の場合、コミュニティの Telegram チャットにアクセスすることはできません。ここは成人向けのスペースです。",
+        "whyTitle": "なぜこの制限があるのでしょうか?",
+        "reason1": "適切な会話で未成年者を守ります",
+        "reason2": "私たちは児童保護規制を遵守します",
+        "reason3": "チョコスフィアの他のエリアも引き続きお楽しみいただけます",
+        "adultQuestion": "あなたは法定年齢に達していますか?",
+        "verifyButton": "フルアクセスするには年齢を確認してください"
+      },
+      "setup": {
+        "title": "必要な構成",
+        "description": "ここで Telegram チャットを表示するには、次のものが必要です。",
+        "step1": "Telegram でグループまたはパブリック チャネルを作成する",
+        "step2": "ユーザー名を取得します (例: @chocosfera_community)",
+        "step3": "定数を更新する",
+        "step3b": "で"
       }
     },
     "trees": {
@@ -185,6 +208,818 @@
         "copyAddress": "住所をコピー",
         "viewOnMap": "地図で見る",
         "explanation": "3つのシンプルな単語でこの正確な場所を識別する独自の方法"
+      }
+    },
+    "settings": {
+      "title": "設定",
+      "subtitle": "アカウントと環境設定を管理",
+      "profile": {
+        "title": "プロフィール",
+        "name": "名前",
+        "email": "メール",
+        "username": "ユーザー名",
+        "editProfile": "プロフィールを編集",
+        "changeAvatar": "写真を変更",
+        "saveChanges": "変更を保存",
+        "avatarPrompt": "お気に入りの絵文字をアバターとして選択してください",
+        "selectEmoji": "{emoji}を選択",
+        "avatarDescription": "あなたの絵文字はChocósfera全体であなたを表します",
+        "identityProtectionTitle": "個人情報保護",
+        "identityProtectionDescription": "あなたの個人情報を保護するため、ニックネーム（愛称）のみを使用します。本名を提供する必要はありません。",
+        "nickLabel": "あなたのニックネーム（愛称）",
+        "nickPlaceholder": "例: choco_lover",
+        "nickDescription": "あなたのニックネームは、Chocósferaで他のユーザーがあなたを知る方法です",
+        "emailSecurityNote": "セキュリティ上の理由からメールは変更できません",
+        "firstNameOptional": "名（任意）",
+        "firstNamePlaceholder": "あなたの名",
+        "lastNameOptional": "姓（任意）",
+        "lastNamePlaceholder": "あなたの姓",
+        "errors": {
+          "avatarUpdateError": "アバターの更新中にエラーが発生しました",
+          "avatarUpdateRetry": "アバターの更新中にエラーが発生しました。もう一度お試しください。"
+        }
+      },
+      "subscriptions": {
+        "title": "マイサブスクリプション",
+        "active": "アクティブ",
+        "inactive": "非アクティブ",
+        "nextPayment": "次回のお支払い",
+        "manage": "管理",
+        "cancel": "キャンセル",
+        "noSubscriptions": "アクティブなサブスクリプションはありません",
+        "viewPlans": "利用可能なプランを見る"
+      },
+      "account": {
+        "title": "アカウント",
+        "changePassword": "パスワードを変更",
+        "currentPassword": "現在のパスワード",
+        "newPassword": "新しいパスワード",
+        "confirmPassword": "パスワードを確認",
+        "language": "言語",
+        "timezone": "タイムゾーン",
+        "dateFormat": "日付形式",
+        "preferences": "環境設定",
+        "languageUpdateNote": "言語はアプリケーション全体で即座に更新されます",
+        "onboardingTutorial": "初期チュートリアル",
+        "onboardingDescription": "初期チュートリアルをもう一度見たいですか？いつでも再体験できます。"
+      },
+      "notifications": {
+        "title": "通知",
+        "email": "メール通知",
+        "push": "プッシュ通知",
+        "newsletter": "週刊ニュースレター",
+        "treeUpdates": "木の更新情報",
+        "marketingEmails": "マーケティングメール",
+        "productUpdates": "製品アップデート"
+      },
+      "chococoins": {
+        "title": "ChocoCoins",
+        "balance": "残高",
+        "history": "履歴",
+        "buyMore": "もっと購入",
+        "transaction": "取引",
+        "date": "日付",
+        "amount": "金額",
+        "noTransactions": "取引履歴はありません",
+        "buyCoinsTitle": "ChocoCoinsを購入",
+        "buyCoinsSubtitle": "あなたにぴったりのパッケージを選択してください",
+        "mostPopular": "最も人気",
+        "processing": "処理中...",
+        "buyNow": "今すぐ購入",
+        "securePayment": "Stripeによる安全な決済",
+        "paymentInfo1": "お支払いはStripeによって安全に処理されます",
+        "paymentInfo2": "クレジットカードとデビットカードを受け付けています",
+        "paymentInfo3": "ChocoCoinsは即座にクレジットされます",
+        "paymentInfo4": "30日間の返金ポリシー",
+        "packages": {
+          "starterDescription": "始めるのに最適なスターターパッケージ",
+          "popularDescription": "最も人気 - 5€節約",
+          "premiumDescription": "最高の価値 - 20€節約",
+          "megaDescription": "メガパック - 60€節約"
+        },
+        "transactions": {
+          "earnedSubscription": "獲得 - アクティブなサブスクリプション",
+          "redeemedChocolate": "引き換え - チョコレートバー",
+          "earnedTree": "獲得 - 木を養子縁組"
+        },
+        "errors": {
+          "paymentInitError": "決済の開始中にエラーが発生しました",
+          "paymentProcessError": "決済の処理中にエラーが発生しました。もう一度お試しください。"
+        }
+      },
+      "privacy": {
+        "title": "プライバシーとセキュリティ",
+        "twoFactor": "二要素認証",
+        "twoFactorEnabled": "有効",
+        "twoFactorDisabled": "無効",
+        "enable": "有効にする",
+        "disable": "無効にする",
+        "sessions": "アクティブなセッション",
+        "currentSession": "現在のセッション",
+        "revokeSession": "セッションを終了",
+        "deleteAccount": "アカウントを削除",
+        "deleteWarning": "この操作は永続的で元に戻すことはできません",
+        "confirmDelete": "削除を確認",
+        "sessionLocation": "東京、日本",
+        "sessionNow": "今",
+        "sessionHoursAgo": "{hours}時間前"
+      },
+      "verification": {
+        "tabLabel": "年齢確認",
+        "adultPrompt": "すでに成人ですか？以下の確認フォームを使用していつでも年齢を確認し、すべての機能をご利用いただけます。",
+        "formTitle": "年齢確認（18歳以上のみ）",
+        "studentWarning": "学生の方は、このフォームに記入しないでください。保護者に身分証明書をアップロードして年齢確認を依頼してください。",
+        "formDescription": "すべての機能をご利用いただくには、成人であることを確認する必要があります。身分証明書（IDカード、パスポート、運転免許証）の写真をアップロードしてください。",
+        "documentType": "書類の種類",
+        "selectDocumentType": "書類の種類を選択",
+        "dni": "身分証明書",
+        "passport": "パスポート",
+        "license": "運転免許証",
+        "uploadFront": "書類をアップロード（表面）",
+        "uploadBack": "書類をアップロード（裏面） - 任意",
+        "securityTitle": "🔒 データのセキュリティ",
+        "securityNote1": "年齢確認のためのみに使用します",
+        "securityNote2": "書類は安全に暗号化されて保管されます",
+        "securityNote3": "第三者と情報を共有することは決してありません",
+        "submitButton": "確認用書類を送信",
+        "statusLabel": "確認ステータス:",
+        "statusStudent": "学生アカウント",
+        "statusPending": "確認待ち",
+        "statusVerified": "成人確認済み",
+        "statusStudentDescription": "あなたのアカウントは保護のため機能が制限された学生として登録されています。",
+        "statusPendingDescription": "リクエストを受け取り、書類を確認しています。",
+        "statusVerifiedDescription": "年齢が確認されました。すべての機能に完全にアクセスできます。",
+        "restrictedFeaturesTitle": "制限された機能（あなたの保護のため）",
+        "restrictedFeature1": "コミュニティのTelegramチャットにアクセスできません",
+        "restrictedFeature2": "ファミリープロファイルを作成できません（保護者の招待でのみ参加可能）",
+        "restrictedFeature3": "保護のため、ソーシャル機能が制限されています",
+        "reviewTimeTitle": "推定審査時間",
+        "reviewTimeDescription": "当チームは24〜48営業時間以内にリクエストを審査します。確認が完了したらメールでお知らせします。",
+        "inProgress": "処理中...",
+        "unlockedFeaturesTitle": "ロック解除された機能",
+        "unlockedFeature1": "Telegramチャットへの完全なアクセス",
+        "unlockedFeature2": "ファミリープロファイルの作成と管理",
+        "unlockedFeature3": "すべてのソーシャル機能が利用可能",
+        "unlockedFeature4": "家族を招待してキャラクターを作成",
+        "importantAdultOnly": "⚠️ 重要: このプロセスは成人のみが対象です",
+        "uploadPrompt": "クリックしてアップロードするか、ファイルをここにドラッグしてください",
+        "uploadFileTypes": "PNG、JPG、またはPDF（最大10MB）",
+        "whyVerifyTitle": "なぜ年齢確認が必要ですか？",
+        "whyVerifyDescription": "年齢確認は、すべてのユーザーにとって安全で適切な環境を作り、未成年者保護規則を遵守するのに役立ちます。",
+        "howLongTitle": "確認にはどのくらい時間がかかりますか？",
+        "howLongDescription": "通常、24〜48営業時間以内に確認を処理します。準備ができたらメールでお知らせします。"
+      }
+    },
+    "userProfile": {
+      "student": "学生",
+      "verificationPending": "確認待ち",
+      "adultVerified": "成人確認済み",
+      "inFamily": "家族グループ",
+      "studentRestriction": "学生として、あなたの保護のため一部の機能が制限されています。保護者に",
+      "verifyAge": "年齢確認をしてもらってください",
+      "settings": "設定",
+      "myFamily": "私の家族",
+      "logout": "ログアウト"
+    },
+    "family": {
+      "title": "私の家族",
+      "headerWithFamily": "家族のプロフィールと共有ツリーを管理します",
+      "headerWithoutFamily": "家族のプロフィールを作成するか、既存のプロフィールに参加します",
+      "loading": "充電...",
+      "loadingFamily": "ファミリを読み込んでいます...",
+      "createFamily": {
+        "title": "家族プロフィールを作成する",
+        "description": "Chocosphere で自分の家族を作り、みんなのツリーを管理しましょう",
+        "button": "私の家族を作成する",
+        "modalTitle": "家族プロフィールを作成する",
+        "nameLabel": "苗字",
+        "namePlaceholder": "例: ガルシア家、ロス・ロドリゲス...",
+        "nameDescription": "この名前は家族全員に表示されます",
+        "tipLabel": "ヒント：",
+        "tipText": "あなたはファミリーの管理者となり、他のメンバーを招待できます。",
+        "cancelButton": "キャンセル",
+        "creating": "作成...",
+        "createButton": "家族の作成",
+        "minorWarning": "認証された成人のみが家族プロフィールを作成できます。",
+        "verifyAgeLink": "保護者に年齢確認を依頼してください",
+        "successMessage": "無事に家族が出来ました！",
+        "errorMessage": "ファミリの作成中にエラーが発生しました"
+      },
+      "inviteParent": {
+        "title": "お父さん/お母さんを招待してください",
+        "description": "保護者に家族プロフィールを作成するための招待メールを送信する",
+        "emailLabel": "お父さん・お母さんからのメール",
+        "emailPlaceholder": "親@example.com",
+        "sendButton": "招待状を送信する",
+        "sending": "送信中...",
+        "tipText": "保護者には、家族のプロフィールに登録または参加するためのリンクが記載されたメールが届きます。",
+        "successMessage": "招待状を {email} に送信しました!"
+      },
+      "joinFamily": {
+        "title": "招待状で参加する",
+        "description": "誰かがあなたを家族に招待すると、リンクが記載されたメールが届きます。",
+        "checkEmailText": "メールをチェックして保留中の招待状があるかどうかを確認してください",
+        "viewInvitationsLink": "私の招待状を見る→"
+      },
+      "invitations": {
+        "title": "保留中の招待状",
+        "sent": "送信済み：",
+        "expires": "有効期限:",
+        "pending": "イヤリング",
+        "cancelButton": "キャンセル",
+        "cancelConfirm": "この招待をキャンセルしてもよろしいですか?",
+        "cancelSuccess": "招待が正常にキャンセルされました",
+        "cancelError": "招待のキャンセルでエラーが発生しました",
+        "sendError": "招待状の送信エラー"
+      },
+      "overview": {
+        "members": "メンバー",
+        "membersPlural": "メンバー",
+        "totalTrees": "木の総数",
+        "trees": "木々",
+        "co2": "CO₂トン",
+        "water": "リットル"
+      },
+      "members": {
+        "title": "家族",
+        "inviteButton": "+ メンバーを招待",
+        "you": "あなた",
+        "student": "学生",
+        "verificationPending": "検証保留中",
+        "adult": "アダルト",
+        "noMembers": "まだ家族はいません",
+        "editRelationship": "関係の編集"
+      },
+      "inviteMember": {
+        "modalTitle": "メンバーを招待する",
+        "emailLabel": "メンバーのメールアドレス",
+        "emailPlaceholder": "member@example.com",
+        "parentLabel": "お父さん/お母さん (オプション)",
+        "noParent": "割り当てられた親がありません",
+        "parentDescription": "家系図でこのメンバーの親になる人を選択してください",
+        "tipText": "メンバーには、家族に参加するためのリンクが記載されたメールが届きます。",
+        "cancelButton": "キャンセル",
+        "sendButton": "招待状を送信する",
+        "sending": "送信中...",
+        "successMessage": "招待状を {email} に送信しました!"
+      },
+      "editMember": {
+        "modalTitle": "家族関係の編集",
+        "editing": "編集：",
+        "parentLabel": "お父さん/お母さん",
+        "noParent": "親が割り当てられていません (ツリー ルート)",
+        "parentDescription": "家系図でこのメンバーの親になる人を選択してください",
+        "tipText": "変更は家系図にすぐに反映されます。",
+        "cancelButton": "キャンセル",
+        "saveButton": "変更を保存",
+        "saving": "保存中...",
+        "successMessage": "関係が正常に更新されました!",
+        "errorMessage": "関係の更新中にエラーが発生しました"
+      },
+      "tree": {
+        "title": "家系図",
+        "members": "メンバー",
+        "membersPlural": "メンバー",
+        "relationship": "父と子の関係",
+        "noTreeError": "家系図を構築できませんでした",
+        "legendTitle": "家系図:",
+        "legendDescription": "メンバーは親子関係別に編成されています。親が上に表示され、その子が下に線で接続されています。",
+        "legendAdmin": "家族関係を変更するには、編集アイコンをクリックします。"
+      },
+      "info": {
+        "title": "家族のプロフィールはどのように機能しますか?",
+        "point1": "学生はメールで保護者を招待できます",
+        "point2": "認証済みの大人 (18 歳以上) のみがファミリー プロフィールを作成できます",
+        "point3": "すべての家系図がプロフィールに追加されます",
+        "point4": "キャラクターやストーリーを一緒に作ることができます"
+      }
+    },
+    "characters": {
+      "title": "私のキャラクター",
+      "subtitle": "ユニークなキャラクターを作成し、チョコスフィアで彼らのストーリーを語ります",
+      "loading": "充電...",
+      "character": "キャラクター",
+      "charactersPlural": "キャラクター",
+      "createButton": "キャラクターの作成",
+      "public": "公共",
+      "updated": "更新されました",
+      "empty": {
+        "title": "あなたの冒険はここから始まります!",
+        "description": "まだキャラクターを作成していません。最初のキャラクターを作成し、チョコスフィアでストーリーを始めましょう。",
+        "createButton": "最初のキャラクターを作成する"
+      },
+      "types": {
+        "cacao": "ココア",
+        "chocolate": "チョコレート",
+        "farmer": "農家",
+        "other": "他の"
+      },
+      "stats": {
+        "stories": "ストーリー",
+        "commits": "コミット",
+        "views": "ビュー"
+      },
+      "info": {
+        "title": "登場人物は何ですか?",
+        "point1": "チョコスフィアで独自のストーリーを持つユニークなキャラクターを作成する",
+        "point2": "各キャラクターには履歴を含む独自の Git リポジトリがあります",
+        "point3": "Tony、Pipo、または Kaoka をフォークして自分のバージョンを作成できます",
+        "point4": "キャラクターを公開して共有するか、非公開にしておきます"
+      },
+      "errors": {
+        "fetchError": "文字取得エラー",
+        "unknownError": "不明なエラー"
+      }
+    },
+    "explore": {
+      "title": "探検する",
+      "subtitle": "コミュニティからキャラクターや公開ストーリーを発見する",
+      "searchPlaceholder": "キャラクター、ストーリー、ユーザーを検索...",
+      "canonCharacters": {
+        "title": "チョコスフェラ・カノンのキャラクター",
+        "subtitle": "チョコレートの世界に命を吹き込む公式キャラクターたち",
+        "forkThis": "このキャラクターをフォークする",
+        "pipo": {
+          "name": "ピポ",
+          "description": "好奇心いっぱいの小さなカカオの新芽"
+        },
+        "tony": {
+          "name": "トニー",
+          "description": "黄金の心を持つマスターショコラティエ"
+        },
+        "kaoka": {
+          "name": "カオカ",
+          "description": "カカオの賢い農民の守護者"
+        }
+      },
+      "tabs": {
+        "characters": "キャラクター",
+        "stories": "ストーリー"
+      },
+      "types": {
+        "cacao": "ココア",
+        "chocolate": "チョコレート",
+        "farmer": "農家",
+        "other": "他の"
+      },
+      "errors": {
+        "fetchCharacters": "文字の読み込みエラー",
+        "fetchStories": "ストーリーの読み込みエラー",
+        "unknown": "不明なエラー",
+        "updateLike": "次のような更新エラー"
+      },
+      "empty": {
+        "noCharactersFound": "文字が見つかりません",
+        "noPublicCharacters": "公開可能な著名人はいません",
+        "noStoriesFound": "ストーリーが見つかりませんでした",
+        "noPublicStories": "利用できる公開ストーリーはありません",
+        "tryOtherTerms": "他の検索語を試してください",
+        "beFirstCharacter": "公開ペルソナを最初に作成してみませんか。",
+        "beFirstStory": "誰よりも早く公開ストーリーを作成しましょう!",
+        "createCharacter": "キャラクターの作成"
+      },
+      "results": {
+        "character": "キャラクター",
+        "charactersPlural": "キャラクター",
+        "story": "歴史",
+        "storiesPlural": "物語",
+        "found": "見つかった",
+        "foundPlural": "見つかった"
+      },
+      "like": {
+        "add": "いいねを与える",
+        "remove": "いいねを削除"
+      }
+    },
+    "traceability": {
+      "title": "トレーサビリティ",
+      "subtitle": "カカオの起源からあなたまでの完全な旅をたどってください。",
+      "product": "製品",
+      "timeline": {
+        "title": "製品ツアー",
+        "verified": "ブロックチェーン上で検証済み"
+      },
+      "steps": {
+        "planting": {
+          "title": "プランテーション",
+          "location": "エル・カカオ農園、エクアドル",
+          "details": "木を植えてブロックチェーンに登録"
+        },
+        "growth": {
+          "title": "成長",
+          "location": "エル・カカオ農園、エクアドル",
+          "details": "成長段階にある木、オーガニック認証済み"
+        },
+        "harvest": {
+          "title": "収穫",
+          "location": "エル・カカオ農園、エクアドル",
+          "details": "確認された収穫量: カカオ 12kg"
+        },
+        "processing": {
+          "title": "起訴",
+          "location": "処理センター、キト",
+          "details": "発酵と乾燥の過程"
+        },
+        "distribution": {
+          "title": "分布",
+          "date": "すぐ",
+          "location": "輸送中",
+          "details": "処理を待っています"
+        }
+      },
+      "blockchain": {
+        "title": "ブロックチェーンの検証",
+        "transactionHash": "トランザクションハッシュ",
+        "block": "ブロック",
+        "timestamp": "日付/時刻",
+        "network": "グリッド",
+        "viewExplorer": "ブロックエクスプローラーで表示"
+      },
+      "productInfo": {
+        "title": "製品情報",
+        "treeId": "ツリーID",
+        "variety": "バラエティ",
+        "varietyValue": "ファインアロマココア",
+        "farmer": "農家",
+        "altitude": "高度",
+        "masl": "マスル"
+      },
+      "certifications": {
+        "title": "認証",
+        "fairTrade": "公正取引",
+        "organic": "オーガニック",
+        "carbonNeutral": "カーボンニュートラル",
+        "rainforest": "熱帯雨林同盟"
+      },
+      "impact": {
+        "title": "生み出されたインパクト",
+        "co2Captured": "回収されたCO₂",
+        "farmerIncome": "農家の収入",
+        "familiesBenefited": "受益者家族"
+      }
+    },
+    "impact": {
+      "title": "あなたの世界的な影響力",
+      "subtitle": "あなたは変化を生み出しています 🌍✨",
+      "level": "レベル",
+      "progressToLevel": "レベル {level} に進みます",
+      "environmental": {
+        "title": "環境への影響",
+        "co2Captured": "回収されたCO₂",
+        "waterSaved": "節水",
+        "biodiversity": "生物多様性",
+        "soilRegenerated": "再生土壌",
+        "species": "{count} 種",
+        "vsAverage": "{パーセント} 対平均",
+        "protected": "保護されています"
+      },
+      "social": {
+        "title": "社会的影響",
+        "familiesSupported": "サポートされている家族",
+        "incomeGenerated": "得られる収入",
+        "education": "教育",
+        "health": "健康",
+        "students": "{count} 人の生徒",
+        "checkups": "{count} 回のチェック"
+      },
+      "timeline": {
+        "title": "2024 年のインパクト成長",
+        "months": {
+          "jan": "1月",
+          "feb": "2月",
+          "mar": "海",
+          "apr": "4月",
+          "may": "5月",
+          "jun": "ジュン"
+        }
+      },
+      "achievements": {
+        "title": "進行中の成果",
+        "treesAdopted": "採用された木",
+        "co2Captured": "CO₂ 回収量 (kg)",
+        "activeDays": "アクティブな日",
+        "community": "コミュニティ"
+      },
+      "badges": {
+        "title": "記章",
+        "locked": "ブロックされました",
+        "firstTree": {
+          "name": "ファーストツリー",
+          "description": "あなたは最初の木を採用しました"
+        },
+        "ecoWarrior": {
+          "name": "エコーウォリアー",
+          "description": "100kgのCO₂を回収"
+        },
+        "communityHero": {
+          "name": "コミュニティヒーロー",
+          "description": "5家族をサポートしました"
+        },
+        "forestGuardian": {
+          "name": "森の守護者",
+          "description": "10本の木を採用する"
+        },
+        "carbonMaster": {
+          "name": "カーボンマスター",
+          "description": "500kgのCO₂を捕捉"
+        },
+        "legend": {
+          "name": "伝説",
+          "description": "レベル10に到達する"
+        }
+      },
+      "ranking": {
+        "title": "あなたのランキング",
+        "of": "{合計} 人のユーザー",
+        "top": "上位 {パーセント}"
+      },
+      "milestone": {
+        "title": "次のマイルストーン",
+        "needMore": "あと {count} 個の木が必要です"
+      }
+    },
+    "marketplace": {
+      "subtitle": "ユニークなコミュニティ製品",
+      "productsCount": "製品",
+      "balance": {
+        "fiat": "残高 (ユーロ)",
+        "coins": "あなたのチョココイン"
+      },
+      "categories": {
+        "all": "全て",
+        "trees": "木々",
+        "nft": "NFTカード",
+        "books": "本",
+        "plush": "ぬいぐるみ",
+        "chocolate": "チョコレート"
+      },
+      "rarities": {
+        "all": "全て",
+        "common": "一般",
+        "rare": "奇妙な",
+        "epic": "すごい",
+        "legendary": "伝説の"
+      },
+      "filters": {
+        "categories": "カテゴリー",
+        "rarity": "レアリティ",
+        "priceRange": "価格帯",
+        "filteringBy": "フィルタリング"
+      },
+      "featured": {
+        "creator": "注目のクリエイター",
+        "productsCreated": "{count} 個の商品が作成されました"
+      },
+      "sort": {
+        "newest": "最新の",
+        "priceLowHigh": "価格: 安い順",
+        "priceHighLow": "価格: 高から低まで",
+        "popular": "最も人気のある"
+      },
+      "product": {
+        "by": "による",
+        "available": "利用可能",
+        "sold": "売られた",
+        "or": "どちらか",
+        "buy": "買う",
+        "noCoins": "コインはありません",
+        "buyingWithCoins": "{coins} 個の ChocoCoins で購入 (機能保留中)"
+      },
+      "empty": {
+        "title": "商品がありません",
+        "description": "フィルターを調整してみる"
+      },
+      "errors": {
+        "createSession": "支払いセッションの作成中にエラーが発生しました",
+        "processPayment": "支払い処理中にエラーが発生しました"
+      },
+      "items": {
+        "nft001": {
+          "name": "ココアの戦士",
+          "description": "限定版レジェンドカード",
+          "character": "ココアの戦士"
+        },
+        "nft002": {
+          "name": "チョコレートの妖精",
+          "description": "カカオの森の魔法の生き物",
+          "character": "チョコレートの妖精"
+        },
+        "nft003": {
+          "name": "ココアガーディアン",
+          "description": "神木の守護者",
+          "character": "ココアガーディアン"
+        },
+        "nft004": {
+          "name": "スイートドラゴン",
+          "description": "コレクションの中で最も珍しいドラゴン",
+          "character": "スイートドラゴン"
+        },
+        "book001": {
+          "name": "カカイト アドベンチャーズ",
+          "description": "32 のぬりえアドベンチャー ページ",
+          "character": "カカイト"
+        },
+        "book002": {
+          "name": "カカオ王国",
+          "description": "魔法のチョコレート王国を探検しよう",
+          "character": "ココアキング"
+        },
+        "book003": {
+          "name": "チョコレートの伝説",
+          "description": "特別版48ページ",
+          "character": "いくつかの"
+        },
+        "plush001": {
+          "name": "カカイト ぬいぐるみ",
+          "description": "手作りの30cmぬいぐるみ",
+          "character": "カカイト"
+        },
+        "plush002": {
+          "name": "ミニチョコレートの妖精",
+          "description": "愛らしい15cmぬいぐるみ",
+          "character": "チョコレートの妖精"
+        },
+        "plush003": {
+          "name": "ジャイアントスイートドラゴン",
+          "description": "60cmプレミアムぬいぐるみ",
+          "character": "スイートドラゴン"
+        },
+        "choco001": {
+          "name": "戦士のタブレット",
+          "description": "チョコレート カカオ 85%、独自デザイン",
+          "character": "ココアの戦士"
+        },
+        "choco002": {
+          "name": "スイートフェアリー",
+          "description": "ミルクチョコレートと赤いフルーツ",
+          "character": "チョコレートの妖精"
+        },
+        "choco003": {
+          "name": "ドラゴンエディション",
+          "description": "6 つのテーマタブレットが入ったプレミアムセット",
+          "character": "スイートドラゴン"
+        },
+        "tree001": {
+          "name": "若い木 - コロンビア",
+          "description": "コロンビア、バジェ・デル・カウカの樹齢1年の木",
+          "character": "カカオの木"
+        },
+        "tree002": {
+          "name": "生産者の木 - ペルー",
+          "description": "ペルーのクスコで生産中の樹齢3年の木",
+          "character": "カカオの木"
+        },
+        "tree003": {
+          "name": "プレミアム ツリー - エクアドル",
+          "description": "樹齢5年の木、エスメラルダスで多産",
+          "character": "カカオの木"
+        },
+        "tree004": {
+          "name": "祖先の木 - ベネズエラ",
+          "description": "樹齢10年以上の木、祖先種のクリオロ種",
+          "character": "カカオの木"
+        },
+        "tree005": {
+          "name": "オーガニックツリー - メキシコ",
+          "description": "樹齢2年の木、タバスコの有機認証",
+          "character": "カカオの木"
+        },
+        "tree006": {
+          "name": "野生の木 - タンザニア",
+          "description": "タンザニア、キリマンジャロの樹齢4年の木",
+          "character": "カカオの木"
+        }
+      }
+    },
+    "pricing": {
+      "badge": "プランと料金",
+      "title": "～への道を選択してください",
+      "titleHighlight": "持続可能性",
+      "subtitle": "さまざまなニーズに合わせて設計された 2 つの補完的なスキーム。両方の制度に同時に加入して、すべての特典を享受できます。",
+      "perMonth": "月",
+      "perYear": "年",
+      "popular": "人気のある",
+      "subscribeNow": "今すぐ購読する",
+      "processing": "処理...",
+      "comparePlan": "プランを比較する",
+      "metrics": {
+        "trees": "木々",
+        "chococoins": "チョココイン/月",
+        "discount": "割引"
+      },
+      "multiPlan": {
+        "selected": "選択したプラン",
+        "selectedPlural": "選択されたプラン",
+        "total": "合計",
+        "subscribeAll": "すべて購読する",
+        "clearSelection": "選択をクリア"
+      },
+      "faq": {
+        "title": "よくある質問",
+        "q1": {
+          "question": "両方のプランを同時にプランすることはできますか?",
+          "answer": "絶対に！シードとフルーツのスキームは補完的です。シードの早期採用者になると同時に、フルーツの木を採用することもできます。"
+        },
+        "q2": {
+          "question": "チョココインとは何ですか？",
+          "answer": "ChocoCoins は、チョコレート、クリーム、商品など、市場の物理的な製品の割引を得るために使用できる当社の仮想通貨です。"
+        },
+        "q3": {
+          "question": "サブスクリプションはいつでもキャンセルできますか?",
+          "answer": "はい、コントロール パネルからいつでもサブスクリプションをキャンセルできます。長期契約や解約違約金はありません。"
+        }
+      },
+      "errors": {
+        "paymentError": "支払い処理中にエラーが発生しました。もう一度試してください。"
+      },
+      "schemes": {
+        "seed": {
+          "name": "シード",
+          "description": "プロジェクトをサポートし、その進化を知りたい早期採用者向け",
+          "tagline": "変化の種を植える",
+          "plans": {
+            "sprout": {
+              "name": "もやし",
+              "features": [
+                "独占的な月刊ニュースレター",
+                "新機能への早期アクセス",
+                "早期導入者バッジ",
+                "VIP電報グループ",
+                "ウェルカムチョココイン 50 枚"
+              ]
+            },
+            "seedling": {
+              "name": "苗木",
+              "features": [
+                "スプラウトのすべて",
+                "機能のプライベート ベータ版へのアクセス",
+                "チームとの毎月の電話会議",
+                "製品の決定に対する投票",
+                "ウェルカムチョココイン100枚",
+                "マーケットプレイスで10%割引"
+              ]
+            },
+            "sapling": {
+              "name": "苗木",
+              "features": [
+                "苗からすべて",
+                "創業者との四半期ごとの 1 対 1 セッション",
+                "スポンサーページでの表彰",
+                "サポートの優先順位",
+                "ウェルカムチョココイン200枚",
+                "マーケットプレイスで 20% 割引",
+                "限定イベントへのご招待"
+              ]
+            }
+          }
+        },
+        "fruit": {
+          "name": "フルーツ",
+          "description": "カカオの木を採用し、チョココインを獲得して限定商品をお楽しみください",
+          "tagline": "投資の成果を享受する",
+          "plans": {
+            "cacao": {
+              "name": "ココアポッド",
+              "features": [
+                "1本のカカオの木を採用",
+                "デジタル参加証明書",
+                "毎月50チョココイン",
+                "物理的な製品の 10% 永久割引",
+                "樹木の完全なトレーサビリティ",
+                "毎月の写真更新",
+                "環境への影響を測定および認定"
+              ]
+            },
+            "grove": {
+              "name": "ココア グローブ",
+              "features": [
+                "3本のカカオの木を採用",
+                "NFTデジタル証明書",
+                "毎月150チョココイン",
+                "物理的な製品の 20% 永久割引",
+                "年間 1 台の無料パーソナライズ タブレット",
+                "独自のキャラクターデザイン",
+                "あなたの木から採れるカカオ製品",
+                "四半期に一度の農園へのバーチャル訪問"
+              ]
+            },
+            "forest": {
+              "name": "カカオの森",
+              "features": [
+                "採用されたカカオの木 10 本",
+                "プレミアムNFTデジタル証明書",
+                "毎月500チョココイン",
+                "物理的な製品の 30% 永久割引",
+                "パーソナライズされたタブレットを年間 3 台無料で提供",
+                "あなたの個人ブランドの製品ライン",
+                "プレミアム商品の毎月の発送",
+                "あなたの農園への年に一度の物理的な訪問",
+                "収穫利益の分配",
+                "サステナビリティコンサルティング"
+              ]
+            }
+          }
+        }
       }
     }
   }
