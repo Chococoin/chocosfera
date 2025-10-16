@@ -535,6 +535,23 @@
       "title": "Explore",
       "subtitle": "Discover public characters and stories from the community",
       "searchPlaceholder": "Search characters, stories, users...",
+      "canonCharacters": {
+        "title": "Official Canon Characters of Chocósfera",
+        "subtitle": "The official characters that bring the chocolate universe to life",
+        "forkThis": "Fork this character",
+        "pipo": {
+          "name": "Pipo",
+          "description": "The curious little cacao sprout"
+        },
+        "tony": {
+          "name": "Tony",
+          "description": "The master chocolatier with a heart of gold"
+        },
+        "kaoka": {
+          "name": "Kaoka",
+          "description": "The wise farmer guardian of cacao"
+        }
+      },
       "tabs": {
         "characters": "Characters",
         "stories": "Stories"
@@ -723,7 +740,7 @@
     },
     "marketplace": {
       "subtitle": "Unique products from the community",
-      "products": "products",
+      "productsCount": "products",
       "balance": {
         "fiat": "Your Balance (EUR)",
         "coins": "Your ChocoCoins"
@@ -776,7 +793,7 @@
         "createSession": "Error creating payment session",
         "processPayment": "Error processing payment"
       },
-      "products": {
+      "items": {
         "nft001": {
           "name": "Cacao Warrior",
           "description": "Limited edition legendary card",
@@ -871,6 +888,137 @@
           "name": "Wild Tree - Tanzania",
           "description": "4-year-old tree in Kilimanjaro, Tanzania",
           "character": "Cacao Tree"
+        }
+      }
+    },
+    "pricing": {
+      "badge": "Plans and Pricing",
+      "title": "Choose your path to",
+      "titleHighlight": "sustainability",
+      "subtitle": "Two complementary schemes designed for different needs. You can subscribe to both schemes simultaneously and enjoy all the benefits.",
+      "perMonth": "month",
+      "perYear": "year",
+      "popular": "Popular",
+      "subscribeNow": "Subscribe now",
+      "processing": "Processing...",
+      "comparePlan": "Compare plan",
+      "metrics": {
+        "trees": "Trees",
+        "chococoins": "ChocoCoins/month",
+        "discount": "Discount"
+      },
+      "multiPlan": {
+        "selected": "plan selected",
+        "selectedPlural": "plans selected",
+        "total": "Total",
+        "subscribeAll": "Subscribe to all",
+        "clearSelection": "Clear selection"
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "q1": {
+          "question": "Can I have plans from both schemes at the same time?",
+          "answer": "Absolutely! The Seed and Fruit schemes are complementary. You can be an early adopter with Seed while also adopting trees with Fruit."
+        },
+        "q2": {
+          "question": "What are ChocoCoins?",
+          "answer": "ChocoCoins are our virtual currency that you can use to get discounts on physical products from the marketplace like chocolates, creams, and merchandising."
+        },
+        "q3": {
+          "question": "Can I cancel my subscription at any time?",
+          "answer": "Yes, you can cancel your subscription at any time from your dashboard. There are no long-term contracts or cancellation penalties."
+        }
+      },
+      "errors": {
+        "paymentError": "Error processing payment. Please try again."
+      },
+      "schemes": {
+        "seed": {
+          "name": "Seed",
+          "description": "For early adopters who want to support the project and stay updated on its evolution",
+          "tagline": "Plant the seed of change",
+          "plans": {
+            "sprout": {
+              "name": "Sprout",
+              "features": [
+                "Exclusive monthly newsletter",
+                "Early access to new features",
+                "Early Adopter Badge",
+                "VIP Telegram group",
+                "50 welcome ChocoCoins"
+              ]
+            },
+            "seedling": {
+              "name": "Seedling",
+              "features": [
+                "Everything in Sprout",
+                "Private beta access to features",
+                "Monthly call with the team",
+                "Vote on product decisions",
+                "100 welcome ChocoCoins",
+                "10% marketplace discount"
+              ]
+            },
+            "sapling": {
+              "name": "Sapling",
+              "features": [
+                "Everything in Seedling",
+                "Quarterly 1-on-1 session with founders",
+                "Recognition on sponsors page",
+                "Priority support",
+                "200 welcome ChocoCoins",
+                "20% marketplace discount",
+                "Invitation to exclusive events"
+              ]
+            }
+          }
+        },
+        "fruit": {
+          "name": "Fruit",
+          "description": "Adopt cacao trees, earn ChocoCoins, and enjoy exclusive products",
+          "tagline": "Harvest the fruits of your investment",
+          "plans": {
+            "cacao": {
+              "name": "Cacao Pod",
+              "features": [
+                "1 adopted cacao tree",
+                "Digital participation certificate",
+                "50 monthly ChocoCoins",
+                "10% permanent discount on physical products",
+                "Complete traceability of your tree",
+                "Monthly photo updates",
+                "Measured and certified environmental impact"
+              ]
+            },
+            "grove": {
+              "name": "Cacao Grove",
+              "features": [
+                "3 adopted cacao trees",
+                "NFT digital certificates",
+                "150 monthly ChocoCoins",
+                "20% permanent discount on physical products",
+                "1 FREE personalized bar annually",
+                "Exclusive character design",
+                "Products from your trees' cacao",
+                "Quarterly virtual plantation visit"
+              ]
+            },
+            "forest": {
+              "name": "Cacao Forest",
+              "features": [
+                "10 adopted cacao trees",
+                "Premium NFT digital certificates",
+                "500 monthly ChocoCoins",
+                "30% permanent discount on physical products",
+                "3 FREE personalized bars annually",
+                "Product line with your personal brand",
+                "Monthly shipment of premium products",
+                "Annual physical visit to your plantation",
+                "Participation in harvest profits",
+                "Sustainability consulting"
+              ]
+            }
+          }
         }
       }
     }

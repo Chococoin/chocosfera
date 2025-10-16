@@ -535,6 +535,23 @@
       "title": "Esplora",
       "subtitle": "Scopri personaggi e storie pubbliche dalla comunità",
       "searchPlaceholder": "Cerca personaggi, storie, utenti...",
+      "canonCharacters": {
+        "title": "Personaggi Canon Ufficiali di Chocósfera",
+        "subtitle": "I personaggi ufficiali che danno vita all'universo del cioccolato",
+        "forkThis": "Forka questo personaggio",
+        "pipo": {
+          "name": "Pipo",
+          "description": "Il piccolo germoglio di cacao pieno di curiosità"
+        },
+        "tony": {
+          "name": "Tony",
+          "description": "Il maestro cioccolataio dal cuore d'oro"
+        },
+        "kaoka": {
+          "name": "Kaoka",
+          "description": "Il saggio agricoltore custode del cacao"
+        }
+      },
       "tabs": {
         "characters": "Personaggi",
         "stories": "Storie"
@@ -723,7 +740,7 @@
     },
     "marketplace": {
       "subtitle": "Prodotti unici dalla comunità",
-      "products": "prodotti",
+      "productsCount": "prodotti",
       "balance": {
         "fiat": "Il Tuo Saldo (EUR)",
         "coins": "I Tuoi ChocoCoins"
@@ -776,7 +793,7 @@
         "createSession": "Errore nella creazione della sessione di pagamento",
         "processPayment": "Errore nell'elaborazione del pagamento"
       },
-      "products": {
+      "items": {
         "nft001": {
           "name": "Guerriero del Cacao",
           "description": "Carta leggendaria in edizione limitata",
@@ -871,6 +888,137 @@
           "name": "Albero Selvatico - Tanzania",
           "description": "Albero di 4 anni al Kilimanjaro, Tanzania",
           "character": "Albero di Cacao"
+        }
+      }
+    },
+    "pricing": {
+      "badge": "Piani e Prezzi",
+      "title": "Scegli il tuo percorso verso la",
+      "titleHighlight": "sostenibilità",
+      "subtitle": "Due schemi complementari progettati per esigenze diverse. Puoi iscriverti a entrambi gli schemi contemporaneamente e goderti tutti i benefici.",
+      "perMonth": "mese",
+      "perYear": "anno",
+      "popular": "Popolare",
+      "subscribeNow": "Iscriviti ora",
+      "processing": "Elaborazione...",
+      "comparePlan": "Confronta piano",
+      "metrics": {
+        "trees": "Alberi",
+        "chococoins": "ChocoCoins/mese",
+        "discount": "Sconto"
+      },
+      "multiPlan": {
+        "selected": "piano selezionato",
+        "selectedPlural": "piani selezionati",
+        "total": "Totale",
+        "subscribeAll": "Iscriviti a tutti",
+        "clearSelection": "Cancella selezione"
+      },
+      "faq": {
+        "title": "Domande Frequenti",
+        "q1": {
+          "question": "Posso avere piani di entrambi gli schemi contemporaneamente?",
+          "answer": "Assolutamente! Gli schemi Seed e Fruit sono complementari. Puoi essere un early adopter con Seed mentre adotti anche alberi con Fruit."
+        },
+        "q2": {
+          "question": "Cosa sono i ChocoCoins?",
+          "answer": "I ChocoCoins sono la nostra valuta virtuale che puoi usare per ottenere sconti sui prodotti fisici del marketplace come cioccolatini, creme e merchandising."
+        },
+        "q3": {
+          "question": "Posso cancellare la mia iscrizione in qualsiasi momento?",
+          "answer": "Sì, puoi cancellare la tua iscrizione in qualsiasi momento dal tuo pannello di controllo. Non ci sono contratti a lungo termine o penalità di cancellazione."
+        }
+      },
+      "errors": {
+        "paymentError": "Errore nell'elaborazione del pagamento. Riprova."
+      },
+      "schemes": {
+        "seed": {
+          "name": "Seed",
+          "description": "Per early adopter che vogliono supportare il progetto e rimanere aggiornati sulla sua evoluzione",
+          "tagline": "Pianta il seme del cambiamento",
+          "plans": {
+            "sprout": {
+              "name": "Sprout",
+              "features": [
+                "Newsletter mensile esclusiva",
+                "Accesso anticipato alle nuove funzionalità",
+                "Badge di Early Adopter",
+                "Gruppo Telegram VIP",
+                "50 ChocoCoins di benvenuto"
+              ]
+            },
+            "seedling": {
+              "name": "Seedling",
+              "features": [
+                "Tutto quanto in Sprout",
+                "Accesso beta privato alle funzionalità",
+                "Chiamata mensile con il team",
+                "Voto sulle decisioni di prodotto",
+                "100 ChocoCoins di benvenuto",
+                "10% di sconto nel marketplace"
+              ]
+            },
+            "sapling": {
+              "name": "Sapling",
+              "features": [
+                "Tutto quanto in Seedling",
+                "Sessione trimestrale 1-on-1 con i fondatori",
+                "Riconoscimento nella pagina degli sponsor",
+                "Supporto prioritario",
+                "200 ChocoCoins di benvenuto",
+                "20% di sconto nel marketplace",
+                "Invito a eventi esclusivi"
+              ]
+            }
+          }
+        },
+        "fruit": {
+          "name": "Fruit",
+          "description": "Adotta alberi di cacao, guadagna ChocoCoins e goditi prodotti esclusivi",
+          "tagline": "Raccogli i frutti del tuo investimento",
+          "plans": {
+            "cacao": {
+              "name": "Cacao Pod",
+              "features": [
+                "1 albero di cacao adottato",
+                "Certificato digitale di partecipazione",
+                "50 ChocoCoins mensili",
+                "10% di sconto permanente sui prodotti fisici",
+                "Tracciabilità completa del tuo albero",
+                "Aggiornamenti fotografici mensili",
+                "Impatto ambientale misurato e certificato"
+              ]
+            },
+            "grove": {
+              "name": "Cacao Grove",
+              "features": [
+                "3 alberi di cacao adottati",
+                "Certificati digitali NFT",
+                "150 ChocoCoins mensili",
+                "20% di sconto permanente sui prodotti fisici",
+                "1 tavoletta personalizzata annuale GRATIS",
+                "Design di personaggio esclusivo",
+                "Prodotti dal cacao dei tuoi alberi",
+                "Visita virtuale trimestrale alla piantagione"
+              ]
+            },
+            "forest": {
+              "name": "Cacao Forest",
+              "features": [
+                "10 alberi di cacao adottati",
+                "Certificati digitali NFT premium",
+                "500 ChocoCoins mensili",
+                "30% di sconto permanente sui prodotti fisici",
+                "3 tavolette personalizzate annuali GRATIS",
+                "Linea di prodotti con il tuo marchio personale",
+                "Spedizione mensile di prodotti premium",
+                "Visita fisica annuale alla tua piantagione",
+                "Partecipazione ai profitti del raccolto",
+                "Consulenza sulla sostenibilità"
+              ]
+            }
+          }
         }
       }
     }

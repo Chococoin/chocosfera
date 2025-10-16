@@ -6,7 +6,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { CharacterCardSkeleton } from '@/components/SkeletonLoader';
 import { EmptyState } from '@/components/EmptyState';
@@ -54,8 +54,9 @@ interface Story {
 type TabType = 'characters' | 'stories';
 
 export default function ExplorePage() {
-  
+
   const locale = useLocale();
+  const t = useTranslations('dashboard.explore');
   const [activeTab, setActiveTab] = useState<TabType>('characters');
   const [searchQuery, setSearchQuery] = useState('');
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -77,7 +78,7 @@ export default function ExplorePage() {
 
       if (activeTab === 'characters') {
         const response = await fetch('/api/characters?includePublic=true&limit=50');
-        if (!response.ok) throw new Error('Error al obtener personajes');
+        if (!response.ok) throw new Error(t('errors.fetchCharacters'));
         const data = await response.json();
         const publicCharacters = data.characters.filter((c: Character) => c.userId !== 'current-user'); // TODO: Filter by actual user
 
@@ -101,7 +102,7 @@ export default function ExplorePage() {
       } else {
         // Fetch public stories
         const response = await fetch('/api/stories?isPublic=true&status=published&limit=50');
-        if (!response.ok) throw new Error('Error al obtener historias');
+        if (!response.ok) throw new Error(t('errors.fetchStories'));
         const data = await response.json();
         const publicStories = data.stories || [];
 
@@ -124,7 +125,7 @@ export default function ExplorePage() {
         setStories(storiesWithLikes);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error desconocido');
+      setError(err instanceof Error ? err.message : t('errors.unknown'));
     } finally {
       setIsLoading(false);
     }
@@ -221,13 +222,13 @@ export default function ExplorePage() {
   const getTypeLabel = (type: string) => {
     switch (type) {
       case 'cacao':
-        return 'Cacao';
+        return t('types.cacao');
       case 'chocolate':
-        return 'Chocolate';
+        return t('types.chocolate');
       case 'farmer':
-        return 'Agricultor';
+        return t('types.farmer');
       default:
-        return 'Otro';
+        return t('types.other');
     }
   };
 
@@ -237,10 +238,10 @@ export default function ExplorePage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            Explorar Chocósfera
+            {t('title')}
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
-            Descubre personajes e historias de la comunidad
+            {t('subtitle')}
           </p>
         </div>
       </div>
@@ -252,7 +253,7 @@ export default function ExplorePage() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Buscar personajes, historias, usuarios..."
+            placeholder={t('searchPlaceholder')}
             className="w-full px-6 py-4 pl-14 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent text-lg"
           />
           <span className="absolute left-5 top-1/2 -translate-y-1/2 text-2xl">🔍</span>
@@ -270,7 +271,7 @@ export default function ExplorePage() {
                 : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
             }`}
           >
-            🎭 Personajes
+            🎭 {t('tabs.characters')}
           </button>
           <button
             onClick={() => setActiveTab('stories')}
@@ -280,10 +281,55 @@ export default function ExplorePage() {
                 : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
             }`}
           >
-            📚 Historias
+            📚 {t('tabs.stories')}
           </button>
         </div>
       </div>
+
+      {/* Canon Characters - Only show on Characters tab */}
+      {activeTab === 'characters' && !isLoading && !error && (
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl border border-purple-200 dark:border-purple-800 p-6">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              ⭐ {t('canonCharacters.title')}
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              {t('canonCharacters.subtitle')}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Pipo */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg border border-purple-200 dark:border-purple-700 p-4 text-center hover:shadow-lg transition-all">
+              <div className="text-5xl mb-3">🌱</div>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('canonCharacters.pipo.name')}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{t('canonCharacters.pipo.description')}</p>
+              <button className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold rounded-lg transition-colors">
+                🔱 {t('canonCharacters.forkThis')}
+              </button>
+            </div>
+
+            {/* Tony */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg border border-purple-200 dark:border-purple-700 p-4 text-center hover:shadow-lg transition-all">
+              <div className="text-5xl mb-3">🍫</div>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('canonCharacters.tony.name')}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{t('canonCharacters.tony.description')}</p>
+              <button className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold rounded-lg transition-colors">
+                🔱 {t('canonCharacters.forkThis')}
+              </button>
+            </div>
+
+            {/* Kaoka */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg border border-purple-200 dark:border-purple-700 p-4 text-center hover:shadow-lg transition-all">
+              <div className="text-5xl mb-3">👨‍🌾</div>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('canonCharacters.kaoka.name')}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{t('canonCharacters.kaoka.description')}</p>
+              <button className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold rounded-lg transition-colors">
+                🔱 {t('canonCharacters.forkThis')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Content */}
       {isLoading && (
@@ -306,20 +352,20 @@ export default function ExplorePage() {
           {filteredCharacters.length === 0 ? (
             <EmptyState
               icon="🔍"
-              title={searchQuery ? 'No se encontraron personajes' : 'No hay personajes públicos'}
+              title={searchQuery ? t('empty.noCharactersFound') : t('empty.noPublicCharacters')}
               description={
                 searchQuery
-                  ? 'Intenta con otros términos de búsqueda'
-                  : 'Sé el primero en compartir un personaje público con la comunidad'
+                  ? t('empty.tryOtherTerms')
+                  : t('empty.beFirstCharacter')
               }
-              actionLabel="Crear mi personaje"
+              actionLabel={t('empty.createCharacter')}
               actionHref={`/${locale}/dashboard/characters/create`}
             />
           ) : (
             <>
               <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
-                {filteredCharacters.length} personaje{filteredCharacters.length !== 1 ? 's' : ''}{' '}
-                encontrado{filteredCharacters.length !== 1 ? 's' : ''}
+                {filteredCharacters.length} {filteredCharacters.length !== 1 ? t('results.charactersPlural') : t('results.character')}{' '}
+                {filteredCharacters.length !== 1 ? t('results.foundPlural') : t('results.found')}
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredCharacters.map((character) => (
@@ -346,7 +392,7 @@ export default function ExplorePage() {
                               ? 'bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 hover:bg-pink-200 dark:hover:bg-pink-900/50'
                               : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                           } disabled:opacity-50 disabled:cursor-not-allowed z-10`}
-                          title={character.isLiked ? 'Quitar like' : 'Dar like'}
+                          title={character.isLiked ? t('like.remove') : t('like.add')}
                         >
                           {likingCharacterId === character.id ? (
                             <div className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-r-transparent"></div>
@@ -397,18 +443,18 @@ export default function ExplorePage() {
           {filteredStories.length === 0 ? (
             <EmptyState
               icon="📚"
-              title={searchQuery ? 'No se encontraron historias' : 'No hay historias públicas'}
+              title={searchQuery ? t('empty.noStoriesFound') : t('empty.noPublicStories')}
               description={
                 searchQuery
-                  ? 'Intenta con otros términos de búsqueda'
-                  : 'Sé el primero en compartir una historia pública con la comunidad'
+                  ? t('empty.tryOtherTerms')
+                  : t('empty.beFirstStory')
               }
             />
           ) : (
             <>
               <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
-                {filteredStories.length} historia{filteredStories.length !== 1 ? 's' : ''}{' '}
-                encontrada{filteredStories.length !== 1 ? 's' : ''}
+                {filteredStories.length} {filteredStories.length !== 1 ? t('results.storiesPlural') : t('results.story')}{' '}
+                {filteredStories.length !== 1 ? t('results.foundPlural') : t('results.found')}
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {filteredStories.map((story) => (
@@ -439,7 +485,7 @@ export default function ExplorePage() {
                             ? 'bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 hover:bg-pink-200 dark:hover:bg-pink-900/50'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                         } disabled:opacity-50 disabled:cursor-not-allowed z-10`}
-                        title={story.isLiked ? 'Quitar like' : 'Dar like'}
+                        title={story.isLiked ? t('like.remove') : t('like.add')}
                       >
                         {likingStoryId === story.id ? (
                           <div className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-r-transparent"></div>
@@ -468,7 +514,7 @@ export default function ExplorePage() {
                         </div>
                       </div>
                       <span className="text-xs text-gray-500 dark:text-gray-500">
-                        {new Date(story.createdAt).toLocaleDateString('es-ES', {
+                        {new Date(story.createdAt).toLocaleDateString(locale, {
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric',
