@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyAuth } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
@@ -13,15 +13,15 @@ export const dynamic = 'force-dynamic';
 export async function POST(request: NextRequest) {
   try {
     // Verify authentication
-    const authResult = await verifyAuth(request);
-    if (!authResult.valid || !authResult.payload) {
+    const user = await getCurrentUser();
+    if (!user) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
       );
     }
 
-    const userId = authResult.payload.userId;
+    const userId = user.id;
     const body = await request.json();
     const { telegramUsername } = body;
 
@@ -77,18 +77,18 @@ export async function POST(request: NextRequest) {
  * DELETE /api/telegram/link
  * Unlinks the Telegram account from the user's account
  */
-export async function DELETE(request: NextRequest) {
+export async function DELETE() {
   try {
     // Verify authentication
-    const authResult = await verifyAuth(request);
-    if (!authResult.valid || !authResult.payload) {
+    const user = await getCurrentUser();
+    if (!user) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
       );
     }
 
-    const userId = authResult.payload.userId;
+    const userId = user.id;
 
     // Remove Telegram information
     const updatedUser = await prisma.user.update({

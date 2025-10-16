@@ -111,13 +111,10 @@ export async function POST(
       if (character.userId !== user.id) {
         try {
           const { createCharacterLikedNotification } = await import('@/lib/notification-service');
-          const likerName = user.firstName && user.lastName
-            ? `${user.firstName} ${user.lastName}`
-            : user.nick;
 
           await createCharacterLikedNotification(
             character.userId,
-            likerName,
+            user.nick,
             character.name,
             id,
             user.locale

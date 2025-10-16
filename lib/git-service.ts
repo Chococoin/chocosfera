@@ -202,7 +202,7 @@ export class GiteaClient {
  * Handles local git operations using simple-git
  */
 export class GitService {
-  private git: SimpleGit;
+  public git: SimpleGit;
   private repoPath: string;
   private giteaClient: GiteaClient;
 

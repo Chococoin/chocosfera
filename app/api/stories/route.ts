@@ -67,7 +67,8 @@ export async function GET(req: NextRequest) {
 
     // Get character info for each story
     const storiesWithCharacterInfo = await Promise.all(
-      stories.map(async (story) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      stories.map(async (story: any) => {
         const character = await charactersCollection.findOne({
           _id: story.characterId,
           deletedAt: null,

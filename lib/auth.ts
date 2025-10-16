@@ -24,6 +24,7 @@ export interface JWTPayload {
   status: UserStatus;
   role: UserRole;
   familyId?: string;
+  locale?: string;
   iat?: number;
   exp?: number;
 }
@@ -37,6 +38,7 @@ export interface SessionUser {
   familyId?: string;
   telegramAccess: boolean;
   avatarUrl?: string;
+  locale: string;
 }
 
 // ============================================
@@ -73,11 +75,13 @@ export function generateToken(user: User): string {
     status: user.status,
     role: user.role,
     familyId: user.familyId ?? undefined,
+    locale: user.locale || 'es',
   };
 
   return jwt.sign(payload, JWT_SECRET, {
     expiresIn: JWT_EXPIRES_IN,
-  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } as any);
 }
 
 /**
@@ -149,6 +153,7 @@ export async function getCurrentUser(): Promise<SessionUser | null> {
     role: payload.role,
     familyId: payload.familyId,
     telegramAccess: payload.status === UserStatus.ADULT_VERIFIED,
+    locale: payload.locale || 'es',
   };
 }
 

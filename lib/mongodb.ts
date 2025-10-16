@@ -5,7 +5,7 @@
  * See: /docs/DATABASE-ARCHITECTURE.md
  */
 
-import { MongoClient, Db } from 'mongodb';
+import { MongoClient, Db, Document } from 'mongodb';
 
 if (!process.env.MONGODB_URI) {
   throw new Error('Please add MONGODB_URI to .env.local');
@@ -47,7 +47,7 @@ export async function getDatabase(): Promise<Db> {
 /**
  * Get specific collection with type safety
  */
-export async function getCollection<T = Record<string, unknown>>(collectionName: string) {
+export async function getCollection<T extends Document = Document>(collectionName: string) {
   const db = await getDatabase();
   return db.collection<T>(collectionName);
 }

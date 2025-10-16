@@ -92,7 +92,7 @@ function generateMessages(count: number): Omit<TelegramMessage, '_id'>[] {
     const timestamp = new Date(now.getTime() - minutesAgo * 60000);
 
     // Random reactions (30% chance of having reactions)
-    const reactions = [];
+    const reactions: TelegramMessage['reactions'] = [];
     const reactionCounts: Record<string, number> = {};
 
     if (Math.random() > 0.7) {

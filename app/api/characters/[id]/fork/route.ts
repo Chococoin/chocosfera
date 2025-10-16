@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getCurrentUser } from '@/lib/auth';
 import { getCollection, Collections } from '@/lib/mongodb';
 import { CharacterDocument } from '@/types/mongodb';
-import { initializeUserRepo } from '@/lib/git-service';
-import { ObjectId } from 'mongodb';
+import { initializeUserRepo, getUserRepoPath } from '@/lib/git-service';
+import { ObjectId, type OptionalId } from 'mongodb';
 
 /**
  * POST /api/characters/[id]/fork
@@ -92,7 +92,7 @@ export async function POST(
     const lastCommit = history[0];
 
     // Create forked character document in MongoDB
-    const forkedCharacterDoc: Omit<CharacterDocument, '_id'> = {
+    const forkedCharacterDoc: OptionalId<CharacterDocument> = {
       userId: user.id,
       name: `${baseName} (Fork)`,
       slug: newSlug,
@@ -155,7 +155,7 @@ export async function POST(
       deletedAt: null,
     };
 
-    const result = await charactersCollection.insertOne(forkedCharacterDoc);
+    const result = await charactersCollection.insertOne(forkedCharacterDoc as CharacterDocument);
 
     // Update original character's fork count
     await charactersCollection.updateOne(

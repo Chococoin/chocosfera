@@ -33,10 +33,11 @@ export async function POST(
     const storiesCollection = await getCollection(Collections.STORIES);
 
     // Find story
-    const story = await storiesCollection.findOne({
+    const story = (await storiesCollection.findOne({
       _id: new ObjectId(id),
       deletedAt: null,
-    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    })) as any; // Cast to any to access stats field
 
     if (!story) {
       return NextResponse.json(
@@ -110,13 +111,10 @@ export async function POST(
       if (story.userId !== user.id) {
         try {
           const { createStoryLikedNotification } = await import('@/lib/notification-service');
-          const likerName = user.firstName && user.lastName
-            ? `${user.firstName} ${user.lastName}`
-            : user.nick;
 
           await createStoryLikedNotification(
             story.userId,
-            likerName,
+            user.nick,
             story.title,
             id,
             user.locale

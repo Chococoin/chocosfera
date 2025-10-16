@@ -159,7 +159,7 @@ export async function POST(req: NextRequest) {
       deletedAt: null,
     };
 
-    const result = await charactersCollection.insertOne(characterDoc);
+    const result = await charactersCollection.insertOne(characterDoc as CharacterDocument);
 
     return NextResponse.json({
       success: true,

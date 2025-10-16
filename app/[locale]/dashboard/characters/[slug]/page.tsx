@@ -710,7 +710,7 @@ export default function CharacterDetailPage({
                 Habilidades Especiales
               </h2>
               <ul className="space-y-3">
-                {character.abilities.map((ability) => (
+                {character.abilities.map((ability, index) => (
                   <li
                     key={index}
                     className="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg"
@@ -849,7 +849,7 @@ export default function CharacterDetailPage({
 
           {!isLoadingStories && stories.length > 0 && (
             <div className="grid gap-6">
-              {stories.map((story) => (
+              {stories.map((story, index) => (
                 <div
                   key={story.id}
                   className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg transition-shadow"

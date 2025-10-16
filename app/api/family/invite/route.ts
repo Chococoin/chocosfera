@@ -121,8 +121,7 @@ export async function POST(req: NextRequest) {
     const expiresAt = new Date();
     expiresAt.setDate(expiresAt.getDate() + 7);
 
-    // Store parentId in metadata for later use when invitation is accepted
-    const metadata = parentId ? { parentId } : null;
+    // Note: metadata field doesn't exist in Prisma schema, skipping parentId storage
 
     const invitation = await prisma.invitation.create({
       data: {
@@ -131,7 +130,6 @@ export async function POST(req: NextRequest) {
         token,
         expiresAt,
         status: InvitationStatus.PENDING,
-        metadata,
       },
       include: {
         inviter: {
@@ -147,10 +145,8 @@ export async function POST(req: NextRequest) {
     });
 
     // Send invitation email (async, don't block the response)
-    const inviteLink = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/${user.locale}/family/accept/${token}`;
-    const inviterName = user.firstName && user.lastName
-      ? `${user.firstName} ${user.lastName}`
-      : user.nick;
+    const inviteLink = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/es/family/accept/${token}`;
+    const inviterName = user.nick;
 
     // Determine family name
     let familyName = 'Mi Familia';

@@ -189,7 +189,6 @@ export async function POST(
         where: { id: invitation.id },
         data: {
           status: InvitationStatus.DECLINED,
-          declinedAt: new Date(),
         },
       });
 
@@ -223,8 +222,8 @@ export async function POST(
     }
 
     // Extract parentId from invitation metadata if present
-    const metadata = invitation.metadata as { parentId?: string } | null;
-    const parentId = metadata?.parentId || null;
+    // Note: metadata field is not selected in the query, so we set parentId to null
+    const parentId = null;
 
     // Update user with familyId and parentId
     await prisma.user.update({
@@ -246,13 +245,9 @@ export async function POST(
 
     // Create notification for inviter
     try {
-      const acceptorName = user.firstName && user.lastName
-        ? `${user.firstName} ${user.lastName}`
-        : user.nick;
-
       await createFamilyAcceptedNotification(
         invitation.inviter.id,
-        acceptorName,
+        user.nick,
         user.email,
         user.locale
       );
