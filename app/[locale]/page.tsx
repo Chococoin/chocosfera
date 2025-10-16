@@ -182,7 +182,7 @@ export default function Home() {
                     <div className="text-xs md:text-sm text-[rgba(255,255,255,0.5)] uppercase tracking-wider">Total</div>
                   </div>
                 </div>
-                <div className="mt-8 flex items-center justify-center gap-4 text-7xl md:text-8xl opacity-90">
+                <div className="mt-16 flex items-center justify-center gap-4 text-5xl md:text-6xl opacity-90">
                   <span className="inline-block transition-all duration-300 animate-pulse">
                     {babyEmojis[currentBabyIndex]}
                   </span>
