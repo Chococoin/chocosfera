@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 interface Badge {
   id: string;
   name: string;
@@ -19,6 +21,8 @@ interface Achievement {
 }
 
 export default function ImpactPage() {
+  const t = useTranslations('dashboard.impact');
+
   // Usuario stats
   const userLevel = 7;
   const currentXP = 2340;
@@ -27,64 +31,64 @@ export default function ImpactPage() {
 
   // Impacto ambiental
   const environmentalImpact = [
-    { label: 'CO₂ Capturado', value: '288 kg', icon: '🌍', color: 'green', comparison: '+45% vs promedio' },
-    { label: 'Agua Ahorrada', value: '1,200 L', icon: '💧', color: 'blue', comparison: '+32% vs promedio' },
-    { label: 'Biodiversidad', value: '12 especies', icon: '🦋', color: 'purple', comparison: 'Protegidas' },
-    { label: 'Suelo Regenerado', value: '45 m²', icon: '🌱', color: 'emerald', comparison: '+28% vs promedio' },
+    { label: t('environmental.co2Captured'), value: '288 kg', icon: '🌍', color: 'green', comparison: t('environmental.vsAverage', { percent: '+45%' }) },
+    { label: t('environmental.waterSaved'), value: '1,200 L', icon: '💧', color: 'blue', comparison: t('environmental.vsAverage', { percent: '+32%' }) },
+    { label: t('environmental.biodiversity'), value: t('environmental.species', { count: '12' }), icon: '🦋', color: 'purple', comparison: t('environmental.protected') },
+    { label: t('environmental.soilRegenerated'), value: '45 m²', icon: '🌱', color: 'emerald', comparison: t('environmental.vsAverage', { percent: '+28%' }) },
   ];
 
   // Impacto social
   const socialImpact = [
-    { label: 'Familias Apoyadas', value: '8', icon: '👨‍👩‍👧‍👦', color: 'orange' },
-    { label: 'Ingreso Generado', value: '$1,440', icon: '💰', color: 'yellow' },
-    { label: 'Educación', value: '3 estudiantes', icon: '📚', color: 'pink' },
-    { label: 'Salud', value: '5 chequeos', icon: '🏥', color: 'red' },
+    { label: t('social.familiesSupported'), value: '8', icon: '👨‍👩‍👧‍👦', color: 'orange' },
+    { label: t('social.incomeGenerated'), value: '$1,440', icon: '💰', color: 'yellow' },
+    { label: t('social.education'), value: t('social.students', { count: '3' }), icon: '📚', color: 'pink' },
+    { label: t('social.health'), value: t('social.checkups', { count: '5' }), icon: '🏥', color: 'red' },
   ];
 
   // Badges
   const badges: Badge[] = [
     {
       id: 'first-tree',
-      name: 'Primer Árbol',
-      description: 'Adoptaste tu primer árbol',
+      name: t('badges.firstTree.name'),
+      description: t('badges.firstTree.description'),
       icon: '🌱',
       unlocked: true,
       date: '15 Ene 2024',
     },
     {
       id: 'eco-warrior',
-      name: 'Guerrero Eco',
-      description: '100kg de CO₂ capturado',
+      name: t('badges.ecoWarrior.name'),
+      description: t('badges.ecoWarrior.description'),
       icon: '⚔️',
       unlocked: true,
       date: '20 Mar 2024',
     },
     {
       id: 'community-hero',
-      name: 'Héroe Comunitario',
-      description: 'Apoyaste 5 familias',
+      name: t('badges.communityHero.name'),
+      description: t('badges.communityHero.description'),
       icon: '🦸',
       unlocked: true,
       date: '10 May 2024',
     },
     {
       id: 'forest-guardian',
-      name: 'Guardián del Bosque',
-      description: 'Adopta 10 árboles',
+      name: t('badges.forestGuardian.name'),
+      description: t('badges.forestGuardian.description'),
       icon: '🛡️',
       unlocked: false,
     },
     {
       id: 'carbon-master',
-      name: 'Maestro del Carbono',
-      description: 'Captura 500kg de CO₂',
+      name: t('badges.carbonMaster.name'),
+      description: t('badges.carbonMaster.description'),
       icon: '👑',
       unlocked: false,
     },
     {
       id: 'legend',
-      name: 'Leyenda',
-      description: 'Alcanza nivel 10',
+      name: t('badges.legend.name'),
+      description: t('badges.legend.description'),
       icon: '⭐',
       unlocked: false,
     },
@@ -92,20 +96,20 @@ export default function ImpactPage() {
 
   // Progreso de logros
   const achievements: Achievement[] = [
-    { id: '1', title: 'Árboles Adoptados', current: 12, target: 20, icon: '🌳', color: 'green' },
-    { id: '2', title: 'CO₂ Capturado (kg)', current: 288, target: 500, icon: '🌍', color: 'blue' },
-    { id: '3', title: 'Días Activo', current: 89, target: 100, icon: '📅', color: 'purple' },
-    { id: '4', title: 'Comunidad', current: 8, target: 10, icon: '👥', color: 'orange' },
+    { id: '1', title: t('achievements.treesAdopted'), current: 12, target: 20, icon: '🌳', color: 'green' },
+    { id: '2', title: t('achievements.co2Captured'), current: 288, target: 500, icon: '🌍', color: 'blue' },
+    { id: '3', title: t('achievements.activeDays'), current: 89, target: 100, icon: '📅', color: 'purple' },
+    { id: '4', title: t('achievements.community'), current: 8, target: 10, icon: '👥', color: 'orange' },
   ];
 
   // Timeline de impacto
   const impactTimeline = [
-    { month: 'Ene', trees: 2, co2: 48, families: 2 },
-    { month: 'Feb', trees: 4, co2: 96, families: 3 },
-    { month: 'Mar', trees: 6, co2: 144, families: 5 },
-    { month: 'Abr', trees: 8, co2: 192, families: 6 },
-    { month: 'May', trees: 10, co2: 240, families: 7 },
-    { month: 'Jun', trees: 12, co2: 288, families: 8 },
+    { month: t('timeline.months.jan'), trees: 2, co2: 48, families: 2 },
+    { month: t('timeline.months.feb'), trees: 4, co2: 96, families: 3 },
+    { month: t('timeline.months.mar'), trees: 6, co2: 144, families: 5 },
+    { month: t('timeline.months.apr'), trees: 8, co2: 192, families: 6 },
+    { month: t('timeline.months.may'), trees: 10, co2: 240, families: 7 },
+    { month: t('timeline.months.jun'), trees: 12, co2: 288, families: 8 },
   ];
 
   return (
@@ -117,17 +121,17 @@ export default function ImpactPage() {
           <div className="flex items-start justify-between mb-6">
             <div>
               <h1 className="text-4xl font-bold text-heading mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-                Tu Impacto Global
+                {t('title')}
               </h1>
               <p className="text-muted text-lg">
-                Estás haciendo la diferencia 🌍✨
+                {t('subtitle')}
               </p>
             </div>
             <div className="text-right">
               <div className="inline-flex items-center gap-3 surface-panel px-6 py-3">
                 <div className="text-5xl">🏆</div>
                 <div>
-                  <p className="text-sm text-muted">Nivel</p>
+                  <p className="text-sm text-muted">{t('level')}</p>
                   <p className="text-3xl font-bold text-heading" style={{ fontFamily: 'var(--font-heading)' }}>
                     {userLevel}
                   </p>
@@ -139,7 +143,7 @@ export default function ImpactPage() {
           {/* Progress to next level */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-muted">Progreso al Nivel {userLevel + 1}</span>
+              <span className="text-muted">{t('progressToLevel', { level: userLevel + 1 })}</span>
               <span className="font-semibold text-heading">
                 {currentXP} / {nextLevelXP} XP
               </span>
@@ -157,7 +161,7 @@ export default function ImpactPage() {
       {/* Environmental Impact */}
       <div>
         <h2 className="text-2xl font-bold text-heading mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-          🌿 Impacto Ambiental
+          🌿 {t('environmental.title')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {environmentalImpact.map((item) => (
@@ -183,7 +187,7 @@ export default function ImpactPage() {
       {/* Social Impact */}
       <div>
         <h2 className="text-2xl font-bold text-heading mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-          💝 Impacto Social
+          💝 {t('social.title')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {socialImpact.map((item) => (
@@ -208,7 +212,7 @@ export default function ImpactPage() {
           {/* Timeline Visual */}
           <div className="surface-panel p-6">
             <h3 className="text-xl font-bold text-heading mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
-              📈 Crecimiento de Impacto 2024
+              📈 {t('timeline.title')}
             </h3>
             <div className="space-y-4">
               {impactTimeline.map((month) => (
@@ -243,7 +247,7 @@ export default function ImpactPage() {
           {/* Active Achievements */}
           <div className="surface-panel p-6">
             <h3 className="text-xl font-bold text-heading mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
-              🎯 Logros en Progreso
+              🎯 {t('achievements.title')}
             </h3>
             <div className="space-y-6">
               {achievements.map((achievement) => (
@@ -287,7 +291,7 @@ export default function ImpactPage() {
           {/* Badges */}
           <div className="surface-panel p-6">
             <h3 className="text-xl font-bold text-heading mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
-              🏅 Insignias
+              🏅 {t('badges.title')}
             </h3>
             <div className="grid grid-cols-2 gap-4">
               {badges.map((badge) => (
@@ -307,7 +311,7 @@ export default function ImpactPage() {
                       <p className="text-[9px] text-muted mt-2">🔓 {badge.date}</p>
                     )}
                     {!badge.unlocked && (
-                      <p className="text-[9px] text-muted mt-2">🔒 Bloqueado</p>
+                      <p className="text-[9px] text-muted mt-2">🔒 {t('badges.locked')}</p>
                     )}
                   </div>
                 </div>
@@ -320,15 +324,15 @@ export default function ImpactPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-yellow-100/20 via-transparent to-orange-100/20 dark:from-yellow-900/10 dark:to-orange-900/10" />
             <div className="relative">
               <h3 className="text-lg font-bold text-heading mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-                🏆 Tu Ranking
+                🏆 {t('ranking.title')}
               </h3>
               <div className="text-center py-4">
                 <div className="text-6xl mb-3">👑</div>
                 <p className="text-4xl font-bold text-heading mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
                   #47
                 </p>
-                <p className="text-sm text-muted">de 2,340 usuarios</p>
-                <p className="text-xs text-muted mt-2">Top 2% 🎉</p>
+                <p className="text-sm text-muted">{t('ranking.of', { total: '2,340' })}</p>
+                <p className="text-xs text-muted mt-2">{t('ranking.top', { percent: '2%' })} 🎉</p>
               </div>
             </div>
           </div>
@@ -336,12 +340,12 @@ export default function ImpactPage() {
           {/* Next Milestone */}
           <div className="surface-panel p-6">
             <h3 className="text-lg font-bold text-heading mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-              🎯 Próximo Hito
+              🎯 {t('milestone.title')}
             </h3>
             <div className="text-center py-4">
               <div className="text-5xl mb-3">🛡️</div>
-              <p className="font-bold text-heading mb-2">Guardián del Bosque</p>
-              <p className="text-sm text-muted mb-4">Necesitas 8 árboles más</p>
+              <p className="font-bold text-heading mb-2">{t('badges.forestGuardian.name')}</p>
+              <p className="text-sm text-muted mb-4">{t('milestone.needMore', { count: '8' })}</p>
               <div className="relative h-2 rounded-full bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] overflow-hidden">
                 <div
                   className="absolute inset-y-0 left-0 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-alt)] rounded-full"

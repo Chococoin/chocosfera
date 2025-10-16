@@ -8,7 +8,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface Character {
   id: string;
@@ -34,6 +34,7 @@ interface Character {
 export default function CharactersPage() {
   const { user } = useAuth();
   const locale = useLocale();
+  const t = useTranslations('dashboard.characters');
   const [characters, setCharacters] = useState<Character[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -48,13 +49,13 @@ export default function CharactersPage() {
       const response = await fetch('/api/characters');
 
       if (!response.ok) {
-        throw new Error('Error al obtener los personajes');
+        throw new Error(t('errors.fetchError'));
       }
 
       const data = await response.json();
       setCharacters(data.characters || []);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error desconocido');
+      setError(err instanceof Error ? err.message : t('errors.unknownError'));
     } finally {
       setIsLoading(false);
     }
@@ -76,13 +77,13 @@ export default function CharactersPage() {
   const getTypeLabel = (type: string) => {
     switch (type) {
       case 'cacao':
-        return 'Cacao';
+        return t('types.cacao');
       case 'chocolate':
-        return 'Chocolate';
+        return t('types.chocolate');
       case 'farmer':
-        return 'Agricultor';
+        return t('types.farmer');
       default:
-        return 'Otro';
+        return t('types.other');
     }
   };
 
@@ -91,7 +92,7 @@ export default function CharactersPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent mb-4"></div>
-          <p className="text-sm text-muted">Cargando...</p>
+          <p className="text-sm text-muted">{t('loading')}</p>
         </div>
       </div>
     );
@@ -105,10 +106,10 @@ export default function CharactersPage() {
           <div>
             <h1 className="text-3xl font-bold mb-2 flex items-center gap-2">
               <span>🎭</span>
-              Mis Personajes
+              {t('title')}
             </h1>
             <p className="text-white/90">
-              Crea personajes únicos y cuenta sus historias en la Chocósfera
+              {t('subtitle')}
             </p>
           </div>
           <div className="hidden md:block text-6xl">✨</div>
@@ -120,17 +121,17 @@ export default function CharactersPage() {
         <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 border-2 border-yellow-300 dark:border-yellow-700 rounded-xl p-8 text-center">
           <span className="text-7xl block mb-4">🎨</span>
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-            ¡Tu Aventura Comienza Aquí!
+            {t('empty.title')}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
-            Aún no has creado ningún personaje. Crea tu primer personaje y comienza tu historia en la Chocósfera.
+            {t('empty.description')}
           </p>
           <Link
             href={`/${locale}/dashboard/characters/create`}
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold rounded-lg transition-all shadow-lg hover:shadow-xl hover:scale-105"
           >
             <span>✨</span>
-            Crear Mi Primer Personaje
+            {t('empty.createButton')}
           </Link>
         </div>
       )}
@@ -142,14 +143,14 @@ export default function CharactersPage() {
             <span className="font-semibold text-gray-900 dark:text-white">
               {characters.length}
             </span>{' '}
-            personaje{characters.length !== 1 ? 's' : ''}
+            {characters.length !== 1 ? t('charactersPlural') : t('character')}
           </div>
           <Link
             href={`/${locale}/dashboard/characters/create`}
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold rounded-lg transition-all shadow-md hover:shadow-lg"
           >
             <span>+</span>
-            Crear Personaje
+            {t('createButton')}
           </Link>
         </div>
       )}
@@ -195,7 +196,7 @@ export default function CharactersPage() {
                 </span>
                 {character.isPublic && (
                   <div className="absolute top-3 right-3 px-2 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
-                    🌍 Público
+                    🌍 {t('public')}
                   </div>
                 )}
               </div>
@@ -221,25 +222,25 @@ export default function CharactersPage() {
                     <p className="text-lg font-bold text-gray-900 dark:text-white">
                       {character.stats.storiesCount}
                     </p>
-                    <p className="text-xs text-gray-600 dark:text-gray-400">Historias</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">{t('stats.stories')}</p>
                   </div>
                   <div className="text-center">
                     <p className="text-lg font-bold text-gray-900 dark:text-white">
                       {character.stats.commitsCount}
                     </p>
-                    <p className="text-xs text-gray-600 dark:text-gray-400">Commits</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">{t('stats.commits')}</p>
                   </div>
                   <div className="text-center">
                     <p className="text-lg font-bold text-gray-900 dark:text-white">
                       {character.stats.viewCount}
                     </p>
-                    <p className="text-xs text-gray-600 dark:text-gray-400">Vistas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">{t('stats.views')}</p>
                   </div>
                 </div>
 
                 {/* Updated date */}
                 <div className="mt-4 text-xs text-gray-500 dark:text-gray-500">
-                  Actualizado: {new Date(character.updatedAt).toLocaleDateString('es-ES')}
+                  {t('updated')}: {new Date(character.updatedAt).toLocaleDateString(locale)}
                 </div>
               </div>
             </Link>
@@ -251,24 +252,24 @@ export default function CharactersPage() {
       <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl border border-blue-200 dark:border-blue-800 p-6">
         <h3 className="text-lg font-bold text-blue-900 dark:text-blue-100 mb-3 flex items-center gap-2">
           <span>💡</span>
-          ¿Qué son los personajes?
+          {t('info.title')}
         </h3>
         <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span>Crea personajes únicos con historias propias en la Chocósfera</span>
+            <span>{t('info.point1')}</span>
           </li>
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span>Cada personaje tiene su propio repositorio Git con historial</span>
+            <span>{t('info.point2')}</span>
           </li>
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span>Puedes hacer fork de Tony, Pipo o Kaoka y crear tu versión</span>
+            <span>{t('info.point3')}</span>
           </li>
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span>Comparte tus personajes públicamente o mantenlos privados</span>
+            <span>{t('info.point4')}</span>
           </li>
         </ul>
       </div>

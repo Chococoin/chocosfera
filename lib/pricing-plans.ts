@@ -25,17 +25,19 @@ export interface PricingScheme {
   plans: PricingPlan[];
 }
 
+// Translation keys for pricing schemes and plans
+// These will be used to fetch translated content in components
 export const pricingSchemes: PricingScheme[] = [
   {
     id: 'seed',
-    name: 'Seed',
+    name: 'Seed', // Keep English names as they are brand names
     description: 'Para early adopters que quieren apoyar el proyecto y estar al tanto de su evolución',
     tagline: 'Planta la semilla del cambio',
     icon: '🌱',
     plans: [
       {
         id: 'seed-sprout',
-        name: 'Sprout',
+        name: 'Sprout', // Keep English names as they are brand names
         priceEUR: 2.99,
         interval: 'month',
         stripePriceIds: {},

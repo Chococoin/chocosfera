@@ -20,6 +20,8 @@ export interface User {
   role: UserRole;
   familyId?: string | null;
   telegramAccess: boolean;
+  telegramId?: string | null;
+  telegramUsername?: string | null;
   avatarUrl?: string | null;
   firstName?: string | null;
   lastName?: string | null;

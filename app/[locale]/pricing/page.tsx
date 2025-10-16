@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { pricingSchemes, type PricingPlan } from '@/lib/pricing-plans';
 import {
   getCurrencyForLocale,
@@ -10,7 +10,7 @@ import {
 } from '@/lib/currency-config';
 
 export default function PricingPage() {
-  
+  const t = useTranslations('dashboard.pricing');
   const locale = useLocale();
   const currency = getCurrencyForLocale(locale);
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
@@ -54,7 +54,7 @@ export default function PricingPage() {
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Error al procesar el pago. Por favor intenta de nuevo.');
+      alert(t('errors.paymentError'));
     } finally {
       setLoadingPlan(null);
     }
@@ -88,21 +88,20 @@ export default function PricingPage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-[rgba(223,134,170,0.18)] border border-[rgba(223,134,170,0.35)]">
             <span className="text-2xl">💰</span>
             <span className="text-sm font-semibold text-heading uppercase tracking-wider">
-              Planes y Precios
+              {t('badge')}
             </span>
           </div>
           <h1
             className="text-4xl sm:text-5xl font-bold text-heading mb-6"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            Elige tu camino hacia la{' '}
+            {t('title')}{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-alt)] bg-clip-text text-transparent">
-              sostenibilidad
+              {t('titleHighlight')}
             </span>
           </h1>
           <p className="text-lg text-muted max-w-3xl mx-auto leading-relaxed">
-            Dos esquemas complementarios diseñados para diferentes necesidades.
-            Puedes suscribirte a ambos esquemas simultáneamente y disfrutar de todos los beneficios.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -118,12 +117,12 @@ export default function PricingPage() {
                     className="text-3xl sm:text-4xl font-bold text-heading"
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
-                    {scheme.name}
+                    {t(`schemes.${scheme.id}.name`)}
                   </h2>
                 </div>
-                <p className="text-lg text-muted mb-2">{scheme.description}</p>
+                <p className="text-lg text-muted mb-2">{t(`schemes.${scheme.id}.description`)}</p>
                 <p className="text-sm font-semibold text-[var(--color-primary-alt)] uppercase tracking-wide">
-                  {scheme.tagline}
+                  {t(`schemes.${scheme.id}.tagline`)}
                 </p>
               </div>
 
@@ -146,7 +145,7 @@ export default function PricingPage() {
                     {plan.popular && (
                       <div className="absolute top-4 right-4 z-10">
                         <div className="px-3 py-1 rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-alt)] text-white text-xs font-bold uppercase tracking-wide">
-                          Popular
+                          {t('popular')}
                         </div>
                       </div>
                     )}
@@ -168,7 +167,7 @@ export default function PricingPage() {
                           className="text-2xl font-bold text-heading mb-2"
                           style={{ fontFamily: 'var(--font-heading)' }}
                         >
-                          {plan.name}
+                          {t(`schemes.${scheme.id}.plans.${plan.id.replace(`${scheme.id}-`, '')}.name`)}
                         </h3>
                       </div>
 
@@ -179,7 +178,7 @@ export default function PricingPage() {
                             {formatPriceDisplay(plan)}
                           </span>
                           <span className="text-lg text-muted">
-                            /{plan.interval === 'month' ? 'mes' : 'año'}
+                            /{plan.interval === 'month' ? t('perMonth') : t('perYear')}
                           </span>
                         </div>
                       </div>
@@ -192,7 +191,7 @@ export default function PricingPage() {
                               <div className="text-2xl font-bold text-heading">
                                 {plan.trees}
                               </div>
-                              <div className="text-xs text-muted">Árboles</div>
+                              <div className="text-xs text-muted">{t('metrics.trees')}</div>
                             </div>
                           )}
                           {plan.chococoins && (
@@ -200,7 +199,7 @@ export default function PricingPage() {
                               <div className="text-2xl font-bold text-heading">
                                 {plan.chococoins}
                               </div>
-                              <div className="text-xs text-muted">ChocoCoins/mes</div>
+                              <div className="text-xs text-muted">{t('metrics.chococoins')}</div>
                             </div>
                           )}
                           {plan.discount && (
@@ -208,7 +207,7 @@ export default function PricingPage() {
                               <div className="text-2xl font-bold text-heading">
                                 {plan.discount}%
                               </div>
-                              <div className="text-xs text-muted">Descuento</div>
+                              <div className="text-xs text-muted">{t('metrics.discount')}</div>
                             </div>
                           )}
                         </div>
@@ -216,7 +215,7 @@ export default function PricingPage() {
 
                       {/* Features */}
                       <ul className="space-y-3">
-                        {plan.features.map((feature, index) => (
+                        {(t.raw(`schemes.${scheme.id}.plans.${plan.id.replace(`${scheme.id}-`, '')}.features`) as string[]).map((feature, index) => (
                           <li key={index} className="flex items-start gap-3">
                             <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-white text-xs mt-0.5">
                               ✓
@@ -242,10 +241,10 @@ export default function PricingPage() {
                         {loadingPlan === plan.id ? (
                           <span className="flex items-center justify-center gap-2">
                             <span className="animate-spin">⏳</span>
-                            Procesando...
+                            {t('processing')}
                           </span>
                         ) : (
-                          'Suscribirse ahora'
+                          t('subscribeNow')
                         )}
                       </button>
 
@@ -266,7 +265,7 @@ export default function PricingPage() {
                             <span className="text-white text-xs">✓</span>
                           )}
                         </span>
-                        Comparar plan
+                        {t('comparePlan')}
                       </button>
                     </div>
                   </div>
@@ -283,10 +282,10 @@ export default function PricingPage() {
               <div className="flex items-center justify-between gap-4">
                 <div className="flex-1">
                   <div className="font-semibold text-heading mb-1">
-                    {selectedPlans.length} {selectedPlans.length === 1 ? 'plan seleccionado' : 'planes seleccionados'}
+                    {selectedPlans.length} {selectedPlans.length === 1 ? t('multiPlan.selected') : t('multiPlan.selectedPlural')}
                   </div>
                   <div className="text-sm text-muted">
-                    Total:{' '}
+                    {t('multiPlan.total')}:{' '}
                     <span className="font-bold text-heading">
                       {formatPrice(
                         selectedPlans.reduce((total, planId) => {
@@ -300,7 +299,7 @@ export default function PricingPage() {
                         currency,
                         locale
                       )}
-                      /mes
+                      /{t('perMonth')}
                     </span>
                   </div>
                 </div>
@@ -311,13 +310,13 @@ export default function PricingPage() {
                   }
                   className="px-6 py-3 rounded-2xl bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-alt)] text-white font-semibold hover:shadow-xl transition-all"
                 >
-                  Suscribirse a todos
+                  {t('multiPlan.subscribeAll')}
                 </button>
                 <button
                   type="button"
                   onClick={() => setSelectedPlans([])}
                   className="p-3 rounded-full hover:bg-[rgba(223,134,170,0.12)] text-muted hover:text-heading transition-all"
-                  aria-label="Limpiar selección"
+                  aria-label={t('multiPlan.clearSelection')}
                 >
                   ✕
                 </button>
@@ -332,34 +331,31 @@ export default function PricingPage() {
             className="text-3xl font-bold text-heading text-center mb-12"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            Preguntas Frecuentes
+            {t('faq.title')}
           </h2>
           <div className="space-y-6">
             <div className="surface-panel p-6">
               <h3 className="text-lg font-bold text-heading mb-2">
-                ¿Puedo tener planes de ambos esquemas al mismo tiempo?
+                {t('faq.q1.question')}
               </h3>
               <p className="text-muted">
-                ¡Absolutamente! Los esquemas Seed y Fruit son complementarios.
-                Puedes ser un early adopter con Seed mientras también adoptas árboles con Fruit.
+                {t('faq.q1.answer')}
               </p>
             </div>
             <div className="surface-panel p-6">
               <h3 className="text-lg font-bold text-heading mb-2">
-                ¿Qué son los ChocoCoins?
+                {t('faq.q2.question')}
               </h3>
               <p className="text-muted">
-                ChocoCoins son nuestra moneda virtual que puedes usar para obtener descuentos
-                en productos físicos del marketplace como chocolates, cremas y merchandising.
+                {t('faq.q2.answer')}
               </p>
             </div>
             <div className="surface-panel p-6">
               <h3 className="text-lg font-bold text-heading mb-2">
-                ¿Puedo cancelar mi suscripción en cualquier momento?
+                {t('faq.q3.question')}
               </h3>
               <p className="text-muted">
-                Sí, puedes cancelar tu suscripción en cualquier momento desde tu panel de control.
-                No hay contratos a largo plazo ni penalizaciones por cancelación.
+                {t('faq.q3.answer')}
               </p>
             </div>
           </div>

@@ -26,19 +26,19 @@ export function Sidebar() {
       current: false,
     },
     {
-      name: 'Mi Familia',
+      name: t('family'),
       href: '/dashboard/family',
       icon: '👨‍👩‍👧‍👦',
       current: false,
     },
     {
-      name: 'Mis Personajes',
+      name: t('characters'),
       href: '/dashboard/characters',
       icon: '🎭',
       current: false,
     },
     {
-      name: 'Explorar',
+      name: t('explore'),
       href: '/dashboard/explore',
       icon: '🔍',
       current: false,

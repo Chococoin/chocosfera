@@ -1,0 +1,90 @@
+{
+  "instructions": "This file contains all new translation keys to add to each language file",
+  "newKeys": {
+    "profile": {
+      "avatarPrompt": {},
+      "selectEmoji": {},
+      "avatarDescription": {},
+      "identityProtectionTitle": {},
+      "identityProtectionDescription": {},
+      "nickLabel": {},
+      "nickPlaceholder": {},
+      "nickDescription": {},
+      "emailSecurityNote": {},
+      "firstNameOptional": {},
+      "firstNamePlaceholder": {},
+      "lastNameOptional": {},
+      "lastNamePlaceholder": {},
+      "errors": {
+        "avatarUpdateError": {},
+        "avatarUpdateRetry": {}
+      }
+    },
+    "account": {
+      "preferences": {},
+      "languageUpdateNote": {},
+      "onboardingTutorial": {},
+      "onboardingDescription": {}
+    },
+    "chococoins": {
+      "buyCoinsTitle": {},
+      "buyCoinsSubtitle": {},
+      "mostPopular": {},
+      "processing": {},
+      "buyNow": {},
+      "securePayment": {},
+      "paymentInfo1": {},
+      "paymentInfo2": {},
+      "paymentInfo3": {},
+      "paymentInfo4": {},
+      "packages": {
+        "starterDescription": {},
+        "popularDescription": {},
+        "premiumDescription": {},
+        "megaDescription": {}
+      },
+      "transactions": {
+        "earnedSubscription": {},
+        "redeemedChocolate": {},
+        "earnedTree": {}
+      },
+      "errors": {
+        "paymentInitError": {},
+        "paymentProcessError": {}
+      }
+    },
+    "privacy": {
+      "sessionLocation": {},
+      "sessionNow": {},
+      "sessionHoursAgo": {}
+    },
+    "verification": {
+      "statusLabel": {},
+      "statusStudent": {},
+      "statusPending": {},
+      "statusVerified": {},
+      "statusStudentDescription": {},
+      "statusPendingDescription": {},
+      "statusVerifiedDescription": {},
+      "restrictedFeaturesTitle": {},
+      "restrictedFeature1": {},
+      "restrictedFeature2": {},
+      "restrictedFeature3": {},
+      "reviewTimeTitle": {},
+      "reviewTimeDescription": {},
+      "inProgress": {},
+      "unlockedFeaturesTitle": {},
+      "unlockedFeature1": {},
+      "unlockedFeature2": {},
+      "unlockedFeature3": {},
+      "unlockedFeature4": {},
+      "importantAdultOnly": {},
+      "uploadPrompt": {},
+      "uploadFileTypes": {},
+      "whyVerifyTitle": {},
+      "whyVerifyDescription": {},
+      "howLongTitle": {},
+      "howLongDescription": {}
+    }
+  }
+}

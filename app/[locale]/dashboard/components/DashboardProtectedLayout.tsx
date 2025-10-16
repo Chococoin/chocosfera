@@ -11,6 +11,7 @@ import { DashboardHeader } from './DashboardHeader';
 import { Sidebar } from './Sidebar';
 import { Onboarding } from '@/components/Onboarding';
 import { FloatingQuote } from './FloatingQuote';
+import { TelegramNotifications } from '@/components/TelegramNotifications';
 
 interface DashboardProtectedLayoutProps {
   children: ReactNode;
@@ -36,6 +37,9 @@ export default function DashboardProtectedLayout({ children }: DashboardProtecte
 
         {/* Onboarding Tutorial */}
         <Onboarding />
+
+        {/* Telegram Notifications */}
+        <TelegramNotifications />
       </div>
     </ProtectedRoute>
   );
