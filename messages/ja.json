@@ -368,6 +368,35 @@
         "whyVerifyDescription": "年齢確認は、すべてのユーザーにとって安全で適切な環境を作り、未成年者保護規則を遵守するのに役立ちます。",
         "howLongTitle": "確認にはどのくらい時間がかかりますか？",
         "howLongDescription": "通常、24〜48営業時間以内に確認を処理します。準備ができたらメールでお知らせします。"
+      },
+      "telegram": {
+        "title": "Telegram 連携",
+        "linked": "Telegramアカウントを連携済み",
+        "notLinked": "Telegramアカウントは未連携",
+        "link": "アカウントを連携する",
+        "unlink": "連携を解除する",
+        "howToLink": "Telegramアカウントを連携する方法",
+        "step1": "Telegram を開いて @ChocosfereBot を検索します",
+        "step2": "コマンド /start をボットに送信します",
+        "step3": "ボットが固有の連携コードを送信します",
+        "step4": "「アカウントを連携する」ボタンをクリックしてコードを入力します",
+        "features": {
+          "notifications": "インスタント通知",
+          "notificationsDesc": "木、収穫、コミュニティに関するリアルタイム更新を受け取ります",
+          "commands": "ボットコマンド",
+          "commandsDesc": "/trees、/impact、/help などのコマンドを使用して簡単な情報を取得します",
+          "treeUpdates": "ツリー更新情報",
+          "treeUpdatesDesc": "採用した木の写真と最新情報をTelegramで直接受け取ります",
+          "community": "コミュニティへのアクセス",
+          "communityDesc": "Chocosfera Telegram コミュニティ グループへの独占的アクセス"
+        },
+        "preferences": {
+          "title": "Telegram通知の設定",
+          "treeUpdates": "ツリーの更新と写真",
+          "communityMessages": "コミュニティメッセージ",
+          "marketplaceAlerts": "マーケットプレイス通知",
+          "subscriptionReminders": "サブスクリプションのリマインダー"
+        }
       }
     },
     "userProfile": {
@@ -670,7 +699,7 @@
         "biodiversity": "生物多様性",
         "soilRegenerated": "再生土壌",
         "species": "{count} 種",
-        "vsAverage": "{パーセント} 対平均",
+        "vsAverage": "{percent} 対平均",
         "protected": "保護されています"
       },
       "social": {
@@ -730,8 +759,8 @@
       },
       "ranking": {
         "title": "あなたのランキング",
-        "of": "{合計} 人のユーザー",
-        "top": "上位 {パーセント}"
+        "of": "{total} 人のユーザー",
+        "top": "上位 {percent}"
       },
       "milestone": {
         "title": "次のマイルストーン",

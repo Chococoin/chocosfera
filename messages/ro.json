@@ -30,7 +30,8 @@
     "adopt": "Adoptă",
     "traceability": "Trasabilitate",
     "impact": "Impact",
-    "create": "Creează"
+    "create": "Creează",
+    "pricing": "Prețuri"
   },
   "login": {
     "title": "Conectează-te",
@@ -91,7 +92,8 @@
       "community": "Comunitate",
       "marketplace": "Magazin",
       "settings": "Setări",
-      "quote": "Ciocolata este fericirea pe care o poți mânca"
+      "quote": "Ciocolata este fericirea pe care o poți mânca",
+      "pricing": "Prețuri"
     },
     "header": {
       "title": "Panou de Control",
@@ -154,6 +156,24 @@
         "rule2": "Împărtășește cunoștințe despre cacao și ciocolată",
         "rule3": "Întreabă despre trasabilitate și sustenabilitate",
         "rule4": "Fără spam sau conținut neconexe"
+      },
+      "restricted": {
+        "title": "Acces restricționat",
+        "description": "În calitate de minor, nu aveți acces la chatul comunității Telegram. Acesta este un spațiu pentru adulții verificați.",
+        "whyTitle": "De ce această restricție?",
+        "reason1": "Protejăm minorii prin conversații adecvate",
+        "reason2": "Respectăm reglementările privind protecția copilului",
+        "reason3": "Vă puteți bucura în continuare de alte zone din Chocósfera",
+        "adultQuestion": "esti adult?",
+        "verifyButton": "Verificați vârsta mea pentru a obține acces complet"
+      },
+      "setup": {
+        "title": "Configurație necesară",
+        "description": "Pentru a vizualiza chatul Telegram aici, trebuie să:",
+        "step1": "Creați un grup public sau un canal pe Telegram",
+        "step2": "Obțineți numele de utilizator (de ex.: @chocosfera_community)",
+        "step3": "Actualizați constanta",
+        "step3b": "în"
       }
     },
     "trees": {
@@ -348,6 +368,35 @@
         "whyVerifyDescription": "Verificarea vârstei ne ajută să creăm un mediu sigur și adecvat pentru toți utilizatorii, respectând reglementările de protecție a minorilor.",
         "howLongTitle": "Cât durează verificarea?",
         "howLongDescription": "De obicei procesăm verificările în 24-48 ore lucrătoare. Te vom notifica prin email când este gata."
+      },
+      "telegram": {
+        "title": "Integrare Telegram",
+        "linked": "Contul Telegram conectat",
+        "notLinked": "Contul Telegram nu este conectat",
+        "link": "Conectați contul",
+        "unlink": "Deconectați contul",
+        "howToLink": "Cum să vă conectați contul Telegram",
+        "step1": "Deschide Telegram și caută @ChocosfereBot",
+        "step2": "Trimiteți comanda /start către bot",
+        "step3": "Botul vă va trimite un cod unic de conectare",
+        "step4": "Faceți clic pe butonul „Conectați contul” și introduceți codul",
+        "features": {
+          "notifications": "Notificări instantanee",
+          "notificationsDesc": "Primiți actualizări în timp real despre copacii, recoltele și comunitatea dvs",
+          "commands": "Comenzi bot",
+          "commandsDesc": "Utilizați comenzi precum /trees, /impact, /help pentru a obține informații rapide",
+          "treeUpdates": "Actualizări de arbore",
+          "treeUpdatesDesc": "Obține fotografii și actualizări despre arborii tăi adoptați direct pe Telegram",
+          "community": "Acces la comunitate",
+          "communityDesc": "Acces exclusiv la grupul comunitar Chocósfera Telegram"
+        },
+        "preferences": {
+          "title": "Preferințe de notificare Telegram",
+          "treeUpdates": "Actualizări ale arborelui și fotografii",
+          "communityMessages": "Mesaje ale comunității",
+          "marketplaceAlerts": "Alerte pe piață",
+          "subscriptionReminders": "Mementouri de abonament"
+        }
       }
     },
     "userProfile": {
@@ -360,6 +409,647 @@
       "settings": "Setări",
       "myFamily": "Familia Mea",
       "logout": "Deconectare"
+    },
+    "family": {
+      "title": "Familia mea",
+      "headerWithFamily": "Gestionați-vă profilul de familie și arborii partajați",
+      "headerWithoutFamily": "Creați-vă profilul de familie sau alăturați-vă unuia existent",
+      "loading": "Încărcare...",
+      "loadingFamily": "Se încarcă familia...",
+      "createFamily": {
+        "title": "Creați un profil de familie",
+        "description": "Începeți-vă propria familie în Chocósfera și gestionați copacii tuturor",
+        "button": "Creați-mi familia",
+        "modalTitle": "Creați un profil de familie",
+        "nameLabel": "Nume de familie",
+        "namePlaceholder": "de exemplu: Familia García, The Rodríguez...",
+        "nameDescription": "Acest nume va fi vizibil pentru toți membrii familiei tale",
+        "tipLabel": "Sfat:",
+        "tipText": "Veți fi administratorul familiei și puteți invita alți membri.",
+        "cancelButton": "Anula",
+        "creating": "Se creează...",
+        "createButton": "Creați o familie",
+        "minorWarning": "Doar adulții verificați pot crea profiluri de familie.",
+        "verifyAgeLink": "Cereți părintelui/tutorelui să vă verifice vârsta",
+        "successMessage": "Familie creată cu succes!",
+        "errorMessage": "Eroare la crearea familiei"
+      },
+      "inviteParent": {
+        "title": "Invită-mi părintele/tutorele",
+        "description": "Trimiteți o invitație prin e-mail părintelui sau tutorelui dvs. pentru a crea profilul de familie",
+        "emailLabel": "E-mail pentru părinte/tutore",
+        "emailPlaceholder": "parent@example. com",
+        "sendButton": "Trimite invitația",
+        "sending": "Se trimite...",
+        "tipText": "Părintele/tutorele dumneavoastră va primi un e-mail cu un link pentru a vă înregistra sau a vă alătura profilului de familie.",
+        "successMessage": "Invitație trimisă la {email}!"
+      },
+      "joinFamily": {
+        "title": "Alăturați-vă prin invitație",
+        "description": "Dacă cineva te-a invitat în familia sa, vei primi un e-mail cu linkul",
+        "checkEmailText": "Verificați-vă e-mailul pentru a vedea dacă aveți invitații în așteptare",
+        "viewInvitationsLink": "Vizualizați invitațiile mele →"
+      },
+      "invitations": {
+        "title": "Invitații în așteptare",
+        "sent": "Trimis:",
+        "expires": "Expiră:",
+        "pending": "În așteptare",
+        "cancelButton": "Anula",
+        "cancelConfirm": "Sigur doriți să anulați această invitație?",
+        "cancelSuccess": "Invitația a fost anulată cu succes",
+        "cancelError": "Eroare la anularea invitației",
+        "sendError": "Eroare la trimiterea invitației"
+      },
+      "overview": {
+        "members": "membru",
+        "membersPlural": "membrii",
+        "totalTrees": "Total arbori",
+        "trees": "Copaci",
+        "co2": "Tone de CO₂",
+        "water": "Litri"
+      },
+      "members": {
+        "title": "Membrii familiei",
+        "inviteButton": "+ Invitați membru",
+        "you": "Tu",
+        "student": "Student",
+        "verificationPending": "Verificare în așteptare",
+        "adult": "Adult",
+        "noMembers": "Niciun membru al familiei încă",
+        "editRelationship": "Editați relația"
+      },
+      "inviteMember": {
+        "modalTitle": "Invitați membru",
+        "emailLabel": "E-mailul membrului",
+        "emailPlaceholder": "membru@example. com",
+        "parentLabel": "Părinte/Tutore (opțional)",
+        "noParent": "Niciun părinte desemnat",
+        "parentDescription": "Selectați cine va fi părintele/tutorele acestui membru în arborele genealogic",
+        "tipText": "Membrul va primi un e-mail cu un link pentru a vă alătura familiei.",
+        "cancelButton": "Anula",
+        "sendButton": "Trimite invitația",
+        "sending": "Se trimite...",
+        "successMessage": "Invitație trimisă la {email}!"
+      },
+      "editMember": {
+        "modalTitle": "Editați relația de familie",
+        "editing": "Editare:",
+        "parentLabel": "Părinte/Tutore",
+        "noParent": "Niciun părinte alocat (rădăcină de arbore)",
+        "parentDescription": "Selectați cine va fi părintele/tutorele acestui membru în arborele genealogic",
+        "tipText": "Schimbările se vor reflecta imediat în arborele genealogic.",
+        "cancelButton": "Anula",
+        "saveButton": "Salvați modificările",
+        "saving": "Economisire...",
+        "successMessage": "Relația a fost actualizată cu succes!",
+        "errorMessage": "Eroare la actualizarea relației"
+      },
+      "tree": {
+        "title": "Arborele genealogic",
+        "members": "membru",
+        "membersPlural": "membrii",
+        "relationship": "Relația părinte-copil",
+        "noTreeError": "Nu s-a putut construi arborele genealogic",
+        "legendTitle": "Arborele genealogic:",
+        "legendDescription": "Membrii sunt organizați în funcție de relația părinte-copil. Părinții apar deasupra și copiii lor dedesubt conectați prin linii.",
+        "legendAdmin": "Faceți clic pe pictograma de editare pentru a schimba relațiile de familie."
+      },
+      "info": {
+        "title": "Cum funcționează profilurile de familie?",
+        "point1": "Elevii își pot invita părinții prin e-mail",
+        "point2": "Doar adulții verificați (18+ ani) pot crea profilul de familie",
+        "point3": "Toți arborii genealogici sunt adăugați la profil",
+        "point4": "Puteți crea personaje și povești împreună"
+      }
+    },
+    "characters": {
+      "title": "Personajele mele",
+      "subtitle": "Creați personaje unice și spuneți-le poveștile în Chocósfera",
+      "loading": "Încărcare...",
+      "character": "caracter",
+      "charactersPlural": "personaje",
+      "createButton": "Creați Personaj",
+      "public": "Public",
+      "updated": "Actualizat",
+      "empty": {
+        "title": "Aventura ta începe aici!",
+        "description": "Încă nu ai creat niciun personaj. Creează-ți primul personaj și începe-ți povestea în Chocósfera.",
+        "createButton": "Creați primul meu personaj"
+      },
+      "types": {
+        "cacao": "Cacao",
+        "chocolate": "Ciocolată",
+        "farmer": "Agricultor",
+        "other": "Alte"
+      },
+      "stats": {
+        "stories": "Povești",
+        "commits": "Se angajează",
+        "views": "Vizualizări"
+      },
+      "info": {
+        "title": "Ce sunt personajele?",
+        "point1": "Creați personaje unice cu propriile lor povești în Chocósfera",
+        "point2": "Fiecare personaj are propriul său depozit Git cu istoric",
+        "point3": "Puteți să bifurcați Tony, Pipo sau Kaoka și să vă creați versiunea",
+        "point4": "Distribuiți-vă personajele în mod public sau păstrați-le private"
+      },
+      "errors": {
+        "fetchError": "Eroare la preluarea caracterelor",
+        "unknownError": "Eroare necunoscută"
+      }
+    },
+    "explore": {
+      "title": "Explora",
+      "subtitle": "Descoperiți personaje publice și povești din comunitate",
+      "searchPlaceholder": "Căutați personaje, povești, utilizatori...",
+      "canonCharacters": {
+        "title": "Personajele Canon oficiale ale Chocósfera",
+        "subtitle": "Personajele oficiale care dau viață universului ciocolatei",
+        "forkThis": "Bifurca acest personaj",
+        "pipo": {
+          "name": "Pipo",
+          "description": "Curiosul mic mugur de cacao"
+        },
+        "tony": {
+          "name": "Tony",
+          "description": "Maestrul ciocolatier cu inima de aur"
+        },
+        "kaoka": {
+          "name": "Kaoka",
+          "description": "Fermierul înțelept, gardianul cacaoului"
+        }
+      },
+      "tabs": {
+        "characters": "Personaje",
+        "stories": "Povești"
+      },
+      "types": {
+        "cacao": "Cacao",
+        "chocolate": "Ciocolată",
+        "farmer": "Agricultor",
+        "other": "Alte"
+      },
+      "errors": {
+        "fetchCharacters": "Eroare la încărcarea caracterelor",
+        "fetchStories": "Eroare la încărcarea poveștilor",
+        "unknown": "Eroare necunoscută",
+        "updateLike": "Eroare la actualizarea like"
+      },
+      "empty": {
+        "noCharactersFound": "Nu s-au găsit caractere",
+        "noPublicCharacters": "Nu există caractere publice disponibile",
+        "noStoriesFound": "Nu s-au găsit povești",
+        "noPublicStories": "Nu există povești publice disponibile",
+        "tryOtherTerms": "Încercați diferiți termeni de căutare",
+        "beFirstCharacter": "Fii primul care creează un personaj public!",
+        "beFirstStory": "Fii primul care creează o poveste publică!",
+        "createCharacter": "Creați Personaj"
+      },
+      "results": {
+        "character": "caracter",
+        "charactersPlural": "personaje",
+        "story": "poveste",
+        "storiesPlural": "povestiri",
+        "found": "găsit",
+        "foundPlural": "găsit"
+      },
+      "like": {
+        "add": "Ca",
+        "remove": "Spre deosebire de"
+      }
+    },
+    "traceability": {
+      "title": "Trasabilitate",
+      "subtitle": "Urmează călătoria completă a cacao-ului tău de la origine până la tine",
+      "product": "Produs",
+      "timeline": {
+        "title": "Călătoria produsului",
+        "verified": "Verificat pe blockchain"
+      },
+      "steps": {
+        "planting": {
+          "title": "Plantarea",
+          "location": "Ferma El Cacao, Ecuador",
+          "details": "Copac plantat și înregistrat pe blockchain"
+        },
+        "growth": {
+          "title": "Creştere",
+          "location": "Ferma El Cacao, Ecuador",
+          "details": "Arborele in faza de crestere, certificat organic"
+        },
+        "harvest": {
+          "title": "Recolta",
+          "location": "Ferma El Cacao, Ecuador",
+          "details": "Recolta verificata: 12 kg de cacao"
+        },
+        "processing": {
+          "title": "Prelucrare",
+          "location": "Centru de procesare, Quito",
+          "details": "Fermentare și uscare în curs"
+        },
+        "distribution": {
+          "title": "Distributie",
+          "date": "În curând",
+          "location": "În tranzit",
+          "details": "Se așteaptă procesarea"
+        }
+      },
+      "blockchain": {
+        "title": "Verificare blockchain",
+        "transactionHash": "Hash de tranzacție",
+        "block": "Bloc",
+        "timestamp": "Data/Ora",
+        "network": "Reţea",
+        "viewExplorer": "Vizualizați în Block Explorer"
+      },
+      "productInfo": {
+        "title": "Informații despre produs",
+        "treeId": "ID-ul arborelui",
+        "variety": "Varietate",
+        "varietyValue": "Cacao cu aromă fină",
+        "farmer": "Agricultor",
+        "altitude": "Altitudine",
+        "masl": "masl"
+      },
+      "certifications": {
+        "title": "Certificari",
+        "fairTrade": "Comerţ echitabil",
+        "organic": "Organic",
+        "carbonNeutral": "Carbon neutru",
+        "rainforest": "Rainforest Alliance"
+      },
+      "impact": {
+        "title": "Impact generat",
+        "co2Captured": "CO₂ Captat",
+        "farmerIncome": "Venitul fermierului",
+        "familiesBenefited": "Familiile au beneficiat"
+      }
+    },
+    "impact": {
+      "title": "Impactul tău global",
+      "subtitle": "Faci o diferență 🌍✨",
+      "level": "Nivel",
+      "progressToLevel": "Progresul la nivelul {level}",
+      "environmental": {
+        "title": "Impactul asupra mediului",
+        "co2Captured": "CO₂ Captat",
+        "waterSaved": "Apa Economisita",
+        "biodiversity": "Biodiversitatea",
+        "soilRegenerated": "Sol Regenerat",
+        "species": "{count} specii",
+        "vsAverage": "{percent} față de medie",
+        "protected": "Protejat"
+      },
+      "social": {
+        "title": "Impactul social",
+        "familiesSupported": "Familii sprijinite",
+        "incomeGenerated": "Venituri generate",
+        "education": "Educaţie",
+        "health": "Sănătate",
+        "students": "{count} studenți",
+        "checkups": "{count} controale"
+      },
+      "timeline": {
+        "title": "Creșterea impactului 2024",
+        "months": {
+          "jan": "ian",
+          "feb": "feb",
+          "mar": "Mar",
+          "apr": "Aprilie",
+          "may": "mai",
+          "jun": "Iunie"
+        }
+      },
+      "achievements": {
+        "title": "Realizări în curs",
+        "treesAdopted": "Copaci Adopți",
+        "co2Captured": "CO₂ captat (kg)",
+        "activeDays": "Zilele active",
+        "community": "Comunitate"
+      },
+      "badges": {
+        "title": "Ecusoane",
+        "locked": "Blocat",
+        "firstTree": {
+          "name": "Primul Copac",
+          "description": "Ai adoptat primul tău copac"
+        },
+        "ecoWarrior": {
+          "name": "Eco Warrior",
+          "description": "100 kg de CO₂ capturate"
+        },
+        "communityHero": {
+          "name": "Erou comunitar",
+          "description": "Ai susținut 5 familii"
+        },
+        "forestGuardian": {
+          "name": "Gardianul Pădurii",
+          "description": "Adoptă 10 copaci"
+        },
+        "carbonMaster": {
+          "name": "Carbon Master",
+          "description": "Captați 500 kg de CO₂"
+        },
+        "legend": {
+          "name": "Legendă",
+          "description": "Atinge nivelul 10"
+        }
+      },
+      "ranking": {
+        "title": "Clasamentul tău",
+        "of": "din {total} utilizatori",
+        "top": "Top {percent}"
+      },
+      "milestone": {
+        "title": "Următoarea etapă",
+        "needMore": "Mai aveți nevoie de {count} copaci"
+      }
+    },
+    "marketplace": {
+      "subtitle": "Produse unice din comunitate",
+      "productsCount": "produse",
+      "balance": {
+        "fiat": "Soldul dvs. (EUR)",
+        "coins": "Monedele dvs. Choco"
+      },
+      "categories": {
+        "all": "Toate",
+        "trees": "Copaci",
+        "nft": "Carduri NFT",
+        "books": "Cărți",
+        "plush": "Jucării de plus",
+        "chocolate": "Ciocolata"
+      },
+      "rarities": {
+        "all": "Toate",
+        "common": "Comun",
+        "rare": "Rar",
+        "epic": "Epic",
+        "legendary": "Legendar"
+      },
+      "filters": {
+        "categories": "Categorii",
+        "rarity": "Raritate",
+        "priceRange": "Gama de prețuri",
+        "filteringBy": "Filtrarea după"
+      },
+      "featured": {
+        "creator": "Creator recomandat",
+        "productsCreated": "{count} produse create"
+      },
+      "sort": {
+        "newest": "Cel mai nou",
+        "priceLowHigh": "Preț: mic spre mare",
+        "priceHighLow": "Preț: de la mare la mic",
+        "popular": "Cel mai popular"
+      },
+      "product": {
+        "by": "De",
+        "available": "disponibil",
+        "sold": "vândut",
+        "or": "sau",
+        "buy": "Cumpăra",
+        "noCoins": "Fără monede",
+        "buyingWithCoins": "Cumpărați cu {coins} ChocoCoins (funcționalitate în așteptare)"
+      },
+      "empty": {
+        "title": "Fara produse",
+        "description": "Încercați să reglați filtrele"
+      },
+      "errors": {
+        "createSession": "Eroare la crearea sesiunii de plată",
+        "processPayment": "Eroare la procesarea plății"
+      },
+      "items": {
+        "nft001": {
+          "name": "Războinic cacao",
+          "description": "Carte legendară ediție limitată",
+          "character": "Războinic cacao"
+        },
+        "nft002": {
+          "name": "Zână de ciocolată",
+          "description": "Creatură magică din pădurea de cacao",
+          "character": "Zână de ciocolată"
+        },
+        "nft003": {
+          "name": "Gardianul de cacao",
+          "description": "Protector al copacilor sacri",
+          "character": "Gardianul de cacao"
+        },
+        "nft004": {
+          "name": "Dulce Dragon",
+          "description": "Cel mai rar dragon din colecție",
+          "character": "Dulce Dragon"
+        },
+        "book001": {
+          "name": "Aventurile lui Cacaito",
+          "description": "32 de pagini de aventuri de colorat",
+          "character": "Cacaito"
+        },
+        "book002": {
+          "name": "Regatul Cacao",
+          "description": "Explorează regatul magic al ciocolatei",
+          "character": "Regele Cacao"
+        },
+        "book003": {
+          "name": "Legendele ciocolatei",
+          "description": "Ediție specială cu 48 de pagini",
+          "character": "Diverse"
+        },
+        "plush001": {
+          "name": "Cacaito Plush",
+          "description": "Jucărie de plus de 30 cm lucrată manual",
+          "character": "Cacaito"
+        },
+        "plush002": {
+          "name": "Mini Zână de Ciocolată",
+          "description": "Jucărie adorabilă de plus de 15 cm",
+          "character": "Zână de ciocolată"
+        },
+        "plush003": {
+          "name": "Dragon dulce uriaș",
+          "description": "Jucărie de plus premium de 60 cm",
+          "character": "Dulce Dragon"
+        },
+        "choco001": {
+          "name": "Barul Războinici",
+          "description": "85% ciocolata cacao, design exclusivist",
+          "character": "Războinic cacao"
+        },
+        "choco002": {
+          "name": "Zână dulce",
+          "description": "Ciocolata cu lapte cu fructe de padure rosii",
+          "character": "Zână de ciocolată"
+        },
+        "choco003": {
+          "name": "Dragon Edition",
+          "description": "Set premium cu 6 baruri tematice",
+          "character": "Dulce Dragon"
+        },
+        "tree001": {
+          "name": "Arbore tânăr - Columbia",
+          "description": "Copac de 1 an din Valle del Cauca, Columbia",
+          "character": "Arborele de cacao"
+        },
+        "tree002": {
+          "name": "Producător Tree - Peru",
+          "description": "Arborele producătoare de 3 ani în Cusco, Peru",
+          "character": "Arborele de cacao"
+        },
+        "tree003": {
+          "name": "Premium Tree - Ecuador",
+          "description": "Arbore de 5 ani, producție mare în Esmeraldas",
+          "character": "Arborele de cacao"
+        },
+        "tree004": {
+          "name": "Arborele ancestral - Venezuela",
+          "description": "Arbore de peste 10 ani, soi ancestral Criollo",
+          "character": "Arborele de cacao"
+        },
+        "tree005": {
+          "name": "Arbore organic - Mexic",
+          "description": "Pom de 2 ani, certificat organic in Tabasco",
+          "character": "Arborele de cacao"
+        },
+        "tree006": {
+          "name": "Arbore sălbatic - Tanzania",
+          "description": "Copac de 4 ani din Kilimanjaro, Tanzania",
+          "character": "Arborele de cacao"
+        }
+      }
+    },
+    "pricing": {
+      "badge": "Planuri și prețuri",
+      "title": "Alege-ți calea către",
+      "titleHighlight": "durabilitate",
+      "subtitle": "Două scheme complementare concepute pentru nevoi diferite. Vă puteți abona la ambele scheme simultan și vă puteți bucura de toate beneficiile.",
+      "perMonth": "lună",
+      "perYear": "an",
+      "popular": "Popular",
+      "subscribeNow": "Abonați-vă acum",
+      "processing": "Prelucrare...",
+      "comparePlan": "Comparați planul",
+      "metrics": {
+        "trees": "Copaci",
+        "chococoins": "ChocoCoins/lună",
+        "discount": "Reducere"
+      },
+      "multiPlan": {
+        "selected": "planul selectat",
+        "selectedPlural": "planurile selectate",
+        "total": "Total",
+        "subscribeAll": "Abonați-vă la toate",
+        "clearSelection": "Ștergeți selecția"
+      },
+      "faq": {
+        "title": "Întrebări frecvente",
+        "q1": {
+          "question": "Pot avea planuri din ambele scheme în același timp?",
+          "answer": "Absolut! Schemele de semințe și fructe sunt complementare. Puteți fi unul dintre cei care adoptă timpuriu cu Semințele, în timp ce adoptați copaci cu Fructe."
+        },
+        "q2": {
+          "question": "Ce sunt ChocoCoins?",
+          "answer": "ChocoCoins sunt moneda noastră virtuală pe care o puteți folosi pentru a obține reduceri la produse fizice de pe piață, cum ar fi ciocolată, creme și produse de comercializare."
+        },
+        "q3": {
+          "question": "Îmi pot anula abonamentul oricând?",
+          "answer": "Da, vă puteți anula oricând abonamentul din tabloul de bord. Nu există contracte pe termen lung sau penalități de anulare."
+        }
+      },
+      "errors": {
+        "paymentError": "Eroare la procesarea plății. Vă rugăm să încercați din nou."
+      },
+      "schemes": {
+        "seed": {
+          "name": "Sămânță",
+          "description": "Pentru primitorii care doresc să susțină proiectul și să fie la curent cu evoluția acestuia",
+          "tagline": "Plantați sămânța schimbării",
+          "plans": {
+            "sprout": {
+              "name": "Încolțiți",
+              "features": [
+                "Buletin informativ lunar exclusiv",
+                "Acces timpuriu la funcții noi",
+                "Insigna de adoptator timpuriu",
+                "Grup VIP Telegram",
+                "50 de monede ChocoCoins de bun venit"
+              ]
+            },
+            "seedling": {
+              "name": "Răsad",
+              "features": [
+                "Totul în Sprout",
+                "Acces privat beta la funcții",
+                "Apel lunar cu echipa",
+                "Votați deciziile despre produse",
+                "100 de monede ChocoCoins de bun venit",
+                "10% reducere pe piață"
+              ]
+            },
+            "sapling": {
+              "name": "Puiet",
+              "features": [
+                "Totul în Răsad",
+                "Sesiune trimestrială 1 la 1 cu fondatori",
+                "Recunoaștere pe pagina sponsorilor",
+                "Sprijin prioritar",
+                "200 de monede ChocoCoins de bun venit",
+                "20% reducere pe piață",
+                "Invitație la evenimente exclusive"
+              ]
+            }
+          }
+        },
+        "fruit": {
+          "name": "Fructe",
+          "description": "Adoptă arbori de cacao, câștigă ChocoCoins și bucură-te de produse exclusive",
+          "tagline": "Culege roadele investiției tale",
+          "plans": {
+            "cacao": {
+              "name": "Pod de cacao",
+              "features": [
+                "1 arbore de cacao adoptat",
+                "Certificat digital de participare",
+                "50 ChocoCoins lunar",
+                "10% reducere permanentă la produsele fizice",
+                "Trasabilitatea completă a arborelui tău",
+                "Actualizări lunare ale fotografiilor",
+                "Impactul asupra mediului măsurat și certificat"
+              ]
+            },
+            "grove": {
+              "name": "Cacao Grove",
+              "features": [
+                "3 arbori de cacao adoptati",
+                "Certificate digitale NFT",
+                "150 ChocoCoins lunar",
+                "20% reducere permanentă la produsele fizice",
+                "1 bar personalizat GRATUIT anual",
+                "Design exclusiv al personajelor",
+                "Produse din cacaoul copacilor tăi",
+                "Vizită trimestrială a plantației virtuale"
+              ]
+            },
+            "forest": {
+              "name": "Pădurea de cacao",
+              "features": [
+                "10 arbori de cacao adoptati",
+                "Certificate digitale premium NFT",
+                "500 ChocoCoins lunar",
+                "Reducere permanentă de 30% la produsele fizice",
+                "3 batoane personalizate GRATUITE anual",
+                "Linie de produse cu marca dvs. personală",
+                "Livrare lunară de produse premium",
+                "Vizită fizică anuală la plantația dvs",
+                "Participarea la profiturile recoltei",
+                "Consultanta in sustenabilitate"
+              ]
+            }
+          }
+        }
+      }
     }
   }
 }

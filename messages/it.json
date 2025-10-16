@@ -368,6 +368,35 @@
         "whyVerifyDescription": "La verifica dell'età ci aiuta a creare un ambiente sicuro e appropriato per tutti gli utenti, rispettando le normative sulla protezione dei minori.",
         "howLongTitle": "Quanto tempo richiede la verifica?",
         "howLongDescription": "Normalmente elaboriamo le verifiche entro 24-48 ore lavorative. Ti informeremo via email quando sarà pronta."
+      },
+      "telegram": {
+        "title": "Integrazione con Telegram",
+        "linked": "Account Telegram collegato",
+        "notLinked": "Account Telegram non collegato",
+        "link": "Collega account",
+        "unlink": "Scollega account",
+        "howToLink": "Come collegare il tuo account Telegram",
+        "step1": "Apri Telegram e cerca @ChocosfereBot",
+        "step2": "Invia il comando /start al bot",
+        "step3": "Il bot ti invierà un codice di collegamento univoco",
+        "step4": "Fai clic sul pulsante \"Collega account\" e inserisci il tuo codice",
+        "features": {
+          "notifications": "Notifiche istantanee",
+          "notificationsDesc": "Ricevi aggiornamenti in tempo reale sui tuoi alberi, sulle colture e sulla community",
+          "commands": "Comandi del bot",
+          "commandsDesc": "Usa comandi come /trees, /impact o /help per ottenere informazioni rapide",
+          "treeUpdates": "Aggiornamenti degli alberi",
+          "treeUpdatesDesc": "Ricevi foto e aggiornamenti dei tuoi alberi adottati direttamente su Telegram",
+          "community": "Accesso alla comunità",
+          "communityDesc": "Accesso esclusivo al gruppo comunitario Chocósfera Telegram"
+        },
+        "preferences": {
+          "title": "Preferenze di notifica Telegram",
+          "treeUpdates": "Aggiornamenti e foto degli alberi",
+          "communityMessages": "Messaggi della community",
+          "marketplaceAlerts": "Avvisi del mercato",
+          "subscriptionReminders": "Promemoria di abbonamento"
+        }
       }
     },
     "userProfile": {

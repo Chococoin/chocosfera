@@ -368,6 +368,35 @@
         "whyVerifyDescription": "La verificación de edad nos ayuda a crear un entorno seguro y apropiado para todos los usuarios, cumpliendo con regulaciones de protección de menores.",
         "howLongTitle": "¿Cuánto tarda la verificación?",
         "howLongDescription": "Normalmente procesamos las verificaciones en 24-48 horas hábiles. Te notificaremos por email cuando esté lista."
+      },
+      "telegram": {
+        "title": "Integración con Telegram",
+        "linked": "Cuenta de Telegram vinculada",
+        "notLinked": "Cuenta de Telegram no vinculada",
+        "link": "Vincular cuenta",
+        "unlink": "Desvincular cuenta",
+        "howToLink": "Cómo vincular tu cuenta de Telegram",
+        "step1": "Abre Telegram y busca @ChocosfereBot",
+        "step2": "Envía el comando /start al bot",
+        "step3": "El bot te enviará un código único de vinculación",
+        "step4": "Haz clic en el botón \"Vincular cuenta\" e ingresa tu código",
+        "features": {
+          "notifications": "Notificaciones instantáneas",
+          "notificationsDesc": "Recibe actualizaciones en tiempo real sobre tus árboles, cosechas y comunidad",
+          "commands": "Comandos del bot",
+          "commandsDesc": "Usa comandos como /trees, /impact o /help para obtener información rápida",
+          "treeUpdates": "Actualizaciones de los árboles",
+          "treeUpdatesDesc": "Recibe fotos y actualizaciones de tus árboles adoptados directamente en Telegram",
+          "community": "Acceso a la comunidad",
+          "communityDesc": "Acceso exclusivo al grupo comunitario de Telegram de Chocósfera"
+        },
+        "preferences": {
+          "title": "Preferencias de notificaciones de Telegram",
+          "treeUpdates": "Actualizaciones y fotos de tus árboles",
+          "communityMessages": "Mensajes de la comunidad",
+          "marketplaceAlerts": "Alertas del marketplace",
+          "subscriptionReminders": "Recordatorios de suscripción"
+        }
       }
     },
     "userProfile": {
