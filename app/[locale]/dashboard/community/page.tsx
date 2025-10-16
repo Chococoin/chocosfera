@@ -10,10 +10,8 @@ export default function CommunityPage() {
   const locale = useLocale();
   const { isMinor, hasTelegramAccess } = useAuth();
 
-  // IMPORTANTE: Reemplaza esto con el username real de tu grupo/canal de Telegram
-  // Ejemplo: Si tu grupo es https://t.me/chocosfera_community
-  // entonces el channelUsername es "chocosfera_community"
-  const TELEGRAM_CHANNEL = 'tu_grupo_telegram'; // ⚠️ CAMBIAR ESTO
+  // Get Telegram channel from environment variable
+  const TELEGRAM_CHANNEL = process.env.NEXT_PUBLIC_TELEGRAM_CHANNEL || 'chocosfera_community';
 
   return (
     <div className="p-6 space-y-6">
@@ -94,71 +92,71 @@ export default function CommunityPage() {
               <span className="text-6xl block">🔒</span>
             </div>
             <h3 className="text-2xl font-bold text-yellow-900 dark:text-yellow-100 mb-3">
-              Acceso Restringido
+              {t('restricted.title')}
             </h3>
             <p className="text-base text-yellow-800 dark:text-yellow-200 mb-6 max-w-md mx-auto">
-              Como menor de edad, no tienes acceso al chat de Telegram de la comunidad. Este es un espacio para adultos verificados.
+              {t('restricted.description')}
             </p>
 
             <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-4 mb-6 max-w-md mx-auto">
               <h4 className="font-semibold text-yellow-900 dark:text-yellow-100 mb-2 flex items-center justify-center gap-2">
                 <span>✨</span>
-                ¿Por qué esta restricción?
+                {t('restricted.whyTitle')}
               </h4>
               <ul className="text-sm text-yellow-800 dark:text-yellow-200 text-left space-y-2">
                 <li className="flex items-start gap-2">
                   <span className="text-lg">👶</span>
-                  <span>Protegemos a los menores de edad con conversaciones apropiadas</span>
+                  <span>{t('restricted.reason1')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-lg">🛡️</span>
-                  <span>Cumplimos con regulaciones de protección infantil</span>
+                  <span>{t('restricted.reason2')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-lg">🌱</span>
-                  <span>Aún puedes disfrutar de otras áreas de la Chocósfera</span>
+                  <span>{t('restricted.reason3')}</span>
                 </li>
               </ul>
             </div>
 
             <div className="space-y-3">
               <p className="text-sm font-semibold text-yellow-900 dark:text-yellow-100">
-                ¿Eres mayor de edad?
+                {t('restricted.adultQuestion')}
               </p>
               <Link
                 href={`/${locale}/dashboard/settings`}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-orange-600 hover:from-primary/90 hover:to-orange-600/90 text-white font-bold rounded-lg transition-all shadow-md hover:shadow-lg hover:scale-105"
               >
                 <span>✅</span>
-                Verificar Mi Edad para Obtener Acceso Completo
+                {t('restricted.verifyButton')}
               </Link>
             </div>
           </div>
         ) : (
           <>
             {/* Widget de Telegram - Solo para adultos verificados */}
-            {TELEGRAM_CHANNEL === 'tu_grupo_telegram' ? (
+            {!TELEGRAM_CHANNEL || TELEGRAM_CHANNEL === 'chocosfera_community' ? (
               <div className="bg-yellow-50 dark:bg-yellow-900/20 border-2 border-yellow-200 dark:border-yellow-800 rounded-lg p-6 text-center">
                 <span className="text-4xl mb-4 block">⚠️</span>
                 <h3 className="text-lg font-bold text-yellow-900 dark:text-yellow-100 mb-2">
-                  Configuración Requerida
+                  {t('setup.title')}
                 </h3>
                 <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                  Para ver el chat de Telegram aquí, necesitas:
+                  {t('setup.description')}
                 </p>
                 <ol className="mt-3 text-left text-sm text-yellow-800 dark:text-yellow-200 max-w-md mx-auto space-y-2">
                   <li className="flex items-start gap-2">
                     <span>1.</span>
-                    <span>Crear un grupo o canal público en Telegram</span>
+                    <span>{t('setup.step1')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span>2.</span>
-                    <span>Obtener el username (ej: @chocosfera_community)</span>
+                    <span>{t('setup.step2')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span>3.</span>
                     <span>
-                      Actualizar la constante <code className="bg-yellow-100 dark:bg-yellow-800 px-1 rounded">TELEGRAM_CHANNEL</code> en{' '}
+                      {t('setup.step3')} <code className="bg-yellow-100 dark:bg-yellow-800 px-1 rounded">TELEGRAM_CHANNEL</code> {t('setup.step3b')}{' '}
                       <code className="bg-yellow-100 dark:bg-yellow-800 px-1 rounded">
                         dashboard/community/page.tsx
                       </code>
@@ -171,7 +169,7 @@ export default function CommunityPage() {
             )}
 
             {/* Join Button */}
-            {TELEGRAM_CHANNEL !== 'tu_grupo_telegram' && (
+            {TELEGRAM_CHANNEL && TELEGRAM_CHANNEL !== 'chocosfera_community' && (
               <div className="mt-4 flex justify-center">
                 <a
                   href={`https://t.me/${TELEGRAM_CHANNEL}`}

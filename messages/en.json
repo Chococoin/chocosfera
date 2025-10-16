@@ -307,6 +307,35 @@
           "paymentProcessError": "Error processing payment. Please try again."
         }
       },
+      "telegram": {
+        "title": "Telegram Integration",
+        "linked": "Telegram Account Linked",
+        "notLinked": "Telegram Account Not Linked",
+        "link": "Link Account",
+        "unlink": "Unlink Account",
+        "howToLink": "How to link your Telegram account",
+        "step1": "Open Telegram and search for @ChocosfereBot",
+        "step2": "Send the command /start to the bot",
+        "step3": "The bot will send you a unique linking code",
+        "step4": "Click the 'Link Account' button and enter your code",
+        "features": {
+          "notifications": "Instant Notifications",
+          "notificationsDesc": "Receive real-time updates about your trees, harvests, and community",
+          "commands": "Bot Commands",
+          "commandsDesc": "Use commands like /trees, /impact, /help to get quick information",
+          "treeUpdates": "Tree Updates",
+          "treeUpdatesDesc": "Get photos and updates about your adopted trees directly on Telegram",
+          "community": "Community Access",
+          "communityDesc": "Exclusive access to the Chocósfera Telegram community group"
+        },
+        "preferences": {
+          "title": "Telegram Notification Preferences",
+          "treeUpdates": "Tree updates and photos",
+          "communityMessages": "Community messages",
+          "marketplaceAlerts": "Marketplace alerts",
+          "subscriptionReminders": "Subscription reminders"
+        }
+      },
       "privacy": {
         "title": "Privacy and Security",
         "twoFactor": "Two-factor authentication",
