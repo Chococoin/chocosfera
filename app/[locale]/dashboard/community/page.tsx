@@ -2,7 +2,7 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/contexts/AuthContext';
-import { TelegramWidget } from '../components/TelegramWidget';
+import { TelegramChat } from '@/components/TelegramChat';
 import Link from 'next/link';
 
 export default function CommunityPage() {
@@ -134,54 +134,21 @@ export default function CommunityPage() {
           </div>
         ) : (
           <>
-            {/* Widget de Telegram - Solo para adultos verificados */}
-            {!TELEGRAM_CHANNEL || TELEGRAM_CHANNEL === 'chocosfera_community' ? (
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 border-2 border-yellow-200 dark:border-yellow-800 rounded-lg p-6 text-center">
-                <span className="text-4xl mb-4 block">⚠️</span>
-                <h3 className="text-lg font-bold text-yellow-900 dark:text-yellow-100 mb-2">
-                  {t('setup.title')}
-                </h3>
-                <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                  {t('setup.description')}
-                </p>
-                <ol className="mt-3 text-left text-sm text-yellow-800 dark:text-yellow-200 max-w-md mx-auto space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span>1.</span>
-                    <span>{t('setup.step1')}</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span>2.</span>
-                    <span>{t('setup.step2')}</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span>3.</span>
-                    <span>
-                      {t('setup.step3')} <code className="bg-yellow-100 dark:bg-yellow-800 px-1 rounded">TELEGRAM_CHANNEL</code> {t('setup.step3b')}{' '}
-                      <code className="bg-yellow-100 dark:bg-yellow-800 px-1 rounded">
-                        dashboard/community/page.tsx
-                      </code>
-                    </span>
-                  </li>
-                </ol>
-              </div>
-            ) : (
-              <TelegramWidget channelUsername={TELEGRAM_CHANNEL} height={500} />
-            )}
+            {/* Telegram Chat Component - Replica visual del chat de Telegram */}
+            <TelegramChat channelName="Chocósfera Community" height={500} />
 
             {/* Join Button */}
-            {TELEGRAM_CHANNEL && TELEGRAM_CHANNEL !== 'chocosfera_community' && (
-              <div className="mt-4 flex justify-center">
-                <a
-                  href={`https://t.me/${TELEGRAM_CHANNEL}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-orange-600 hover:from-primary/90 hover:to-orange-600/90 text-white font-medium rounded-lg transition-all shadow-sm hover:shadow-md"
-                >
-                  <span>📱</span>
-                  {t('joinButton')}
-                </a>
-              </div>
-            )}
+            <div className="mt-4 flex justify-center">
+              <a
+                href={`https://t.me/${TELEGRAM_CHANNEL}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-medium rounded-lg transition-all shadow-md hover:shadow-lg"
+              >
+                <span>📱</span>
+                {t('joinButton')}
+              </a>
+            </div>
           </>
         )}
       </div>
