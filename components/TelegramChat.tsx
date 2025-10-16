@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
 
 interface TelegramMessage {
   id: string;
@@ -24,7 +23,6 @@ interface TelegramChatProps {
  * Replicates Telegram group chat UI with messages from different users
  */
 export function TelegramChat({ channelName = 'Chocósfera Community', height = 500 }: TelegramChatProps) {
-  const { user } = useAuth();
   const [messages, setMessages] = useState<TelegramMessage[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -139,6 +137,7 @@ export function TelegramChat({ channelName = 'Chocósfera Community', height = 5
     }, 15000); // Every 15 seconds
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Format timestamp

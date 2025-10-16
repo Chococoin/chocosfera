@@ -62,6 +62,7 @@ export default function FamilyPage() {
     if (user && user.familyId) {
       fetchFamilyMembers();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   // Check if user is family admin

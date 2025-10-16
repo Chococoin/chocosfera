@@ -212,7 +212,6 @@ function TreeNodeComponent({
  * Main FamilyTree component
  */
 export default function FamilyTree({ members, currentUserId, onEditMember, isAdmin = false }: FamilyTreeProps) {
-  const t = useTranslations('dashboard.family');
   const tMembers = useTranslations('dashboard.family.members');
   const tTree = useTranslations('dashboard.family.tree');
 

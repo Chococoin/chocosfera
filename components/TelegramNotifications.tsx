@@ -102,6 +102,7 @@ export function TelegramNotifications() {
       clearInterval(interval);
       clearTimeout(initialTimeout);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.telegramId]);
 
   // Don't render if user doesn't have Telegram linked
