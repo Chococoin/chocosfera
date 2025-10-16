@@ -1,8 +1,113 @@
 # Notas de Sesión - Chocósfera
 
-**Última actualización**: 14 de Octubre de 2025
+**Última actualización**: 15 de Octubre de 2025
 
 ## 📝 Resumen de Sesiones Anteriores
+
+### Sesión 4 - Internacionalización: Pricing y Canon Characters (15 Oct 2025)
+
+#### Trabajo Realizado
+
+1. **Internacionalización Completa de Pricing** ✅
+   - ✅ Página `/pricing` completamente traducida
+   - ✅ Soporte para 3 idiomas: Español, Inglés, Italiano
+   - ✅ ~130 líneas de traducciones por idioma
+   - ✅ Dos esquemas de precios: Seed (early adopters) y Fruit (árboles)
+   - ✅ FAQ con 3 preguntas frecuentes
+   - ✅ Traducción de features usando `t.raw()` para arrays
+   - ✅ Claves dinámicas con template literals
+
+2. **Correcciones de Errores** 🐛
+   - **Error MISSING_MESSAGE**: Corregido namespace de `'pricing'` a `'dashboard.pricing'`
+   - **Error INSUFFICIENT_PATH**: Solucionado conflicto de claves duplicadas en marketplace
+     - Renombrado `"products"` (string) → `"productsCount"`
+     - Renombrado `"products"` (object) → `"items"`
+     - Actualizado código para usar nuevas claves
+
+3. **Implementación de Canon Characters** ⭐
+   - ✅ Sección modesta en página Explore
+   - ✅ Tres personajes canon: Pipo 🌱, Tony 🍫, Kaoka 👨‍🌾
+   - ✅ Características:
+     - Solo visible en tab "Characters"
+     - Gradiente púrpura-rosa de fondo
+     - Grid responsivo de 3 columnas
+     - Botón "Fork" para cada personaje
+     - Traducciones completas (ES, EN, IT)
+   - ✅ Estructura de traducciones:
+     ```
+     canonCharacters:
+       - title: Título de la sección
+       - subtitle: Descripción
+       - forkThis: Texto del botón
+       - pipo/tony/kaoka: Nombre y descripción de cada personaje
+     ```
+
+#### Archivos Modificados
+
+**Traducciones**:
+- `messages/es.json`: +17 líneas canon characters, +130 pricing
+- `messages/en.json`: +17 líneas canon characters, +130 pricing
+- `messages/it.json`: +17 líneas canon characters, +130 pricing
+
+**Código**:
+- `app/[locale]/pricing/page.tsx`: 370 líneas - internacionalización completa
+- `app/[locale]/dashboard/explore/page.tsx`: +43 líneas - sección canon characters
+- `app/[locale]/dashboard/marketplace/page.tsx`: Fix products → productsCount/items
+- `lib/pricing-plans.ts`: Comentario sobre estrategia de traducción
+
+#### Commits
+```bash
+# Commit 1: Pricing
+[commit-hash] - feat: internationalize pricing page with dual scheme support
+
+# Commit 2: Canon Characters
+317d95b - feat: add canon characters section to explore page
+```
+
+#### Patrones Técnicos Aprendidos
+
+1. **Namespace anidado en next-intl**:
+   ```typescript
+   const t = useTranslations('dashboard.pricing'); // ✅ Correcto
+   const t = useTranslations('pricing'); // ❌ Error si está anidado
+   ```
+
+2. **Arrays en traducciones**:
+   ```typescript
+   // JSON
+   "features": ["Feature 1", "Feature 2"]
+
+   // Código
+   (t.raw('features') as string[]).map(...)
+   ```
+
+3. **Claves dinámicas**:
+   ```typescript
+   t(`schemes.${scheme.id}.plans.${planId}.name`)
+   ```
+
+4. **No duplicar claves en JSON**:
+   ```json
+   // ❌ MAL - última clave sobrescribe
+   "products": "productos",
+   "products": { nft001: {...} }
+
+   // ✅ BIEN
+   "productsCount": "productos",
+   "items": { nft001: {...} }
+   ```
+
+#### Diseño de Canon Characters
+
+- **Ubicación**: Entre tabs y contenido de caracteres
+- **Estilo**: "Modesto" como solicitado
+  - Fondo con gradiente sutil
+  - Tamaño contenido sin abrumar
+  - Solo visible cuando es relevante
+- **Interactividad**: Hover effects en cards
+- **Responsive**: 1 columna móvil, 3 desktop
+
+---
 
 ### Sesión 3 - Limpieza de Código (14 Oct 2025)
 

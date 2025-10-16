@@ -47,21 +47,29 @@
 
 ### ✨ Features Implementadas
 
-5. **[CHARACTER-SYSTEM-ROADMAP.md](./CHARACTER-SYSTEM-ROADMAP.md)**
+5. **[INTERNATIONALIZATION.md](./INTERNATIONALIZATION.md)** - 🆕 **NUEVO**
+   - Guía completa de internacionalización con next-intl
+   - Patrones y mejores prácticas
+   - Errores comunes y soluciones
+   - Estado actual de traducciones
+   - Ejemplos de código completos
+   - **Última actualización**: Sesión 4 (15 Oct 2025)
+
+6. **[CHARACTER-SYSTEM-ROADMAP.md](./CHARACTER-SYSTEM-ROADMAP.md)**
    - Sistema de personajes
    - Git integration (local - pendiente Gitea)
    - Forks y colaboración
    - Character types y metadata
    - Roadmap de features
 
-6. **[EMAIL-SYSTEM.md](./EMAIL-SYSTEM.md)**
+7. **[EMAIL-SYSTEM.md](./EMAIL-SYSTEM.md)**
    - Integración con MailerSend
    - Templates de emails
    - Sistema de invitaciones familiares
    - Tokens de verificación
    - Rate limiting
 
-7. **[OFFICIAL-HISTORY-REPO.md](./OFFICIAL-HISTORY-REPO.md)**
+8. **[OFFICIAL-HISTORY-REPO.md](./OFFICIAL-HISTORY-REPO.md)**
    - Estructura del repositorio oficial
    - Personajes oficiales (Tony, Pipo, Kaoka)
    - Sistema de episodios
@@ -87,6 +95,7 @@ docs/
 │   └── GITEA-SETUP.md                 # Setup de Gitea
 │
 └── ✨ FEATURES
+    ├── INTERNATIONALIZATION.md         # 🆕 i18n con next-intl
     ├── CHARACTER-SYSTEM-ROADMAP.md    # Sistema de personajes
     ├── EMAIL-SYSTEM.md                # MailerSend
     └── OFFICIAL-HISTORY-REPO.md       # Repo oficial
@@ -145,10 +154,13 @@ cat docs/GIT-TO-GITEA-MIGRATION.md
 - [x] Sistema de familias
 - [x] Invitaciones por email
 - [x] Sistema de likes
-- [x] Explore page
+- [x] Explore page (con canon characters)
 - [x] Onboarding flow
 - [x] Landing page mejorada
 - [x] Limpieza completa de ESLint (0 errores, 0 warnings)
+- [x] Internacionalización completa (ES, EN, IT)
+- [x] Pricing page con dual scheme
+- [x] Canon characters (Pipo, Tony, Kaoka)
 
 ### 🚧 En Progreso
 - [ ] Migración a Gitea (PRIORIDAD 1)
@@ -173,7 +185,7 @@ cat docs/GIT-TO-GITEA-MIGRATION.md
 - **Lenguaje**: TypeScript
 - **Estilos**: Tailwind CSS
 - **UI**: Custom components
-- **i18n**: next-intl (español/inglés)
+- **i18n**: next-intl (español/inglés/italiano)
 
 ### Backend
 - **Runtime**: Node.js
@@ -327,5 +339,5 @@ Ver **SESSION-NOTES.md** sección "Bugs Conocidos / Tech Debt"
 
 ---
 
-**Última revisión**: 14 de Octubre de 2025
-**Versión**: 1.0
+**Última revisión**: 15 de Octubre de 2025
+**Versión**: 1.1
