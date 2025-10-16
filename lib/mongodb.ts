@@ -1,7 +1,7 @@
 /**
  * MongoDB Client
  *
- * Handles: Characters, Stories, Badges, Comments, Likes
+ * Handles: Characters, Stories, Badges, Comments, Likes, Telegram Messages
  * See: /docs/DATABASE-ARCHITECTURE.md
  */
 
@@ -63,6 +63,7 @@ export const Collections = {
   STORY_LIKES: 'story_likes',
   CHARACTER_LIKES: 'character_likes',
   ANALYTICS: 'analytics_events',
+  TELEGRAM_MESSAGES: 'telegram_messages',
 } as const;
 
 /**
@@ -111,6 +112,14 @@ export async function initializeMongoIndexes() {
   await db.collection(Collections.CHARACTER_LIKES).createIndexes([
     { key: { characterId: 1 } },
     { key: { userId: 1, characterId: 1 }, unique: true },
+  ]);
+
+  // Telegram messages indexes
+  await db.collection(Collections.TELEGRAM_MESSAGES).createIndexes([
+    { key: { channelId: 1, timestamp: -1 } }, // Query by channel, sorted by time
+    { key: { telegramMsgId: 1 }, unique: true }, // Prevent duplicate messages
+    { key: { 'author.telegramId': 1 } }, // Query by author
+    { key: { isDeleted: 1 } }, // Filter deleted messages
   ]);
 
   console.log('MongoDB indexes initialized successfully');

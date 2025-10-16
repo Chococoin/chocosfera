@@ -1,17 +1,11 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-
-interface TelegramMessage {
-  id: string;
-  userId: string;
-  username: string;
-  firstName: string;
-  avatar: string;
-  message: string;
-  timestamp: Date;
-  isOwn?: boolean;
-}
+import { useRef, useEffect } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
+import { useTelegramMessages } from '@/hooks/useTelegramMessages';
+import { useTelegramReactions } from '@/hooks/useTelegramReactions';
+import type { TelegramMessage, ReactionEmoji } from '@/types/telegram';
+import { REACTION_EMOJIS } from '@/types/telegram';
 
 interface TelegramChatProps {
   channelName?: string;
@@ -20,69 +14,21 @@ interface TelegramChatProps {
 
 /**
  * TelegramChat Component
- * Replicates Telegram group chat UI with messages from different users
+ * Displays Telegram messages with reactions system
+ * Uses MongoDB for data storage with mock data
  */
 export function TelegramChat({ channelName = 'Chocósfera Community', height = 500 }: TelegramChatProps) {
-  const [messages, setMessages] = useState<TelegramMessage[]>([]);
+  const { user } = useAuth();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Mock users in the community
-  const mockUsers = [
-    {
-      userId: 'user_1',
-      username: 'carlos_farmer',
-      firstName: 'Carlos',
-      avatar: '👨‍🌾',
-    },
-    {
-      userId: 'user_2',
-      username: 'maria_chocolatier',
-      firstName: 'María',
-      avatar: '👩‍🍳',
-    },
-    {
-      userId: 'user_3',
-      username: 'pedro_trader',
-      firstName: 'Pedro',
-      avatar: '👨‍💼',
-    },
-    {
-      userId: 'user_4',
-      username: 'ana_sustainability',
-      firstName: 'Ana',
-      avatar: '👩‍🔬',
-    },
-    {
-      userId: 'user_5',
-      username: 'jose_cacao',
-      firstName: 'José',
-      avatar: '🧑‍🌾',
-    },
-  ];
+  // Fetch messages with polling (every 5 seconds)
+  const { messages, isLoading, error } = useTelegramMessages({
+    channelId: 'chocosfera_community',
+    pollInterval: 5000,
+  });
 
-  // Mock messages content
-  const mockMessagesContent = [
-    '¡Hola a todos! ¿Cómo va la cosecha este año?',
-    'Muy bien, este año tenemos una producción excelente 🌱',
-    '¿Alguien ha probado los nuevos métodos de fermentación?',
-    'Sí, yo los implementé el mes pasado y los resultados son increíbles',
-    '¡Qué bueno! ¿Podrías compartir más detalles?',
-    'Claro, básicamente controlo mejor la temperatura durante 5-7 días',
-    'Interesante, yo también quiero probar eso',
-    '¿Hay alguien en la zona de Santander?',
-    'Yo estoy en Bucaramanga, ¿necesitas algo?',
-    'Perfecto, podríamos coordinar un intercambio de semillas',
-    'Me encantaría participar también 🙋‍♂️',
-    'El precio del cacao ha subido esta semana',
-    'Sí, vi las noticias. Es una buena oportunidad para vender',
-    '¿Alguien tiene contacto con compradores certificados?',
-    'Yo trabajo con varios, te puedo pasar información',
-    'Gracias! Me ayudaría mucho',
-    '¿Cuándo es la próxima reunión de la comunidad?',
-    'Creo que es el próximo viernes a las 3pm',
-    'Perfecto, ahí estaré 👍',
-    '¡Excelente! Vamos a hablar sobre nuevas certificaciones',
-  ];
+  // Reactions hook
+  const { addReaction, removeReaction, isLoading: reactionsLoading } = useTelegramReactions();
 
   // Scroll to bottom when new messages arrive
   const scrollToBottom = () => {
@@ -93,59 +39,49 @@ export function TelegramChat({ channelName = 'Chocósfera Community', height = 5
     scrollToBottom();
   }, [messages]);
 
-  // Initialize with some messages and simulate new ones
-  useEffect(() => {
-    // Add initial messages
-    const initialMessages: TelegramMessage[] = [];
-    const now = new Date();
-
-    for (let i = 0; i < 8; i++) {
-      const randomUser = mockUsers[Math.floor(Math.random() * mockUsers.length)];
-      const randomMessage = mockMessagesContent[Math.floor(Math.random() * mockMessagesContent.length)];
-
-      initialMessages.push({
-        id: `msg_${Date.now()}_${i}`,
-        userId: randomUser.userId,
-        username: randomUser.username,
-        firstName: randomUser.firstName,
-        avatar: randomUser.avatar,
-        message: randomMessage,
-        timestamp: new Date(now.getTime() - (8 - i) * 180000), // 3 minutes apart
-        isOwn: false,
-      });
-    }
-
-    setMessages(initialMessages);
-
-    // Simulate new messages arriving every 15 seconds
-    const interval = setInterval(() => {
-      const randomUser = mockUsers[Math.floor(Math.random() * mockUsers.length)];
-      const randomMessage = mockMessagesContent[Math.floor(Math.random() * mockMessagesContent.length)];
-
-      const newMessage: TelegramMessage = {
-        id: `msg_${Date.now()}`,
-        userId: randomUser.userId,
-        username: randomUser.username,
-        firstName: randomUser.firstName,
-        avatar: randomUser.avatar,
-        message: randomMessage,
-        timestamp: new Date(),
-        isOwn: false,
-      };
-
-      setMessages((prev) => [...prev, newMessage]);
-    }, 15000); // Every 15 seconds
-
-    return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   // Format timestamp
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('es-ES', {
+  const formatTime = (date: Date | string) => {
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+    return dateObj.toLocaleTimeString('es-ES', {
       hour: '2-digit',
       minute: '2-digit',
     });
+  };
+
+  // Handle reaction toggle
+  const handleReactionToggle = async (message: TelegramMessage, emoji: ReactionEmoji) => {
+    if (!user) return;
+
+    // Check if user already reacted with this emoji
+    const userReaction = message.reactions?.find(
+      (r) => r.userId === user.id && r.reactionType === emoji
+    );
+
+    if (userReaction) {
+      // Remove reaction
+      await removeReaction({
+        messageId: message._id.toString(),
+        userId: user.id,
+        reactionType: emoji,
+      });
+    } else {
+      // Add reaction
+      await addReaction({
+        messageId: message._id.toString(),
+        userId: user.id,
+        userName: user.nick,
+        userAvatar: user.avatarUrl || undefined,
+        reactionType: emoji,
+      });
+    }
+  };
+
+  // Check if user has reacted with specific emoji
+  const hasUserReacted = (message: TelegramMessage, emoji: ReactionEmoji): boolean => {
+    if (!user) return false;
+    return message.reactions?.some(
+      (r) => r.userId === user.id && r.reactionType === emoji
+    ) || false;
   };
 
   return (
@@ -158,7 +94,7 @@ export function TelegramChat({ channelName = 'Chocósfera Community', height = 5
         <div className="flex-1">
           <h3 className="font-bold text-base">{channelName}</h3>
           <p className="text-xs text-white/80">
-            {messages.length} mensajes • {mockUsers.length} miembros en línea
+            {messages.length} mensajes • {isLoading ? 'Cargando...' : 'En línea'}
           </p>
         </div>
         <div className="text-white/80 text-sm">
@@ -171,17 +107,37 @@ export function TelegramChat({ channelName = 'Chocósfera Community', height = 5
         className="flex-1 overflow-y-auto p-4 space-y-3 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
         style={{ height: `${height}px` }}
       >
+        {/* Loading State */}
+        {isLoading && messages.length === 0 && (
+          <div className="flex items-center justify-center h-full">
+            <div className="text-center">
+              <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-500 border-r-transparent mb-2"></div>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Cargando mensajes...</p>
+            </div>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div className="flex items-center justify-center h-full">
+            <div className="text-center bg-red-50 dark:bg-red-900/20 rounded-lg p-4">
+              <p className="text-sm text-red-600 dark:text-red-400">❌ {error}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Messages */}
         {messages.map((msg, index) => {
           // Check if this is the first message from this user in a sequence
-          const isFirstInSequence = index === 0 || messages[index - 1].userId !== msg.userId;
+          const isFirstInSequence = index === 0 || messages[index - 1].author.telegramId !== msg.author.telegramId;
 
           return (
-            <div key={msg.id} className="flex gap-3 group">
+            <div key={msg._id.toString()} className="flex gap-3 group">
               {/* Avatar - only show for first message in sequence */}
               <div className="flex-shrink-0">
                 {isFirstInSequence ? (
                   <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center text-xl shadow-md">
-                    {msg.avatar}
+                    {msg.author.avatar}
                   </div>
                 ) : (
                   <div className="w-10" />
@@ -194,26 +150,77 @@ export function TelegramChat({ channelName = 'Chocósfera Community', height = 5
                 {isFirstInSequence && (
                   <div className="flex items-baseline gap-2 mb-1">
                     <span className="font-semibold text-sm text-blue-600 dark:text-blue-400">
-                      {msg.firstName}
+                      {msg.author.name}
                     </span>
-                    <span className="text-xs text-gray-400 dark:text-gray-500">
-                      @{msg.username}
-                    </span>
+                    {msg.author.username && (
+                      <span className="text-xs text-gray-400 dark:text-gray-500">
+                        @{msg.author.username}
+                      </span>
+                    )}
                   </div>
                 )}
 
                 {/* Message Bubble */}
-                <div className="group relative">
+                <div className="group/message relative">
                   <div className="bg-white dark:bg-gray-700 rounded-2xl rounded-tl-sm px-4 py-2 shadow-sm border border-gray-100 dark:border-gray-600 inline-block max-w-[85%]">
                     <p className="text-sm text-gray-800 dark:text-gray-200 break-words">
-                      {msg.message}
+                      {msg.content}
                     </p>
                   </div>
 
                   {/* Timestamp - appears on hover */}
-                  <span className="text-xs text-gray-400 dark:text-gray-500 ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-xs text-gray-400 dark:text-gray-500 ml-2 opacity-0 group-hover/message:opacity-100 transition-opacity">
                     {formatTime(msg.timestamp)}
                   </span>
+
+                  {/* Reactions Display */}
+                  {msg.reactions && msg.reactions.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      {REACTION_EMOJIS.map((emoji) => {
+                        const count = msg.reactionCounts?.[emoji] || 0;
+                        if (count === 0) return null;
+
+                        const userHasReacted = hasUserReacted(msg, emoji);
+
+                        return (
+                          <button
+                            key={emoji}
+                            onClick={() => handleReactionToggle(msg, emoji)}
+                            disabled={reactionsLoading || !user}
+                            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs transition-all ${
+                              userHasReacted
+                                ? 'bg-blue-100 dark:bg-blue-900/40 border border-blue-300 dark:border-blue-700'
+                                : 'bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-600'
+                            }`}
+                          >
+                            <span>{emoji}</span>
+                            <span className={userHasReacted ? 'font-semibold text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400'}>
+                              {count}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Reaction Picker - shows on hover */}
+                  {user && (
+                    <div className="absolute left-0 top-full mt-1 opacity-0 group-hover/message:opacity-100 transition-opacity pointer-events-none group-hover/message:pointer-events-auto z-10">
+                      <div className="bg-white dark:bg-gray-700 rounded-full shadow-lg border border-gray-200 dark:border-gray-600 px-2 py-1 flex gap-1">
+                        {REACTION_EMOJIS.map((emoji) => (
+                          <button
+                            key={emoji}
+                            onClick={() => handleReactionToggle(msg, emoji)}
+                            disabled={reactionsLoading}
+                            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-lg"
+                            title={`React with ${emoji}`}
+                          >
+                            {emoji}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -239,7 +246,7 @@ export function TelegramChat({ channelName = 'Chocósfera Community', height = 5
           </button>
         </div>
         <p className="text-xs text-gray-400 dark:text-gray-500 text-center mt-2 italic">
-          🤖 Vista previa en modo lectura (mock)
+          🤖 Vista previa con datos mock de MongoDB
         </p>
       </div>
     </div>
