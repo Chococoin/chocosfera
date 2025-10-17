@@ -1,8 +1,163 @@
 # Notas de Sesión - Chocósfera
 
-**Última actualización**: 15 de Octubre de 2025
+**Última actualización**: 17 de Octubre de 2025
 
 ## 📝 Resumen de Sesiones Anteriores
+
+### Sesión 5 - Fix Stack Overflow y Mejoras de Código (17 Oct 2025)
+
+#### Trabajo Realizado
+
+1. **Fix Crítico: Stack Overflow en i18n.ts** 🐛🔴
+   - **Problema**: RangeError: Maximum call stack size exceeded
+   - **Causa**: Doble validación con `notFound()` creando bucle infinito
+     - `i18n.ts:16` llamaba `notFound()` cuando locale no era válido
+     - `app/[locale]/layout.tsx:40-42` también llamaba `notFound()`
+     - Middleware redirigía → layout validaba → `notFound()` → middleware redirigía → bucle infinito
+   - **Solución**:
+     - ❌ Eliminado `notFound()` de `i18n.ts`
+     - ✅ Implementado fallback a locale 'en' cuando locale no es válido
+     - ✅ Removido import innecesario de `notFound`
+     - ✅ Middleware maneja redirecciones, layout valida como última capa
+
+2. **Ajustes Visuales en Home Page** 🎨
+   - **Emojis** (👶🏼❤️🌍🎓🍫):
+     - Reducido tamaño: `text-7xl md:text-8xl` → `text-5xl md:text-6xl`
+     - Aumentado padding superior: `mt-8` → `mt-16`
+     - Mejor balance visual en sección de impacto
+   - **Archivo modificado**: `app/[locale]/page.tsx:185`
+
+3. **Mejoras de TypeScript y Calidad de Código** 🔧
+   - **React Keys**: Agregados keys a iteraciones con `.map()`
+     - `app/[locale]/dashboard/characters/[slug]/page.tsx`: abilities y stories
+   - **MongoDB Type Casting**: Fixes para compatibilidad con tipos
+     - Uso de `OptionalId<T>` para documentos antes de insert
+     - Cast explícito a `CharacterDocument` en inserts
+     - Type assertion `as any` temporal para acceso a campos dinámicos
+   - **Auth Improvements**:
+     - Agregado campo `locale` a `JWTPayload` (lib/auth.ts:27)
+     - Agregado campo `locale` a `SessionUser` (lib/auth.ts:41)
+     - Locale incluido en generación de token
+   - **Simplificaciones**:
+     - Uso consistente de `user.nick` en notificaciones (en vez de firstName + lastName)
+     - Removida lógica de metadata en invitaciones familiares (campo no existe en schema)
+   - **API Updates**:
+     - Stripe API actualizada: `2024-12-18.acacia` → `2025-09-30.clover`
+     - `lib/stripe.ts` y `scripts/setup-stripe-products.ts`
+   - **Git Service**: Cambiado `private git` → `public git` para mejor accesibilidad
+   - **ESLint**: Agregado `telegram-bot/**` a patrones ignore
+
+#### Archivos Modificados
+
+**UI/UX**:
+- `app/[locale]/page.tsx`: Ajustes de emojis (tamaño y spacing)
+
+**Fixes Críticos**:
+- `i18n.ts`: Eliminado `notFound()` causante de stack overflow
+
+**Type Safety**:
+- `app/[locale]/dashboard/characters/[slug]/page.tsx`: React keys
+- `app/api/characters/[id]/fork/route.ts`: OptionalId type casting
+- `app/api/characters/[id]/like/route.ts`: Simplificación user.nick
+- `app/api/characters/[id]/stories/route.ts`: Type casting en insert
+- `app/api/characters/route.ts`: Type casting en insert
+- `app/api/family/accept/[token]/route.ts`: Simplificación metadata
+- `app/api/family/invite/route.ts`: Simplificación metadata y nombres
+- `app/api/stories/[id]/like/route.ts`: Type casting y simplificación
+- `app/api/stories/route.ts`: ESLint disable para any
+- `app/api/telegram/link/route.ts`: Uso de getCurrentUser vs verifyAuth
+
+**Configuración**:
+- `lib/auth.ts`: Agregado locale a JWT y SessionUser
+- `lib/git-service.ts`: git property ahora público
+- `lib/mongodb.ts`: Generic con extends Document
+- `lib/stripe.ts`: Stripe API version bump
+- `scripts/seed-telegram-messages.ts`: Type annotation para reactions
+- `scripts/setup-stripe-products.ts`: Stripe API version bump
+- `eslint.config.mjs`: Agregado telegram-bot/** a ignores
+
+#### Commits
+
+```bash
+# Commit 1: Ajuste visual de emojis
+e2f0789 - style: adjust emoji size and spacing on home page
+
+# Commit 2: Fixes de TypeScript y mejoras generales
+4991fe5 - fix: resolve TypeScript errors and improve code quality
+  - 17 archivos modificados
+  - +42 líneas, -49 líneas
+```
+
+#### Problema Identificado (No Resuelto)
+
+**Stack Overflow durante Testing de i18n**
+- Ocurrió cuando probábamos redirecciones de locale con curl
+- Request: `curl -I -H "Accept-Language: es-ES,es;q=0.9" -H "Cookie: NEXT_LOCALE=it" http://localhost:3000/`
+- Error: `RangeError: Maximum call stack size exceeded at z3.isOverWhitespace`
+- **Resolución**: Identificada causa en doble `notFound()`, corregida en i18n.ts
+
+#### Flujo Correcto de i18n Ahora
+
+1. **Middleware** (`middleware.ts`):
+   - Detecta locale (prioridad: cookie NEXT_LOCALE → Accept-Language → URL)
+   - Redirige con `localePrefix: 'always'` a locale válido
+
+2. **i18n Config** (`i18n.ts`):
+   - Carga mensajes para locale solicitado
+   - Si locale no es válido: usa fallback 'en' (NO lanza error)
+
+3. **Layout** (`app/[locale]/layout.tsx`):
+   - Valida locale como última capa de seguridad
+   - Llama `notFound()` solo si es inválido (caso extremo)
+
+#### Patrones Técnicos Aprendidos
+
+1. **Evitar múltiples notFound() en cadena**:
+   ```typescript
+   // ❌ MAL - Puede causar bucles
+   export default getRequestConfig(async ({ requestLocale }) => {
+     const locale = await requestLocale;
+     if (!isSupportedLocale(locale)) {
+       notFound(); // Y también en layout.tsx
+     }
+   });
+
+   // ✅ BIEN - Fallback seguro
+   export default getRequestConfig(async ({ requestLocale }) => {
+     let locale = await requestLocale;
+     if (!isSupportedLocale(locale)) {
+       locale = 'en'; // Middleware ya redirige
+     }
+   });
+   ```
+
+2. **MongoDB Type Safety con OptionalId**:
+   ```typescript
+   import { OptionalId } from 'mongodb';
+
+   const doc: OptionalId<CharacterDocument> = { ...data };
+   const result = await collection.insertOne(doc as CharacterDocument);
+   ```
+
+3. **Stripe API Version Management**:
+   ```typescript
+   // Mantener versión consistente en:
+   // - lib/stripe.ts
+   // - scripts/setup-stripe-products.ts
+   const stripe = new Stripe(key, {
+     apiVersion: '2025-09-30.clover',
+     typescript: true,
+   });
+   ```
+
+#### Notas de Testing
+
+- **Servidor de desarrollo**: Iniciado en puerto 3001 (3000 en uso)
+- **URL Local**: http://localhost:3001
+- **Estado**: Servidor detenido antes de push a producción
+- **Próximo paso**: Deploy a producción con fixes aplicados
+
+---
 
 ### Sesión 4 - Internacionalización: Pricing y Canon Characters (15 Oct 2025)
 
