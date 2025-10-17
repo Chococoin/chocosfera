@@ -562,6 +562,106 @@
       "errors": {
         "fetchError": "Eroare la preluarea caracterelor",
         "unknownError": "Eroare necunoscută"
+      },
+      "create": {
+        "backButton": "Înapoi la Personajele Mele",
+        "title": "Creează Personaj Nou",
+        "stepProgress": "Pasul {step} din 4: Creează-ți personajul unic în Chocósfera",
+        "steps": {
+          "basics": "Bază",
+          "description": "Descriere",
+          "story": "Poveste",
+          "confirm": "Confirmă"
+        },
+        "step1": {
+          "title": "Informații de Bază ale Personajului",
+          "nameLabel": "Numele Personajului *",
+          "namePlaceholder": "Ex: Tony, Pipo, Kaoka...",
+          "characterCount": "{count}/50 caractere",
+          "typeLabel": "Tipul Personajului *",
+          "iconLabel": "Pictograma Personajului",
+          "iconDescription": "Selectați o pictogramă care să reprezinte personajul"
+        },
+        "step2": {
+          "title": "Descriere și Personalitate",
+          "descriptionLabel": "Descrierea Personajului *",
+          "descriptionPlaceholder": "Descrie-ți personajul: Cum este? Ce îl face unic?",
+          "descriptionCount": "{count}/500 caractere (minim 20)",
+          "personalityLabel": "Personalitate",
+          "personalityPlaceholder": "Ex: Curios, aventuros, lider natural, protector al familiei...",
+          "personalityCount": "{count}/300 caractere",
+          "abilitiesLabel": "Abilități Speciale",
+          "abilityPlaceholder": "Ex: Poate vorbi cu plantele de cacao",
+          "addAbilityButton": "Adaugă",
+          "abilitiesCount": "{count}/5 abilități",
+          "mottoLabel": "Motto sau Frază Caracteristică",
+          "mottoPlaceholder": "Ex: \"Magia cacaolei ne unește pe toți\"",
+          "mottoCount": "{count}/150 caractere"
+        },
+        "step3": {
+          "title": "Povestea Sosirii în Chocósfera",
+          "subtitle": "Spune cum a ajuns personajul tău în Chocósfera. Amintește-ți că toate personajele trec prin Portalul de Ciocolată...",
+          "inspirationTitle": "Inspirație: Portalul de Ciocolată",
+          "inspirationQuote": "Am dus o bucată din acea substanță aromatică și întunecoasă la gură și m-am trezit învăluit într-o magie care m-a transportat într-o lume la fel de frumoasă și colorată cât de necunoscută...",
+          "inspirationText": "Aceasta este povestea lui Tony. Cum a ajuns personajul tău? Ce a descoperit când a trecut prin portal?",
+          "storyLabel": "Povestea Ta *",
+          "storyPlaceholder": "Spune povestea despre cum personajul tău a descoperit și a intrat în Chocósfera...",
+          "storyCount": "{count}/2000 caractere (minim 50)",
+          "commitInfo": "Această poveste va fi salvată ca primul commit în depozitul Git al personajului tău: {filename}"
+        },
+        "step4": {
+          "title": "Revizuiește și Confirmă",
+          "descriptionLabel": "Descriere:",
+          "personalityLabel": "Personalitate:",
+          "abilitiesLabel": "Abilități:",
+          "mottoLabel": "Motto:",
+          "arrivalStoryLabel": "Povestea Sosirii:",
+          "visibilityLabel": "Vizibilitatea Personajului",
+          "privateTitle": "Privat",
+          "privateDescription": "Doar tu și familia ta puteți vedea acest personaj",
+          "publicTitle": "Public",
+          "publicDescription": "Toată lumea poate vedea personajul și povestea lui",
+          "infoTitle": "Ce se va întâmpla la crearea personajului?",
+          "infoPoint1": "Va fi creat un depozit Git pentru a stoca personajul și poveștile lui",
+          "infoPoint2": "Povestea ta de sosire va fi salvată ca primul commit",
+          "infoPoint3": "Vei putea edita personajul, adăuga povești noi și colabora cu familia",
+          "infoPoint4": "Fiecare modificare va fi înregistrată în istoricul (trasabilitate completă)"
+        },
+        "characterTypes": {
+          "cacao": {
+            "label": "Cacao",
+            "description": "O boabă de cacao plină de potențial și magie"
+          },
+          "chocolate": {
+            "label": "Ciocolată",
+            "description": "Ciocolată transformată, dulce și versatilă"
+          },
+          "farmer": {
+            "label": "Fermier",
+            "description": "Gardian al plantelor și cunoscător al pământului"
+          },
+          "other": {
+            "label": "Altul",
+            "description": "Un personaj unic cu propria poveste"
+          }
+        },
+        "buttons": {
+          "previous": "Anterior",
+          "next": "Următorul",
+          "create": "Creează Personaj",
+          "creating": "Se creează..."
+        },
+        "errors": {
+          "nameRequired": "Numele este obligatoriu",
+          "nameTooShort": "Numele trebuie să aibă cel puțin 2 caractere",
+          "descriptionRequired": "Descrierea este obligatorie",
+          "descriptionTooShort": "Descrierea trebuie să aibă cel puțin 20 caractere",
+          "storyRequired": "Povestea de sosire este obligatorie",
+          "storyTooShort": "Povestea trebuie să aibă cel puțin 50 caractere",
+          "createError": "Eroare la crearea personajului",
+          "unknownError": "Eroare necunoscută"
+        },
+        "loading": "Se încarcă..."
       }
     },
     "explore": {
@@ -1093,5 +1193,21 @@
     "success": "Mulțumim!",
     "successMessage": "Vă vom răspunde în curând.",
     "sendAnother": "Trimite alt mesaj"
+  },
+  "notifications": {
+    "chococrypto": {
+      "title": "Primul lot de ChocoCrypto este gata!",
+      "message": "Folosește-ți ChocoCoins pentru a obține delicioase tablete de ciocolată. Descoperă mai multe despre această noutate!",
+      "readMore": "Citește mai mult"
+    },
+    "venezuelaContainer": {
+      "title": "Container din Venezuela a ajuns în Italia!",
+      "message": "Cultivatorii de cacao venezueleni au trimis primul lor container de cacao fin în Italia. Descoperă această poveste incredibilă.",
+      "readMore": "Citește mai mult"
+    }
+  },
+  "blog": {
+    "title": "Blog Chocósfera",
+    "subtitle": "Știri, actualizări și mai multe despre lumea cacaolei durabile"
   }
 }

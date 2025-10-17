@@ -562,6 +562,106 @@
       "errors": {
         "fetchError": "获取字符时出错",
         "unknownError": "未知错误"
+      },
+      "create": {
+        "backButton": "返回我的角色",
+        "title": "创建新角色",
+        "stepProgress": "第{step}步（共4步）：在巧克之境创建您独特的角色",
+        "steps": {
+          "basics": "基本信息",
+          "description": "描述",
+          "story": "故事",
+          "confirm": "确认"
+        },
+        "step1": {
+          "title": "角色基本信息",
+          "nameLabel": "角色名称 *",
+          "namePlaceholder": "例如：Tony、Pipo、Kaoka...",
+          "characterCount": "{count}/50个字符",
+          "typeLabel": "角色类型 *",
+          "iconLabel": "角色图标",
+          "iconDescription": "选择代表您角色的图标"
+        },
+        "step2": {
+          "title": "描述和个性",
+          "descriptionLabel": "角色描述 *",
+          "descriptionPlaceholder": "描述您的角色：他们是什么样的？是什么让他们独特？",
+          "descriptionCount": "{count}/500个字符（最少20个）",
+          "personalityLabel": "个性",
+          "personalityPlaceholder": "例如：好奇、爱冒险、天生的领导者、家庭保护者...",
+          "personalityCount": "{count}/300个字符",
+          "abilitiesLabel": "特殊能力",
+          "abilityPlaceholder": "例如：可以与可可植物交谈",
+          "addAbilityButton": "添加",
+          "abilitiesCount": "{count}/5个能力",
+          "mottoLabel": "格言或特色短语",
+          "mottoPlaceholder": "例如：「可可的魔力将我们团结在一起」",
+          "mottoCount": "{count}/150个字符"
+        },
+        "step3": {
+          "title": "抵达巧克之境的故事",
+          "subtitle": "讲述您的角色如何抵达巧克之境。请记住，所有角色都会穿过巧克力传送门...",
+          "inspirationTitle": "灵感：巧克力传送门",
+          "inspirationQuote": "我将那块芳香而黑暗的物质送入口中，发现自己被一种魔法包围，它将我传送到一个既美丽又多彩而又未知的世界...",
+          "inspirationText": "这是托尼的故事。您的角色是如何抵达的？穿过传送门时发现了什么？",
+          "storyLabel": "您的故事 *",
+          "storyPlaceholder": "讲述您的角色如何发现并进入巧克之境的故事...",
+          "storyCount": "{count}/2000个字符（最少50个）",
+          "commitInfo": "这个故事将作为您角色Git仓库中的第一次提交保存：{filename}"
+        },
+        "step4": {
+          "title": "审查和确认",
+          "descriptionLabel": "描述：",
+          "personalityLabel": "个性：",
+          "abilitiesLabel": "能力：",
+          "mottoLabel": "格言：",
+          "arrivalStoryLabel": "抵达故事：",
+          "visibilityLabel": "角色可见性",
+          "privateTitle": "私密",
+          "privateDescription": "只有您和您的家人可以看到这个角色",
+          "publicTitle": "公开",
+          "publicDescription": "所有人都可以看到您的角色及其故事",
+          "infoTitle": "创建角色时会发生什么？",
+          "infoPoint1": "将创建一个Git仓库来存储您的角色及其故事",
+          "infoPoint2": "您的抵达故事将作为第一次提交保存",
+          "infoPoint3": "您可以编辑角色、添加新故事并与家人合作",
+          "infoPoint4": "每次更改都将记录在历史记录中（完整的可追溯性）"
+        },
+        "characterTypes": {
+          "cacao": {
+            "label": "可可",
+            "description": "充满潜力和魔力的可可豆"
+          },
+          "chocolate": {
+            "label": "巧克力",
+            "description": "转化的巧克力，甜美而多用途"
+          },
+          "farmer": {
+            "label": "农民",
+            "description": "植物的守护者和土地的行家"
+          },
+          "other": {
+            "label": "其他",
+            "description": "拥有自己故事的独特角色"
+          }
+        },
+        "buttons": {
+          "previous": "上一步",
+          "next": "下一步",
+          "create": "创建角色",
+          "creating": "创建中..."
+        },
+        "errors": {
+          "nameRequired": "名称为必填项",
+          "nameTooShort": "名称必须至少2个字符",
+          "descriptionRequired": "描述为必填项",
+          "descriptionTooShort": "描述必须至少20个字符",
+          "storyRequired": "抵达故事为必填项",
+          "storyTooShort": "故事必须至少50个字符",
+          "createError": "创建角色时出错",
+          "unknownError": "未知错误"
+        },
+        "loading": "加载中..."
       }
     },
     "explore": {
@@ -1093,5 +1193,21 @@
     "success": "谢谢！",
     "successMessage": "我们会尽快回复您。",
     "sendAnother": "发送另一条消息"
+  },
+  "notifications": {
+    "chococrypto": {
+      "title": "第一批ChocoCrypto已准备就绪！",
+      "message": "使用你的ChocoCoins获取美味的巧克力棒。了解更多关于这个新产品的信息！",
+      "readMore": "阅读更多"
+    },
+    "venezuelaContainer": {
+      "title": "来自委内瑞拉的集装箱抵达意大利！",
+      "message": "委内瑞拉可可农民已将他们的第一个精品可可集装箱运往意大利。了解这个不可思议的故事。",
+      "readMore": "阅读更多"
+    }
+  },
+  "blog": {
+    "title": "Chocósfera博客",
+    "subtitle": "关于可持续可可世界的新闻、更新等"
   }
 }

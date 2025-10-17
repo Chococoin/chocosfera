@@ -112,10 +112,13 @@ export function NotificationBell() {
   };
 
   const handleNotificationClick = async (notification: Notification) => {
-    // Mark as read
-    if (!notification.isRead) {
-      await markAsRead(notification.id);
-    }
+    // TEMPORARILY DISABLED: Mark as read
+    // This functionality is commented out to keep notifications visible in the bell
+    // even after clicking them. Uncomment the lines below to restore the original behavior.
+
+    // if (!notification.isRead) {
+    //   await markAsRead(notification.id);
+    // }
 
     // Navigate if there's an action URL
     if (notification.actionUrl) {

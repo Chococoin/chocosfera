@@ -562,6 +562,106 @@
       "errors": {
         "fetchError": "文字取得エラー",
         "unknownError": "不明なエラー"
+      },
+      "create": {
+        "backButton": "マイキャラクターに戻る",
+        "title": "新しいキャラクターを作成",
+        "stepProgress": "ステップ{step}/4：チョコスフェラであなただけのキャラクターを作成",
+        "steps": {
+          "basics": "基本情報",
+          "description": "説明",
+          "story": "ストーリー",
+          "confirm": "確認"
+        },
+        "step1": {
+          "title": "キャラクターの基本情報",
+          "nameLabel": "キャラクター名 *",
+          "namePlaceholder": "例：Tony、Pipo、Kaoka...",
+          "characterCount": "{count}/50文字",
+          "typeLabel": "キャラクタータイプ *",
+          "iconLabel": "キャラクターアイコン",
+          "iconDescription": "キャラクターを表すアイコンを選択"
+        },
+        "step2": {
+          "title": "説明と性格",
+          "descriptionLabel": "キャラクター説明 *",
+          "descriptionPlaceholder": "キャラクターを説明してください：どんな感じ？何がユニークですか？",
+          "descriptionCount": "{count}/500文字（最低20文字）",
+          "personalityLabel": "性格",
+          "personalityPlaceholder": "例：好奇心旺盛、冒険好き、生まれつきのリーダー、家族の守護者...",
+          "personalityCount": "{count}/300文字",
+          "abilitiesLabel": "特殊能力",
+          "abilityPlaceholder": "例：カカオの植物と話せる",
+          "addAbilityButton": "追加",
+          "abilitiesCount": "{count}/5個の能力",
+          "mottoLabel": "モットーまたは特徴的なフレーズ",
+          "mottoPlaceholder": "例：「カカオの魔法が私たちを一つにする」",
+          "mottoCount": "{count}/150文字"
+        },
+        "step3": {
+          "title": "チョコスフェラへの到着ストーリー",
+          "subtitle": "キャラクターがチョコスフェラに到着した経緯を語ってください。すべてのキャラクターはチョコレートポータルを通過することを覚えておいてください...",
+          "inspirationTitle": "インスピレーション：チョコレートポータル",
+          "inspirationQuote": "私はその芳香的で暗い物質の一片を口に運び、私を美しくカラフルで未知の世界へと運ぶ魔法に包まれた...",
+          "inspirationText": "これはトニーの物語です。あなたのキャラクターはどのように到着しましたか？ポータルを渡った時に何を発見しましたか？",
+          "storyLabel": "あなたのストーリー *",
+          "storyPlaceholder": "キャラクターがチョコスフェラを発見して入った経緯の物語を語ってください...",
+          "storyCount": "{count}/2000文字（最低50文字）",
+          "commitInfo": "このストーリーはキャラクターのGitリポジトリの最初のコミットとして保存されます：{filename}"
+        },
+        "step4": {
+          "title": "確認と承認",
+          "descriptionLabel": "説明：",
+          "personalityLabel": "性格：",
+          "abilitiesLabel": "能力：",
+          "mottoLabel": "モットー：",
+          "arrivalStoryLabel": "到着ストーリー：",
+          "visibilityLabel": "キャラクターの可視性",
+          "privateTitle": "プライベート",
+          "privateDescription": "あなたと家族だけがこのキャラクターを見ることができます",
+          "publicTitle": "公開",
+          "publicDescription": "誰でもあなたのキャラクターとそのストーリーを見ることができます",
+          "infoTitle": "キャラクター作成時に何が起こりますか？",
+          "infoPoint1": "キャラクターとそのストーリーを保存するGitリポジトリが作成されます",
+          "infoPoint2": "到着ストーリーが最初のコミットとして保存されます",
+          "infoPoint3": "キャラクターを編集し、新しいストーリーを追加し、家族と協力できます",
+          "infoPoint4": "すべての変更が履歴に記録されます（完全なトレーサビリティ）"
+        },
+        "characterTypes": {
+          "cacao": {
+            "label": "カカオ",
+            "description": "可能性と魔法に満ちたカカオ豆"
+          },
+          "chocolate": {
+            "label": "チョコレート",
+            "description": "変身したチョコレート、甘く多用途"
+          },
+          "farmer": {
+            "label": "農家",
+            "description": "植物の守護者であり土地の知識人"
+          },
+          "other": {
+            "label": "その他",
+            "description": "独自のストーリーを持つユニークなキャラクター"
+          }
+        },
+        "buttons": {
+          "previous": "前へ",
+          "next": "次へ",
+          "create": "キャラクターを作成",
+          "creating": "作成中..."
+        },
+        "errors": {
+          "nameRequired": "名前は必須です",
+          "nameTooShort": "名前は2文字以上である必要があります",
+          "descriptionRequired": "説明は必須です",
+          "descriptionTooShort": "説明は20文字以上である必要があります",
+          "storyRequired": "到着ストーリーは必須です",
+          "storyTooShort": "ストーリーは50文字以上である必要があります",
+          "createError": "キャラクター作成エラー",
+          "unknownError": "不明なエラー"
+        },
+        "loading": "読み込み中..."
       }
     },
     "explore": {
@@ -1093,5 +1193,21 @@
     "success": "ありがとうございます！",
     "successMessage": "すぐにご連絡いたします。",
     "sendAnother": "別のメッセージを送信"
+  },
+  "notifications": {
+    "chococrypto": {
+      "title": "最初のChocoCryptoバッチが準備完了！",
+      "message": "ChocoCoinsを使って美味しいチョコレートバーを手に入れよう。この新製品について詳しく見る！",
+      "readMore": "続きを読む"
+    },
+    "venezuelaContainer": {
+      "title": "ベネズエラからのコンテナがイタリアに到着！",
+      "message": "ベネズエラのカカオ農家が最初のファインカカオコンテナをイタリアに送りました。この素晴らしいストーリーを発見してください。",
+      "readMore": "続きを読む"
+    }
+  },
+  "blog": {
+    "title": "Chocósferaブログ",
+    "subtitle": "持続可能なカカオの世界に関するニュース、アップデートなど"
   }
 }

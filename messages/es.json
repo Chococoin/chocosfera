@@ -562,6 +562,106 @@
       "errors": {
         "fetchError": "Error al obtener los personajes",
         "unknownError": "Error desconocido"
+      },
+      "create": {
+        "backButton": "Volver a Mis Personajes",
+        "title": "Crear Nuevo Personaje",
+        "stepProgress": "Paso {step} de 4: Crea tu personaje único en la Chocósfera",
+        "steps": {
+          "basics": "Básicos",
+          "description": "Descripción",
+          "story": "Historia",
+          "confirm": "Confirmar"
+        },
+        "step1": {
+          "title": "Datos Básicos del Personaje",
+          "nameLabel": "Nombre del Personaje *",
+          "namePlaceholder": "Ej: Tony, Pipo, Kaoka...",
+          "characterCount": "{count}/50 caracteres",
+          "typeLabel": "Tipo de Personaje *",
+          "iconLabel": "Ícono del Personaje",
+          "iconDescription": "Selecciona un ícono que represente a tu personaje"
+        },
+        "step2": {
+          "title": "Descripción y Personalidad",
+          "descriptionLabel": "Descripción del Personaje *",
+          "descriptionPlaceholder": "Describe a tu personaje: ¿Cómo es? ¿Qué lo hace único?",
+          "descriptionCount": "{count}/500 caracteres (mínimo 20)",
+          "personalityLabel": "Personalidad",
+          "personalityPlaceholder": "Ej: Curioso, aventurero, líder natural, protector de su familia...",
+          "personalityCount": "{count}/300 caracteres",
+          "abilitiesLabel": "Habilidades Especiales",
+          "abilityPlaceholder": "Ej: Puede hablar con plantas de cacao",
+          "addAbilityButton": "Agregar",
+          "abilitiesCount": "{count}/5 habilidades",
+          "mottoLabel": "Lema o Frase Característica",
+          "mottoPlaceholder": "Ej: \"La magia del cacao nos une a todos\"",
+          "mottoCount": "{count}/150 caracteres"
+        },
+        "step3": {
+          "title": "Historia de Llegada a la Chocósfera",
+          "subtitle": "Cuenta cómo tu personaje llegó a la Chocósfera. Recuerda que todos los personajes atraviesan el Portal del Chocolate...",
+          "inspirationTitle": "Inspiración: El Portal del Chocolate",
+          "inspirationQuote": "Me llevé un trozo de esa sustancia aromática y oscura a la boca y me vi envuelto en una magia que me trasladó a un mundo tan hermoso y colorido como desconocido...",
+          "inspirationText": "Esta es la historia de Tony. ¿Cómo llegó tu personaje? ¿Qué descubrió al cruzar el portal?",
+          "storyLabel": "Tu Historia *",
+          "storyPlaceholder": "Cuenta la historia de cómo tu personaje descubrió y entró a la Chocósfera...",
+          "storyCount": "{count}/2000 caracteres (mínimo 50)",
+          "commitInfo": "Esta historia se guardará como tu primer commit en el repositorio Git de tu personaje: {filename}"
+        },
+        "step4": {
+          "title": "Revisar y Confirmar",
+          "descriptionLabel": "Descripción:",
+          "personalityLabel": "Personalidad:",
+          "abilitiesLabel": "Habilidades:",
+          "mottoLabel": "Lema:",
+          "arrivalStoryLabel": "Historia de Llegada:",
+          "visibilityLabel": "Visibilidad del Personaje",
+          "privateTitle": "Privado",
+          "privateDescription": "Solo tú y tu familia pueden ver este personaje",
+          "publicTitle": "Público",
+          "publicDescription": "Todos pueden ver tu personaje y su historia",
+          "infoTitle": "¿Qué sucederá al crear el personaje?",
+          "infoPoint1": "Se creará un repositorio Git para almacenar tu personaje y sus historias",
+          "infoPoint2": "Se guardará tu historia de llegada como el primer commit",
+          "infoPoint3": "Podrás editar el personaje, agregar nuevas historias y colaborar con tu familia",
+          "infoPoint4": "Cada cambio quedará registrado en el historial (trazabilidad completa)"
+        },
+        "characterTypes": {
+          "cacao": {
+            "label": "Cacao",
+            "description": "Un grano de cacao lleno de potencial y magia"
+          },
+          "chocolate": {
+            "label": "Chocolate",
+            "description": "Chocolate transformado, dulce y versátil"
+          },
+          "farmer": {
+            "label": "Agricultor",
+            "description": "Guardián de las plantas y conocedor de la tierra"
+          },
+          "other": {
+            "label": "Otro",
+            "description": "Un personaje único con su propia historia"
+          }
+        },
+        "buttons": {
+          "previous": "Anterior",
+          "next": "Siguiente",
+          "create": "Crear Personaje",
+          "creating": "Creando..."
+        },
+        "errors": {
+          "nameRequired": "El nombre es requerido",
+          "nameTooShort": "El nombre debe tener al menos 2 caracteres",
+          "descriptionRequired": "La descripción es requerida",
+          "descriptionTooShort": "La descripción debe tener al menos 20 caracteres",
+          "storyRequired": "La historia de llegada es requerida",
+          "storyTooShort": "La historia debe tener al menos 50 caracteres",
+          "createError": "Error al crear el personaje",
+          "unknownError": "Error desconocido"
+        },
+        "loading": "Cargando..."
       }
     },
     "explore": {
@@ -1093,5 +1193,21 @@
     "success": "¡Gracias!",
     "successMessage": "Te responderemos pronto.",
     "sendAnother": "Enviar otro mensaje"
+  },
+  "notifications": {
+    "chococrypto": {
+      "title": "¡El primer lote de ChocoCrypto está listo!",
+      "message": "Usa tus ChocoCoins para conseguir deliciosas tabletas de chocolate. ¡Descubre más sobre esta novedad!",
+      "readMore": "Leer más"
+    },
+    "venezuelaContainer": {
+      "title": "¡Container de Venezuela llegó a Italia!",
+      "message": "Los cacaocultores venezolanos han enviado su primer container de cacao fino a Italia. Conoce esta increíble historia.",
+      "readMore": "Leer más"
+    }
+  },
+  "blog": {
+    "title": "Blog de Chocósfera",
+    "subtitle": "Noticias, actualizaciones y más sobre el mundo del cacao sostenible"
   }
 }

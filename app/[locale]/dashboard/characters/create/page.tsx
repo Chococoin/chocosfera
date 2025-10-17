@@ -8,7 +8,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 type CharacterType = 'cacao' | 'chocolate' | 'farmer' | 'other';
 
@@ -24,33 +24,6 @@ interface CharacterFormData {
   isPublic: boolean;
 }
 
-const CHARACTER_TYPES = [
-  {
-    value: 'cacao' as CharacterType,
-    label: 'Cacao',
-    icon: '🍫',
-    description: 'Un grano de cacao lleno de potencial y magia',
-  },
-  {
-    value: 'chocolate' as CharacterType,
-    label: 'Chocolate',
-    icon: '🍬',
-    description: 'Chocolate transformado, dulce y versátil',
-  },
-  {
-    value: 'farmer' as CharacterType,
-    label: 'Agricultor',
-    icon: '👨‍🌾',
-    description: 'Guardián de las plantas y conocedor de la tierra',
-  },
-  {
-    value: 'other' as CharacterType,
-    label: 'Otro',
-    icon: '🎭',
-    description: 'Un personaje único con su propia historia',
-  },
-];
-
 const CHARACTER_ICONS = [
   '🍫', '🍬', '🌰', '🥜', '🌱', '🌳', '🌾', '👨‍🌾', '👩‍🌾',
   '🎭', '🎨', '✨', '⭐', '🌟', '💫', '🔮', '🎪', '🎡',
@@ -61,6 +34,7 @@ export default function CreateCharacterPage() {
   const { user } = useAuth();
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations('dashboard.characters.create');
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -78,6 +52,34 @@ export default function CreateCharacterPage() {
   });
 
   const [currentAbility, setCurrentAbility] = useState('');
+
+  // Character types with translations
+  const CHARACTER_TYPES = [
+    {
+      value: 'cacao' as CharacterType,
+      label: t('characterTypes.cacao.label'),
+      icon: '🍫',
+      description: t('characterTypes.cacao.description'),
+    },
+    {
+      value: 'chocolate' as CharacterType,
+      label: t('characterTypes.chocolate.label'),
+      icon: '🍬',
+      description: t('characterTypes.chocolate.description'),
+    },
+    {
+      value: 'farmer' as CharacterType,
+      label: t('characterTypes.farmer.label'),
+      icon: '👨‍🌾',
+      description: t('characterTypes.farmer.description'),
+    },
+    {
+      value: 'other' as CharacterType,
+      label: t('characterTypes.other.label'),
+      icon: '🎭',
+      description: t('characterTypes.other.description'),
+    },
+  ];
 
   const updateFormData = (field: keyof CharacterFormData, value: CharacterFormData[keyof CharacterFormData]) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -102,33 +104,33 @@ export default function CreateCharacterPage() {
     // Validate current step
     if (step === 1) {
       if (!formData.name.trim()) {
-        setError('El nombre es requerido');
+        setError(t('errors.nameRequired'));
         return;
       }
       if (formData.name.length < 2) {
-        setError('El nombre debe tener al menos 2 caracteres');
+        setError(t('errors.nameTooShort'));
         return;
       }
     }
 
     if (step === 2) {
       if (!formData.description.trim()) {
-        setError('La descripción es requerida');
+        setError(t('errors.descriptionRequired'));
         return;
       }
       if (formData.description.length < 20) {
-        setError('La descripción debe tener al menos 20 caracteres');
+        setError(t('errors.descriptionTooShort'));
         return;
       }
     }
 
     if (step === 3) {
       if (!formData.arrivalStory.trim()) {
-        setError('La historia de llegada es requerida');
+        setError(t('errors.storyRequired'));
         return;
       }
       if (formData.arrivalStory.length < 50) {
-        setError('La historia debe tener al menos 50 caracteres');
+        setError(t('errors.storyTooShort'));
         return;
       }
     }
@@ -168,13 +170,13 @@ export default function CreateCharacterPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Error al crear el personaje');
+        throw new Error(data.error || t('errors.createError'));
       }
 
       // Success! Redirect to character page
       router.push(`/${locale}/dashboard/characters/${data.character.slug}`);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error desconocido');
+      setError(err instanceof Error ? err.message : t('errors.unknownError'));
       setIsSubmitting(false);
     }
   };
@@ -184,7 +186,7 @@ export default function CreateCharacterPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent mb-4"></div>
-          <p className="text-sm text-muted">Cargando...</p>
+          <p className="text-sm text-muted">{t('loading')}</p>
         </div>
       </div>
     );
@@ -202,13 +204,13 @@ export default function CreateCharacterPage() {
             className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white mb-4 inline-flex items-center gap-2"
           >
             <span>←</span>
-            Volver a Mis Personajes
+            {t('backButton')}
           </button>
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-            Crear Nuevo Personaje
+            {t('title')}
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
-            Paso {step} de 4: Crea tu personaje único en la Chocósfera
+            {t('stepProgress', { step })}
           </p>
         </div>
 
@@ -222,16 +224,16 @@ export default function CreateCharacterPage() {
           </div>
           <div className="flex justify-between mt-2 text-xs text-gray-600 dark:text-gray-400">
             <span className={step >= 1 ? 'text-purple-600 dark:text-purple-400 font-semibold' : ''}>
-              Básicos
+              {t('steps.basics')}
             </span>
             <span className={step >= 2 ? 'text-purple-600 dark:text-purple-400 font-semibold' : ''}>
-              Descripción
+              {t('steps.description')}
             </span>
             <span className={step >= 3 ? 'text-purple-600 dark:text-purple-400 font-semibold' : ''}>
-              Historia
+              {t('steps.story')}
             </span>
             <span className={step >= 4 ? 'text-purple-600 dark:text-purple-400 font-semibold' : ''}>
-              Confirmar
+              {t('steps.confirm')}
             </span>
           </div>
         </div>
@@ -250,32 +252,32 @@ export default function CreateCharacterPage() {
             <div className="space-y-6">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                  Datos Básicos del Personaje
+                  {t('step1.title')}
                 </h2>
               </div>
 
               {/* Name */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Nombre del Personaje *
+                  {t('step1.nameLabel')}
                 </label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => updateFormData('name', e.target.value)}
-                  placeholder="Ej: Tony, Pipo, Kaoka..."
+                  placeholder={t('step1.namePlaceholder')}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   maxLength={50}
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  {formData.name.length}/50 caracteres
+                  {t('step1.characterCount', { count: formData.name.length })}
                 </p>
               </div>
 
               {/* Character Type */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                  Tipo de Personaje *
+                  {t('step1.typeLabel')}
                 </label>
                 <div className="grid grid-cols-2 gap-4">
                   {CHARACTER_TYPES.map((type) => (
@@ -306,14 +308,14 @@ export default function CreateCharacterPage() {
               {/* Icon Selection */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                  Ícono del Personaje
+                  {t('step1.iconLabel')}
                 </label>
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
                     <span className="text-5xl">{formData.icon}</span>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Selecciona un ícono que represente a tu personaje
+                    {t('step1.iconDescription')}
                   </p>
                 </div>
                 <div className="grid grid-cols-9 gap-2">
@@ -341,50 +343,50 @@ export default function CreateCharacterPage() {
             <div className="space-y-6">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                  Descripción y Personalidad
+                  {t('step2.title')}
                 </h2>
               </div>
 
               {/* Description */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Descripción del Personaje *
+                  {t('step2.descriptionLabel')}
                 </label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => updateFormData('description', e.target.value)}
-                  placeholder="Describe a tu personaje: ¿Cómo es? ¿Qué lo hace único?"
+                  placeholder={t('step2.descriptionPlaceholder')}
                   rows={4}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   maxLength={500}
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  {formData.description.length}/500 caracteres (mínimo 20)
+                  {t('step2.descriptionCount', { count: formData.description.length })}
                 </p>
               </div>
 
               {/* Personality */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Personalidad
+                  {t('step2.personalityLabel')}
                 </label>
                 <textarea
                   value={formData.personality}
                   onChange={(e) => updateFormData('personality', e.target.value)}
-                  placeholder="Ej: Curioso, aventurero, líder natural, protector de su familia..."
+                  placeholder={t('step2.personalityPlaceholder')}
                   rows={3}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   maxLength={300}
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  {formData.personality.length}/300 caracteres
+                  {t('step2.personalityCount', { count: formData.personality.length })}
                 </p>
               </div>
 
               {/* Abilities */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Habilidades Especiales
+                  {t('step2.abilitiesLabel')}
                 </label>
                 <div className="flex gap-2 mb-3">
                   <input
@@ -392,7 +394,7 @@ export default function CreateCharacterPage() {
                     value={currentAbility}
                     onChange={(e) => setCurrentAbility(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addAbility())}
-                    placeholder="Ej: Puede hablar con plantas de cacao"
+                    placeholder={t('step2.abilityPlaceholder')}
                     className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     maxLength={100}
                   />
@@ -425,14 +427,14 @@ export default function CreateCharacterPage() {
                   ))}
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                  {formData.abilities.length}/5 habilidades
+                  {t('step2.abilitiesCount', { count: formData.abilities.length })}
                 </p>
               </div>
 
               {/* Motto */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Lema o Frase Característica
+                  {t('step2.mottoLabel')}
                 </label>
                 <input
                   type="text"
@@ -443,7 +445,7 @@ export default function CreateCharacterPage() {
                   maxLength={150}
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  {formData.motto.length}/150 caracteres
+                  {t('step2.mottoCount', { count: formData.motto.length })}
                 </p>
               </div>
             </div>
@@ -454,11 +456,10 @@ export default function CreateCharacterPage() {
             <div className="space-y-6">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                  Historia de Llegada a la Chocósfera
+                  {t('step3.title')}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Cuenta cómo tu personaje llegó a la Chocósfera. Recuerda que todos los personajes
-                  atraviesan el Portal del Chocolate...
+                  {t('step3.subtitle')}
                 </p>
               </div>
 
@@ -466,40 +467,37 @@ export default function CreateCharacterPage() {
               <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-6">
                 <h3 className="font-bold text-amber-900 dark:text-amber-100 mb-3 flex items-center gap-2">
                   <span>💡</span>
-                  Inspiración: El Portal del Chocolate
+                  {t('step3.inspirationTitle')}
                 </h3>
                 <p className="text-sm text-amber-800 dark:text-amber-200 italic mb-3">
-                  &ldquo;Me llevé un trozo de esa sustancia aromática y oscura a la boca y me vi envuelto
-                  en una magia que me trasladó a un mundo tan hermoso y colorido como desconocido...&rdquo;
+                  &ldquo;{t('step3.inspirationQuote')}&rdquo;
                 </p>
                 <p className="text-xs text-amber-700 dark:text-amber-300">
-                  Esta es la historia de Tony. ¿Cómo llegó tu personaje? ¿Qué descubrió al cruzar
-                  el portal?
+                  {t('step3.inspirationText')}
                 </p>
               </div>
 
               {/* Arrival Story */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Tu Historia *
+                  {t('step3.storyLabel')}
                 </label>
                 <textarea
                   value={formData.arrivalStory}
                   onChange={(e) => updateFormData('arrivalStory', e.target.value)}
-                  placeholder="Cuenta la historia de cómo tu personaje descubrió y entró a la Chocósfera..."
+                  placeholder={t('step3.storyPlaceholder')}
                   rows={10}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent font-mono text-sm"
                   maxLength={2000}
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  {formData.arrivalStory.length}/2000 caracteres (mínimo 50)
+                  {t('step3.storyCount', { count: formData.arrivalStory.length })}
                 </p>
               </div>
 
               <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
                 <p className="text-sm text-blue-800 dark:text-blue-200">
-                  💾 Esta historia se guardará como tu primer commit en el repositorio Git de tu
-                  personaje: <span className="font-mono font-semibold">historia/01-llegada.md</span>
+                  💾 {t('step3.commitInfo', { filename: 'historia/01-llegada.md' })}
                 </p>
               </div>
             </div>
@@ -510,7 +508,7 @@ export default function CreateCharacterPage() {
             <div className="space-y-6">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                  Revisar y Confirmar
+                  {t('step4.title')}
                 </h2>
               </div>
 
@@ -534,7 +532,7 @@ export default function CreateCharacterPage() {
                 {/* Description */}
                 <div className="mb-4">
                   <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Descripción:
+                    {t('step4.descriptionLabel')}
                   </h4>
                   <p className="text-gray-800 dark:text-gray-200">{formData.description}</p>
                 </div>
@@ -543,7 +541,7 @@ export default function CreateCharacterPage() {
                 {formData.personality && (
                   <div className="mb-4">
                     <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                      Personalidad:
+                      {t('step4.personalityLabel')}
                     </h4>
                     <p className="text-gray-800 dark:text-gray-200">{formData.personality}</p>
                   </div>
@@ -553,7 +551,7 @@ export default function CreateCharacterPage() {
                 {formData.abilities.length > 0 && (
                   <div className="mb-4">
                     <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                      Habilidades:
+                      {t('step4.abilitiesLabel')}
                     </h4>
                     <ul className="space-y-1">
                       {formData.abilities.map((ability, index) => (
@@ -569,7 +567,7 @@ export default function CreateCharacterPage() {
                 {formData.motto && (
                   <div className="mb-4">
                     <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                      Lema:
+                      {t('step4.mottoLabel')}
                     </h4>
                     <p className="text-gray-800 dark:text-gray-200 italic">&ldquo;{formData.motto}&rdquo;</p>
                   </div>
@@ -578,7 +576,7 @@ export default function CreateCharacterPage() {
                 {/* Arrival Story Preview */}
                 <div className="mt-6 pt-6 border-t border-purple-300 dark:border-purple-700">
                   <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Historia de Llegada:
+                    {t('step4.arrivalStoryLabel')}
                   </h4>
                   <div className="bg-white dark:bg-gray-800 rounded-lg p-4 max-h-40 overflow-y-auto">
                     <p className="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
@@ -591,7 +589,7 @@ export default function CreateCharacterPage() {
               {/* Visibility Settings */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                  Visibilidad del Personaje
+                  {t('step4.visibilityLabel')}
                 </label>
                 <div className="space-y-3">
                   <button
@@ -605,10 +603,10 @@ export default function CreateCharacterPage() {
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-2xl">🔒</span>
-                      <span className="font-bold text-gray-900 dark:text-white">Privado</span>
+                      <span className="font-bold text-gray-900 dark:text-white">{t('step4.privateTitle')}</span>
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Solo tú y tu familia pueden ver este personaje
+                      {t('step4.privateDescription')}
                     </p>
                   </button>
 
@@ -623,10 +621,10 @@ export default function CreateCharacterPage() {
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-2xl">🌍</span>
-                      <span className="font-bold text-gray-900 dark:text-white">Público</span>
+                      <span className="font-bold text-gray-900 dark:text-white">{t('step4.publicTitle')}</span>
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Todos pueden ver tu personaje y su historia
+                      {t('step4.publicDescription')}
                     </p>
                   </button>
                 </div>
@@ -636,31 +634,31 @@ export default function CreateCharacterPage() {
               <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
                 <h4 className="font-bold text-blue-900 dark:text-blue-100 mb-2 flex items-center gap-2">
                   <span>ℹ️</span>
-                  ¿Qué sucederá al crear el personaje?
+                  {t('step4.infoTitle')}
                 </h4>
                 <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
                   <li className="flex items-start gap-2">
                     <span>1.</span>
                     <span>
-                      Se creará un repositorio Git para almacenar tu personaje y sus historias
+                      {t('step4.infoPoint1')}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span>2.</span>
                     <span>
-                      Se guardará tu historia de llegada como el primer commit
+                      {t('step4.infoPoint2')}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span>3.</span>
                     <span>
-                      Podrás editar el personaje, agregar nuevas historias y colaborar con tu familia
+                      {t('step4.infoPoint3')}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span>4.</span>
                     <span>
-                      Cada cambio quedará registrado en el historial (trazabilidad completa)
+                      {t('step4.infoPoint4')}
                     </span>
                   </li>
                 </ul>
@@ -676,7 +674,7 @@ export default function CreateCharacterPage() {
               disabled={step === 1 || isSubmitting}
               className="px-6 py-3 text-gray-700 dark:text-gray-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:text-gray-900 dark:hover:text-white transition-colors"
             >
-              ← Anterior
+              ← {t('buttons.previous')}
             </button>
 
             <div className="flex gap-3">
@@ -686,7 +684,7 @@ export default function CreateCharacterPage() {
                   onClick={nextStep}
                   className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold rounded-lg transition-all shadow-md hover:shadow-lg"
                 >
-                  Siguiente →
+                  {t('buttons.next')} →
                 </button>
               ) : (
                 <button
@@ -698,12 +696,12 @@ export default function CreateCharacterPage() {
                   {isSubmitting ? (
                     <>
                       <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-white border-r-transparent"></div>
-                      Creando...
+                      {t('buttons.creating')}
                     </>
                   ) : (
                     <>
                       <span>✨</span>
-                      Crear Personaje
+                      {t('buttons.create')}
                     </>
                   )}
                 </button>

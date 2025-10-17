@@ -562,6 +562,106 @@
       "errors": {
         "fetchError": "Errore nel recupero dei personaggi",
         "unknownError": "Errore sconosciuto"
+      },
+      "create": {
+        "backButton": "Torna ai Miei Personaggi",
+        "title": "Crea Nuovo Personaggio",
+        "stepProgress": "Passo {step} di 4: Crea il tuo personaggio unico in Chocósfera",
+        "steps": {
+          "basics": "Base",
+          "description": "Descrizione",
+          "story": "Storia",
+          "confirm": "Conferma"
+        },
+        "step1": {
+          "title": "Informazioni di Base del Personaggio",
+          "nameLabel": "Nome del Personaggio *",
+          "namePlaceholder": "Es: Tony, Pipo, Kaoka...",
+          "characterCount": "{count}/50 caratteri",
+          "typeLabel": "Tipo di Personaggio *",
+          "iconLabel": "Icona del Personaggio",
+          "iconDescription": "Seleziona un'icona che rappresenti il tuo personaggio"
+        },
+        "step2": {
+          "title": "Descrizione e Personalità",
+          "descriptionLabel": "Descrizione del Personaggio *",
+          "descriptionPlaceholder": "Descrivi il tuo personaggio: Com'è? Cosa lo rende unico?",
+          "descriptionCount": "{count}/500 caratteri (minimo 20)",
+          "personalityLabel": "Personalità",
+          "personalityPlaceholder": "Es: Curioso, avventuroso, leader naturale, protettore della famiglia...",
+          "personalityCount": "{count}/300 caratteri",
+          "abilitiesLabel": "Abilità Speciali",
+          "abilityPlaceholder": "Es: Può parlare con le piante di cacao",
+          "addAbilityButton": "Aggiungi",
+          "abilitiesCount": "{count}/5 abilità",
+          "mottoLabel": "Motto o Frase Caratteristica",
+          "mottoPlaceholder": "Es: \"La magia del cacao ci unisce tutti\"",
+          "mottoCount": "{count}/150 caratteri"
+        },
+        "step3": {
+          "title": "Storia dell'Arrivo a Chocósfera",
+          "subtitle": "Racconta come il tuo personaggio è arrivato a Chocósfera. Ricorda che tutti i personaggi attraversano il Portale del Cioccolato...",
+          "inspirationTitle": "Ispirazione: Il Portale del Cioccolato",
+          "inspirationQuote": "Ho portato alla bocca un pezzo di quella sostanza aromatica e scura e mi sono trovato avvolto in una magia che mi ha trasportato in un mondo tanto bello e colorato quanto sconosciuto...",
+          "inspirationText": "Questa è la storia di Tony. Come è arrivato il tuo personaggio? Cosa ha scoperto attraversando il portale?",
+          "storyLabel": "La Tua Storia *",
+          "storyPlaceholder": "Racconta la storia di come il tuo personaggio ha scoperto ed è entrato in Chocósfera...",
+          "storyCount": "{count}/2000 caratteri (minimo 50)",
+          "commitInfo": "Questa storia verrà salvata come primo commit nel repository Git del tuo personaggio: {filename}"
+        },
+        "step4": {
+          "title": "Rivedi e Conferma",
+          "descriptionLabel": "Descrizione:",
+          "personalityLabel": "Personalità:",
+          "abilitiesLabel": "Abilità:",
+          "mottoLabel": "Motto:",
+          "arrivalStoryLabel": "Storia dell'Arrivo:",
+          "visibilityLabel": "Visibilità del Personaggio",
+          "privateTitle": "Privato",
+          "privateDescription": "Solo tu e la tua famiglia potete vedere questo personaggio",
+          "publicTitle": "Pubblico",
+          "publicDescription": "Tutti possono vedere il tuo personaggio e la sua storia",
+          "infoTitle": "Cosa succederà alla creazione del personaggio?",
+          "infoPoint1": "Verrà creato un repository Git per memorizzare il tuo personaggio e le sue storie",
+          "infoPoint2": "La tua storia di arrivo verrà salvata come primo commit",
+          "infoPoint3": "Potrai modificare il personaggio, aggiungere nuove storie e collaborare con la tua famiglia",
+          "infoPoint4": "Ogni modifica verrà registrata nella cronologia (tracciabilità completa)"
+        },
+        "characterTypes": {
+          "cacao": {
+            "label": "Cacao",
+            "description": "Un chicco di cacao pieno di potenziale e magia"
+          },
+          "chocolate": {
+            "label": "Cioccolato",
+            "description": "Cioccolato trasformato, dolce e versatile"
+          },
+          "farmer": {
+            "label": "Agricoltore",
+            "description": "Custode delle piante e conoscitore della terra"
+          },
+          "other": {
+            "label": "Altro",
+            "description": "Un personaggio unico con la propria storia"
+          }
+        },
+        "buttons": {
+          "previous": "Precedente",
+          "next": "Avanti",
+          "create": "Crea Personaggio",
+          "creating": "Creazione..."
+        },
+        "errors": {
+          "nameRequired": "Il nome è obbligatorio",
+          "nameTooShort": "Il nome deve contenere almeno 2 caratteri",
+          "descriptionRequired": "La descrizione è obbligatoria",
+          "descriptionTooShort": "La descrizione deve contenere almeno 20 caratteri",
+          "storyRequired": "La storia di arrivo è obbligatoria",
+          "storyTooShort": "La storia deve contenere almeno 50 caratteri",
+          "createError": "Errore durante la creazione del personaggio",
+          "unknownError": "Errore sconosciuto"
+        },
+        "loading": "Caricamento..."
       }
     },
     "explore": {
@@ -1093,5 +1193,21 @@
     "success": "Grazie!",
     "successMessage": "Ti risponderemo presto.",
     "sendAnother": "Invia un altro messaggio"
+  },
+  "notifications": {
+    "chococrypto": {
+      "title": "Il primo lotto di ChocoCrypto è pronto!",
+      "message": "Usa le tue ChocoCoins per ottenere deliziose tavolette di cioccolato. Scopri di più su questa novità!",
+      "readMore": "Per saperne di più"
+    },
+    "venezuelaContainer": {
+      "title": "Container dal Venezuela arrivato in Italia!",
+      "message": "I coltivatori di cacao venezuelani hanno inviato il loro primo container di cacao fino in Italia. Scopri questa storia incredibile.",
+      "readMore": "Per saperne di più"
+    }
+  },
+  "blog": {
+    "title": "Blog di Chocósfera",
+    "subtitle": "Notizie, aggiornamenti e altro sul mondo del cacao sostenibile"
   }
 }

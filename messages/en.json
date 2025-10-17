@@ -562,6 +562,106 @@
       "errors": {
         "fetchError": "Error fetching characters",
         "unknownError": "Unknown error"
+      },
+      "create": {
+        "backButton": "Back to My Characters",
+        "title": "Create New Character",
+        "stepProgress": "Step {step} of 4: Create your unique character in Chocósfera",
+        "steps": {
+          "basics": "Basics",
+          "description": "Description",
+          "story": "Story",
+          "confirm": "Confirm"
+        },
+        "step1": {
+          "title": "Character Basic Information",
+          "nameLabel": "Character Name *",
+          "namePlaceholder": "E.g: Tony, Pipo, Kaoka...",
+          "characterCount": "{count}/50 characters",
+          "typeLabel": "Character Type *",
+          "iconLabel": "Character Icon",
+          "iconDescription": "Select an icon that represents your character"
+        },
+        "step2": {
+          "title": "Description and Personality",
+          "descriptionLabel": "Character Description *",
+          "descriptionPlaceholder": "Describe your character: What are they like? What makes them unique?",
+          "descriptionCount": "{count}/500 characters (minimum 20)",
+          "personalityLabel": "Personality",
+          "personalityPlaceholder": "E.g: Curious, adventurous, natural leader, family protector...",
+          "personalityCount": "{count}/300 characters",
+          "abilitiesLabel": "Special Abilities",
+          "abilityPlaceholder": "E.g: Can talk to cocoa plants",
+          "addAbilityButton": "Add",
+          "abilitiesCount": "{count}/5 abilities",
+          "mottoLabel": "Motto or Signature Phrase",
+          "mottoPlaceholder": "E.g: \"The magic of cocoa unites us all\"",
+          "mottoCount": "{count}/150 characters"
+        },
+        "step3": {
+          "title": "Arrival Story to Chocósfera",
+          "subtitle": "Tell how your character arrived at Chocósfera. Remember that all characters pass through the Chocolate Portal...",
+          "inspirationTitle": "Inspiration: The Chocolate Portal",
+          "inspirationQuote": "I brought a piece of that aromatic and dark substance to my mouth and found myself enveloped in a magic that transported me to a world as beautiful and colorful as it was unknown...",
+          "inspirationText": "This is Tony's story. How did your character arrive? What did they discover when crossing the portal?",
+          "storyLabel": "Your Story *",
+          "storyPlaceholder": "Tell the story of how your character discovered and entered Chocósfera...",
+          "storyCount": "{count}/2000 characters (minimum 50)",
+          "commitInfo": "This story will be saved as your first commit in your character's Git repository: {filename}"
+        },
+        "step4": {
+          "title": "Review and Confirm",
+          "descriptionLabel": "Description:",
+          "personalityLabel": "Personality:",
+          "abilitiesLabel": "Abilities:",
+          "mottoLabel": "Motto:",
+          "arrivalStoryLabel": "Arrival Story:",
+          "visibilityLabel": "Character Visibility",
+          "privateTitle": "Private",
+          "privateDescription": "Only you and your family can see this character",
+          "publicTitle": "Public",
+          "publicDescription": "Everyone can see your character and their story",
+          "infoTitle": "What will happen when creating the character?",
+          "infoPoint1": "A Git repository will be created to store your character and their stories",
+          "infoPoint2": "Your arrival story will be saved as the first commit",
+          "infoPoint3": "You can edit the character, add new stories, and collaborate with your family",
+          "infoPoint4": "Every change will be recorded in the history (complete traceability)"
+        },
+        "characterTypes": {
+          "cacao": {
+            "label": "Cocoa",
+            "description": "A cocoa bean full of potential and magic"
+          },
+          "chocolate": {
+            "label": "Chocolate",
+            "description": "Transformed chocolate, sweet and versatile"
+          },
+          "farmer": {
+            "label": "Farmer",
+            "description": "Guardian of plants and connoisseur of the land"
+          },
+          "other": {
+            "label": "Other",
+            "description": "A unique character with their own story"
+          }
+        },
+        "buttons": {
+          "previous": "Previous",
+          "next": "Next",
+          "create": "Create Character",
+          "creating": "Creating..."
+        },
+        "errors": {
+          "nameRequired": "Name is required",
+          "nameTooShort": "Name must be at least 2 characters",
+          "descriptionRequired": "Description is required",
+          "descriptionTooShort": "Description must be at least 20 characters",
+          "storyRequired": "Arrival story is required",
+          "storyTooShort": "Story must be at least 50 characters",
+          "createError": "Error creating character",
+          "unknownError": "Unknown error"
+        },
+        "loading": "Loading..."
       }
     },
     "explore": {
@@ -1093,5 +1193,21 @@
     "success": "Thank you!",
     "successMessage": "We'll get back to you soon.",
     "sendAnother": "Send another message"
+  },
+  "notifications": {
+    "chococrypto": {
+      "title": "The first batch of ChocoCrypto is ready!",
+      "message": "Use your ChocoCoins to get delicious chocolate bars. Discover more about this novelty!",
+      "readMore": "Read more"
+    },
+    "venezuelaContainer": {
+      "title": "Container from Venezuela arrived in Italy!",
+      "message": "Venezuelan cocoa farmers have sent their first container of fine cocoa to Italy. Discover this incredible story.",
+      "readMore": "Read more"
+    }
+  },
+  "blog": {
+    "title": "Chocósfera Blog",
+    "subtitle": "News, updates and more about the world of sustainable cocoa"
   }
 }

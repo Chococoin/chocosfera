@@ -101,6 +101,33 @@ export async function POST(req: NextRequest) {
 
     console.log(`New user registered: ${user.nick} (${user.email}) - Status: MINOR`);
 
+    // Create welcome notifications (2 notifications)
+    // Notification 1: ChocoCrypto
+    await prisma.notification.create({
+      data: {
+        userId: user.id,
+        type: 'SYSTEM_ANNOUNCEMENT',
+        title: '¡El primer lote de ChocoCrypto está listo!', // Will be translated in frontend
+        message: 'Usa tus ChocoCoins para conseguir deliciosas tabletas de chocolate. ¡Descubre más sobre esta novedad!',
+        actionUrl: `/${user.locale}/blog`,
+        icon: '🍫',
+        isRead: false,
+      },
+    });
+
+    // Notification 2: Venezuela Container
+    await prisma.notification.create({
+      data: {
+        userId: user.id,
+        type: 'SYSTEM_ANNOUNCEMENT',
+        title: '¡Container de Venezuela llegó a Italia!', // Will be translated in frontend
+        message: 'Los cacaocultores venezolanos han enviado su primer container de cacao fino a Italia. Conoce esta increíble historia.',
+        actionUrl: `/${user.locale}/blog/venezuela-container`,
+        icon: '🚢',
+        isRead: false,
+      },
+    });
+
     // Send welcome email (async, don't wait for it)
     const dashboardUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/${user.locale}/dashboard`;
     sendWelcomeEmail({

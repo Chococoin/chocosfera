@@ -562,6 +562,106 @@
       "errors": {
         "fetchError": "Fehler beim Abrufen der Zeichen",
         "unknownError": "Unbekannter Fehler"
+      },
+      "create": {
+        "backButton": "Zurück zu Meinen Charakteren",
+        "title": "Neuen Charakter Erstellen",
+        "stepProgress": "Schritt {step} von 4: Erstellen Sie Ihren einzigartigen Charakter in Chocósfera",
+        "steps": {
+          "basics": "Grundlagen",
+          "description": "Beschreibung",
+          "story": "Geschichte",
+          "confirm": "Bestätigen"
+        },
+        "step1": {
+          "title": "Grundlegende Charakterinformationen",
+          "nameLabel": "Charaktername *",
+          "namePlaceholder": "Z.B: Tony, Pipo, Kaoka...",
+          "characterCount": "{count}/50 Zeichen",
+          "typeLabel": "Charaktertyp *",
+          "iconLabel": "Charakter-Symbol",
+          "iconDescription": "Wählen Sie ein Symbol, das Ihren Charakter repräsentiert"
+        },
+        "step2": {
+          "title": "Beschreibung und Persönlichkeit",
+          "descriptionLabel": "Charakterbeschreibung *",
+          "descriptionPlaceholder": "Beschreiben Sie Ihren Charakter: Wie ist er? Was macht ihn einzigartig?",
+          "descriptionCount": "{count}/500 Zeichen (mindestens 20)",
+          "personalityLabel": "Persönlichkeit",
+          "personalityPlaceholder": "Z.B: Neugierig, abenteuerlustig, natürlicher Anführer, Familienbeschützer...",
+          "personalityCount": "{count}/300 Zeichen",
+          "abilitiesLabel": "Besondere Fähigkeiten",
+          "abilityPlaceholder": "Z.B: Kann mit Kakaopflanzen sprechen",
+          "addAbilityButton": "Hinzufügen",
+          "abilitiesCount": "{count}/5 Fähigkeiten",
+          "mottoLabel": "Motto oder Charakteristische Phrase",
+          "mottoPlaceholder": "Z.B: \"Die Magie des Kakaos vereint uns alle\"",
+          "mottoCount": "{count}/150 Zeichen"
+        },
+        "step3": {
+          "title": "Ankunftsgeschichte in Chocósfera",
+          "subtitle": "Erzählen Sie, wie Ihr Charakter in Chocósfera ankam. Denken Sie daran, dass alle Charaktere durch das Schokoladenportal gehen...",
+          "inspirationTitle": "Inspiration: Das Schokoladenportal",
+          "inspirationQuote": "Ich brachte ein Stück dieser aromatischen und dunklen Substanz zu meinem Mund und fand mich in einer Magie eingehüllt, die mich in eine Welt transportierte, die so schön und farbenfroh wie unbekannt war...",
+          "inspirationText": "Das ist Tonys Geschichte. Wie kam Ihr Charakter an? Was entdeckte er beim Durchqueren des Portals?",
+          "storyLabel": "Ihre Geschichte *",
+          "storyPlaceholder": "Erzählen Sie die Geschichte, wie Ihr Charakter Chocósfera entdeckte und betrat...",
+          "storyCount": "{count}/2000 Zeichen (mindestens 50)",
+          "commitInfo": "Diese Geschichte wird als erster Commit im Git-Repository Ihres Charakters gespeichert: {filename}"
+        },
+        "step4": {
+          "title": "Überprüfen und Bestätigen",
+          "descriptionLabel": "Beschreibung:",
+          "personalityLabel": "Persönlichkeit:",
+          "abilitiesLabel": "Fähigkeiten:",
+          "mottoLabel": "Motto:",
+          "arrivalStoryLabel": "Ankunftsgeschichte:",
+          "visibilityLabel": "Charaktersichtbarkeit",
+          "privateTitle": "Privat",
+          "privateDescription": "Nur Sie und Ihre Familie können diesen Charakter sehen",
+          "publicTitle": "Öffentlich",
+          "publicDescription": "Jeder kann Ihren Charakter und seine Geschichte sehen",
+          "infoTitle": "Was wird beim Erstellen des Charakters passieren?",
+          "infoPoint1": "Ein Git-Repository wird erstellt, um Ihren Charakter und seine Geschichten zu speichern",
+          "infoPoint2": "Ihre Ankunftsgeschichte wird als erster Commit gespeichert",
+          "infoPoint3": "Sie können den Charakter bearbeiten, neue Geschichten hinzufügen und mit Ihrer Familie zusammenarbeiten",
+          "infoPoint4": "Jede Änderung wird im Verlauf aufgezeichnet (vollständige Rückverfolgbarkeit)"
+        },
+        "characterTypes": {
+          "cacao": {
+            "label": "Kakao",
+            "description": "Eine Kakaobohne voller Potenzial und Magie"
+          },
+          "chocolate": {
+            "label": "Schokolade",
+            "description": "Verwandelte Schokolade, süß und vielseitig"
+          },
+          "farmer": {
+            "label": "Bauer",
+            "description": "Hüter der Pflanzen und Kenner des Landes"
+          },
+          "other": {
+            "label": "Andere",
+            "description": "Ein einzigartiger Charakter mit eigener Geschichte"
+          }
+        },
+        "buttons": {
+          "previous": "Zurück",
+          "next": "Weiter",
+          "create": "Charakter Erstellen",
+          "creating": "Erstellen..."
+        },
+        "errors": {
+          "nameRequired": "Name ist erforderlich",
+          "nameTooShort": "Name muss mindestens 2 Zeichen lang sein",
+          "descriptionRequired": "Beschreibung ist erforderlich",
+          "descriptionTooShort": "Beschreibung muss mindestens 20 Zeichen lang sein",
+          "storyRequired": "Ankunftsgeschichte ist erforderlich",
+          "storyTooShort": "Geschichte muss mindestens 50 Zeichen lang sein",
+          "createError": "Fehler beim Erstellen des Charakters",
+          "unknownError": "Unbekannter Fehler"
+        },
+        "loading": "Laden..."
       }
     },
     "explore": {
@@ -1093,5 +1193,21 @@
     "success": "Danke!",
     "successMessage": "Wir werden uns bald bei Ihnen melden.",
     "sendAnother": "Eine weitere Nachricht senden"
+  },
+  "notifications": {
+    "chococrypto": {
+      "title": "Das erste ChocoCrypto-Los ist fertig!",
+      "message": "Verwenden Sie Ihre ChocoCoins, um köstliche Schokoladentafeln zu erhalten. Entdecken Sie mehr über diese Neuheit!",
+      "readMore": "Mehr erfahren"
+    },
+    "venezuelaContainer": {
+      "title": "Container aus Venezuela in Italien angekommen!",
+      "message": "Venezolanische Kakaobauern haben ihren ersten Container mit feinem Kakao nach Italien geschickt. Entdecken Sie diese unglaubliche Geschichte.",
+      "readMore": "Mehr erfahren"
+    }
+  },
+  "blog": {
+    "title": "Chocósfera Blog",
+    "subtitle": "Neuigkeiten, Updates und mehr über die Welt des nachhaltigen Kakaos"
   }
 }
