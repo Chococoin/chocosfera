@@ -11,7 +11,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "stripe:setup": "tsx scripts/setup-stripe-products.ts"
+    "stripe:setup": "tsx scripts/setup-stripe-products.ts",
+    "generate:jwt": "node scripts/generate-jwt-secret.js"
   },
   "dependencies": {
     "@prisma/client": "^6.17.1",

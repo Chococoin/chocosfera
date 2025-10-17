@@ -7,10 +7,12 @@ Before deploying to Vercel, ensure you have:
 1. **PostgreSQL Database** (accessible from internet)
    - Recommended: [Neon](https://neon.tech), [Supabase](https://supabase.com), or [Railway](https://railway.app)
    - Get your `DATABASE_URL` connection string
+   - **📖 See [DATABASE_MIGRATION.md](DATABASE_MIGRATION.md) for detailed setup guide**
 
 2. **MongoDB Database**
    - Recommended: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
    - Get your `MONGODB_URI` connection string
+   - **📖 See [DATABASE_MIGRATION.md](DATABASE_MIGRATION.md) for detailed setup guide**
 
 3. **Stripe Account**
    - Set up your products and prices at https://dashboard.stripe.com/products
