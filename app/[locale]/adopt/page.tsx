@@ -19,7 +19,11 @@ export default function AdoptPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [adoptionData, setAdoptionData] = useState<any>(null);
+  const [adoptionData, setAdoptionData] = useState<{
+    adoptionId: string;
+    numberOfTrees: number;
+    annualCost: number;
+  } | null>(null);
 
   const isValid = name.trim() && email.trim() && country.trim() && trees > 0 && consent;
 
@@ -45,8 +49,8 @@ export default function AdoptPage() {
 
       setAdoptionData(data);
       setSubmitted(true);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
     }

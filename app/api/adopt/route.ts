@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { connectToMongoDB } from '@/lib/mongodb';
+import { getDatabase } from '@/lib/mongodb';
 import type { TreeAdoption } from '@/lib/types/mongodb';
 
 const PRICE_PER_TREE = 30; // €30 per tree per year
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Connect to MongoDB
-    const db = await connectToMongoDB();
+    const db = await getDatabase();
     const collection = db.collection<TreeAdoption>('tree_adoptions');
 
     // Calculate annual cost

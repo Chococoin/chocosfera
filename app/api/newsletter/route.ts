@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { connectToMongoDB } from '@/lib/mongodb';
+import { getDatabase } from '@/lib/mongodb';
 import type { NewsletterSubscription } from '@/lib/types/mongodb';
 
 export async function POST(request: NextRequest) {
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Connect to MongoDB
-    const db = await connectToMongoDB();
+    const db = await getDatabase();
     const collection = db.collection<NewsletterSubscription>('newsletter_subscriptions');
 
     // Check if email already subscribed
@@ -43,8 +43,10 @@ export async function POST(request: NextRequest) {
           {
             $set: {
               isActive: true,
-              unsubscribedAt: null,
               updatedAt: new Date(),
+            },
+            $unset: {
+              unsubscribedAt: '',
             },
           }
         );
