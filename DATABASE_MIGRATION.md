@@ -57,7 +57,9 @@
    - Click "Database" → "Connect" → "Connect your application"
    - Copy connection string
    - Replace `<password>` with your actual password
-   - Replace `<dbname>` with `chocosfera`
+   - **IMPORTANTE**: Agregar el nombre de la base de datos entre el hostname y el `?`
+   - Si el string viene como: `mongodb+srv://user:pass@host/?options`
+   - Debe quedar: `mongodb+srv://user:pass@host/chocosfera?options`
    - Format: `mongodb+srv://chocosfera:password@chocosfera-cluster.xxx.mongodb.net/chocosfera?retryWrites=true&w=majority`
    - **Save this as your `MONGODB_URI` for Vercel**
 
