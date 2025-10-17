@@ -1052,44 +1052,44 @@
           }
         }
       }
-    },
-    "forms": {
-      "consentText": "I agree to receive marketing and project-related emails from Chocosfera SRL. I understand I can unsubscribe at any time.",
-      "name": "Name",
-      "email": "Email",
-      "country": "Country",
-      "subject": "Subject",
-      "message": "Message",
-      "submitting": "Submitting...",
-      "required": "Required field"
-    },
-    "newsletter": {
-      "title": "Join the Chocósfera Newsletter",
-      "subtitle": "Receive updates about our chocolate, tree adoptions, and blockchain transparency.",
-      "button": "Subscribe",
-      "success": "You're now part of the Chocósfera community!",
-      "successMessage": "Check your email to confirm your subscription.",
-      "subscribeAnother": "Subscribe another email"
-    },
-    "adopt": {
-      "title": "Adopt a Cacao Tree",
-      "subtitle": "Support farmers and earn annual returns from ethically sourced cacao.",
-      "numberOfTrees": "Number of Trees",
-      "pricePerTree": "€30/tree/year",
-      "button": "Adopt Now",
-      "success": "Thank you, {name}!",
-      "successMessage": "Your adoption is confirmed. Check your email for next steps.",
-      "treesAdopted": "Trees adopted",
-      "annualCost": "Annual cost",
-      "adoptMore": "Adopt more trees"
-    },
-    "contact": {
-      "title": "Contact Chocósfera",
-      "subtitle": "Get in touch with our team.",
-      "button": "Send Message",
-      "success": "Thank you!",
-      "successMessage": "We'll get back to you soon.",
-      "sendAnother": "Send another message"
     }
+  },
+  "forms": {
+    "consentText": "I agree to receive marketing and project-related emails from Chocosfera SRL. I understand I can unsubscribe at any time.",
+    "name": "Name",
+    "email": "Email",
+    "country": "Country",
+    "subject": "Subject",
+    "message": "Message",
+    "submitting": "Submitting...",
+    "required": "Required field"
+  },
+  "newsletter": {
+    "title": "Join the Chocósfera Newsletter",
+    "subtitle": "Receive updates about our chocolate, tree adoptions, and blockchain transparency.",
+    "button": "Subscribe",
+    "success": "You're now part of the Chocósfera community!",
+    "successMessage": "Check your email to confirm your subscription.",
+    "subscribeAnother": "Subscribe another email"
+  },
+  "adopt": {
+    "title": "Adopt a Cacao Tree",
+    "subtitle": "Support farmers and earn annual returns from ethically sourced cacao.",
+    "numberOfTrees": "Number of Trees",
+    "pricePerTree": "€30/tree/year",
+    "button": "Adopt Now",
+    "success": "Thank you, {name}!",
+    "successMessage": "Your adoption is confirmed. Check your email for next steps.",
+    "treesAdopted": "Trees adopted",
+    "annualCost": "Annual cost",
+    "adoptMore": "Adopt more trees"
+  },
+  "contact": {
+    "title": "Contact Chocósfera",
+    "subtitle": "Get in touch with our team.",
+    "button": "Send Message",
+    "success": "Thank you!",
+    "successMessage": "We'll get back to you soon.",
+    "sendAnother": "Send another message"
   }
 }
