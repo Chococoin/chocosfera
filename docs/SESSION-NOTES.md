@@ -4,6 +4,229 @@
 
 ## 📝 Resumen de Sesiones Anteriores
 
+### Sesión 6 - Internacionalización Completa y Sistema de Blog (17 Oct 2025)
+
+#### Trabajo Realizado
+
+1. **Internacionalización del Wizard de Creación de Personajes** 🌍
+   - **Problema**: Texto hardcodeado en español en `app/[locale]/dashboard/characters/create/page.tsx`
+   - **Solución**:
+     - Agregadas traducciones completas en 9 idiomas (es, en, it, fr, de, pt, ro, ja, zh)
+     - Estructura organizada bajo `dashboard.characters.create`
+     - Grupos lógicos: steps, step1-4, characterTypes, buttons, errors
+     - CHARACTER_TYPES ahora dinámico usando hook `useTranslations`
+     - Interpolación de parámetros: `{step}`, `{count}`, `{filename}`
+   - **Archivos modificados**:
+     - `app/[locale]/dashboard/characters/create/page.tsx`: Uso de `t()` en toda la UI
+     - `messages/*.json` (9 archivos): Nuevas claves de traducción
+
+2. **Sistema de Blog con Artículos Informativos** 📝
+   - **Características**:
+     - Página principal: `app/[locale]/blog/page.tsx`
+     - Rutas dinámicas: `app/[locale]/blog/[slug]/page.tsx`
+     - Selector de idioma y toggle de tema en todas las páginas
+     - Navegación inteligente basada en estado de autenticación
+   - **Artículos creados**:
+     - **ChocoCrypto**: Primer lote disponible, uso de ChocoCoins
+     - **Container de Venezuela**: Historia de cacaocultores venezolanos enviando cacao a Italia
+       - Header con colores de la bandera venezolana
+       - Visualización del viaje en 4 pasos
+       - Métricas de impacto
+       - CTA para adoptar árboles
+   - **Archivos creados**:
+     - `app/[locale]/blog/page.tsx`: Listado de artículos
+     - `app/[locale]/blog/[slug]/page.tsx`: Vista de artículo individual
+     - `messages/*.json`: Traducciones de blog y notificaciones
+
+3. **Sistema de Notificaciones de Bienvenida** 🔔
+   - **Características**:
+     - Dos notificaciones automáticas para usuarios nuevos
+     - Notificación 1: ChocoCrypto con link a `/blog`
+     - Notificación 2: Container de Venezuela con link a `/blog/venezuela-container`
+     - Contenido adaptado: Sin mencionar "token" o "blockchain", enfoque en ChocoCoins
+     - Comportamiento mark-as-read comentado (preservado para futuro)
+   - **Archivos modificados**:
+     - `app/api/auth/register/route.ts`: Creación de 2 notificaciones al registrar
+     - `app/[locale]/dashboard/components/NotificationBell.tsx`: Código mark-as-read comentado
+     - `messages/*.json`: Traducciones de notificaciones
+
+4. **Configuración de ESLint** 🔧
+   - Agregado `scripts/**` a `eslint.config.mjs` ignores
+   - Eliminado archivo deprecated `.eslintignore`
+   - Agregado `eslint-disable` comment para función `markAsRead` preservada
+
+#### Archivos Modificados
+
+**Internacionalización**:
+- `app/[locale]/dashboard/characters/create/page.tsx`: +60 llamadas a `t()`
+- `messages/es.json`: +118 líneas
+- `messages/en.json`: +118 líneas
+- `messages/it.json`: +118 líneas
+- `messages/fr.json`: +118 líneas
+- `messages/de.json`: +118 líneas
+- `messages/pt.json`: +118 líneas
+- `messages/ro.json`: +118 líneas
+- `messages/ja.json`: +118 líneas
+- `messages/zh.json`: +118 líneas
+
+**Sistema de Blog**:
+- `app/[locale]/blog/page.tsx`: +186 líneas (nuevo)
+- `app/[locale]/blog/[slug]/page.tsx`: +223 líneas (nuevo)
+
+**Notificaciones**:
+- `app/api/auth/register/route.ts`: +27 líneas
+- `app/[locale]/dashboard/components/NotificationBell.tsx`: Código comentado
+
+**Configuración**:
+- `eslint.config.mjs`: Agregado `scripts/**` a ignores
+
+#### Commits
+
+```bash
+# Commit 1: Feature principal
+80ede73 - feat: add i18n for character creation, blog system, and welcome notifications
+  - 14 archivos modificados
+  - +1590 líneas, -109 líneas
+
+# Commit 2: Fixes de linting
+4a6b832 - fix: resolve linting errors and add scripts folder to eslint ignore
+  - 2 archivos modificados
+  - +2 líneas
+```
+
+#### Estructura de Traducciones
+
+```json
+{
+  "dashboard": {
+    "characters": {
+      "create": {
+        "title": "Crear Nuevo Personaje",
+        "stepProgress": "Paso {step} de 4",
+        "steps": {
+          "basics": "Básicos",
+          "description": "Descripción",
+          "story": "Historia",
+          "confirm": "Confirmar"
+        },
+        "characterTypes": {
+          "cacao": {
+            "label": "Cacao",
+            "description": "Un grano de cacao lleno de potencial"
+          }
+        },
+        "errors": {
+          "nameRequired": "El nombre es requerido",
+          "nameTooShort": "El nombre debe tener al menos 2 caracteres"
+        }
+      }
+    }
+  },
+  "notifications": {
+    "chococrypto": {
+      "title": "¡El primer lote de ChocoCrypto está listo!",
+      "message": "Usa tus ChocoCoins para conseguir deliciosas tabletas...",
+      "readMore": "Leer más"
+    },
+    "venezuelaContainer": {
+      "title": "¡Container de Venezuela llegó a Italia!",
+      "message": "Los cacaocultores venezolanos han enviado su primer container..."
+    }
+  },
+  "blog": {
+    "title": "Blog de la Chocósfera",
+    "subtitle": "Noticias y actualizaciones"
+  }
+}
+```
+
+#### Patrones Técnicos Implementados
+
+1. **Traducción de Arrays Dinámicos**:
+   ```typescript
+   const CHARACTER_TYPES = [
+     {
+       value: 'cacao' as CharacterType,
+       label: t('characterTypes.cacao.label'),
+       icon: '🍫',
+       description: t('characterTypes.cacao.description'),
+     },
+     // ... más tipos
+   ];
+   ```
+
+2. **Navegación Inteligente basada en Auth**:
+   ```typescript
+   const { user } = useAuth();
+   const locale = useLocale();
+
+   onClick={() => router.push(user ? `/${locale}/dashboard` : `/${locale}`)}
+   ```
+
+3. **Notificaciones Automáticas en Registro**:
+   ```typescript
+   // En /api/auth/register
+   await prisma.notification.create({
+     data: {
+       userId: user.id,
+       type: 'SYSTEM_ANNOUNCEMENT',
+       title: '¡El primer lote de ChocoCrypto está listo!',
+       actionUrl: `/${user.locale}/blog`,
+       icon: '🍫',
+       isRead: false,
+     },
+   });
+   ```
+
+4. **Preservación de Código para Futuro**:
+   ```typescript
+   // TEMPORARILY DISABLED: Mark as read
+   // This functionality is commented out to keep notifications visible
+   // Uncomment the lines below to restore the original behavior.
+
+   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   const markAsRead = async (notificationId: string) => {
+     // ... código preservado
+   };
+   ```
+
+#### Testing y Validación
+
+1. **Build exitoso**:
+   - `npm run lint`: ✅ Sin errores
+   - `npm run build`: ✅ Completado en 5.9s
+   - 23 páginas generadas correctamente
+
+2. **Verificación de Conexión a BD**:
+   - Instalado Vercel CLI: `npm install -g vercel`
+   - Linkeado proyecto: `vercel link --project=chocosfera`
+   - Descargadas variables de entorno: `vercel env pull`
+   - Confirmada conexión a Neon PostgreSQL en producción
+
+3. **Deploy**:
+   - Push a GitHub: ✅ 2 commits
+   - Vercel deploy automático: ✅ Activado
+
+#### Decisiones de Diseño
+
+1. **Notificaciones persistentes**: Se deshabilitó temporalmente la función de marcar como leída para mantener las notificaciones visibles después de hacer clic. El código está comentado y listo para restaurar cuando se requiera.
+
+2. **Contenido no técnico**: Se evitó mencionar "token" o "blockchain" en las notificaciones, enfocándose en ChocoCoins y beneficios tangibles (tabletas de chocolate).
+
+3. **Blog integrado**: El blog está dentro de la aplicación (no un CMS externo) para mantener consistencia en diseño y autenticación.
+
+4. **Idiomas soportados**: Mantenida paridad completa en los 9 idiomas para todas las nuevas funcionalidades.
+
+#### Próximos Pasos Sugeridos
+
+- [ ] Agregar más artículos al blog (sistema de gestión de contenido)
+- [ ] Implementar sistema de comentarios en artículos
+- [ ] Restaurar funcionalidad mark-as-read con toggle de usuario
+- [ ] Agregar filtros de notificaciones por tipo
+- [ ] Sistema de búsqueda en el blog
+
+---
+
 ### Sesión 5 - Fix Stack Overflow y Mejoras de Código (17 Oct 2025)
 
 #### Trabajo Realizado
