@@ -57,6 +57,7 @@ export function NotificationBell() {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const markAsRead = async (notificationId: string) => {
     try {
       const response = await fetch(`/api/notifications/${notificationId}`, {

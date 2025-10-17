@@ -19,6 +19,7 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
       "telegram-bot/**", // External Abracadabra bot code (CommonJS)
+      "scripts/**", // Node.js utility scripts (CommonJS)
     ],
   },
 ];
