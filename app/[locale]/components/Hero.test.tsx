@@ -83,7 +83,7 @@ describe('Hero', () => {
 
   it('renders the hero image', () => {
     render(<Hero />);
-    const image = screen.getByAltText('Cacao farmers working together');
+    const image = screen.getByAltText('Healthy cacao farmer harvesting ripe pods in sustainable plantation');
     expect(image).toBeInTheDocument();
   });
 

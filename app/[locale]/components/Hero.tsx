@@ -107,11 +107,12 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-br from-[rgba(223,134,170,0.2)] via-transparent to-[rgba(87,41,214,0.2)]" />
             <div className="relative flex flex-col gap-4">
               <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXwCvHdwuc0I-0NZM5R34OXa5OPjWrXaxfvLUB3AV-_VcPkaztyMkM0z-mPT7QAdl_-MIdtsGnRtZx86UJHqPt-ZwvMxPiF6RwR1nyjdNuWZqh_yPe8muXKMXeOZ5zOo8zhHI0Mx_CPx2ukXRAM03Y2s-IvDPKhlnKRBfw2W0sYWOzAs38_RbUsSjSMABB3Jg-M430gq4Ik7NshmdCpA4Xe5JEKS3eaOENqghZ4RjiG0XDr7L44y4FE2pQAT9ZFDVT45veF8_QFHw"
-                alt="Cacao farmers working together"
+                src="/images/cacao-farmer-sustainable-plantation.png"
+                alt="Healthy cacao farmer harvesting ripe pods in sustainable plantation"
                 width={640}
                 height={420}
                 className="h-48 w-full rounded-2xl object-cover"
+                style={{ objectPosition: 'center -10px' }}
                 priority
               />
               <div className="grid gap-3 text-sm text-muted">
