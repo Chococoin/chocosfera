@@ -1052,9 +1052,7 @@
           }
         }
       }
-    }
-  }
-}
+    },
     "forms": {
       "consentText": "I agree to receive marketing and project-related emails from Chocosfera SRL. I understand I can unsubscribe at any time.",
       "name": "Name",
