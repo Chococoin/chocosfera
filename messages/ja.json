@@ -9,6 +9,8 @@
     "description": "チョコレート、ブロックチェーン技術、社会正義が一体となってポジティブな影響を生み出す世界を発見してください。"
   },
   "sections": {
+    "title": "風味の起源を発見し改善する",
+    "description": "カカオの木から食卓までの旅のすべての段階を知る",
     "cacao": {
       "title": "カカオの心",
       "description": "私たちの本質は、土地と人々を尊重して栽培された倫理的なカカオにあります。各豆は伝統と本物の風味の物語を語っています。"
@@ -1051,5 +1053,43 @@
         }
       }
     }
+  },
+  "forms": {
+    "consentText": "Chocosfera SRLからのマーケティングおよびプロジェクト関連のメールの受信に同意します。いつでも配信停止できることを理解しています。",
+    "name": "名前",
+    "email": "メール",
+    "country": "国",
+    "subject": "件名",
+    "message": "メッセージ",
+    "submitting": "送信中...",
+    "required": "必須項目"
+  },
+  "newsletter": {
+    "title": "Chocósferaニュースレターに登録",
+    "subtitle": "チョコレート、木の養子縁組、ブロックチェーンの透明性に関する最新情報を受け取る。",
+    "button": "購読する",
+    "success": "Chocósferaコミュニティの一員になりました！",
+    "successMessage": "購読を確認するためにメールをご確認ください。",
+    "subscribeAnother": "別のメールを購読する"
+  },
+  "adopt": {
+    "title": "カカオの木を養子にする",
+    "subtitle": "農家を支援し、倫理的に調達されたカカオから年間収益を得る。",
+    "numberOfTrees": "木の数",
+    "pricePerTree": "€30/木/年",
+    "button": "今すぐ養子縁組",
+    "success": "ありがとう、{name}！",
+    "successMessage": "養子縁組が確認されました。次のステップについてはメールをご確認ください。",
+    "treesAdopted": "養子にした木",
+    "annualCost": "年間費用",
+    "adoptMore": "もっと木を養子にする"
+  },
+  "contact": {
+    "title": "Chocósferaに連絡",
+    "subtitle": "チームにお問い合わせください。",
+    "button": "メッセージを送信",
+    "success": "ありがとうございます！",
+    "successMessage": "すぐにご連絡いたします。",
+    "sendAnother": "別のメッセージを送信"
   }
 }

@@ -9,6 +9,8 @@
     "description": "探索巧克力、区块链技术和社会正义相结合创造积极影响的世界。"
   },
   "sections": {
+    "title": "探索并改进风味的起源",
+    "description": "了解可可从树到餐桌的每个阶段",
     "cacao": {
       "title": "可可之心",
       "description": "我们的本质在于道德来源的可可，以尊重土地和人民的方式种植。每一颗可可豆都讲述着传统和正宗风味的故事。"
@@ -1051,5 +1053,43 @@
         }
       }
     }
+  },
+  "forms": {
+    "consentText": "我同意接收来自Chocosfera SRL的营销和项目相关电子邮件。我理解我可以随时取消订阅。",
+    "name": "姓名",
+    "email": "邮箱",
+    "country": "国家",
+    "subject": "主题",
+    "message": "消息",
+    "submitting": "提交中...",
+    "required": "必填字段"
+  },
+  "newsletter": {
+    "title": "订阅Chocósfera新闻通讯",
+    "subtitle": "接收有关我们的巧克力、树木领养和区块链透明度的更新。",
+    "button": "订阅",
+    "success": "您现在是Chocósfera社区的一员！",
+    "successMessage": "查看您的电子邮件以确认订阅。",
+    "subscribeAnother": "订阅另一个邮箱"
+  },
+  "adopt": {
+    "title": "领养可可树",
+    "subtitle": "支持农民并从道德采购的可可中获得年度回报。",
+    "numberOfTrees": "树的数量",
+    "pricePerTree": "€30/树/年",
+    "button": "立即领养",
+    "success": "谢谢你，{name}！",
+    "successMessage": "您的领养已确认。查看您的电子邮件了解后续步骤。",
+    "treesAdopted": "已领养的树",
+    "annualCost": "年度费用",
+    "adoptMore": "领养更多树"
+  },
+  "contact": {
+    "title": "联系Chocósfera",
+    "subtitle": "与我们的团队取得联系。",
+    "button": "发送消息",
+    "success": "谢谢！",
+    "successMessage": "我们会尽快回复您。",
+    "sendAnother": "发送另一条消息"
   }
 }

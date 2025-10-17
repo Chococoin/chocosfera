@@ -9,6 +9,8 @@
     "description": "Descubra o mundo onde o chocolate, a tecnologia blockchain e a justiça social se unem para criar um impacto positivo."
   },
   "sections": {
+    "title": "Descubra e Melhore a Origem do Sabor",
+    "description": "Conheça cada etapa da jornada do cacau, da árvore à mesa",
     "cacao": {
       "title": "O Coração do Cacau",
       "description": "Nossa essência reside no cacau de origem ética, cultivado com respeito pela terra e pelas pessoas. Cada grão conta uma história de tradição e sabor autêntico."
@@ -1051,5 +1053,43 @@
         }
       }
     }
+  },
+  "forms": {
+    "consentText": "Concordo em receber emails de marketing e relacionados ao projeto da Chocosfera SRL. Entendo que posso cancelar a inscrição a qualquer momento.",
+    "name": "Nome",
+    "email": "Email",
+    "country": "País",
+    "subject": "Assunto",
+    "message": "Mensagem",
+    "submitting": "Enviando...",
+    "required": "Campo obrigatório"
+  },
+  "newsletter": {
+    "title": "Junte-se à Newsletter da Chocósfera",
+    "subtitle": "Receba atualizações sobre nosso chocolate, adoções de árvores e transparência blockchain.",
+    "button": "Inscrever-se",
+    "success": "Você agora faz parte da comunidade Chocósfera!",
+    "successMessage": "Verifique seu email para confirmar sua inscrição.",
+    "subscribeAnother": "Inscrever outro email"
+  },
+  "adopt": {
+    "title": "Adote uma Árvore de Cacau",
+    "subtitle": "Apoie agricultores e obtenha retornos anuais de cacau de origem ética.",
+    "numberOfTrees": "Número de Árvores",
+    "pricePerTree": "€30/árvore/ano",
+    "button": "Adotar Agora",
+    "success": "Obrigado, {name}!",
+    "successMessage": "Sua adoção está confirmada. Verifique seu email para os próximos passos.",
+    "treesAdopted": "Árvores adotadas",
+    "annualCost": "Custo anual",
+    "adoptMore": "Adotar mais árvores"
+  },
+  "contact": {
+    "title": "Contacte a Chocósfera",
+    "subtitle": "Entre em contato com nossa equipe.",
+    "button": "Enviar Mensagem",
+    "success": "Obrigado!",
+    "successMessage": "Responderemos em breve.",
+    "sendAnother": "Enviar outra mensagem"
   }
 }

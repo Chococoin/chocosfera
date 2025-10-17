@@ -9,6 +9,8 @@
     "description": "Entdecken Sie die Welt, in der Schokolade, Blockchain-Technologie und soziale Gerechtigkeit zusammenkommen, um eine positive Wirkung zu erzielen."
   },
   "sections": {
+    "title": "Entdecken und Verbessern Sie den Ursprung des Geschmacks",
+    "description": "Lernen Sie jede Phase der Kakaoreise kennen, vom Baum bis zum Tisch",
     "cacao": {
       "title": "Das Herz des Kakaos",
       "description": "Unser Wesen liegt in ethisch bezogenem Kakao, der mit Respekt für Land und Menschen angebaut wird. Jede Bohne erzählt eine Geschichte von Tradition und authentischem Geschmack."
@@ -1051,5 +1053,43 @@
         }
       }
     }
+  },
+  "forms": {
+    "consentText": "Ich stimme zu, Marketing- und projektbezogene E-Mails von Chocosfera SRL zu erhalten. Ich verstehe, dass ich mich jederzeit abmelden kann.",
+    "name": "Name",
+    "email": "E-Mail",
+    "country": "Land",
+    "subject": "Betreff",
+    "message": "Nachricht",
+    "submitting": "Wird gesendet...",
+    "required": "Pflichtfeld"
+  },
+  "newsletter": {
+    "title": "Abonnieren Sie den Chocósfera Newsletter",
+    "subtitle": "Erhalten Sie Updates über unsere Schokolade, Baumadoptionen und Blockchain-Transparenz.",
+    "button": "Abonnieren",
+    "success": "Sie sind jetzt Teil der Chocósfera-Community!",
+    "successMessage": "Überprüfen Sie Ihre E-Mail, um Ihr Abonnement zu bestätigen.",
+    "subscribeAnother": "Weitere E-Mail abonnieren"
+  },
+  "adopt": {
+    "title": "Adoptieren Sie einen Kakaobaum",
+    "subtitle": "Unterstützen Sie Bauern und erhalten Sie jährliche Erträge aus ethisch bezogenem Kakao.",
+    "numberOfTrees": "Anzahl der Bäume",
+    "pricePerTree": "€30/Baum/Jahr",
+    "button": "Jetzt Adoptieren",
+    "success": "Danke, {name}!",
+    "successMessage": "Ihre Adoption ist bestätigt. Überprüfen Sie Ihre E-Mail für die nächsten Schritte.",
+    "treesAdopted": "Adoptierte Bäume",
+    "annualCost": "Jährliche Kosten",
+    "adoptMore": "Mehr Bäume adoptieren"
+  },
+  "contact": {
+    "title": "Kontaktieren Sie Chocósfera",
+    "subtitle": "Kontaktieren Sie unser Team.",
+    "button": "Nachricht Senden",
+    "success": "Danke!",
+    "successMessage": "Wir werden uns bald bei Ihnen melden.",
+    "sendAnother": "Eine weitere Nachricht senden"
   }
 }

@@ -9,6 +9,8 @@
     "description": "Découvrez le monde où le chocolat, la technologie blockchain et la justice sociale s'unissent pour créer un impact positif."
   },
   "sections": {
+    "title": "Découvrez et Améliorez l'Origine de la Saveur",
+    "description": "Découvrez chaque étape du voyage du cacao, de l'arbre à la table",
     "cacao": {
       "title": "Le Cœur du Cacao",
       "description": "Notre essence réside dans le cacao d'origine éthique, cultivé dans le respect de la terre et des personnes. Chaque fève raconte une histoire de tradition et de saveur authentique."
@@ -1051,5 +1053,43 @@
         }
       }
     }
+  },
+  "forms": {
+    "consentText": "J'accepte de recevoir des emails marketing et liés au projet de Chocosfera SRL. Je comprends que je peux me désinscrire à tout moment.",
+    "name": "Nom",
+    "email": "Email",
+    "country": "Pays",
+    "subject": "Sujet",
+    "message": "Message",
+    "submitting": "Envoi en cours...",
+    "required": "Champ requis"
+  },
+  "newsletter": {
+    "title": "Rejoignez la Newsletter de Chocósfera",
+    "subtitle": "Recevez des mises à jour sur notre chocolat, les adoptions d'arbres et la transparence blockchain.",
+    "button": "S'abonner",
+    "success": "Vous faites maintenant partie de la communauté Chocósfera!",
+    "successMessage": "Vérifiez votre email pour confirmer votre abonnement.",
+    "subscribeAnother": "Abonner un autre email"
+  },
+  "adopt": {
+    "title": "Adoptez un Cacaoyer",
+    "subtitle": "Soutenez les agriculteurs et obtenez des retours annuels de cacao d'origine éthique.",
+    "numberOfTrees": "Nombre d'Arbres",
+    "pricePerTree": "€30/arbre/an",
+    "button": "Adopter Maintenant",
+    "success": "Merci, {name}!",
+    "successMessage": "Votre adoption est confirmée. Vérifiez votre email pour les prochaines étapes.",
+    "treesAdopted": "Arbres adoptés",
+    "annualCost": "Coût annuel",
+    "adoptMore": "Adopter plus d'arbres"
+  },
+  "contact": {
+    "title": "Contactez Chocósfera",
+    "subtitle": "Entrez en contact avec notre équipe.",
+    "button": "Envoyer le Message",
+    "success": "Merci!",
+    "successMessage": "Nous vous répondrons bientôt.",
+    "sendAnother": "Envoyer un autre message"
   }
 }

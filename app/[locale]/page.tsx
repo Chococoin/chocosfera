@@ -11,7 +11,6 @@ import Footer from './components/Footer';
 export default function Home() {
   const locale = useLocale();
   const tSections = useTranslations('sections');
-  const tHero = useTranslations('hero');
   const tCta = useTranslations('cta');
   const tDashboardMain = useTranslations('dashboard.main');
   const tStats = useTranslations('dashboard.main.stats');
@@ -92,9 +91,9 @@ export default function Home() {
         <section id="feature" className="iko-section feature-section">
           <div className="iko-section__heading">
             <h2 className="text-3xl font-bold text-heading md:text-4xl">
-              {tHero('title')}
+              {tSections('title')}
             </h2>
-            <p className="text-base md:text-lg text-muted">{tHero('description')}</p>
+            <p className="text-base md:text-lg text-muted">{tSections('description')}</p>
           </div>
           <div className="content-grid px-6 sm:px-8 md:px-10 lg:px-0">
             {contentSections.map((section) => (

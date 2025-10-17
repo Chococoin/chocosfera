@@ -156,6 +156,48 @@ export interface StoryLike {
 }
 
 // ============================================
+// NEWSLETTER TYPES
+// ============================================
+
+export interface NewsletterSubscription {
+  _id?: ObjectId;
+  name: string;
+  email: string;
+  consent: boolean;
+  locale?: string;
+  isActive: boolean;
+  unsubscribedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// ============================================
+// TREE ADOPTION TYPES
+// ============================================
+
+export type AdoptionStatus = 'pending' | 'confirmed' | 'active' | 'cancelled';
+export type PaymentStatus = 'pending' | 'completed' | 'failed' | 'refunded';
+
+export interface TreeAdoption {
+  _id?: ObjectId;
+  name: string;
+  email: string;
+  country: string;
+  numberOfTrees: number;
+  consent: boolean;
+  status: AdoptionStatus;
+  locale?: string;
+  paymentId?: string;
+  paymentStatus?: PaymentStatus;
+  annualCost: number;
+  treeIds: string[];           // References to actual tree records
+  startDate?: Date;
+  nextRenewalDate?: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// ============================================
 // ANALYTICS TYPES
 // ============================================
 
@@ -165,7 +207,9 @@ export type AnalyticsEventType =
   | 'story_published'
   | 'story_read'
   | 'tree_adopted'
-  | 'family_joined';
+  | 'family_joined'
+  | 'newsletter_subscribed'
+  | 'contact_form_submitted';
 
 export interface AnalyticsEvent {
   _id?: ObjectId;

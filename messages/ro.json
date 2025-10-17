@@ -9,6 +9,8 @@
     "description": "Descoperă lumea unde ciocolata, tehnologia blockchain și justiția socială se unesc pentru a crea un impact pozitiv."
   },
   "sections": {
+    "title": "Descoperă și Îmbunătățește Originea Gustului",
+    "description": "Află despre fiecare etapă a călătoriei cacaolei, de la copac la masă",
     "cacao": {
       "title": "Inima Cacaolei",
       "description": "Esența noastră rezidă în cacaoa de origine etică, cultivată cu respect pentru pământ și oameni. Fiecare boabă spune o poveste de tradiție și gust autentic."
@@ -1051,5 +1053,43 @@
         }
       }
     }
+  },
+  "forms": {
+    "consentText": "Sunt de acord să primesc emailuri de marketing și legate de proiect de la Chocosfera SRL. Înțeleg că mă pot dezabona oricând.",
+    "name": "Nume",
+    "email": "Email",
+    "country": "Țară",
+    "subject": "Subiect",
+    "message": "Mesaj",
+    "submitting": "Se trimite...",
+    "required": "Câmp obligatoriu"
+  },
+  "newsletter": {
+    "title": "Alăturați-vă Newsletter-ului Chocósfera",
+    "subtitle": "Primiți actualizări despre ciocolata noastră, adoptările de copaci și transparența blockchain.",
+    "button": "Abonează-te",
+    "success": "Acum faceți parte din comunitatea Chocósfera!",
+    "successMessage": "Verificați emailul pentru a confirma abonamentul.",
+    "subscribeAnother": "Abonați alt email"
+  },
+  "adopt": {
+    "title": "Adoptă un Copac de Cacao",
+    "subtitle": "Sprijiniți fermierii și obțineți randamente anuale din cacao de origine etică.",
+    "numberOfTrees": "Număr de Copaci",
+    "pricePerTree": "€30/copac/an",
+    "button": "Adoptă Acum",
+    "success": "Mulțumesc, {name}!",
+    "successMessage": "Adopția ta este confirmată. Verifică emailul pentru pașii următori.",
+    "treesAdopted": "Copaci adoptați",
+    "annualCost": "Cost anual",
+    "adoptMore": "Adoptă mai mulți copaci"
+  },
+  "contact": {
+    "title": "Contactați Chocósfera",
+    "subtitle": "Luați legătura cu echipa noastră.",
+    "button": "Trimite Mesaj",
+    "success": "Mulțumim!",
+    "successMessage": "Vă vom răspunde în curând.",
+    "sendAnother": "Trimite alt mesaj"
   }
 }

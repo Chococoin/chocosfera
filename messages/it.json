@@ -9,6 +9,8 @@
     "description": "Scopri il mondo dove il cioccolato, la tecnologia blockchain e la giustizia sociale si uniscono per creare un impatto positivo."
   },
   "sections": {
+    "title": "Scopri e Migliora l'Origine del Sapore",
+    "description": "Scopri ogni fase del viaggio del cacao, dall'albero alla tavola",
     "cacao": {
       "title": "Il Cuore del Cacao",
       "description": "La nostra essenza risiede nel cacao di origine etica, coltivato con rispetto per la terra e le persone. Ogni chicco racconta una storia di tradizione e sapore autentico."
@@ -1051,5 +1053,43 @@
         }
       }
     }
+  },
+  "forms": {
+    "consentText": "Accetto di ricevere email di marketing e relative al progetto da Chocosfera SRL. Comprendo di potermi disiscrivere in qualsiasi momento.",
+    "name": "Nome",
+    "email": "Email",
+    "country": "Paese",
+    "subject": "Oggetto",
+    "message": "Messaggio",
+    "submitting": "Invio in corso...",
+    "required": "Campo obbligatorio"
+  },
+  "newsletter": {
+    "title": "Iscriviti alla Newsletter di Chocósfera",
+    "subtitle": "Ricevi aggiornamenti sul nostro cioccolato, adozioni di alberi e trasparenza blockchain.",
+    "button": "Iscriviti",
+    "success": "Ora fai parte della comunità Chocósfera!",
+    "successMessage": "Controlla la tua email per confermare l'iscrizione.",
+    "subscribeAnother": "Iscrivere un'altra email"
+  },
+  "adopt": {
+    "title": "Adotta un Albero di Cacao",
+    "subtitle": "Sostieni gli agricoltori e ottieni ritorni annuali da cacao di origine etica.",
+    "numberOfTrees": "Numero di Alberi",
+    "pricePerTree": "€30/albero/anno",
+    "button": "Adotta Ora",
+    "success": "Grazie, {name}!",
+    "successMessage": "La tua adozione è confermata. Controlla la tua email per i prossimi passi.",
+    "treesAdopted": "Alberi adottati",
+    "annualCost": "Costo annuale",
+    "adoptMore": "Adotta più alberi"
+  },
+  "contact": {
+    "title": "Contatta Chocósfera",
+    "subtitle": "Mettiti in contatto con il nostro team.",
+    "button": "Invia Messaggio",
+    "success": "Grazie!",
+    "successMessage": "Ti risponderemo presto.",
+    "sendAnother": "Invia un altro messaggio"
   }
 }

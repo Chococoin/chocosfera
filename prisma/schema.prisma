@@ -244,6 +244,33 @@ model Notification {
   @@index([createdAt])
 }
 
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  consent   Boolean  @default(true)
+
+  // Status & Response
+  status    String   @default("pending")  // pending, in_progress, resolved
+  response  String?
+  respondedAt DateTime?
+  respondedBy String?
+
+  // Metadata
+  locale    String?  // User's locale when they submitted
+  userAgent String?  // Browser/device info
+  ipAddress String?  // For spam prevention
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}
+
 // ============================================
 // MONGODB COLLECTIONS (Reference Only)
 // ============================================
@@ -322,4 +349,37 @@ model Notification {
 //   storyId: String,             // References stories._id
 //   userId: String,              // References User.id
 //   createdAt: Date
+// }
+
+// newsletter_subscriptions collection:
+// {
+//   _id: ObjectId,
+//   name: String,
+//   email: String,
+//   consent: Boolean,
+//   locale: String?,
+//   isActive: Boolean,
+//   unsubscribedAt: Date?,
+//   createdAt: Date,
+//   updatedAt: Date
+// }
+
+// tree_adoptions collection:
+// {
+//   _id: ObjectId,
+//   name: String,
+//   email: String,
+//   country: String,
+//   numberOfTrees: Number,
+//   consent: Boolean,
+//   status: String,              // pending, confirmed, active, cancelled
+//   locale: String?,
+//   paymentId: String?,
+//   paymentStatus: String?,
+//   annualCost: Number,
+//   treeIds: [String],           // References to actual tree records
+//   startDate: Date?,
+//   nextRenewalDate: Date?,
+//   createdAt: Date,
+//   updatedAt: Date
 // }

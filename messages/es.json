@@ -9,6 +9,8 @@
     "description": "Descubre el mundo donde el chocolate, la tecnología blockchain y la justicia social se unen para crear un impacto positivo."
   },
   "sections": {
+    "title": "Descubre y mejora el origen del sabor",
+    "description": "Conoce cada etapa del viaje del cacao, desde el árbol hasta tu mesa",
     "cacao": {
       "title": "El Corazón del Cacao",
       "description": "Nuestra esencia radica en el cacao de origen ético, cultivado con respeto por la tierra y las personas. Cada grano cuenta una historia de tradición y sabor auténtico."
@@ -1050,6 +1052,44 @@
           }
         }
       }
+    },
+    "forms": {
+      "consentText": "Acepto recibir correos de marketing y del proyecto de Chocosfera SRL. Entiendo que puedo darme de baja en cualquier momento.",
+      "name": "Nombre",
+      "email": "Email",
+      "country": "País",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "submitting": "Enviando...",
+      "required": "Campo requerido"
+    },
+    "newsletter": {
+      "title": "Únete al Newsletter de Chocósfera",
+      "subtitle": "Recibe actualizaciones sobre nuestro chocolate, adopciones de árboles y transparencia blockchain.",
+      "button": "Suscribirme",
+      "success": "¡Ahora eres parte de la comunidad Chocósfera!",
+      "successMessage": "Revisa tu email para confirmar tu suscripción.",
+      "subscribeAnother": "Suscribir otro email"
+    },
+    "adopt": {
+      "title": "Adopta un Árbol de Cacao",
+      "subtitle": "Apoya a los agricultores y obtén retornos anuales de cacao de origen ético.",
+      "numberOfTrees": "Número de Árboles",
+      "pricePerTree": "€30/árbol/año",
+      "button": "Adoptar Ahora",
+      "success": "¡Gracias, {name}!",
+      "successMessage": "Tu adopción está confirmada. Revisa tu email para los próximos pasos.",
+      "treesAdopted": "Árboles adoptados",
+      "annualCost": "Costo anual",
+      "adoptMore": "Adoptar más árboles"
+    },
+    "contact": {
+      "title": "Contacta con Chocósfera",
+      "subtitle": "Ponte en contacto con nuestro equipo.",
+      "button": "Enviar Mensaje",
+      "success": "¡Gracias!",
+      "successMessage": "Te responderemos pronto.",
+      "sendAnother": "Enviar otro mensaje"
     }
   }
 }
