@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function Footer() {
   const t = useTranslations('footer');
+  const locale = useLocale();
 
   return (
     <footer className="relative mt-10 border-t border-[rgba(24,26,38,0.08)] bg-[rgba(255,255,255,0.88)] pt-6 pb-16 backdrop-blur-xl dark:border-[rgba(255,255,255,0.06)] dark:bg-[rgba(16,18,29,0.85)]">
@@ -34,22 +35,22 @@ export default function Footer() {
               </h4>
               <ul className="mt-3 space-y-2">
                 <li>
-                  <Link href="/" className="transition hover:text-heading dark:hover:text-white">
+                  <Link href={`/${locale}`} className="transition hover:text-heading dark:hover:text-white">
                     {t('aboutUs')}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#feature" className="transition hover:text-heading dark:hover:text-white">
-                    {t('howItWorks')}
+                  <Link href={`/${locale}/newsletter`} className="transition hover:text-heading dark:hover:text-white">
+                    {t('newsletter')}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#impact" className="transition hover:text-heading dark:hover:text-white">
-                    {t('faqs')}
+                  <Link href={`/${locale}/adopt`} className="transition hover:text-heading dark:hover:text-white">
+                    {t('adopt')}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#cta" className="transition hover:text-heading dark:hover:text-white">
+                  <Link href={`/${locale}/contact`} className="transition hover:text-heading dark:hover:text-white">
                     {t('contact')}
                   </Link>
                 </li>
