@@ -71,9 +71,8 @@ export default function Home() {
       key: 'justice',
       title: tSections('justice.title'),
       description: tSections('justice.description'),
-      imageSrc:
-        'https://lh3.googleusercontent.com/aida-public/AB6AXuCMhD5BIYR0Kuvk2Tegm1P6G-_p2QhkQ7KeFUx4sM3zhVOALpNTeiB73X-q6WsPCmVjuCky4oFi0uygzU1iQ4RggUCkIYQKq0mZfeeL55JfrL9F8KFjBHPQu0eWFmV6EIKDoKYoHp5ECeuLTQ0F6MEwBlsY9b8pyq1iFjC6IMVuJQXlmm4X8GrhfmFAB7mfWI7IT0vw5U3j7rAlLWDd6du_O5mFDoSpmvcvEU_LVBckzkhXQe_bJoJO8hyoqSg2pR7FAPtCIM1Iu5g',
-      imageAlt: 'Community impact',
+      imageSrc: '/images/family-drawing-characters.png',
+      imageAlt: 'Family drawing characters together',
     },
   ];
 
@@ -92,10 +91,10 @@ export default function Home() {
 
         <section id="feature" className="iko-section feature-section">
           <div className="iko-section__heading">
-            <h2 className="text-3xl font-bold text-white md:text-4xl">
+            <h2 className="text-3xl font-bold text-heading md:text-4xl">
               {tHero('title')}
             </h2>
-            <p className="text-base md:text-lg">{tHero('description')}</p>
+            <p className="text-base md:text-lg text-muted">{tHero('description')}</p>
           </div>
           <div className="content-grid px-6 sm:px-8 md:px-10 lg:px-0">
             {contentSections.map((section) => (
@@ -112,30 +111,30 @@ export default function Home() {
 
         <section id="impact" className="iko-section">
           <div className="iko-section__heading">
-            <h2 className="text-3xl font-bold text-white md:text-4xl">
+            <h2 className="text-3xl font-bold text-heading md:text-4xl">
               {tImpact('title')}
             </h2>
-            <p className="text-base md:text-lg">{tFooter('about')}</p>
+            <p className="text-base md:text-lg text-muted">{tFooter('about')}</p>
           </div>
           <div className="mx-auto grid max-w-6xl gap-6 px-6 sm:px-8 lg:grid-cols-2 lg:px-0">
             <div className="surface-panel p-8">
-              <h3 className="text-xl md:text-2xl font-semibold text-white">
+              <h3 className="text-xl md:text-2xl font-semibold text-heading">
                 {tDashboardMain('quickActions')}
               </h3>
-              <p className="mt-3 text-base md:text-lg text-[rgba(255,255,255,0.7)]">
+              <p className="mt-3 text-base md:text-lg text-muted">
                 {tSections('blockchain.description')}
               </p>
               <div className="mt-6 grid gap-4">
                 {impactMetrics.map((metric) => (
                   <div
                     key={metric.label}
-                    className="flex items-center justify-between rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(16,18,29,0.55)] px-5 py-4"
+                    className="flex items-center justify-between rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-4"
                   >
-                    <span className="text-base md:text-lg text-[rgba(255,255,255,0.7)]">
+                    <span className="text-base md:text-lg text-muted">
                       <span className="text-2xl mr-2">{metric.accent}</span>
                       {metric.label}
                     </span>
-                    <span className="text-xl md:text-2xl font-semibold text-white">
+                    <span className="text-xl md:text-2xl font-semibold text-heading">
                       {metric.value}
                     </span>
                   </div>
@@ -143,10 +142,10 @@ export default function Home() {
               </div>
             </div>
             <div className="surface-panel p-8">
-              <h3 className="text-xl md:text-2xl font-semibold text-white">
+              <h3 className="text-xl md:text-2xl font-semibold text-heading">
                 {tImpact('title')}
               </h3>
-              <ul className="mt-4 space-y-3 text-base md:text-lg text-[rgba(255,255,255,0.75)]">
+              <ul className="mt-4 space-y-3 text-base md:text-lg text-muted">
                 <li className="flex items-center gap-2">
                   <span className="text-2xl">🌳</span>
                   <span>{tImpact('treesGrowing')}</span>
@@ -161,25 +160,25 @@ export default function Home() {
                 </li>
               </ul>
               <div className="mt-8">
-                <div className="flex items-center justify-between text-sm md:text-base text-[rgba(255,255,255,0.6)] mb-2">
+                <div className="flex items-center justify-between text-sm md:text-base text-muted mb-2">
                   <span className="uppercase tracking-[0.3em]">2025 Roadmap</span>
-                  <span className="font-semibold text-white">72%</span>
+                  <span className="font-semibold text-heading">72%</span>
                 </div>
                 <div className="iko-hero__panel-progress">
                   <span style={{ width: '72%' }} />
                 </div>
                 <div className="mt-3 grid grid-cols-3 gap-3 text-center">
-                  <div className="rounded-xl bg-[rgba(16,18,29,0.4)] px-3 py-2">
-                    <div className="text-xl md:text-2xl font-bold text-white">18</div>
-                    <div className="text-xs md:text-sm text-[rgba(255,255,255,0.5)] uppercase tracking-wider">Completado</div>
+                  <div className="rounded-xl bg-[var(--color-surface)] px-3 py-2">
+                    <div className="text-xl md:text-2xl font-bold text-heading">18</div>
+                    <div className="text-xs md:text-sm text-muted uppercase tracking-wider">Completado</div>
                   </div>
                   <div className="rounded-xl bg-[rgba(223,134,170,0.15)] px-3 py-2">
                     <div className="text-xl md:text-2xl font-bold text-[rgba(223,134,170,1)]">7</div>
-                    <div className="text-xs md:text-sm text-[rgba(255,255,255,0.5)] uppercase tracking-wider">En Progreso</div>
+                    <div className="text-xs md:text-sm text-muted uppercase tracking-wider">En Progreso</div>
                   </div>
-                  <div className="rounded-xl bg-[rgba(16,18,29,0.4)] px-3 py-2">
-                    <div className="text-xl md:text-2xl font-bold text-[rgba(255,255,255,0.5)]">25</div>
-                    <div className="text-xs md:text-sm text-[rgba(255,255,255,0.5)] uppercase tracking-wider">Total</div>
+                  <div className="rounded-xl bg-[var(--color-surface)] px-3 py-2">
+                    <div className="text-xl md:text-2xl font-bold text-muted">25</div>
+                    <div className="text-xs md:text-sm text-muted uppercase tracking-wider">Total</div>
                   </div>
                 </div>
                 <div className="mt-16 flex items-center justify-center gap-4 text-5xl md:text-6xl opacity-90">
