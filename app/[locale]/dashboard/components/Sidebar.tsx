@@ -4,9 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import UserProfile from './UserProfile';
-
-
 export function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const pathname = usePathname();
@@ -95,11 +92,6 @@ export function Sidebar() {
         isCollapsed ? 'w-16' : 'w-64'
       }`}
     >
-      {/* User Profile */}
-      <div className="p-4 border-b border-[var(--color-border)]">
-        <UserProfile isCollapsed={isCollapsed} />
-      </div>
-
       {/* Logo and collapse button */}
       <div className="flex items-center justify-between p-4 border-b border-[var(--color-border)]">
         {!isCollapsed && (
