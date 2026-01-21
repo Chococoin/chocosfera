@@ -11,6 +11,91 @@ import path from 'path';
 import fs from 'fs/promises';
 import { existsSync } from 'fs';
 
+// ============================================
+// SECURITY UTILITIES
+// ============================================
+
+/**
+ * Sanitize slug to prevent path traversal attacks
+ * Removes dangerous sequences like "..", "/", "\", and null bytes
+ */
+export function sanitizeSlug(slug: string): string {
+  if (!slug || typeof slug !== 'string') {
+    throw new Error('Invalid slug: must be a non-empty string');
+  }
+
+  // Remove path traversal sequences and dangerous characters
+  let sanitized = slug
+    .replace(/\.\./g, '')           // Remove ..
+    .replace(/[\/\\]/g, '')         // Remove / and \
+    .replace(/\0/g, '')             // Remove null bytes
+    .replace(/[<>:"|?*]/g, '')      // Remove Windows-invalid chars
+    .trim();
+
+  // Ensure slug only contains safe characters (alphanumeric, hyphen, underscore)
+  if (!/^[a-zA-Z0-9_-]+$/.test(sanitized)) {
+    // If not, create a safe version by keeping only valid chars
+    sanitized = sanitized.replace(/[^a-zA-Z0-9_-]/g, '-').replace(/-+/g, '-');
+  }
+
+  if (!sanitized || sanitized.length === 0) {
+    throw new Error('Invalid slug: contains only invalid characters');
+  }
+
+  return sanitized;
+}
+
+/**
+ * Validate Gitea URL to prevent SSRF attacks
+ * Blocks private IPs, localhost, and cloud metadata endpoints
+ */
+export function isValidGiteaUrl(url: string): boolean {
+  if (!url) return false;
+
+  try {
+    const parsed = new URL(url);
+
+    // Must be HTTP or HTTPS
+    if (!['http:', 'https:'].includes(parsed.protocol)) {
+      return false;
+    }
+
+    const hostname = parsed.hostname.toLowerCase();
+
+    // Block localhost
+    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1') {
+      return false;
+    }
+
+    // Block cloud metadata endpoints
+    if (hostname === '169.254.169.254' || hostname === 'metadata.google.internal') {
+      return false;
+    }
+
+    // Block private IP ranges (RFC 1918)
+    const ipv4Match = hostname.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
+    if (ipv4Match) {
+      const [, a, b] = ipv4Match.map(Number);
+      // 10.0.0.0/8
+      if (a === 10) return false;
+      // 172.16.0.0/12
+      if (a === 172 && b >= 16 && b <= 31) return false;
+      // 192.168.0.0/16
+      if (a === 192 && b === 168) return false;
+      // 169.254.0.0/16 (link-local)
+      if (a === 169 && b === 254) return false;
+    }
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// ============================================
+// GITEA CONFIGURATION
+// ============================================
+
 /**
  * Check if Gitea is configured
  */
@@ -34,9 +119,19 @@ export class GiteaClient {
   private isConfigured: boolean;
 
   constructor() {
-    this.baseUrl = process.env.GITEA_URL || '';
+    const giteaUrl = process.env.GITEA_URL || '';
+
+    // Validate URL to prevent SSRF attacks
+    if (giteaUrl && !isValidGiteaUrl(giteaUrl)) {
+      console.error('[GitService] SECURITY: Invalid GITEA_URL blocked (potential SSRF)');
+      this.baseUrl = '';
+      this.isConfigured = false;
+    } else {
+      this.baseUrl = giteaUrl;
+      this.isConfigured = isGiteaConfigured();
+    }
+
     this.token = process.env.GITEA_API_TOKEN || '';
-    this.isConfigured = isGiteaConfigured();
   }
 
   /**
@@ -265,7 +360,9 @@ export class GitService {
     }
   ): Promise<string> {
     try {
-      const characterDir = path.join(this.repoPath, 'personajes', characterData.slug);
+      // Sanitize slug to prevent path traversal attacks
+      const safeSlug = sanitizeSlug(characterData.slug);
+      const characterDir = path.join(this.repoPath, 'personajes', safeSlug);
       await fs.mkdir(characterDir, { recursive: true });
 
       // Create character.json
@@ -342,12 +439,15 @@ This is the beginning of ${characterData.name}'s journey in the Chocósfera.`
     content: string
   ): Promise<string> {
     try {
+      // Sanitize slug and title to prevent path traversal attacks
+      const safeSlug = sanitizeSlug(characterSlug);
+      const safeTitle = title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-');
       const storyPath = path.join(
         this.repoPath,
         'personajes',
-        characterSlug,
+        safeSlug,
         'historia',
-        `${String(chapterNumber).padStart(2, '0')}-${title.toLowerCase().replace(/\s+/g, '-')}.md`
+        `${String(chapterNumber).padStart(2, '0')}-${safeTitle}.md`
       );
 
       await fs.writeFile(storyPath, content);
