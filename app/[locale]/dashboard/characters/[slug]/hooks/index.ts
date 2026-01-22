@@ -1,0 +1,1 @@
+export { useCharacterData } from './useCharacterData';
