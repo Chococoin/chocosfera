@@ -454,6 +454,7 @@ pub fn display_mode_selection() {
     println!("    [1] 🤖 vs IA");
     println!("    [2] 👥 2 Jugadores");
     println!("    [3] ❓ Ayuda");
+    println!("    [4] 📊 Simulación (100 partidas)");
     println!("    [q] 🚪 Salir");
     println!();
 }
