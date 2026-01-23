@@ -1,7 +1,7 @@
 [package]
 name = "chocosfera_tcg"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 description = "Simulador de juego de cartas TCG para Chocosfera"
 authors = ["Chocosfera Team"]
 
