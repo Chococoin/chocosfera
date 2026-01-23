@@ -36,7 +36,7 @@ impl Player {
             is_human,
             hp: 20,
             total_cacao_harvested: 0,
-            cacao: 0,
+            cacao: 3,  // Starting cacao to play cards turn 1
             spirit: 0,
             max_spirit: 0,
             hand: Vec::new(),
