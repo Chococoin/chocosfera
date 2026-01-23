@@ -1,0 +1,15 @@
+[package]
+name = "chocosfera_tcg"
+version = "0.1.0"
+edition = "2024"
+description = "Simulador de juego de cartas TCG para Chocosfera"
+authors = ["Chocosfera Team"]
+
+[dependencies]
+crossterm = "0.28"
+rand = "0.8"
+colored = "2.1"
+
+[profile.release]
+opt-level = 3
+lto = true
