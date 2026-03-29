@@ -1209,5 +1209,19 @@
   "blog": {
     "title": "Blog de Chocósfera",
     "subtitle": "Noticias, actualizaciones y más sobre el mundo del cacao sostenible"
+  },
+  "mediaKit": {
+    "title": "Media Kit",
+    "subtitle": "Recursos de marca y material promocional de Chocósfera",
+    "brand": "Marca",
+    "brandDesc": "Logotipos, paleta de colores y tipografías oficiales",
+    "screenshots": "Capturas de pantalla",
+    "screenshotsDesc": "Imágenes de la plataforma listas para publicación",
+    "press": "Notas de prensa",
+    "pressDesc": "Comunicados e información para medios",
+    "downloadAll": "Descargar todo",
+    "contact": "Para consultas de prensa, escríbenos a",
+    "comingSoon": "Próximamente",
+    "comingSoonDesc": "Estamos preparando nuestro material promocional. Vuelve pronto."
   }
 }

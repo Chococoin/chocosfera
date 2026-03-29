@@ -1209,5 +1209,19 @@
   "blog": {
     "title": "Chocósfera Blog",
     "subtitle": "News, updates and more about the world of sustainable cocoa"
+  },
+  "mediaKit": {
+    "title": "Media Kit",
+    "subtitle": "Brand resources and promotional materials for Chocósfera",
+    "brand": "Brand",
+    "brandDesc": "Logos, color palette and official typefaces",
+    "screenshots": "Screenshots",
+    "screenshotsDesc": "Platform images ready for publication",
+    "press": "Press Releases",
+    "pressDesc": "Press releases and media information",
+    "downloadAll": "Download All",
+    "contact": "For press inquiries, write to us at",
+    "comingSoon": "Coming Soon",
+    "comingSoonDesc": "We are preparing our promotional materials. Check back soon."
   }
 }
