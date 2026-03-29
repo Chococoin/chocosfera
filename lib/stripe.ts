@@ -1,14 +1,26 @@
 import Stripe from 'stripe';
 import { loadStripe, type Stripe as StripeClient } from '@stripe/stripe-js';
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('STRIPE_SECRET_KEY is not set');
+// Server-side Stripe instance (lazy to avoid build-time errors when env is not set)
+let _stripe: Stripe | null = null;
+export function getStripeServer(): Stripe {
+  if (!_stripe) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error('STRIPE_SECRET_KEY is not set');
+    }
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2025-09-30.clover',
+      typescript: true,
+    });
+  }
+  return _stripe;
 }
 
-// Server-side Stripe instance
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2025-09-30.clover',
-  typescript: true,
+/** @deprecated Use getStripeServer() instead */
+export const stripe = new Proxy({} as Stripe, {
+  get(_target, prop) {
+    return Reflect.get(getStripeServer(), prop, getStripeServer());
+  },
 });
 
 // Client-side Stripe instance
