@@ -2,39 +2,37 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
+import { useBlockchainStats } from '@/hooks/useBlockchainStats';
 
 export default function DashboardPage() {
   const t = useTranslations('dashboard.main');
   const locale = useLocale();
   const router = useRouter();
+  const { stats: chainStats, isLoading: statsLoading } = useBlockchainStats();
 
   const stats = [
     {
       title: t('stats.adoptedTrees'),
-      value: '12',
+      value: statsLoading ? '...' : String(chainStats?.adoptedTrees ?? 0),
       icon: '🌳',
-      change: { value: 3, type: 'increase' as const },
       color: 'green',
     },
     {
       title: t('stats.cocoaProduced'),
-      value: '248 kg',
+      value: statsLoading ? '...' : `${chainStats?.totalTrees ?? 0} trees`,
       icon: '🍫',
-      change: { value: 15, type: 'increase' as const },
       color: 'primary',
     },
     {
       title: t('stats.carbonOffset'),
-      value: '1.2 ton',
+      value: statsLoading ? '...' : `${chainStats?.co2Offset ?? '0'} ton`,
       icon: '🌍',
-      change: { value: 8, type: 'increase' as const },
       color: 'blue',
     },
     {
       title: t('stats.communitiesHelped'),
-      value: '5',
+      value: statsLoading ? '...' : String(chainStats?.uniqueFarmers ?? 0),
       icon: '👥',
-      change: { value: 2, type: 'increase' as const },
       color: 'orange',
     },
   ];
@@ -87,20 +85,10 @@ export default function DashboardPage() {
                 <p className="text-2xl font-bold text-heading" style={{ fontFamily: 'var(--font-heading)' }}>
                   {stat.value}
                 </p>
-                {stat.change && (
-                  <div className="flex items-center mt-2 text-sm">
-                    <span
-                      className={`${
-                        stat.change.type === 'increase'
-                          ? 'text-green-600 dark:text-green-400'
-                          : 'text-red-600 dark:text-red-400'
-                      }`}
-                    >
-                      {stat.change.type === 'increase' ? '↑' : '↓'} {stat.change.value}%
-                    </span>
-                    <span className="text-muted ml-1">
-                      {t('stats.thisMonth')}
-                    </span>
+                {chainStats && !statsLoading && (
+                  <div className="flex items-center mt-2 text-xs text-muted">
+                    <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-1" />
+                    on-chain
                   </div>
                 )}
               </div>
