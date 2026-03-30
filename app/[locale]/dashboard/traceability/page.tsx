@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useTreeRegistry, useTreeTimeline, type TreeTimelineEvent } from '@/hooks/useTreeRegistry';
 
 interface TraceabilityStep {
   id: number;
@@ -11,65 +12,47 @@ interface TraceabilityStep {
   icon: string;
   status: 'completed' | 'in-progress' | 'pending';
   details: string;
+  txHash?: string;
 }
+
+const EVENT_DISPLAY: Record<string, { title: string; icon: string; details: string }> = {
+  adopted: { title: 'Tree Adopted', icon: '🤝', details: 'Tree adoption recorded on-chain' },
+  audit_approved: { title: 'Audit Approved', icon: '✅', details: 'Guardian approved the tree audit' },
+  status_changed: { title: 'Status Updated', icon: '🔄', details: 'Tree status changed on-chain' },
+};
 
 export default function TraceabilityPage() {
   const t = useTranslations('dashboard.traceability');
-  const [selectedProduct, setSelectedProduct] = useState('product-001');
+  const { trees, isLoading: treesLoading } = useTreeRegistry();
+  const [selectedTreeId, setSelectedTreeId] = useState<number>(1);
+  const { timeline, isLoading: timelineLoading } = useTreeTimeline(selectedTreeId);
 
-  const traceabilitySteps: TraceabilityStep[] = [
-    {
-      id: 1,
-      title: t('steps.planting.title'),
-      date: '15 Ene 2024',
-      location: t('steps.planting.location'),
-      icon: '🌱',
-      status: 'completed',
-      details: t('steps.planting.details'),
-    },
-    {
-      id: 2,
-      title: t('steps.growth.title'),
-      date: '20 Mar 2024',
-      location: t('steps.growth.location'),
-      icon: '🌳',
-      status: 'completed',
-      details: t('steps.growth.details'),
-    },
-    {
-      id: 3,
-      title: t('steps.harvest.title'),
-      date: '10 Oct 2024',
-      location: t('steps.harvest.location'),
-      icon: '🍫',
-      status: 'completed',
-      details: t('steps.harvest.details'),
-    },
-    {
-      id: 4,
-      title: t('steps.processing.title'),
-      date: '15 Oct 2024',
-      location: t('steps.processing.location'),
-      icon: '⚙️',
-      status: 'in-progress',
-      details: t('steps.processing.details'),
-    },
-    {
-      id: 5,
-      title: t('steps.distribution.title'),
-      date: t('steps.distribution.date'),
-      location: t('steps.distribution.location'),
-      icon: '🚚',
-      status: 'pending',
-      details: t('steps.distribution.details'),
-    },
-  ];
+  // Build traceability steps from on-chain events
+  const traceabilitySteps: TraceabilityStep[] = timeline.length > 0
+    ? timeline.map((event, index) => {
+        const display = EVENT_DISPLAY[event.type] || EVENT_DISPLAY.status_changed;
+        return {
+          id: index + 1,
+          title: event.type === 'status_changed' ? `Status: ${event.newStatus}` : display.title,
+          date: `Block #${event.blockNumber}`,
+          location: event.transactionHash ? `${event.transactionHash.slice(0, 10)}...` : '',
+          icon: display.icon,
+          status: 'completed' as const,
+          details: display.details,
+          txHash: event.transactionHash,
+        };
+      })
+    : [
+        { id: 1, title: t('steps.planting.title'), date: '-', location: '-', icon: '🌱', status: 'pending' as const, details: 'No on-chain events yet' },
+      ];
 
+  // Get blockchain info from the first event
+  const firstEvent = timeline[0];
   const blockchainInfo = {
-    transactionHash: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
-    blockNumber: '18457234',
-    timestamp: '2024-10-10 14:23:15 UTC',
-    network: 'Ethereum Mainnet',
+    transactionHash: firstEvent?.transactionHash || '0x...',
+    blockNumber: firstEvent ? String(firstEvent.blockNumber) : '-',
+    timestamp: '-',
+    network: 'Anvil Local (Chain 31337)',
   };
 
   const certifications = [
@@ -93,13 +76,21 @@ export default function TraceabilityPage() {
         </div>
         <div className="surface-panel px-4 py-2">
           <select
-            value={selectedProduct}
-            onChange={(e) => setSelectedProduct(e.target.value)}
+            value={selectedTreeId}
+            onChange={(e) => setSelectedTreeId(Number(e.target.value))}
             className="bg-transparent text-heading font-medium focus:outline-none cursor-pointer"
           >
-            <option value="product-001">{t('product')} #001</option>
-            <option value="product-002">{t('product')} #002</option>
-            <option value="product-003">{t('product')} #003</option>
+            {treesLoading ? (
+              <option>Loading...</option>
+            ) : trees.length > 0 ? (
+              trees.map((tree) => (
+                <option key={tree.id} value={tree.id}>
+                  Cacao #{String(tree.id).padStart(3, '0')} ({tree.status})
+                </option>
+              ))
+            ) : (
+              <option value="1">No trees on-chain</option>
+            )}
           </select>
         </div>
       </div>
