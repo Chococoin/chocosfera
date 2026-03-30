@@ -103,6 +103,9 @@ model User {
   telegramId       String?  @unique
   telegramUsername String?
 
+  // Blockchain Wallet
+  walletAddress String? @unique
+
   // Metadata
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

@@ -6,6 +6,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { isSupportedLocale } from '@/i18n';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { WalletProvider } from '@/contexts/WalletContext';
 import ScrollToTop from './components/ScrollToTop';
 import "./globals.css";
 
@@ -71,7 +72,9 @@ export default async function RootLayout({
         <ScrollToTop />
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
-            {children}
+            <WalletProvider>
+              {children}
+            </WalletProvider>
           </AuthProvider>
         </NextIntlClientProvider>
       </body>
