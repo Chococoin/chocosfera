@@ -65,6 +65,12 @@ export function Sidebar() {
       current: false,
     },
     {
+      name: 'Governance',
+      href: '/dashboard/governance',
+      icon: '🏛️',
+      current: false,
+    },
+    {
       name: t('pricing'),
       href: '/pricing',
       icon: '💳',

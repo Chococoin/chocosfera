@@ -201,6 +201,80 @@ export const erc20Abi = [
   },
 ] as const satisfies Abi;
 
+export const hybridVotingAbi = [
+  {
+    type: 'function',
+    name: 'proposalsCount',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    name: 'thresholdPct',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint8' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    name: 'getProposalClasses',
+    inputs: [{ name: 'id', type: 'uint256' }],
+    outputs: [
+      {
+        name: '',
+        type: 'tuple[]',
+        components: [
+          { name: 'strategy', type: 'uint8' },
+          { name: 'slicePct', type: 'uint8' },
+          { name: 'quadratic', type: 'bool' },
+          { name: 'minBalance', type: 'uint256' },
+          { name: 'asset', type: 'address' },
+          { name: 'hatIds', type: 'uint256[]' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    name: 'vote',
+    inputs: [
+      { name: 'id', type: 'uint256' },
+      { name: 'idxs', type: 'uint8[]' },
+      { name: 'weights', type: 'uint8[]' },
+    ],
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    name: 'createProposal',
+    inputs: [
+      { name: 'title', type: 'bytes' },
+      { name: 'descriptionHash', type: 'bytes32' },
+      { name: 'minutesDuration', type: 'uint32' },
+      { name: 'numOptions', type: 'uint8' },
+      { name: 'batches', type: 'tuple[][]', components: [{ name: 'target', type: 'address' }, { name: 'value', type: 'uint256' }, { name: 'data', type: 'bytes' }] },
+      { name: 'hatIds', type: 'uint256[]' },
+    ],
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'event',
+    name: 'NewProposal',
+    inputs: [
+      { name: 'id', type: 'uint256', indexed: false },
+      { name: 'title', type: 'bytes', indexed: false },
+      { name: 'descriptionHash', type: 'bytes32', indexed: false },
+      { name: 'numOptions', type: 'uint8', indexed: false },
+      { name: 'endTs', type: 'uint64', indexed: false },
+      { name: 'created', type: 'uint64', indexed: false },
+    ],
+  },
+] as const satisfies Abi;
+
 // Tree status enum matching Solidity
 export const TreeStatus = {
   PLANTED: 0,
