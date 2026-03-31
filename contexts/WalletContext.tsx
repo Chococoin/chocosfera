@@ -3,15 +3,10 @@
 /**
  * Wallet Context
  * Provides wallet connection state for ADULT_VERIFIED users only.
- * Parallel to AuthContext — wallet is optional secondary authentication.
+ * Lazy-loads wagmi/RainbowKit to avoid blocking initial page load.
  */
 
-import React, { createContext, useContext, ReactNode } from 'react';
-import { WagmiProvider } from 'wagmi';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import '@rainbow-me/rainbowkit/styles.css';
-import { wagmiConfig } from '@/lib/web3/config';
+import React, { createContext, useContext, ReactNode, lazy, Suspense, useMemo } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 
 // ============================================
@@ -28,25 +23,12 @@ interface WalletContextType {
 
 const WalletContext = createContext<WalletContextType>({ isWeb3Available: false });
 
-const queryClient = new QueryClient();
+// Lazy-load the heavy web3 wrapper (wagmi + RainbowKit + react-query)
+const Web3Wrapper = lazy(() => import('./Web3Wrapper'));
 
 // ============================================
 // PROVIDER
 // ============================================
-
-function Web3Wrapper({ children }: { children: ReactNode }) {
-  return (
-    <WagmiProvider config={wagmiConfig}>
-      <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>
-          <WalletContext.Provider value={{ isWeb3Available: true }}>
-            {children}
-          </WalletContext.Provider>
-        </RainbowKitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
-  );
-}
 
 export function WalletProvider({ children }: { children: ReactNode }) {
   const { isAdult } = useAuth();
@@ -60,7 +42,17 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     );
   }
 
-  return <Web3Wrapper>{children}</Web3Wrapper>;
+  return (
+    <Suspense fallback={
+      <WalletContext.Provider value={{ isWeb3Available: false }}>
+        {children}
+      </WalletContext.Provider>
+    }>
+      <Web3Wrapper>
+        {children}
+      </Web3Wrapper>
+    </Suspense>
+  );
 }
 
 // ============================================
@@ -70,3 +62,5 @@ export function WalletProvider({ children }: { children: ReactNode }) {
 export function useWallet() {
   return useContext(WalletContext);
 }
+
+export { WalletContext };
