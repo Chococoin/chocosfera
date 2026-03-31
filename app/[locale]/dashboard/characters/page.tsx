@@ -6,9 +6,10 @@
  */
 
 import { useAuth } from '@/contexts/AuthContext';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { useRoyalties } from '@/hooks/useRoyalties';
 
 interface Character {
   id: string;
@@ -38,6 +39,14 @@ export default function CharactersPage() {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Map character indices to guardian IDs for royalty lookup
+  // In production, characters would have an onChainGuardianId field
+  const guardianIds = useMemo(
+    () => characters.map((_, i) => i + 1),
+    [characters]
+  );
+  const { getRoyalty } = useRoyalties(guardianIds);
 
   useEffect(() => {
     fetchCharacters();
@@ -238,6 +247,27 @@ export default function CharactersPage() {
                     <p className="text-xs text-gray-600 dark:text-gray-400">{t('stats.views')}</p>
                   </div>
                 </div>
+
+                {/* Royalties (on-chain) */}
+                {(() => {
+                  const guardianId = characters.indexOf(character) + 1;
+                  const royalty = getRoyalty(guardianId);
+                  if (!royalty || !royalty.isRegistered) return null;
+                  return (
+                    <div className="mt-3 p-3 rounded-xl bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-800">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-green-700 dark:text-green-300 font-medium">Royalties</span>
+                        <span className="text-green-900 dark:text-green-100 font-bold">
+                          ${royalty.totalRoyalties} USDT
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between text-xs mt-1 text-green-600 dark:text-green-400">
+                        <span>Creator 30%: ${royalty.creatorShare}</span>
+                        <span>Pool 70%: ${royalty.poolShare}</span>
+                      </div>
+                    </div>
+                  );
+                })()}
 
                 {/* Updated date */}
                 <div className="mt-4 text-xs text-gray-500 dark:text-gray-500">
