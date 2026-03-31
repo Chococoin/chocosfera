@@ -13,6 +13,7 @@ import {
   TelegramTab,
   ChococoinsTab,
   PrivacyTab,
+  WalletTab,
 } from './components';
 
 export default function SettingsPage() {
@@ -30,6 +31,7 @@ export default function SettingsPage() {
     { id: 'notifications', label: t('notifications.title'), icon: '🔔' },
     { id: 'telegram', label: t('telegram.title'), icon: '📱' },
     { id: 'chococoins', label: t('chococoins.title'), icon: '🪙' },
+    { id: 'wallet', label: 'Wallet', icon: '🔗' },
     { id: 'privacy', label: t('privacy.title'), icon: '🔒' },
   ];
 
@@ -102,6 +104,10 @@ export default function SettingsPage() {
 
       <TabPanel activeTab={activeTab} tabId="chococoins">
         <ChococoinsTab />
+      </TabPanel>
+
+      <TabPanel activeTab={activeTab} tabId="wallet">
+        <WalletTab />
       </TabPanel>
 
       <TabPanel activeTab={activeTab} tabId="privacy">

@@ -3,6 +3,7 @@
 import ThemeToggle from '../../components/ThemeToggle';
 import { NotificationBell } from './NotificationBell';
 import UserProfile from './UserProfile';
+import { ConnectWallet } from '@/components/wallet';
 
 export function DashboardHeader() {
   return (
@@ -10,6 +11,7 @@ export function DashboardHeader() {
       <div className="flex items-center justify-end">
         {/* Right side - Actions */}
         <div className="flex items-center space-x-4">
+          <ConnectWallet />
           <NotificationBell />
           <ThemeToggle />
           <UserProfile />

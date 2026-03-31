@@ -7,6 +7,7 @@ export { NotificationsTab } from './NotificationsTab';
 export { TelegramTab } from './TelegramTab';
 export { ChococoinsTab } from './ChococoinsTab';
 export { PrivacyTab } from './PrivacyTab';
+export { WalletTab } from './WalletTab';
 
 // Support components
 export { AvatarSelector, AvatarDisplay } from './AvatarSelector';
