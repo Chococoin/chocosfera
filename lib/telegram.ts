@@ -3,6 +3,11 @@ import { Telegraf } from 'telegraf';
 // Initialize Telegram bot
 let bot: Telegraf | null = null;
 
+/**
+ * Get Telegraf bot instance.
+ * Command handling is now done by the Rust chocosfera-bot process.
+ * This instance is only used for sending notifications from the server.
+ */
 export function getTelegramBot(): Telegraf {
   if (!bot) {
     const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -12,44 +17,7 @@ export function getTelegramBot(): Telegraf {
     }
 
     bot = new Telegraf(token);
-
-    // Set up basic commands
-    bot.command('start', (ctx) => {
-      ctx.reply(
-        '¡Bienvenido a Chocósfera! 🍫\n\n' +
-        'Soy tu asistente virtual para todo lo relacionado con el cacao ético y sostenible.\n\n' +
-        'Comandos disponibles:\n' +
-        '/start - Mostrar este mensaje\n' +
-        '/help - Ayuda\n' +
-        '/profile - Ver tu perfil\n' +
-        '/link - Vincular tu cuenta\n' +
-        '/community - Unirte a la comunidad'
-      );
-    });
-
-    bot.command('help', (ctx) => {
-      ctx.reply(
-        '📚 Ayuda de Chocósfera\n\n' +
-        'Comandos disponibles:\n' +
-        '/start - Mensaje de bienvenida\n' +
-        '/help - Mostrar esta ayuda\n' +
-        '/profile - Ver información de tu perfil\n' +
-        '/link - Vincular tu cuenta de Chocósfera\n' +
-        '/community - Información sobre la comunidad\n\n' +
-        '¿Necesitas más ayuda? Visita: https://chocosfera.com'
-      );
-    });
-
-    bot.command('community', (ctx) => {
-      ctx.reply(
-        '🌍 Comunidad Chocósfera\n\n' +
-        'Únete a nuestra comunidad global de productores, comerciantes y amantes del cacao.\n\n' +
-        '✨ Comparte tu historia\n' +
-        '🤝 Conecta con otros miembros\n' +
-        '📚 Aprende sobre cacao sostenible\n\n' +
-        'Visita tu dashboard para más información.'
-      );
-    });
+    // No command handlers - bot logic handled by Rust chocosfera-bot
   }
 
   return bot;

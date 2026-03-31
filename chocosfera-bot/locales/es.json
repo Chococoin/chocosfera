@@ -1,0 +1,21 @@
+{
+    "start": "Hola ${name}! Soy ChocBot, tu asistente del mundo del cacao.\n\nPuedo ayudarte con:\n- Precios del cacao\n- Tus arboles adoptados\n- Trazabilidad del producto\n- Impacto ambiental y social\n\nEscribe /help para ver todos los comandos.",
+    "help": "Comandos disponibles:\n\n/precio - Precio actual del cacao\n/arboles - Tus arboles adoptados\n/trazabilidad - Cadena de suministro\n/impacto - Tu impacto ambiental\n/adoptar - Adoptar un arbol\n/comunidad - Stats de la comunidad\n/help - Esta ayuda",
+    "precio_loading": "Consultando precio del cacao...",
+    "precio_result": "Precio del Cacao Fino de Aroma:\n\n- Mercado: $${market_price} USD/ton\n- Precio justo Chocosfera: $${fair_price} USD/ton (+22%)\n- Agricultores reciben: $${farmer_price} USD/ton\n\nUltima actualizacion: ${time}",
+    "arboles_none": "Aun no has adoptado ningun arbol. Visita ${url}/es/dashboard/trees para adoptar tu primer arbol de cacao.",
+    "arboles_header": "Tus arboles adoptados:\n\nTotal: ${count} arboles\nProduccion: ${production} kg\nCO2 compensado: ${co2} ton",
+    "trazabilidad": "Trazabilidad del Cacao en Chocosfera:\n\n1. Plantacion - Arbol plantado y registrado en blockchain\n2. Crecimiento - Monitoreo organico certificado\n3. Cosecha - Verificada en blockchain\n4. Procesamiento - Fermentacion y secado\n5. Distribucion - Comercio justo directo\n\nCertificaciones: Fair Trade, Organico, Carbono Neutral, Rainforest Alliance\n\nVer mas: ${url}/es/dashboard/traceability",
+    "impacto_header": "Tu Impacto Global:\n\n- CO2 capturado: ${co2} kg\n- Agua ahorrada: ${water} L\n- Biodiversidad: ${biodiversity} especies protegidas\n- Familias apoyadas: ${families}\n- Ingreso generado: $${income}",
+    "adoptar": "Adopta un arbol de cacao y contribuye al comercio justo.\n\nCada arbol:\n- Captura ~24 kg de CO2/ano\n- Genera ingresos para agricultores locales\n- Produce cacao fino de aroma\n\nAdopta aqui: ${url}/es/dashboard/trees",
+    "comunidad_stats": "Comunidad Chocosfera:\n\n- Usuarios registrados: ${users}\n- Mensajes en la comunidad: ${messages}\n- Arboles adoptados: 12\n- Comunidades apoyadas: 5\n\nUnete: ${url}/es/register",
+    "not_registered": "No he encontrado tu cuenta vinculada. Usa /vincular para conectar tu cuenta de Chocosfera.",
+    "vincular_start": "Para vincular tu cuenta, enviame el email con el que te registraste en Chocosfera:",
+    "vincular_success": "Cuenta vinculada exitosamente! Ahora puedes consultar tus arboles y tu impacto.",
+    "vincular_not_found": "No encontre una cuenta con ese email. Registrate en ${url}/es/register",
+    "keyword_precio": "El cacao fino de aroma cotiza actualmente a ~$3,450 USD/ton. Usa /precio para mas detalles.",
+    "keyword_arbol": "Puedes adoptar arboles de cacao desde la plataforma. Usa /adoptar para mas info.",
+    "keyword_impacto": "Chocosfera ha compensado 1.2 toneladas de CO2 con 12 arboles activos. Usa /impacto para tus stats.",
+    "keyword_default": "Puedo ayudarte con temas del cacao y chocolate. Escribe /help para ver los comandos disponibles.",
+    "error": "Ocurrio un error. Intenta de nuevo mas tarde."
+}

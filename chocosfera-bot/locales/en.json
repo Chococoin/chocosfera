@@ -1,0 +1,21 @@
+{
+    "start": "Hi ${name}! I'm ChocBot, your cacao world assistant.\n\nI can help you with:\n- Cacao prices\n- Your adopted trees\n- Product traceability\n- Environmental and social impact\n\nType /help to see all commands.",
+    "help": "Available commands:\n\n/precio - Current cacao price\n/arboles - Your adopted trees\n/trazabilidad - Supply chain\n/impacto - Your environmental impact\n/adoptar - Adopt a tree\n/comunidad - Community stats\n/help - This help",
+    "precio_loading": "Checking cacao prices...",
+    "precio_result": "Fine Aroma Cacao Price:\n\n- Market: $${market_price} USD/ton\n- Chocosfera fair price: $${fair_price} USD/ton (+22%)\n- Farmers receive: $${farmer_price} USD/ton\n\nLast update: ${time}",
+    "arboles_none": "You haven't adopted any trees yet. Visit ${url}/en/dashboard/trees to adopt your first cacao tree.",
+    "arboles_header": "Your adopted trees:\n\nTotal: ${count} trees\nProduction: ${production} kg\nCO2 offset: ${co2} ton",
+    "trazabilidad": "Cacao Traceability at Chocosfera:\n\n1. Planting - Tree planted and registered on blockchain\n2. Growth - Certified organic monitoring\n3. Harvest - Blockchain verified\n4. Processing - Fermentation and drying\n5. Distribution - Direct fair trade\n\nCertifications: Fair Trade, Organic, Carbon Neutral, Rainforest Alliance\n\nLearn more: ${url}/en/dashboard/traceability",
+    "impacto_header": "Your Global Impact:\n\n- CO2 captured: ${co2} kg\n- Water saved: ${water} L\n- Biodiversity: ${biodiversity} species protected\n- Families supported: ${families}\n- Income generated: $${income}",
+    "adoptar": "Adopt a cacao tree and contribute to fair trade.\n\nEach tree:\n- Captures ~24 kg CO2/year\n- Generates income for local farmers\n- Produces fine aroma cacao\n\nAdopt here: ${url}/en/dashboard/trees",
+    "comunidad_stats": "Chocosfera Community:\n\n- Registered users: ${users}\n- Community messages: ${messages}\n- Adopted trees: 12\n- Supported communities: 5\n\nJoin: ${url}/en/register",
+    "not_registered": "I couldn't find your linked account. Use /vincular to connect your Chocosfera account.",
+    "vincular_start": "To link your account, send me the email you used to register on Chocosfera:",
+    "vincular_success": "Account linked successfully! You can now check your trees and impact.",
+    "vincular_not_found": "No account found with that email. Register at ${url}/en/register",
+    "keyword_precio": "Fine aroma cacao is currently at ~$3,450 USD/ton. Use /precio for more details.",
+    "keyword_arbol": "You can adopt cacao trees from the platform. Use /adoptar for more info.",
+    "keyword_impacto": "Chocosfera has offset 1.2 tons of CO2 with 12 active trees. Use /impacto for your stats.",
+    "keyword_default": "I can help you with cacao and chocolate topics. Type /help to see available commands.",
+    "error": "An error occurred. Please try again later."
+}
